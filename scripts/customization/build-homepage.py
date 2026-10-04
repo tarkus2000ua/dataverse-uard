@@ -28,6 +28,8 @@ def build():
                 raise ValueError(f"Empty or non-string value in {locale}/{group}")
 
     template = (SOURCE / "template.html").read_text(encoding="utf-8")
+    institutions_icon = f'<img class="dv-home__institutions-icon" src="{versioned_url(IMAGES / "icons/institutions.svg")}" width="32" height="32" alt="">'
+    template = template.replace("{{institutionsHeadingIcon}}", institutions_icon)
     areas = {locale: json.loads((SOURCE / f"content/knowledge-areas.{locale}.json").read_text(encoding="utf-8")) for locale in ("en", "uk")}
     for locale, labels in areas.items():
         if list(labels) != list("ABCDEFGHIJK") or not all(isinstance(v, str) and v.strip() for v in labels.values()):

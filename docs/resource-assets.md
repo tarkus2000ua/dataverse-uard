@@ -11,7 +11,9 @@ src/main/webapp/resources/js/uard/. Do not edit generated JS copies.
 
 HTML stays in the supported branding hooks. It references absolute /resources/
 URLs with a SHA-256 content version query. Image dimensions/empty decorative alt
-attributes are explicit. Small search/arrow/institutions UI SVGs remain inline.
+attributes are explicit. All three heading icons (institutions.svg,
+knowledge-areas.svg and clusters.svg) are external assets under
+resources/images/uard/icons/. Small search/arrow UI SVGs remain inline.
 Safe inert translation JSON stays in the HTML; external deferred scripts read it
 and continue using the native JSF document locale. No extra translation requests.
 

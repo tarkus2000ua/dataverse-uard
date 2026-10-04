@@ -53,3 +53,9 @@ JavaScript is under resources/js/uard. No pre-existing upstream assets or JSF
 templates were changed. Branding builders reference absolute versioned URLs.
 Preserve these added directories during upgrades and regenerate scripts from
 customization sources. See resource-assets.md for deployment ordering.
+
+All three homepage heading icons now load from resources/images/uard/icons/,
+including institutions.svg extracted from the homepage fragment. The institution
+icon retains its original 32px geometry, blue color and three paired columns;
+the branding builder generates its versioned image URL. No upstream template
+or application logic was changed for this extraction.
