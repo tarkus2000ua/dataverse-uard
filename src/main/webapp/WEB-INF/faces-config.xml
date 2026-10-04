@@ -8,9 +8,9 @@
             <var>bundle</var>
         </resource-bundle>
         <locale-config>
-            <default-locale>en</default-locale>
-            <supported-locale>fr</supported-locale>
-            <supported-locale>zh_CN</supported-locale>
+            <!-- UaRD starts in Ukrainian. DataverseSession applies explicit user selections.
+                 Do not negotiate a different initial locale from Accept-Language. -->
+            <default-locale>ua</default-locale>
         </locale-config>
     </application>
     <render-kit>

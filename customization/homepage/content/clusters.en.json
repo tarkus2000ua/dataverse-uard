@@ -1,0 +1,17 @@
+{
+  "security": "National Security and Defense",
+  "mathematics": "Mathematics and Statistics",
+  "physics": "Physics, Nuclear Physics and Astronomy",
+  "chemistry": "Chemistry, Chemical Technologies and Pharmacy",
+  "earth": "Earth and Environmental Sciences",
+  "biology": "Biology, Biotechnology, Medicine and Rehabilitation",
+  "information": "Information Technologies and Electronics",
+  "energy": "Safe, Clean Energy and Energy Efficiency",
+  "mechanical": "Mechanical Engineering and Machine Building",
+  "industrial": "Industrial and Construction Technologies, Logistics, Transport",
+  "agricultural": "Agricultural and Veterinary Sciences",
+  "human-capital": "Human Capital Development, Social Sciences and Journalism",
+  "economics": "Economic Transformations, Business and Administration",
+  "law": "Law",
+  "humanities": "Humanities and Arts"
+}

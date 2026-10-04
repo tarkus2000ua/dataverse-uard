@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M6 15a5 5 0 0 1 5-5h13l6 7h23a5 5 0 0 1 5 5v29a5 5 0 0 1-5 5H11a5 5 0 0 1-5-5Z" fill="#0067ad"/>
+  <path d="M6 24a5 5 0 0 1 5-5h42a5 5 0 0 1 5 5v27a5 5 0 0 1-5 5H11a5 5 0 0 1-5-5Z" fill="#0067ad" stroke="white" stroke-opacity=".3" stroke-width="1.5"/>
+  <text x="32" y="46" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="600" fill="white">C</text>
+</svg>

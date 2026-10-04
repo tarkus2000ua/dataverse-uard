@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none" color="#0067ad" aria-hidden="true" focusable="false">
+  <!-- Matching the institutions heading: 32px canvas, blue fill and 1.6px details. -->
+  <path d="M3 5.5C7 3.5 11.5 4.2 15 7V28C11.5 25.2 7 24.5 3 26.5Z" fill="currentColor"/>
+  <path d="M29 5.5C25 3.5 20.5 4.2 17 7V28C20.5 25.2 25 24.5 29 26.5Z" fill="currentColor"/>
+  <path d="M5.5 7.5V23M26.5 7.5V23" stroke="white" stroke-opacity=".22" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
