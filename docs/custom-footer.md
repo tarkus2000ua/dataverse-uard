@@ -36,3 +36,15 @@ follow native selector, footer visible on native browse page, no JS errors.
 Screenshots inspected. Native privacy policy is not currently configured, so its
 visibility is preserved structurally but no configured-policy runtime check made.
 Widget and authenticated role-based runtime verification remain outstanding.
+
+## Page-bottom alignment fix
+
+Pages with the custom footer use a full-height flex column; main content grows
+on short pages, and the footer remains in flow on long pages. Footer JavaScript
+removes the native template's whitespace-only body text containing an orphan
+NBSP after parsing, which otherwise produces a 20px anonymous line below it.
+This cleanup requires JavaScript; without it the footer remains readable but
+the native spacer may remain. Widgets do not load this custom footer.
+Verified the footer ends at document bottom (within pixel rounding) on desktop
+and mobile homepages, native browse and a short login page with a tall viewport.
+No horizontal overflow; support dialog still opens.

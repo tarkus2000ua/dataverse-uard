@@ -305,7 +305,7 @@ body:has(#content > .dv-home) #dataverse-header-block .messagePanel:not(:has(*))
     .dv-home .dv-home__collections-heading { margin: 0 8px 12px; }
     .dv-home .dv-home__collections h2 { font-size: 22px; gap: 10px; }
     .dv-home .dv-home__collection-track { padding: 0 36px; }
-    .dv-home .dv-home__collection-list > li { flex-basis: 88%; }
+    .dv-home .dv-home__collection-list > li { flex-basis: 100%; }
     .dv-home .dv-home__collection-controls button { width: 44px; height: 44px; }
     .dv-home #dv-collections-previous, .dv-home [data-scroll-direction="previous"] { left: -8px; }
     .dv-home #dv-collections-next, .dv-home [data-scroll-direction="next"] { right: -8px; }
@@ -323,7 +323,16 @@ body:has(#content > .dv-home) #dataverse-header-block .messagePanel:not(:has(*))
 }
 
 /* Custom footer with the native legal row retained below it. Widget footer is untouched. */
-body:not(.widget-view):has(#uard-footer) { margin-bottom: 0; }
+body:not(.widget-view):has(#uard-footer) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin-bottom: 0;
+}
+body:not(.widget-view):has(#uard-footer) > #content { flex: 1 0 auto; }
+body:not(.widget-view):has(#uard-footer) > #dataverse-header-block,
+body:not(.widget-view):has(#uard-footer) > footer { flex-shrink: 0; }
 footer:has(> #uard-footer) { display: flex; flex-direction: column; height: auto; background: #082e50; color: #dceaf5; margin-top: 32px; }
 body:has(#uard-footer) .dv-home { margin-bottom: 0; }
 .uard-footer { order: 0; font-family: Arial, "Helvetica Neue", sans-serif; font-size: 14px; line-height: 1.5; }
