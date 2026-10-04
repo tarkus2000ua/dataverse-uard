@@ -52,10 +52,25 @@
             start: visible[0] || 1, end: visible[visible.length - 1] || 1, count: list.children.length
         });
     }
-    function move(direction) {
-        list.scrollBy({left: direction * list.clientWidth * 0.8,
+    function scrollCards(strip, direction) {
+        if (!strip.children.length) return;
+        var padding = parseFloat(getComputedStyle(strip).paddingLeft) || 0;
+        var bounds = strip.getBoundingClientRect();
+        var starts = Array.from(strip.children).map(function (card) {
+            return card.getBoundingClientRect().left - bounds.left - strip.clientLeft + strip.scrollLeft - padding;
+        });
+        var nearest = starts.reduce(function (best, value, index) {
+            return Math.abs(value - strip.scrollLeft) < Math.abs(starts[best] - strip.scrollLeft) ? index : best;
+        }, 0);
+        var pitch = starts.length > 1 ? starts[1] - starts[0] : strip.clientWidth;
+        var step = Math.max(1, Math.floor(strip.clientWidth * 0.8 / pitch));
+        var index = Math.max(0, Math.min(starts.length - 1, nearest + direction * step));
+        var maximum = Math.max(0, strip.scrollWidth - strip.clientWidth);
+        var target = index === 0 ? 0 : Math.min(maximum, starts[index]);
+        strip.scrollTo({left: target,
             behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
     }
+    function move(direction) { scrollCards(list, direction); }
     previous.addEventListener("click", function () { move(-1); });
     next.addEventListener("click", function () { move(1); });
     list.addEventListener("scroll", updatePosition, {passive: true});
@@ -147,8 +162,7 @@
             });
         }
         function moveStrip(direction) {
-            stripList.scrollBy({left: direction * stripList.clientWidth * 0.8,
-                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+            scrollCards(stripList, direction);
         }
         stripPrevious.addEventListener("click", function () { moveStrip(-1); });
         stripNext.addEventListener("click", function () { moveStrip(1); });

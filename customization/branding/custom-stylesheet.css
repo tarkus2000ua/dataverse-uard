@@ -283,7 +283,7 @@ body:has(#content > .dv-home) #dataverse-header-block .messagePanel:not(:has(*))
 .dv-home .dv-home__collections-heading .dv-home__browse { color: var(--uard-action); text-decoration: none; }
 .dv-home .dv-home__collections-heading .dv-home__browse:hover { text-decoration: underline; }
 .dv-home .dv-home__collection-track { position: relative; padding: 0 48px; }
-.dv-home .dv-home__collection-list { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none; padding: 4px; margin: 0; list-style: none; }
+.dv-home .dv-home__collection-list { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: 4px; scrollbar-width: none; padding: 4px; margin: 0; list-style: none; }
 .dv-home .dv-home__collection-list::-webkit-scrollbar { display: none; }
 .dv-home .dv-home__collection-list > li { display: flex; flex: 0 0 calc((100% - 48px) / 5); min-width: 0; scroll-snap-align: start; }
 .dv-home .dv-home__collection-list a { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; width: 100%; min-height: 176px; padding: 16px 12px; border: 1px solid #d5e6f3; border-radius: 6px; color: var(--uard-ink); text-align: center; line-height: 1.4; text-decoration: none; background: #fff; overflow-wrap: anywhere; box-shadow: 0 3px 10px rgba(7,55,107,.025); }
