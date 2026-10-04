@@ -26,8 +26,11 @@ curl --fail-with-body -X PUT -H 'Content-Type: application/json' --data-binary '
 ```
 
 These commands assume local admin API access is permitted by deployment policy.
-No custom header/footer hook is required or provided by this checkpoint. Do not
-configure those hooks to the local placeholder files excluded from this commit.
+The custom footer is now provided. Build it with
+`python3 scripts/customization/build-footer.py`, then configure
+`:FooterCustomizationFile` as `/var/www/dataverse/branding/custom-footer.html`.
+See custom-footer.md for behavior and placeholder link configuration. No custom
+header hook is required; do not enable the local custom-header placeholder.
 Mounted branding updates need a refresh; they do not require Maven compilation.
 
 ## Locale and upstream configuration
