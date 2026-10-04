@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Assemble the mounted homepage fragment using only the Python standard library."""
 import argparse
-import base64
 import html
 import json
 from pathlib import Path
 import re
+from resource_assets import IMAGES, script_output, versioned_url, write_script
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "customization/homepage"
@@ -35,10 +35,10 @@ def build():
         translations[locale]["knowledgeAreas"] = labels
     cards = []
     for letter, label in areas["uk"].items():
-        icon = (SOURCE / f"assets/icons/knowledge-folders/folder-{letter.lower()}.svg").read_text(encoding="utf-8")
-        icon = icon.replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1)
+        icon_url = versioned_url(IMAGES / f"icons/knowledge-folders/folder-{letter.lower()}.svg")
+        icon = f'<img src="{icon_url}" width="64" height="64" alt="">'
         cards.append(f'<li><div class="dv-home__knowledge-card">{icon}<span data-knowledge-area="{letter}">{letter} {html.escape(label)}</span></div></li>')
-    book = (SOURCE / "assets/icons/knowledge-areas.svg").read_text(encoding="utf-8")
+    book = f'<img src="{versioned_url(IMAGES / "icons/knowledge-areas.svg")}" width="32" height="32" alt="">'
     template = template.replace("{{knowledgeCards}}", "\n".join(cards)).replace("{{knowledgeHeadingIcon}}", book)
     clusters = {locale: json.loads((SOURCE / f"content/clusters.{locale}.json").read_text(encoding="utf-8")) for locale in ("en", "uk")}
     if list(clusters["en"]) != list(clusters["uk"]) or len(clusters["uk"]) != 15:
@@ -51,10 +51,10 @@ def build():
     for key, label in clusters["uk"].items():
         if not re.fullmatch(r"[a-z-]+", key):
             raise ValueError("Invalid cluster key")
-        icon = (SOURCE / f"assets/icons/clusters/{key}.svg").read_text(encoding="utf-8")
-        icon = icon.replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1)
+        icon_url = versioned_url(IMAGES / f"icons/clusters/{key}.svg")
+        icon = f'<img src="{icon_url}" width="64" height="64" alt="">'
         cluster_cards.append(f'<li><div class="dv-home__knowledge-card">{icon}<span data-cluster="{key}">{html.escape(label)}</span></div></li>')
-    heading_icon = (SOURCE / "assets/icons/clusters.svg").read_text(encoding="utf-8")
+    heading_icon = f'<img src="{versioned_url(IMAGES / "icons/clusters.svg")}" width="32" height="32" alt="">'
     template = template.replace("{{clusterCards}}", "\n".join(cluster_cards)).replace("{{clusterHeadingIcon}}", heading_icon)
     # Escape text/attributes in the Ukrainian fallback, which also works without JavaScript.
     template = re.sub(
@@ -65,12 +65,8 @@ def build():
     # Prevent editorial text from terminating the inert JSON script element.
     payload = json.dumps(translations, ensure_ascii=False, separators=(",", ":"))
     payload = payload.replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
-    script = (SOURCE / "homepage.js").read_text(encoding="utf-8").strip()
-    if "</script" in script.lower():
-        raise ValueError("Inline JavaScript must not contain a closing script tag")
-    logo = SOURCE / "assets/uard-logo.png"
-    logo_uri = "data:image/png;base64," + base64.b64encode(logo.read_bytes()).decode("ascii")
-    background = SOURCE / "assets/hero-background.webp"
+    js_path, js_data = script_output(SOURCE / "homepage.js")
+    background = IMAGES / "hero-background.webp"
     background_css = "none"
     if background.exists():
         data = background.read_bytes()
@@ -78,21 +74,33 @@ def build():
             raise ValueError("Hero background must be at most 300 KB")
         if data[:4] != b"RIFF" or data[8:12] != b"WEBP":
             raise ValueError("Hero background must be a WebP image")
-        background_css = "url(data:image/webp;base64," + base64.b64encode(data).decode("ascii") + ")"
-    return (template.replace("{{translations}}", payload).replace("{{script}}", script)
-            .replace("{{logo}}", logo_uri).replace("{{heroBackground}}", background_css))
+        background_css = "url(" + versioned_url(background) + ")"
+    return (template.replace("{{translations}}", payload)
+            .replace("{{scriptUrl}}", versioned_url(js_path, js_data))
+            .replace("{{logo}}", versioned_url(IMAGES / "uard-logo.png"))
+            .replace("{{heroBackground}}", background_css))
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Check that the generated fragment is current")
+    parser.add_argument("--resources-only", action="store_true", help="Prepare JS without activating new branding HTML")
     args = parser.parse_args()
+    if args.check and args.resources_only:
+        parser.error("--check and --resources-only are mutually exclusive")
     result = build()
+    js_path, js_data = script_output(SOURCE / "homepage.js")
     if args.check:
+        if not js_path.exists() or js_path.read_bytes() != js_data:
+            parser.exit(1, "Homepage JavaScript is stale. Rebuild the homepage.\n")
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != result:
             parser.exit(1, "Homepage is stale. Run python3 scripts/customization/build-homepage.py\n")
         print("Homepage matches its sources.")
     else:
+        write_script(js_path, js_data)
+        if args.resources_only:
+            print("Prepared homepage JavaScript; branding HTML unchanged.")
+            return
         OUTPUT.write_text(result, encoding="utf-8")
         print(f"Generated {OUTPUT.relative_to(ROOT)}. Refresh Dataverse to view it.")
 

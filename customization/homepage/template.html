@@ -10,7 +10,7 @@
                     <form class="dv-home__search" action="/dataverse.xhtml" method="get" role="search" aria-labelledby="dv-home-search-label" accept-charset="UTF-8">
                         <label class="dv-home__visually-hidden" id="dv-home-search-label" for="dv-home-query" data-home-ui="searchLabel">{{ui.searchLabel}}</label>
                         <div class="dv-home__search-box">
-                            <input class="dv-home__input" id="dv-home-query" name="q" type="search" placeholder="{{ui.searchPlaceholder}}" aria-describedby="dv-home-search-hint">
+                            <input class="dv-home__input" id="dv-home-query" name="q" type="search" placeholder="{{ui.searchPlaceholder}}">
                             <button class="dv-home__submit" type="submit">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
                                 <span class="dv-home__visually-hidden" data-home-ui="searchButton">{{ui.searchButton}}</span>
@@ -22,10 +22,10 @@
                         <span data-home-ui="advancedSearch">{{ui.advancedSearch}}</span>
                     </a>
                 </div>
-                <div class="dv-home__search-details">
+                <!-- <div class="dv-home__search-details">
                     <p class="dv-home__hint" id="dv-home-search-hint" data-home-ui="searchHint">{{ui.searchHint}}</p>
                     <a class="dv-home__browse" href="/dataverse.xhtml?types=dataverses"><span data-home-ui="browseCollections">{{ui.browseCollections}}</span><span aria-hidden="true">→</span></a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -74,5 +74,5 @@
         </div>
     </section>
     <script type="application/json" id="dv-home-translations">{{translations}}</script>
-    <script>{{script}}</script>
+    <script src="{{scriptUrl}}" defer></script>
 </section>

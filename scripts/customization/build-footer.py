@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Generate the supported footer fragment without third-party dependencies."""
 import argparse
-import base64
 import html
 import json
 from pathlib import Path
 import re
 from urllib.parse import urlsplit
+from resource_assets import IMAGES, script_output, versioned_url, write_script
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "customization/footer"
@@ -36,23 +36,31 @@ def build():
     for group, keys in {"repository": ["about", "policies", "documents", "institutions"], "support": ["statistics"], "ecosystem": ["eosc", "openaire", "re3data", "fair"], "operator": ["contacts", "aboutOperator"]}.items():
         text = text.replace("{{" + group + "Items}}", "\n".join(item(key) for key in keys))
     text = re.sub(r"\{\{([a-zA-Z]+)\}\}", lambda m: html.escape(translations["uk"][m[1]]) if m[1] in translations["uk"] else m[0], text)
-    logo = base64.b64encode((ROOT / "customization/homepage/assets/uard-logo.png").read_bytes()).decode("ascii")
+    logo = versioned_url(IMAGES / "uard-logo.png")
     payload = json.dumps(translations, ensure_ascii=False).replace("&", r"\u0026").replace("<", r"\u003c").replace(">", r"\u003e")
-    script = (SOURCE / "footer.js").read_text(encoding="utf-8")
-    if "</script" in script.lower():
-        raise ValueError("Unexpected closing script tag")
-    return text.replace("{{logo}}", "data:image/png;base64," + logo).replace("{{translations}}", payload).replace("{{script}}", script)
+    js_path, js_data = script_output(SOURCE / "footer.js")
+    return text.replace("{{logo}}", logo).replace("{{translations}}", payload).replace("{{scriptUrl}}", versioned_url(js_path, js_data))
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--resources-only", action="store_true", help="Prepare JS without activating new branding HTML")
     args = parser.parse_args()
+    if args.check and args.resources_only:
+        parser.error("--check and --resources-only are mutually exclusive")
     result = build()
+    js_path, js_data = script_output(SOURCE / "footer.js")
     if args.check:
+        if not js_path.exists() or js_path.read_bytes() != js_data:
+            parser.exit(1, "Footer JavaScript is stale. Rebuild the footer.\n")
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != result:
             parser.exit(1, "Footer is stale. Run python3 scripts/customization/build-footer.py\n")
         print("Footer matches its sources.")
     else:
-        OUTPUT.write_text(result, encoding="utf-8")
-        print("Generated customization/branding/custom-footer.html")
+        write_script(js_path, js_data)
+        if args.resources_only:
+            print("Prepared footer JavaScript; branding HTML unchanged.")
+        else:
+            OUTPUT.write_text(result, encoding="utf-8")
+            print("Generated customization/branding/custom-footer.html")

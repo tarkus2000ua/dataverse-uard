@@ -45,3 +45,11 @@ source. Header styling/restructuring is planned, not part of the hero revision.
 When modifying the header later, record its exact presentation changes here and
 preserve permissions, actions, component IDs, language, support, account and
 notification behavior.
+
+## Added resources/images/uard and resources/js/uard
+
+UaRD images/SVGs moved to a dedicated application resource folder; generated
+JavaScript is under resources/js/uard. No pre-existing upstream assets or JSF
+templates were changed. Branding builders reference absolute versioned URLs.
+Preserve these added directories during upgrades and regenerate scripts from
+customization sources. See resource-assets.md for deployment ordering.

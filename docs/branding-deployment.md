@@ -7,6 +7,8 @@ Run from the repository root with Python 3 (standard library only):
 ```bash
 python3 scripts/customization/build-homepage.py
 python3 scripts/customization/build-homepage.py --check
+python3 scripts/customization/build-footer.py
+python3 scripts/customization/build-footer.py --check
 ```
 
 Commit the generated customization/branding/custom-homepage.html alongside its
@@ -31,7 +33,9 @@ The custom footer is now provided. Build it with
 `:FooterCustomizationFile` as `/var/www/dataverse/branding/custom-footer.html`.
 See custom-footer.md for behavior and placeholder link configuration. No custom
 header hook is required; do not enable the local custom-header placeholder.
-Mounted branding updates need a refresh; they do not require Maven compilation.
+Branding HTML/CSS remain mounted. Runtime images and generated JavaScript now
+load from the application resources and require deployment when changed; see
+resource-assets.md for the two-stage FRD sequence.
 
 ## Locale and upstream configuration
 
@@ -60,7 +64,8 @@ before treating them as finished production navigation.
 
 ## Runtime asset provenance
 
-uard-logo.png is the complete first-page rendering of the user-supplied institutional
+Runtime files are under `src/main/webapp/resources/images/uard/`.
+`uard-logo.png` is the complete first-page rendering of the user-supplied institutional
 logo PDF (400 × 400); the original PDF is archived locally, not required at runtime.
 hero-background.webp is the selected generated laptop-and-flag image, 2172 × 724,
 30,356 bytes. SVG heading, folder and cluster icons are original editable geometry.

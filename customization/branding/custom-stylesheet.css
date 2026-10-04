@@ -276,7 +276,7 @@ body:has(#content > .dv-home) #dataverse-header-block .messagePanel:not(:has(*))
 
 /* Featured collections: five desktop cards and inset side controls. */
 .dv-home [hidden] { display: none !important; }
-.dv-home .dv-home__collections { max-width: 1280px; margin: 0 auto; padding: 24px 16px 32px; }
+.dv-home .dv-home__collections { max-width: 1280px; margin: 0 auto; padding: 32px 16px 32px; }
 .dv-home .dv-home__collections-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; margin: 0 16px 12px; }
 .dv-home .dv-home__collections h2 { display: flex; align-items: center; gap: 16px; margin: 0; color: var(--uard-ink); font-size: 26px; font-weight: 700; line-height: 1.3; }
 .dv-home .dv-home__institutions-icon { flex: 0 0 32px; color: #0067ad; }
@@ -313,9 +313,9 @@ body:has(#content > .dv-home) #dataverse-header-block .messagePanel:not(:has(*))
 
 /* Knowledge-area cards are deliberately non-interactive until destinations are configured. */
 .dv-home .dv-home__knowledge { padding-top: 8px; }
-.dv-home .dv-home__knowledge h2 > svg { flex: 0 0 32px; }
+.dv-home .dv-home__knowledge h2 > img { flex: 0 0 32px; }
 .dv-home .dv-home__knowledge-card { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; min-height: 192px; padding: 16px; border: 1px solid #d5e6f3; border-radius: 6px; background: #fff; color: var(--uard-ink); line-height: 1.4; overflow-wrap: anywhere; }
-.dv-home .dv-home__knowledge-card > svg { flex: 0 0 64px; }
+.dv-home .dv-home__knowledge-card > img { flex: 0 0 64px; }
 
 /* Preserve a visible focus indicator when high-contrast mode removes shadows. */
 @media (forced-colors: active) {

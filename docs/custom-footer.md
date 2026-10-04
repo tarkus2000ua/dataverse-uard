@@ -18,7 +18,9 @@ only when the custom footer exists. Native copyright and conditional privacy
 link remain server-rendered. Widget footer is excluded by the native hook and
 CSS scopes. Removing the hook restores the default presentation.
 
-The logo is the original supplied PNG, embedded unchanged. Labels use native
+The logo is the original supplied PNG, served unchanged from
+/resources/images/uard/uard-logo.png. Footer JS is external and deferred;
+see resource-assets.md for image/JS deployment requirements. Labels use native
 Dataverse document locale; Ukrainian is the static fallback. Support reuses the
 native headerSupportLink JSF action to open the existing contact dialog. The
 button is omitted when that action is unavailable (e.g. external support URL).
