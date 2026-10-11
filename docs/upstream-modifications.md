@@ -60,7 +60,8 @@ icon retains its original 32px geometry, blue color and three paired columns;
 the branding builder generates its versioned image URL. No upstream template
 or application logic was changed for this extraction.
 
-The generated UaRD homepage script now loads institution logos through the
-existing `/api/access/dvCardImage/{id}` endpoint, with a generic-icon fallback.
-This reuses native theme/logo handling without changes to Java or JSF templates.
-See resource-assets.md for behavior and verification.
+The generated UaRD homepage script loads original institution logos from native
+`/logos/` URLs using public collection theme metadata and parent theme IDs.
+The existing `/api/access/dvCardImage/{id}` endpoint is a fallback, followed by
+the generic icon. Logos use the native featured-strip 160px by 60px limits.
+No Java or JSF templates changed. See resource-assets.md for details.

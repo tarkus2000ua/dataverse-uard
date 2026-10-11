@@ -98,12 +98,33 @@
             }
             aliases = Array.from(new Set(aliases));
             if (!aliases.length) { status.textContent = strings.ui.collectionsEmpty; return; }
+            // A theme ID identifies the effective theme, not the directory that owns its logo.
+            // Share parent lookups when several featured collections belong to the same parent.
+            var parents = new Map();
+            async function originalLogoUrl(collection) {
+                var theme = collection.theme;
+                if (!theme || typeof theme.logo !== "string" || !theme.logo ||
+                        !Number.isSafeInteger(collection.id) || collection.id <= 0) return null;
+                var ownerId = collection.id;
+                if (Number.isSafeInteger(collection.ownerId) && collection.ownerId > 0) {
+                    if (!Number.isSafeInteger(theme.id)) return null;
+                    if (!parents.has(collection.ownerId)) {
+                        parents.set(collection.ownerId, readApi("/api/dataverses/" + collection.ownerId));
+                    }
+                    try {
+                        var parent = await parents.get(collection.ownerId);
+                        // Match native getLogoOwnerId(): an inherited theme uses the parent directory.
+                        if (parent && parent.theme && parent.theme.id === theme.id) ownerId = collection.ownerId;
+                    } catch (_) { return null; } // The native thumbnail remains available as a fallback.
+                }
+                return "/logos/" + ownerId + "/" + encodeURIComponent(theme.logo);
+            }
             // Promise.all preserves the curator's order even when requests finish out of order.
             var results = await Promise.all(aliases.map(async function (alias) {
                 try {
                     var collection = await readApi("/api/dataverses/" + encodeURIComponent(alias));
                     if (!collection || collection.isReleased !== true || typeof collection.name !== "string") return null;
-                    return {alias: alias, name: collection.name, id: collection.id};
+                    return {alias: alias, name: collection.name, id: collection.id, logoUrl: await originalLogoUrl(collection)};
                 } catch (_) { return null; }
             }));
             var collections = results.filter(Boolean);
@@ -115,24 +136,29 @@
                 var icon = document.createElement("span");
                 icon.className = "dv-home__collection-icon icon-dataverse";
                 icon.setAttribute("aria-hidden", "true");
-                // Native thumbnails use the collection's configured logo, including inherited themes.
-                // Keep the generic icon until a real image loads (no logo returns HTTP 204).
+                // Prefer the original logo, as on the native featured strip, over its 48px thumbnail.
+                // Keep the generic icon until an image loads.
                 if (Number.isSafeInteger(collection.id) && collection.id > 0) {
                     var logo = document.createElement("img");
                     logo.className = "dv-home__collection-logo";
                     logo.alt = ""; // The adjacent collection name already labels the link.
-                    logo.width = 60;
-                    logo.height = 60;
                     logo.hidden = true;
                     logo.addEventListener("load", function () {
                         icon.hidden = true;
                         logo.hidden = false;
                     });
+                    var thumbnailUrl = "/api/access/dvCardImage/" + collection.id;
+                    var usingOriginal = Boolean(collection.logoUrl);
                     logo.addEventListener("error", function () {
-                        logo.remove();
-                        icon.hidden = false;
+                        if (usingOriginal) {
+                            usingOriginal = false;
+                            logo.src = thumbnailUrl;
+                        } else {
+                            logo.remove();
+                            icon.hidden = false;
+                        }
                     });
-                    logo.src = "/api/access/dvCardImage/" + collection.id;
+                    logo.src = collection.logoUrl || thumbnailUrl;
                     link.append(logo);
                 }
                 var name = document.createElement("span");

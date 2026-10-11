@@ -66,21 +66,27 @@ Hero and mobile cluster screenshots visually inspected.
 
 ## Institution card logos
 
-Homepage organization cards load `/api/access/dvCardImage/{id}` using the ID
-returned by the existing public collection lookup. Dataverse 6.12 creates this
-thumbnail from the same configured (or inherited) theme logo used on the native
-collection page. No separate UaRD logo mapping or image copies are needed.
-The existing generic icon remains visible while loading and if the endpoint
-returns no image (HTTP 204), fails, or the image cannot be decoded. Logos fit
-inside a fixed 60px slot without cropping or enlarging the native thumbnail;
-the adjacent organization name provides the accessible link label.
+Homepage organization cards use `theme.logo` from `/api/dataverses/{alias}`
+to load the original `/logos/{ownerId}/{encodedFilename}` image, matching the
+quality of the native featured strip rather than enlarging its 48px API thumbnail.
+A shared parent lookup compares effective theme IDs to resolve inherited logos
+using the same parent-directory rule as native `getLogoOwnerId()`. Theme IDs are
+not collection IDs. Unicode filenames are URL-encoded.
+
+Logos retain their natural proportions and are limited to 160px wide and 60px
+high, further constrained by the card width. The adjacent organization name
+provides the accessible link label. If the original cannot be resolved or loaded,
+the card tries `/api/access/dvCardImage/{id}`; if that also fails or returns no
+image, the generic icon remains. No separate logo copies or mappings are needed.
 
 This changes the homepage JavaScript resource and its versioned HTML reference,
 so use the resource-first FRD sequence above. There are no native template,
 Java, settings or translation changes.
 
-Verified locally on 2026-10-11 after FRD: the DNTB card loads its native logo
-thumbnail; the other five featured cards retain the fallback. Browser-only HTTP
-500 and invalid-image responses also retain the fallback. No horizontal page
-overflow at 1440/768/375/320px, mobile next/previous round trip passes, and no
-JavaScript page errors were observed. Both builders' `--check` options pass.
+Verified locally on 2026-10-11 after FRD: DNTB loads `/logos/2/Logo60.png`
+with a natural width of 204px and displays at approximately 160 by 47px,
+instead of using the 48px API thumbnail. Browser checks covered 1440/768/375/320px
+layouts without page overflow, mobile scroll round trips, original-image failure
+falling back to the thumbnail, both images failing back to the generic icon,
+and mocked inherited themes with Cyrillic filenames. No JavaScript page errors;
+both builders' `--check` options pass. Desktop screenshot visually inspected.
