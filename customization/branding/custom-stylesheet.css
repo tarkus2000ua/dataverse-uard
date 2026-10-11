@@ -371,3 +371,44 @@ footer:has(> #uard-footer) #dvfooter a:focus-visible { outline: 2px solid #8bd3f
     footer:has(> #uard-footer) #dvfooter > .container { padding: 0 16px; }
 }
 @media (max-width: 380px) { .uard-footer__inner { grid-template-columns: 1fr; } }
+
+/* UaRD about page. Scoped to avoid changing search, dataset and collection pages. */
+#content:has(> .uard-about) { width: 100%; max-width: none; padding: 0; }
+.uard-about { color: #07376b; font-family: Arial, "Helvetica Neue", sans-serif; font-size: 16px; line-height: 1.7; }
+.uard-about, .uard-about * { box-sizing: border-box; }
+.uard-about__inner { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.uard-about__hero { padding: 32px 0; border-bottom: 1px solid #dcebf5; background: #eaf5fc; }
+.uard-about a { color: #0067ad; text-decoration: underline; text-underline-offset: 4px; }
+.uard-about a:hover { color: #07376b; }
+.uard-about a:focus-visible { outline: 2px solid #0067ad; outline-offset: 4px; border-radius: 2px; }
+.uard-about h1 { margin: 0; font-size: clamp(30px, 3vw, 42px); line-height: 1.2; font-weight: 700; color: #07376b; }
+.uard-about__layout { padding-top: 32px; padding-bottom: 32px; }
+.uard-about__text { min-width: 0; max-width: 960px; overflow-wrap: break-word; }
+.uard-about__text > p:first-child { margin-top: 0; font-size: 18px; }
+.uard-about__text p { margin: 0 0 18px; }
+.uard-about__text section { margin-top: 36px; scroll-margin-top: 96px; }
+.uard-about__text h2 { margin: 0 0 18px; color: #07376b; font-size: 26px; font-weight: 700; line-height: 1.3; }
+.uard-about__text h3 { margin: 28px 0 16px; color: #07376b; font-size: 21px; font-weight: 700; line-height: 1.4; }
+.uard-about__text ul { padding-left: 22px; margin: 0; }
+.uard-about__text li { margin-bottom: 12px; padding-left: 4px; }
+.uard-about__text li > ul { margin-top: 12px; }
+.uard-about__text li::marker { color: #0067ad; }
+.uard-about .uard-about__back { margin: 36px 0 0; border-top: 1px solid #dcebf5; padding-top: 20px; }
+.uard-about__back a { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 900px) {
+    .uard-about__text { max-width: none; }
+}
+@media (max-width: 600px) {
+    .uard-about__inner { padding-left: 16px; padding-right: 16px; }
+    .uard-about__hero { padding-top: 12px; padding-bottom: 28px; }
+    .uard-about__layout { padding-top: 24px; }
+    .uard-about__text h2 { font-size: 23px; }
+}
+@media print {
+    .uard-about__back { display: none; }
+    .uard-about__layout { display: block; }
+    .uard-about__text { max-width: none; }
+}
+
+/* Supporting platform attribution in the hero. */
+.dv-home__intro a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

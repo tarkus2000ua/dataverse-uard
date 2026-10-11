@@ -24,14 +24,25 @@ def build():
     text = (SOURCE / "template.html").read_text(encoding="utf-8")
     def item(key):
         label = translations["uk"].get(key, {"eosc": "EOSC", "openaire": "OpenAIRE", "re3data": "re3data", "fair": "FAIR"}.get(key))
-        url = links[key]
+        destination = links[key]
+        language = None
+        if isinstance(destination, dict):
+            if set(destination) != {"url", "hreflang"}:
+                raise ValueError(f"Invalid footer destination fields: {key}")
+            url = destination["url"]
+            language = destination["hreflang"]
+            if url is None or language not in ("en", "uk"):
+                raise ValueError(f"Invalid footer destination language: {key}")
+        else:
+            url = destination
         attribute = f' data-footer-text="{key}"' if key in translations["uk"] else ""
         if url is None:
             node = f'<span class="uard-footer__pending"{attribute}>{html.escape(label)}</span>'
         else:
             if not isinstance(url, str) or not (url.startswith("/") and not url.startswith("//") or urlsplit(url).scheme == "https"):
                 raise ValueError(f"Invalid footer URL: {key}")
-            node = f'<a href="{html.escape(url, quote=True)}"{attribute}>{html.escape(label)}</a>'
+            language_attribute = f' hreflang="{language}"' if language else ""
+            node = f'<a href="{html.escape(url, quote=True)}"{language_attribute}{attribute}>{html.escape(label)}</a>'
         return f"<li>{node}</li>"
     for group, keys in {"repository": ["about", "policies", "documents", "institutions"], "support": ["statistics"], "ecosystem": ["eosc", "openaire", "re3data", "fair"], "operator": ["contacts", "aboutOperator"]}.items():
         text = text.replace("{{" + group + "Items}}", "\n".join(item(key) for key in keys))

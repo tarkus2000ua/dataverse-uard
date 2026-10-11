@@ -65,3 +65,24 @@ The generated UaRD homepage script loads original institution logos from native
 The existing `/api/access/dvCardImage/{id}` endpoint is a fallback, followed by
 the generic icon. Logos use the native featured-strip 160px by 60px limits.
 No Java or JSF templates changed. See resource-assets.md for details.
+
+## Added src/main/webapp/about.xhtml (2026-10-11)
+
+First footer article, integrated from the user-supplied Facelets page. The new
+composition uses dataverse_template.xhtml and its existing navbar, language
+selector, support dialog and custom/native footer. showDataverseHeader=false
+suppresses the collection banner, not the application navbar. No existing JSF
+shell or Java source was changed.
+
+The page now follows the documented bilingual editorial pattern. The wrapper
+selects src/main/webapp/uard/content/about.en.xhtml for native locale en, or
+about.uk.xhtml for ua/uk (and the current Ukrainian fallback). Both fragments use
+the original .uard-about layout and section IDs. Ukrainian article markup is
+preserved; English paragraphs and list entries are from the user-supplied text.
+Only one article renders. Page title and description metadata are localized too.
+
+The footer continues to link to /about.xhtml in both UI languages; the fixed
+hreflang="uk" declaration was removed. No existing JSF shell, locale/authentication
+logic, Java, CSS or generated JS resources were changed for this bilingual update.
+Preserve the wrapper and both fragments during upgrades, and deploy them together.
+See custom-about.md for the reusable pattern, deployment and verification.

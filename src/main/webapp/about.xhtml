@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- One public article URL; native Dataverse locale selects the editorial fragment. -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle"
+              value="#{dataverseSession.localeCode eq 'en' ? 'About the repository — UaRD' : 'Про репозитарій — UaRD'}" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="description"
+              content="#{dataverseSession.localeCode eq 'en' ? 'About the National Research Data Repository: purpose, objectives, operating principles and international standards.' : 'Про Національний репозитарій дослідницьких даних: мета, завдання, принципи роботи та міжнародні стандарти.'}" />
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="#{dataverseSession.localeCode eq 'en'
+                          ? '/uard/content/about.en.xhtml'
+                          : '/uard/content/about.uk.xhtml'}" />
+    </ui:define>
+</ui:composition>

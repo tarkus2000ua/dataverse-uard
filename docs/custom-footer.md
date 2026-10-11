@@ -29,8 +29,9 @@ Article/resource entries with null in links.json are non-interactive labels.
 Replace null with a verified root-relative or HTTPS URL and rebuild to activate
 an anchor. Current links are not articles and do not claim institutional
 certification: the reference compatibility column is titled Open science ecosystem.
-A language-specific article URL mapping will be needed when pages are created.
-No CMS, article routes or article content was added in this step.
+The initial footer-only step added no CMS, article routes or article content.
+For later bilingual articles, prefer a single URL with server-side locale
+selection; see the article guidance below.
 
 Verified live at 1440/768/375/320px: no horizontal overflow, custom section above
 native copyright row, hidden standard logo, support dialog opens, English labels
@@ -50,3 +51,18 @@ the native spacer may remain. Widgets do not load this custom footer.
 Verified the footer ends at document bottom (within pixel rounding) on desktop
 and mobile homepages, native browse and a short login page with a tall viewport.
 No horizontal overflow; support dialog still opens.
+
+## First article link and bilingual articles (2026-10-11)
+
+The About entry points to /about.xhtml, which selects the supplied Ukrainian or
+English article server-side using Dataverse's native session locale. links.json
+uses the string "/about.xhtml", and its bilingual label still follows the footer
+translations. The former hreflang="uk" declaration was removed when the English
+article was integrated. Other null entries retain their existing behavior.
+
+links.json accepts null, a URL string, or a url/hreflang object (en/uk) for a
+single-language destination. Prefer one stable URL without a fixed hreflang for
+articles whose content follows the native session locale. Rebuild/check generated
+HTML rather than editing it or copying the supplied footer fragment. Deploy the
+article wrapper and both fragments before activating its footer link; see
+[the About-page guide](custom-about.md#one-url-two-article-languages).
