@@ -1,0 +1,13 @@
+{
+  "A": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22A+Education%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "B": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22B+Culture%2C+Arts+and+Humanities%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "C": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22C+Social+Sciences%2C+Journalism+and+International+Relations%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "D": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22D+Business%2C+Administration+and+Law%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "E": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22E+Natural+Sciences%2C+Mathematics+and+Statistics%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "F": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22F+Information+Technology%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "G": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22G+Engineering%2C+Manufacturing+and+Construction%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "H": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22H+Agriculture%2C+Forestry%2C+Fishery+and+Veterinary+Medicine%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "I": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22I+Health+Care+and+Social+Services%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "J": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22J+Transport+and+Services%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "K": "/dataverse/uard?q=&fq1=knarSubject_ss%3A%22K+Security+and+Defense%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order="
+}

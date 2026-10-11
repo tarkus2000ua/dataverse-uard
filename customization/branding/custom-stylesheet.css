@@ -313,11 +313,15 @@ body:not(.widget-view):has(#content > :is(.dv-home, .uard-about)) #dataverse-hea
     .dv-home #dv-collections-next, .dv-home [data-scroll-direction="next"] { right: -8px; }
 }
 
-/* Knowledge-area cards are deliberately non-interactive until destinations are configured. */
+/* Knowledge-area cards become links only when their destinations are configured. */
 .dv-home .dv-home__knowledge { padding-top: 8px; }
 .dv-home .dv-home__knowledge h2 > img { flex: 0 0 32px; }
 .dv-home .dv-home__knowledge-card { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; width: 100%; min-height: 192px; padding: 16px; border: 1px solid #d5e6f3; border-radius: 6px; background: #fff; color: var(--uard-ink); line-height: 1.4; overflow-wrap: anywhere; }
 .dv-home .dv-home__knowledge-card > img { flex: 0 0 64px; }
+.dv-home a.dv-home__knowledge-card { text-decoration: none; }
+.dv-home a.dv-home__knowledge-card:hover { color: var(--uard-ink); border-color: var(--uard-action); background: var(--uard-surface); }
+.dv-home a.dv-home__knowledge-card:hover > span { text-decoration: underline; text-underline-offset: 4px; }
+.dv-home a.dv-home__knowledge-card:focus-visible { outline: 2px solid var(--uard-action); outline-offset: -3px; }
 
 /* Preserve a visible focus indicator when high-contrast mode removes shadows. */
 @media (forced-colors: active) {

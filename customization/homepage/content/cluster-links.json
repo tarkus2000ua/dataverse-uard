@@ -1,0 +1,17 @@
+{
+  "security": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22National+Security+and+Defense%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "mathematics": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Mathematics+and+Statistics%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "physics": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Physics%2C+Nuclear+Physics+and+Astronomy%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "chemistry": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Chemistry%2C+Chemical+Technologies+and+Pharmacy%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "earth": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Earth+and+Environmental+Sciences%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "biology": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Biology%2C+Biotechnology%2C+Medicine+and+Rehabilitation%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "information": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Information+Technologies+and+Electronics%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "energy": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Safe%2C+Clean+Energy+and+Energy+Efficiency%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "mechanical": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Mechanical+Engineering+and+Machine+Building%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "industrial": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Industrial+and+Construction+Technologies%2C+Logistics%2C+Transport%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "agricultural": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Agricultural+and+Veterinary+Sciences%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "human-capital": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Human+Capital+Development%2C+Social+Sciences+and+Journalism%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "economics": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Economic+Transformations%2C+Business+and+Administration%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "law": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Law%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order=",
+  "humanities": "/dataverse/uard?q=&fq1=clustersSubject_ss%3A%22Humanities+and+Arts%22&fq0=dvObjectType%3A%28dataverses+OR+datasets%29&types=dataverses%3Adatasets&sort=dateSort&order="
+}

@@ -12,6 +12,16 @@ SOURCE = ROOT / "customization/homepage"
 OUTPUT = ROOT / "customization/branding/custom-homepage.html"
 
 
+def load_card_links(filename, keys):
+    links = json.loads((SOURCE / "content" / filename).read_text(encoding="utf-8"))
+    if not isinstance(links, dict) or not set(links).issubset(keys):
+        raise ValueError(f"Card links must use existing keys: {filename}")
+    for key, url in links.items():
+        if not isinstance(url, str) or not url.startswith("/") or url.startswith("//") or re.search(r"[\\\s]", url):
+            raise ValueError(f"Card URL must be a root-relative path: {filename}/{key}")
+    return links
+
+
 def build():
     translations = {}
     for locale in ("en", "uk"):
@@ -35,11 +45,17 @@ def build():
         if list(labels) != list("ABCDEFGHIJK") or not all(isinstance(v, str) and v.strip() for v in labels.values()):
             raise ValueError(f"Knowledge-area labels must contain A-K in order: {locale}")
         translations[locale]["knowledgeAreas"] = labels
+    links = load_card_links("knowledge-area-links.json", areas["uk"])
     cards = []
     for letter, label in areas["uk"].items():
         icon_url = versioned_url(IMAGES / f"icons/knowledge-folders/folder-{letter.lower()}.svg")
         icon = f'<img src="{icon_url}" width="64" height="64" alt="">'
-        cards.append(f'<li><div class="dv-home__knowledge-card">{icon}<span data-knowledge-area="{letter}">{letter} {html.escape(label)}</span></div></li>')
+        body = f'{icon}<span data-knowledge-area="{letter}">{letter} {html.escape(label)}</span>'
+        if letter in links:
+            card = f'<a class="dv-home__knowledge-card" href="{html.escape(links[letter], quote=True)}">{body}</a>'
+        else:
+            card = f'<div class="dv-home__knowledge-card">{body}</div>'
+        cards.append(f"<li>{card}</li>")
     book = f'<img src="{versioned_url(IMAGES / "icons/knowledge-areas.svg")}" width="32" height="32" alt="">'
     template = template.replace("{{knowledgeCards}}", "\n".join(cards)).replace("{{knowledgeHeadingIcon}}", book)
     clusters = {locale: json.loads((SOURCE / f"content/clusters.{locale}.json").read_text(encoding="utf-8")) for locale in ("en", "uk")}
@@ -49,13 +65,19 @@ def build():
         if not all(isinstance(v, str) and v.strip() for v in labels.values()):
             raise ValueError(f"Empty cluster label in {locale}")
         translations[locale]["clusters"] = labels
+    cluster_links = load_card_links("cluster-links.json", clusters["uk"])
     cluster_cards = []
     for key, label in clusters["uk"].items():
         if not re.fullmatch(r"[a-z-]+", key):
             raise ValueError("Invalid cluster key")
         icon_url = versioned_url(IMAGES / f"icons/clusters/{key}.svg")
         icon = f'<img src="{icon_url}" width="64" height="64" alt="">'
-        cluster_cards.append(f'<li><div class="dv-home__knowledge-card">{icon}<span data-cluster="{key}">{html.escape(label)}</span></div></li>')
+        body = f'{icon}<span data-cluster="{key}">{html.escape(label)}</span>'
+        if key in cluster_links:
+            card = f'<a class="dv-home__knowledge-card" href="{html.escape(cluster_links[key], quote=True)}">{body}</a>'
+        else:
+            card = f'<div class="dv-home__knowledge-card">{body}</div>'
+        cluster_cards.append(f"<li>{card}</li>")
     heading_icon = f'<img src="{versioned_url(IMAGES / "icons/clusters.svg")}" width="32" height="32" alt="">'
     template = template.replace("{{clusterCards}}", "\n".join(cluster_cards)).replace("{{clusterHeadingIcon}}", heading_icon)
     # Escape text/attributes in the Ukrainian fallback, which also works without JavaScript.
