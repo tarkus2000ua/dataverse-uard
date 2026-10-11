@@ -102,7 +102,7 @@
                 try {
                     var collection = await readApi("/api/dataverses/" + encodeURIComponent(alias));
                     if (!collection || collection.isReleased !== true || typeof collection.name !== "string") return null;
-                    return {alias: alias, name: collection.name};
+                    return {alias: alias, name: collection.name, id: collection.id};
                 } catch (_) { return null; }
             }));
             var collections = results.filter(Boolean);
@@ -114,6 +114,26 @@
                 var icon = document.createElement("span");
                 icon.className = "dv-home__collection-icon icon-dataverse";
                 icon.setAttribute("aria-hidden", "true");
+                // Native thumbnails use the collection's configured logo, including inherited themes.
+                // Keep the generic icon until a real image loads (no logo returns HTTP 204).
+                if (Number.isSafeInteger(collection.id) && collection.id > 0) {
+                    var logo = document.createElement("img");
+                    logo.className = "dv-home__collection-logo";
+                    logo.alt = ""; // The adjacent collection name already labels the link.
+                    logo.width = 60;
+                    logo.height = 60;
+                    logo.hidden = true;
+                    logo.addEventListener("load", function () {
+                        icon.hidden = true;
+                        logo.hidden = false;
+                    });
+                    logo.addEventListener("error", function () {
+                        logo.remove();
+                        icon.hidden = false;
+                    });
+                    logo.src = "/api/access/dvCardImage/" + collection.id;
+                    link.append(logo);
+                }
                 var name = document.createElement("span");
                 name.textContent = collection.name;
                 link.append(icon, name);

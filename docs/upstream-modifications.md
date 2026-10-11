@@ -59,3 +59,8 @@ including institutions.svg extracted from the homepage fragment. The institution
 icon retains its original 32px geometry, blue color and three paired columns;
 the branding builder generates its versioned image URL. No upstream template
 or application logic was changed for this extraction.
+
+The generated UaRD homepage script now loads institution logos through the
+existing `/api/access/dvCardImage/{id}` endpoint, with a generic-icon fallback.
+This reuses native theme/logo handling without changes to Java or JSF templates.
+See resource-assets.md for behavior and verification.

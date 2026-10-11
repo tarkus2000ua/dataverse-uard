@@ -63,3 +63,24 @@ preserved mixed-language query text; support dialog opened. JavaScript-disabled
 static cards/images remained available. No page errors observed.
 Homepage HTML: 96,067 → 22,969 bytes. Footer HTML: 17,785 → 3,843 bytes.
 Hero and mobile cluster screenshots visually inspected.
+
+## Institution card logos
+
+Homepage organization cards load `/api/access/dvCardImage/{id}` using the ID
+returned by the existing public collection lookup. Dataverse 6.12 creates this
+thumbnail from the same configured (or inherited) theme logo used on the native
+collection page. No separate UaRD logo mapping or image copies are needed.
+The existing generic icon remains visible while loading and if the endpoint
+returns no image (HTTP 204), fails, or the image cannot be decoded. Logos fit
+inside a fixed 60px slot without cropping or enlarging the native thumbnail;
+the adjacent organization name provides the accessible link label.
+
+This changes the homepage JavaScript resource and its versioned HTML reference,
+so use the resource-first FRD sequence above. There are no native template,
+Java, settings or translation changes.
+
+Verified locally on 2026-10-11 after FRD: the DNTB card loads its native logo
+thumbnail; the other five featured cards retain the fallback. Browser-only HTTP
+500 and invalid-image responses also retain the fallback. No horizontal page
+overflow at 1440/768/375/320px, mobile next/previous round trip passes, and no
+JavaScript page errors were observed. Both builders' `--check` options pass.
