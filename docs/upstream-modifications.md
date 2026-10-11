@@ -86,3 +86,17 @@ hreflang="uk" declaration was removed. No existing JSF shell, locale/authenticat
 logic, Java, CSS or generated JS resources were changed for this bilingual update.
 Preserve the wrapper and both fragments during upgrades, and deploy them together.
 See custom-about.md for the reusable pattern, deployment and verification.
+
+## Added short system article (2026-10-11)
+
+Added src/main/webapp/system.xhtml and uard/content/system.uk.xhtml. The wrapper
+uses the native template, and the fragment reuses .uard-about styling. Supplied
+Ukrainian text is displayed in either native UI language until English content is
+provided. The article is explicitly lang="uk". The long bilingual footer article
+at /about.xhtml remains separate.
+
+The existing :NavbarAboutUrl hook connects the top menu to /system.xhtml; the
+setting must be configured per environment. No native header/footer source,
+Java, CSS, language bundles or locale settings were modified. Preserve both
+added files during upgrades; see custom-system.md for deployment and future
+English localization.

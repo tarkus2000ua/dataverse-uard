@@ -144,3 +144,9 @@ See [the About-page development guide](docs/custom-about.md#one-url-two-article-
 for the wrapper, fragment layout, footer changes, deployment and acceptance.
 About now implements this pattern using the supplied Ukrainian and English articles.
 Use it for future informational pages once their translations are supplied/reviewed.
+
+The short top-menu system article is a separate /system.xhtml page with a
+system.uk.xhtml fragment. Until English editorial content is supplied, it renders
+Ukrainian in both native interface languages with lang="uk". Keep the native
+header/footer language selection intact. Add an English fragment and localized
+metadata only when content is ready; see [the system-page guide](docs/custom-system.md).

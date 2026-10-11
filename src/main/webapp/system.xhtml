@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- Ukrainian editorial fallback in both UI languages until English content is supplied. -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle" value="Про систему — UaRD" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="description" content="Національний репозитарій дослідницьких даних України (НРДД) – централізована цифрова платформа, яка забезпечує зберігання та доступ до дослідницьких даних, отриманих під час реалізації наукових проєктів в Україні, з урахуванням міжнародних стандартів та принципів FAIR (відшукуваність, доступність, сумісність, відтворюваність)." />
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="/uard/content/system.uk.xhtml" />
+    </ui:define>
+</ui:composition>

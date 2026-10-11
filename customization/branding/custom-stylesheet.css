@@ -177,7 +177,8 @@
 
 /* Shared navbar: preserve native forms, dropdowns, permissions and Bootstrap actions. */
 body:not(.widget-view) #dataverse-header-block { padding-top: 64px; }
-body:has(#content > .dv-home) #dataverse-header-block .messagePanel:not(:has(*)) { margin-top: 0; }
+/* Remove empty message-panel spacing on UaRD landing/article pages; retain the fixed-navbar offset. */
+body:not(.widget-view):has(#content > :is(.dv-home, .uard-about)) #dataverse-header-block .messagePanel:not(:has(*)) { margin-top: 0; }
 #navbarFixed {
     min-height: 64px;
     background: #fff;

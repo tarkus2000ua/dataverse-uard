@@ -526,3 +526,29 @@ retain them. Packaged deployments require a rebuilt WAR through the normal relea
 procedure. Preserve remote native language bundles, locale settings and server-specific
 application changes. Verify UA -> EN -> UA, title/description, article language and
 footer navigation before considering the deployment complete.
+
+## Incremental top-menu system summary (2026-10-11)
+
+The new short article is /system.xhtml; the long bilingual footer article remains
+/about.xhtml. With the existing UaRD/About baseline, copy
+src/main/webapp/uard/content/system.uk.xhtml to
+<active-deployed-app>/uard/content/system.uk.xhtml first, then copy
+src/main/webapp/system.xhtml to <active-deployed-app>/system.xhtml.
+No CSS/JS/branding fragments change in this update.
+
+Verify the page before configuring :NavbarAboutUrl to the fully-qualified public
+URL https://uard.dntb.gov.ua/system.xhtml. This native setting creates the top-menu
+About entry and must be applied on the remote server separately; the local setting
+is not migrated with Git. The page shows Ukrainian text in either native UI language
+until an English version is supplied. Preserve remote native translations and locale
+settings. See [custom-system.md](custom-system.md) for the exact admin API calls,
+optional maintained-bundle menu wording and application reload guidance.
+
+## Article header-spacing CSS update
+
+Publish the integrated customization/branding/custom-stylesheet.css to the existing
+remote StyleCustomizationFile path (normally /var/www/dataverse/branding/custom-stylesheet.css).
+Refresh the browser or relevant CSS/HTML cache. No application restart, XHTML or
+JavaScript deployment is needed for this change. It extends the existing empty
+message-panel margin exception to both article pages and retains the 64px fixed
+navbar offset. Panels containing messages keep their native spacing.

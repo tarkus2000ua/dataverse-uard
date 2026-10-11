@@ -140,3 +140,28 @@ Ukrainian session, persistence of English when leaving/returning, the single foo
 URL, exactly one article/header/footer, support, keyboard focus, no overflow at
 1440/768/375/320px, and article rendering without JavaScript. Native language switching
 itself still relies on the standard Dataverse client scripts.
+
+## Separate top-menu system summary
+
+/system.xhtml is the short Ukrainian system overview configured through the native
+:NavbarAboutUrl hook. It reuses the same styles and JSF shell, but is separate from
+the long bilingual /about.xhtml article linked by the footer. See
+[custom-system.md](custom-system.md) for its Ukrainian fallback, setting and deployment.
+
+## Empty-header-panel spacing fix
+
+The fixed navbar is 64px high; #dataverse-header-block keeps its 64px top padding
+to reserve that space. The native empty message panel added a separate 14px top
+margin on article pages. The existing homepage-only CSS exception now includes
+.uard-about, which is shared by /about.xhtml and /system.xhtml. It sets margin-top
+only on message panels with no child elements; panels containing real messages
+retain their native spacing. Native dataset/collection pages and widgets remain
+outside this scoped exception.
+
+Deploy the updated customization/branding/custom-stylesheet.css to the configured
+remote branding path and refresh the page/cache. This CSS fix needs no XHTML,
+JavaScript, API setting changes or application redeployment. Verified locally: navbar bottom and hero top both align at 64px on
+About, System and homepage at 1440/768/375/320px, with no overflow. The 64px
+header padding remains; a temporary nonempty message panel retained its 14px
+margin and visibility. Native login-page spacing and widget exclusion were also
+checked. No JavaScript page errors occurred; the corrected screenshot was inspected.
