@@ -1,5 +1,11 @@
 # UaRD branding deployment (Dataverse 6.12)
 
+For the complete remote-server procedure, artifact manifest, configuration,
+verification and rollback, see [Remote deployment](remote-deployment.md).
+The target `uard.dntb.gov.ua` already has localization configured; preserve its
+existing bundles/settings and verify locale compatibility rather than installing
+the local language files.
+
 ## Build and files
 
 Run from the repository root with Python 3 (standard library only):

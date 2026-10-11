@@ -1,0 +1,27 @@
+[
+  {
+    "alias": "dntb",
+    "name": "Державна науково-технічна бібліотека України",
+    "dataverseType": "ORGANIZATIONS_INSTITUTIONS"
+  },
+  {
+    "alias": "vntu",
+    "name": "Вінницький національний технічний університет",
+    "dataverseType": "ORGANIZATIONS_INSTITUTIONS"
+  },
+  {
+    "alias": "knu",
+    "name": "Київський національний університет імені Тараса Шевченка",
+    "dataverseType": "ORGANIZATIONS_INSTITUTIONS"
+  },
+  {
+    "alias": "nasu",
+    "name": "Національна академія наук України",
+    "dataverseType": "ORGANIZATIONS_INSTITUTIONS"
+  },
+  {
+    "alias": "nure",
+    "name": "Харківський національний університет радіоелектроніки",
+    "dataverseType": "ORGANIZATIONS_INSTITUTIONS"
+  }
+]
