@@ -348,11 +348,12 @@ body:has(#uard-footer) .dv-home { margin-bottom: 0; }
 .uard-footer h2 { color: #fff; font-size: 16px; font-weight: 700; line-height: 1.4; margin: 0 0 8px; }
 .uard-footer ul { list-style: none; padding: 0; margin: 0; }
 .uard-footer li { margin: 0; }
-.uard-footer a, .uard-footer__support { color: #e7f3fc; }
-.uard-footer__column a, .uard-footer__support { display: inline-flex; align-items: center; min-height: 44px; padding: 6px 0; text-align: left; }
+/* Keep linked and pending rows equally compact; expand touch targets below. */
+.uard-footer a, .uard-footer__support { color: #b9ccdc; }
+.uard-footer__column a, .uard-footer__support, .uard-footer__pending { display: flex; align-items: center; min-height: 29px; padding: 4px 0; text-align: left; }
 .uard-footer__support { border: 0; background: none; font: inherit; cursor: pointer; }
 .uard-footer [hidden] { display: none !important; }
-.uard-footer__pending { display: block; padding: 4px 0; color: #b9ccdc; }
+.uard-footer__pending { color: #b9ccdc; }
 .uard-footer a:hover, .uard-footer__support:hover { color: #fff; text-decoration: underline; }
 .uard-footer :focus-visible { outline: 2px solid #8bd3ff; outline-offset: 3px; }
 footer:has(> #uard-footer) #dvfooter:not(.widget-view) { order: 1; padding: 12px 0; border-top: 1px solid #365570; color: #dceaf5; }
@@ -362,6 +363,9 @@ footer:has(> #uard-footer) #dvfooter .text-right:has(.poweredbylogo) { display: 
 footer:has(> #uard-footer) #dvfooter p { margin: 0; }
 footer:has(> #uard-footer) #dvfooter a { color: #e7f3fc; display: inline-block; padding: 6px 0; }
 footer:has(> #uard-footer) #dvfooter a:focus-visible { outline: 2px solid #8bd3ff; outline-offset: 3px; }
+@media (max-width: 700px), (pointer: coarse) {
+    .uard-footer__column a, .uard-footer__support, .uard-footer__pending { min-height: 44px; padding: 6px 0; }
+}
 @media (max-width: 1100px) {
     .uard-footer__inner { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .uard-footer__brand { grid-column: 1 / -1; max-width: 360px; }
@@ -394,6 +398,11 @@ footer:has(> #uard-footer) #dvfooter a:focus-visible { outline: 2px solid #8bd3f
 .uard-about__text li { margin-bottom: 12px; padding-left: 4px; }
 .uard-about__text li > ul { margin-top: 12px; }
 .uard-about__text li::marker { color: #0067ad; }
+/* Preserve semantic ordered lists with hierarchical policy numbers such as 7.1. */
+.uard-about .uard-about__policy-list, .uard-about .uard-about__policy-list ol { counter-reset: uard-policy; padding-left: 40px; margin: 0; }
+.uard-about .uard-about__policy-list li { counter-increment: uard-policy; }
+.uard-about .uard-about__policy-list li::marker { content: counters(uard-policy, ".") ". "; color: #0067ad; }
+.uard-about .uard-about__policy-list li > ol { margin-top: 12px; }
 .uard-about .uard-about__back { margin: 36px 0 0; border-top: 1px solid #dcebf5; padding-top: 20px; }
 .uard-about__back a { display: inline-flex; align-items: center; min-height: 44px; }
 @media (max-width: 900px) {

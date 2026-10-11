@@ -100,3 +100,33 @@ setting must be configured per environment. No native header/footer source,
 Java, CSS, language bundles or locale settings were modified. Preserve both
 added files during upgrades; see custom-system.md for deployment and future
 English localization.
+
+## Added ecosystem article wrappers and fragments (2026-10-11)
+
+Added eosc.xhtml, openaire.xhtml, re3data.xhtml and fair.xhtml under src/main/webapp,
+with corresponding uard/content/*.uk.xhtml editorial fragments. The wrappers use
+dataverse_template.xhtml; no native template or Java code was modified. User-supplied
+Ukrainian text appears in either UI locale with article lang="uk". All pages reuse
+existing styles, including the scoped empty-header-panel spacing fix. Footer
+source destinations and generated HTML activate their links with hreflang="uk".
+Preserve the eight XHTML files during upgrades and deploy them before the footer.
+See ecosystem-pages.md for deployment and later bilingual content selection.
+
+## Added operator article wrappers and fragments (2026-10-11)
+
+Added src/main/webapp/contacts.xhtml and about-dntb.xhtml, with corresponding
+uard/content/*.uk.xhtml fragments. They use the native template and existing
+.uard-about CSS. User-supplied Ukrainian content appears in either UI locale.
+Footer destinations and generated HTML activate both operator-column links with
+hreflang="uk". No native header/footer template, Java, CSS, JavaScript or locale
+settings were changed. Preserve these four files during upgrades; see operator-pages.md.
+
+## Added Policies overview wrapper and fragment (2026-10-11)
+
+Added src/main/webapp/policies.xhtml and uard/content/policies.uk.xhtml. They reuse
+the native template and Ukrainian-only editorial fallback. Nested ordered lists
+preserve the supplied main/child hierarchy; a dedicated .uard-about__policy-list
+CSS counter rule displays hierarchical numbers. Footer sources/generated HTML
+activate the policy destination with hreflang="uk". No existing native JSF template,
+Java, JavaScript, authentication or locale logic was changed. Preserve both XHTML
+files and the scoped stylesheet rules during upgrades; see policies-page.md.

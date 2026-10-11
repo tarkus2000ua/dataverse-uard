@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- Supplied Ukrainian content is displayed in both UI languages until English copy is ready. -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle" value="Про ДНТБ — UaRD" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="description" content="Державна науково-технічна бібліотека України (ДНТБ України) — головна бібліотека країни у сфері науково-технічної інформації та одна з ключових установ національної інфраструктури відкритої науки." />
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="/uard/content/about-dntb.uk.xhtml" />
+    </ui:define>
+</ui:composition>

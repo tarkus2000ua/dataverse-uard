@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- Supplied Ukrainian content is displayed in both UI languages until English copy is ready. -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle" value="Контакти — UaRD" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="description" content="Контактна інформація Державної науково-технічної бібліотеки України: адреса, телефон, електронна пошта та сайт." />
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="/uard/content/contacts.uk.xhtml" />
+    </ui:define>
+</ui:composition>

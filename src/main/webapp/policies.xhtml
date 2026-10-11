@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- Supplied Ukrainian policy overview; English content is not yet provided. -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle" value="Політики — UaRD" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="description" content="Політики НРДД будуть оприлюднені після затвердження Положення про НРДД та Порядку роботи НРДД." />
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="/uard/content/policies.uk.xhtml" />
+    </ui:define>
+</ui:composition>

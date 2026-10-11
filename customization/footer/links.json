@@ -1,13 +1,34 @@
 {
   "about": "/about.xhtml",
-  "policies": null,
+  "policies": {
+    "url": "/policies.xhtml",
+    "hreflang": "uk"
+  },
   "documents": null,
   "institutions": null,
   "statistics": null,
-  "eosc": null,
-  "openaire": null,
-  "re3data": null,
-  "fair": null,
-  "contacts": null,
-  "aboutOperator": null
+  "eosc": {
+    "url": "/eosc.xhtml",
+    "hreflang": "uk"
+  },
+  "openaire": {
+    "url": "/openaire.xhtml",
+    "hreflang": "uk"
+  },
+  "re3data": {
+    "url": "/re3data.xhtml",
+    "hreflang": "uk"
+  },
+  "fair": {
+    "url": "/fair.xhtml",
+    "hreflang": "uk"
+  },
+  "contacts": {
+    "url": "/contacts.xhtml",
+    "hreflang": "uk"
+  },
+  "aboutOperator": {
+    "url": "/about-dntb.xhtml",
+    "hreflang": "uk"
+  }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- Ukrainian editorial fallback until an English article is supplied. -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle" value="OpenAIRE — UaRD" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="description" content="OpenAIRE — європейська інфраструктура відкритої науки." />
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="/uard/content/openaire.uk.xhtml" />
+    </ui:define>
+</ui:composition>

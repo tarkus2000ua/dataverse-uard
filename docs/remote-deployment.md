@@ -552,3 +552,53 @@ Refresh the browser or relevant CSS/HTML cache. No application restart, XHTML or
 JavaScript deployment is needed for this change. It extends the existing empty
 message-panel margin exception to both article pages and retains the 64px fixed
 navbar offset. Panels containing messages keep their native spacing.
+
+## Incremental ecosystem footer articles (2026-10-11)
+
+Deploy the four uard/content/{eosc,openaire,re3data,fair}.uk.xhtml fragments first,
+then the four corresponding {eosc,openaire,re3data,fair}.xhtml wrappers into the
+confirmed active application, preserving paths under src/main/webapp. Check their
+public routes before publishing the generated customization/branding/custom-footer.html
+to the existing configured branding path. No API setting, native language bundle
+or resource JS change is required when the UaRD baseline is installed.
+
+All four articles currently show supplied Ukrainian text in either interface
+language. Their footer links carry hreflang="uk". Reuse existing article styles;
+the packaged current stylesheet is only needed if the preceding styling/header-gap
+baseline has not reached the server (merge any remote stylesheet additions).
+See [ecosystem-pages.md](ecosystem-pages.md) for the full manifest, reload guidance
+and future English content pattern. Remote deployment was not performed.
+
+## Footer spacing/color CSS update (2026-10-11)
+
+Publish the current integrated customization/branding/custom-stylesheet.css to the
+existing StyleCustomizationFile path and refresh the browser/cache. This restores
+compact matching linked/pending rows and the original muted #b9ccdc footer color,
+with existing hover/focus states and consistent 44px rows on small/coarse-pointer
+screens. This CSS-only update does not require an application restart or new
+HTML/JS/API settings.
+
+## Incremental DNTB operator articles (2026-10-11)
+
+Deploy uard/content/contacts.uk.xhtml and about-dntb.uk.xhtml first, followed by
+their contacts.xhtml and about-dntb.xhtml wrappers in the confirmed active application
+root. Check both routes before publishing the generated custom-footer.html. This
+update reuses the current article/footer styles and adds no CSS/JS/API changes.
+The generated footer includes the earlier ecosystem-page links, so those pages
+must already be available too. A combined footer-article package includes all six
+pending Ukrainian pages and the current footer/styles. See
+[operator-pages.md](operator-pages.md) for the manifest and copy/reload procedure.
+Keep remote native localization and stylesheet additions; no remote deployment
+was performed by this task.
+
+## Incremental Policies overview (2026-10-11)
+
+Copy uard/content/policies.uk.xhtml into the active application's content folder,
+apply the current custom-stylesheet.css (with its scoped hierarchical-numbering
+rule), then copy policies.xhtml to the application root. Check the page before
+publishing generated custom-footer.html. Preserve remote stylesheet additions
+when merging. The page renders supplied Ukrainian text in either UI locale and
+identifies its content language with uk. No admin setting or resource JS/native
+language-bundle change is required. See [policies-page.md](policies-page.md).
+The refreshed combined footer package includes all seven current Ukrainian footer
+articles and the matching CSS/HTML. Remote deployment was not performed.

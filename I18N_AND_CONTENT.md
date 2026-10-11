@@ -150,3 +150,20 @@ system.uk.xhtml fragment. Until English editorial content is supplied, it render
 Ukrainian in both native interface languages with lang="uk". Keep the native
 header/footer language selection intact. Add an English fragment and localized
 metadata only when content is ready; see [the system-page guide](docs/custom-system.md).
+
+The four EOSC/OpenAIRE/re3data/FAIR footer articles also use separate *.uk.xhtml
+editorial fragments and display the supplied Ukrainian text in either UI locale.
+Their footer links explicitly identify Ukrainian content with hreflang="uk".
+When English copy is supplied, follow the About-page wrapper/metadata pattern
+and remove the fixed destination language declaration. See
+[the ecosystem-page guide](docs/ecosystem-pages.md).
+
+The operator Contacts and About DNTB pages use the same Ukrainian-only editorial
+fragment fallback in both native UI languages, with uk article/footer destination
+language tags. When English content is supplied, follow the shared About wrapper
+pattern and localize metadata too. See [operator-pages.md](docs/operator-pages.md).
+
+The Policies overview also uses a Ukrainian editorial fragment in either UI locale.
+Its English parenthetical policy names are part of the supplied Ukrainian article,
+not a complete English translation. Follow the shared wrapper pattern when full
+English copy is available; see [policies-page.md](docs/policies-page.md).
