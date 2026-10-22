@@ -9,6 +9,7 @@ import edu.harvard.iq.dataverse.workflow.step.Pending;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Locale;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -55,6 +56,8 @@ public class PendingWorkflowInvocation implements Serializable {
     long lockid;
 
     public static final String AUTHORIZED= "authorized";
+    // Store request metadata in the existing map, without adding a database column.
+    private static final String NOTIFICATION_LOCALE = ":dataverse.notificationLocale";
                 
     /** Empty constructor for JPA */
     public PendingWorkflowInvocation(){
@@ -70,13 +73,20 @@ public class PendingWorkflowInvocation implements Serializable {
         userId = ctxt.getRequest().getUser().getIdentifier();
         ipAddress = ctxt.getRequest().getSourceAddress().toString();
         localData = new HashMap<>(result.getData());
+        Locale notificationLocale = ctxt.getRequest().getNotificationLocale();
+        if (notificationLocale != null) {
+            localData.put(NOTIFICATION_LOCALE, notificationLocale.toLanguageTag());
+        }
         typeOrdinal = ctxt.getType().ordinal();
         datasetExternallyReleased=ctxt.getDatasetExternallyReleased();
         lockid=ctxt.getLockId();
     }
     
     public WorkflowContext reCreateContext(RoleAssigneeServiceBean roleAssignees) {
-        DataverseRequest aRequest = new DataverseRequest((User)roleAssignees.getRoleAssignee(userId), IpAddress.valueOf(ipAddress));
+        String localeTag = localData == null ? null : localData.get(NOTIFICATION_LOCALE);
+        Locale notificationLocale = localeTag == null ? null : Locale.forLanguageTag(localeTag);
+        DataverseRequest aRequest = new DataverseRequest((User)roleAssignees.getRoleAssignee(userId),
+                IpAddress.valueOf(ipAddress), notificationLocale);
         final WorkflowContext workflowContext = new WorkflowContext(aRequest, dataset, nextVersionNumber, 
                 nextMinorVersionNumber, WorkflowContext.TriggerType.values()[typeOrdinal], null, null, datasetExternallyReleased, invocationId, lockid);
         return workflowContext;
@@ -139,7 +149,13 @@ public class PendingWorkflowInvocation implements Serializable {
     }
 
     public Map<String, String> getLocalData() {
-        return localData;
+        // Keep internal request metadata out of the workflow step's own data.
+        if (localData == null || !localData.containsKey(NOTIFICATION_LOCALE)) {
+            return localData;
+        }
+        Map<String, String> stepData = new HashMap<>(localData);
+        stepData.remove(NOTIFICATION_LOCALE);
+        return stepData;
     }
 
     public void setLocalData(Map<String, String> localData) {

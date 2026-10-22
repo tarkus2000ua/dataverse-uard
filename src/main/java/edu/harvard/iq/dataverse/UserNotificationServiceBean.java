@@ -13,6 +13,7 @@ import edu.harvard.iq.dataverse.settings.SettingsServiceBean.Key;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Logger;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
@@ -153,6 +154,17 @@ public class UserNotificationServiceBean {
         sendNotification(dataverseUser, sendDate, type, objectId, "");
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void sendNotificationInNewTransaction(AuthenticatedUser user, Timestamp date, Type type,
+            Long objectId, Locale notificationLocale) {
+        sendNotification(user, date, type, objectId, "", null, false, null, notificationLocale);
+    }
+
+    public void sendNotification(AuthenticatedUser user, Timestamp date, Type type, Long objectId,
+            String comment, Locale notificationLocale) {
+        sendNotification(user, date, type, objectId, comment, null, false, null, notificationLocale);
+    }
+
     public void sendNotification(AuthenticatedUser dataverseUser, Timestamp sendDate, Type type, Long objectId) {
         sendNotification(dataverseUser, sendDate, type, objectId, "");
     }
@@ -169,6 +181,12 @@ public class UserNotificationServiceBean {
         sendNotification(dataverseUser, sendDate, type, objectId, comment, requestor, isHtmlContent, null);
     }
     public void sendNotification(AuthenticatedUser dataverseUser, Timestamp sendDate, Type type, Long objectId, String comment, AuthenticatedUser requestor, boolean isHtmlContent, String additionalInfo) {
+        sendNotification(dataverseUser, sendDate, type, objectId, comment, requestor, isHtmlContent, additionalInfo, null);
+    }
+
+    public void sendNotification(AuthenticatedUser dataverseUser, Timestamp sendDate, Type type, Long objectId,
+            String comment, AuthenticatedUser requestor, boolean isHtmlContent, String additionalInfo,
+            Locale notificationLocale) {
         UserNotification userNotification = new UserNotification();
         userNotification.setUser(dataverseUser);
         userNotification.setSendDate(sendDate);
@@ -177,7 +195,9 @@ public class UserNotificationServiceBean {
         userNotification.setRequestor(requestor);
         userNotification.setAdditionalInfo(additionalInfo);
 
-        if (!isEmailMuted(userNotification) && mailService.sendNotificationEmail(userNotification, comment, requestor, isHtmlContent)) {
+        if (!isEmailMuted(userNotification) && (notificationLocale == null
+                ? mailService.sendNotificationEmail(userNotification, comment, requestor, isHtmlContent)
+                : mailService.sendNotificationEmail(userNotification, comment, requestor, isHtmlContent, notificationLocale))) {
             logger.fine("email was sent");
             userNotification.setEmailed(true);
         } else {

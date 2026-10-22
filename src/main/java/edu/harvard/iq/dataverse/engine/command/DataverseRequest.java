@@ -7,6 +7,7 @@ import edu.harvard.iq.dataverse.authorization.users.User;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +26,8 @@ public class DataverseRequest {
     private final IpAddress sourceAddress;
     private final String invocationId;
     private final HttpServletRequest httpServletRequest;
+    // Snapshot of the native UI locale; null keeps the existing API/background fallback.
+    private final Locale notificationLocale;
     
     private static final String undefined = "0.0.0.0";
     
@@ -57,6 +60,11 @@ public class DataverseRequest {
     }
     
     public DataverseRequest(User aUser, HttpServletRequest aHttpServletRequest) {
+        this(aUser, aHttpServletRequest, null);
+    }
+
+    public DataverseRequest(User aUser, HttpServletRequest aHttpServletRequest, Locale notificationLocale) {
+        this.notificationLocale = notificationLocale;
         this.user = aUser;
         httpServletRequest = aHttpServletRequest;
         
@@ -152,12 +160,21 @@ public class DataverseRequest {
     }
 
     public DataverseRequest( User aUser, IpAddress aSourceAddress ) {
+        this(aUser, aSourceAddress, null);
+    }
+
+    public DataverseRequest(User aUser, IpAddress aSourceAddress, Locale notificationLocale) {
+        this.notificationLocale = notificationLocale;
         user = aUser;
         sourceAddress = aSourceAddress;
         invocationId=null;
         httpServletRequest=null;
     }
     
+    public Locale getNotificationLocale() {
+        return notificationLocale;
+    }
+
     public User getUser() {
         return user;
     }

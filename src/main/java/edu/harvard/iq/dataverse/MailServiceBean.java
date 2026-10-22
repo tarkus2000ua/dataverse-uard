@@ -27,6 +27,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,6 +113,11 @@ public class MailServiceBean implements java.io.Serializable {
      * @return Status: true if sent successfully, false otherwise
      */
     public boolean sendSystemEmail(String to, String subject, String messageText, boolean isHtmlContent) {
+        return sendSystemEmail(to, subject, messageText, isHtmlContent, null);
+    }
+
+    private boolean sendSystemEmail(String to, String subject, String messageText, boolean isHtmlContent,
+            ResourceBundle bundle) {
         Optional<InternetAddress> optionalAddress = getSystemAddress();
         if (optionalAddress.isEmpty()) {
             logger.fine(() -> "Skipping sending mail to " + to + ", because no system address has been set.");
@@ -119,9 +126,12 @@ public class MailServiceBean implements java.io.Serializable {
         InternetAddress systemAddress = optionalAddress.get();
         InternetAddress supportAddress = getSupportAddress().orElse(systemAddress);
 
+        if (bundle == null) {
+            bundle = BundleUtil.getResourceBundle("Bundle");
+        }
         String body = messageText +
             BundleUtil.getStringFromBundle(isHtmlContent ? "notification.email.closing.html" : "notification.email.closing",
-                List.of(BrandingUtil.getSupportTeamEmailAddress(supportAddress), BrandingUtil.getSupportTeamName(supportAddress)));
+                List.of(BrandingUtil.getSupportTeamEmailAddress(supportAddress), BrandingUtil.getSupportTeamName(supportAddress, bundle)), bundle);
 
         logger.fine(() -> "Sending email to %s. Subject: <<<%s>>>. Body: %s".formatted(to, subject, body));
         try {
@@ -275,16 +285,22 @@ public class MailServiceBean implements java.io.Serializable {
     }
 
     public Boolean sendNotificationEmail(UserNotification notification, String comment, AuthenticatedUser requestor, boolean isHtmlContent){
+        return sendNotificationEmail(notification, comment, requestor, isHtmlContent, null);
+    }
+
+    public Boolean sendNotificationEmail(UserNotification notification, String comment, AuthenticatedUser requestor,
+            boolean isHtmlContent, Locale notificationLocale) {
 
         boolean retval = false;
         String emailAddress = getUserEmailAddress(notification);
         if (emailAddress != null){
            Object objectOfNotification =  getObjectOfNotification(notification);
            if (objectOfNotification != null){
-               String messageText = getMessageTextBasedOnNotification(notification, objectOfNotification, comment, requestor);
-               String subjectText = MailUtil.getSubjectTextBasedOnNotification(notification, objectOfNotification);
+               ResourceBundle bundle = BundleUtil.getResourceBundle("Bundle", notificationLocale);
+               String messageText = getMessageTextBasedOnNotification(notification, objectOfNotification, comment, requestor, bundle);
+               String subjectText = MailUtil.getSubjectTextBasedOnNotification(notification, objectOfNotification, bundle);
                if (!(StringUtils.isEmpty(messageText) || StringUtils.isEmpty(subjectText))){
-                   retval = sendSystemEmail(emailAddress, subjectText, messageText, isHtmlContent);
+                   retval = sendSystemEmail(emailAddress, subjectText, messageText, isHtmlContent, bundle);
                } else {
                    logger.warning("Skipping " + notification.getType() +  " notification, because couldn't get valid message");
                }
@@ -380,7 +396,13 @@ public class MailServiceBean implements java.io.Serializable {
     }
 
     public String getMessageTextBasedOnNotification(UserNotification userNotification, Object targetObject, String comment, AuthenticatedUser requestor) {
-        String messageText = BundleUtil.getStringFromBundle("notification.email.greeting");
+        return getMessageTextBasedOnNotification(userNotification, targetObject, comment, requestor,
+                BundleUtil.getResourceBundle("Bundle"));
+    }
+
+    public String getMessageTextBasedOnNotification(UserNotification userNotification, Object targetObject, String comment,
+            AuthenticatedUser requestor, ResourceBundle bundle) {
+        String messageText = BundleUtil.getStringFromBundle("notification.email.greeting", null, bundle);
         DatasetVersion version;
         Dataset dataset;
         DvObject dvObj;
@@ -398,17 +420,17 @@ public class MailServiceBean implements java.io.Serializable {
                 dvObjURL = getDvObjectLink(dvObj);
                 dvObjTypeStr = getDvObjectTypeString(dvObj);
 
-                pattern = BundleUtil.getStringFromBundle("notification.email.assignRole");
+                pattern = BundleUtil.getStringFromBundle("notification.email.assignRole", null, bundle);
                 String[] paramArrayAssignRole = {joinedRoleNames, dvObjTypeStr, dvObj.getDisplayName(), dvObjURL};
                 messageText += MessageFormat.format(pattern, paramArrayAssignRole);
                 if (joinedRoleNames.contains("File Downloader")){
                     if (dvObjTypeStr.equals("dataset")){
-                         pattern = BundleUtil.getStringFromBundle("notification.access.granted.fileDownloader.additionalDataset");
+                         pattern = BundleUtil.getStringFromBundle("notification.access.granted.fileDownloader.additionalDataset", null, bundle);
                          String[]  paramArrayAssignRoleDS = {" "};
                         messageText += MessageFormat.format(pattern, paramArrayAssignRoleDS);
                     }
                     if (dvObjTypeStr.equals("dataverse")){
-                        pattern = BundleUtil.getStringFromBundle("notification.access.granted.fileDownloader.additionalDataverse");
+                        pattern = BundleUtil.getStringFromBundle("notification.access.granted.fileDownloader.additionalDataverse", null, bundle);
                          String[]  paramArrayAssignRoleDV = {" "};
                         messageText += MessageFormat.format(pattern, paramArrayAssignRoleDV);
                     }                   
@@ -420,7 +442,7 @@ public class MailServiceBean implements java.io.Serializable {
                 dvObjURL = getDvObjectLink(dvObj);
                 dvObjTypeStr = getDvObjectTypeString(dvObj);
 
-                pattern = BundleUtil.getStringFromBundle("notification.email.revokeRole");
+                pattern = BundleUtil.getStringFromBundle("notification.email.revokeRole", null, bundle);
                 String[] paramArrayRevokeRole = {dvObjTypeStr, dvObj.getDisplayName(), dvObjURL};
                 messageText += MessageFormat.format(pattern, paramArrayRevokeRole);
                 return messageText;
@@ -440,47 +462,47 @@ public class MailServiceBean implements java.io.Serializable {
                         parentDataverseDisplayName,
                         parentDataverseUrl,
                         systemConfig.getGuidesBaseUrl(),
-                        systemConfig.getGuidesVersion()));
+                        systemConfig.getGuidesVersion()), bundle);
                 logger.fine(dataverseCreatedMessage);
                 return messageText += dataverseCreatedMessage;
             case REQUESTFILEACCESS:
                 //Notification to those who can grant file access requests on a dataset when a user makes a request
                 DataFile datafile = (DataFile) targetObject;
                 
-                pattern = BundleUtil.getStringFromBundle("notification.email.requestFileAccess");
-                String requestorName = (requestor.getLastName() != null && requestor.getLastName() != null) ? requestor.getFirstName() + " " + requestor.getLastName() : BundleUtil.getStringFromBundle("notification.email.info.unavailable");
-                String requestorEmail = requestor.getEmail() != null ? requestor.getEmail() : BundleUtil.getStringFromBundle("notification.email.info.unavailable"); 
+                pattern = BundleUtil.getStringFromBundle("notification.email.requestFileAccess", null, bundle);
+                String requestorName = (requestor.getLastName() != null && requestor.getLastName() != null) ? requestor.getFirstName() + " " + requestor.getLastName() : BundleUtil.getStringFromBundle("notification.email.info.unavailable", null, bundle);
+                String requestorEmail = requestor.getEmail() != null ? requestor.getEmail() : BundleUtil.getStringFromBundle("notification.email.info.unavailable", null, bundle);
                 String[] paramArrayRequestFileAccess = {datafile.getOwner().getDisplayName(), requestorName, requestorEmail, getDatasetManageFileAccessLink(datafile)};
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 messageText += MessageFormat.format(pattern, paramArrayRequestFileAccess);
                 FileAccessRequest far = datafile.getAccessRequestForAssignee(requestor);
                 GuestbookResponse gbr = far.getGuestbookResponse();
                 if (gbr != null) {
                     messageText += MessageFormat.format(
-                        BundleUtil.getStringFromBundle("notification.email.requestFileAccess.guestbookResponse"), gbr.toHtmlFormattedResponse(requestor));
+                        BundleUtil.getStringFromBundle("notification.email.requestFileAccess.guestbookResponse", null, bundle), gbr.toHtmlFormattedResponse(requestor));
                 }
                 return messageText;
             case GRANTFILEACCESS:
                 dataset = (Dataset) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.grantFileAccess");
+                pattern = BundleUtil.getStringFromBundle("notification.email.grantFileAccess", null, bundle);
                 String[] paramArrayGrantFileAccess = {dataset.getDisplayName(), getDatasetLink(dataset)};
                 messageText += MessageFormat.format(pattern, paramArrayGrantFileAccess);
                 return messageText;
             case REJECTFILEACCESS:
                 dataset = (Dataset) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.rejectFileAccess");
+                pattern = BundleUtil.getStringFromBundle("notification.email.rejectFileAccess", null, bundle);
                 String[] paramArrayRejectFileAccess = {dataset.getDisplayName(), getDatasetLink(dataset)};
                 messageText += MessageFormat.format(pattern, paramArrayRejectFileAccess);
                 return messageText;
             case DATASETCREATED:
                 dataset = (Dataset) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.datasetWasCreated");
+                pattern = BundleUtil.getStringFromBundle("notification.email.datasetWasCreated", null, bundle);
                 String[] paramArrayDatasetCreated = {getDatasetLink(dataset), dataset.getDisplayName(), userNotification.getRequestor().getName(), dataset.getOwner().getDisplayName()};
                 messageText += MessageFormat.format(pattern, paramArrayDatasetCreated);
                 return messageText;
             case DATASETMOVED:
                 dataset = (Dataset) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.datasetWasMoved");
+                pattern = BundleUtil.getStringFromBundle("notification.email.datasetWasMoved", null, bundle);
                 String[] paramArrayDatasetMoved = {getDatasetLink(dataset), dataset.getDisplayName(), userNotification.getRequestor().getName(), dataset.getOwner().getDisplayName()};
                 messageText += MessageFormat.format(pattern, paramArrayDatasetMoved);
                 return messageText;
@@ -493,7 +515,7 @@ public class MailServiceBean implements java.io.Serializable {
                         getDataverseLink(version.getDataset().getOwner()),
                         systemConfig.getGuidesBaseUrl(),
                         systemConfig.getGuidesVersion()
-                ));
+                ), bundle);
                 logger.fine(datasetCreatedMessage);
                 return messageText += datasetCreatedMessage;
             case SUBMITTEDDS:
@@ -505,12 +527,12 @@ public class MailServiceBean implements java.io.Serializable {
                 "submissionComment" needs to be added to Bundle
                 mightHaveSubmissionComment = ".";
                 if (comment != null && !comment.isEmpty()) {
-                    mightHaveSubmissionComment = ".\n\n" + BundleUtil.getStringFromBundle("submissionComment") + "\n\n" + comment;
+                    mightHaveSubmissionComment = ".\n\n" + BundleUtil.getStringFromBundle("submissionComment", null, bundle) + "\n\n" + comment;
                 }
                 */                
-                 requestorName = (requestor.getLastName() != null && requestor.getLastName() != null) ? requestor.getFirstName() + " " + requestor.getLastName() : BundleUtil.getStringFromBundle("notification.email.info.unavailable");
-                 requestorEmail = requestor.getEmail() != null ? requestor.getEmail() : BundleUtil.getStringFromBundle("notification.email.info.unavailable");               
-                pattern = BundleUtil.getStringFromBundle("notification.email.wasSubmittedForReview");
+                 requestorName = (requestor.getLastName() != null && requestor.getLastName() != null) ? requestor.getFirstName() + " " + requestor.getLastName() : BundleUtil.getStringFromBundle("notification.email.info.unavailable", null, bundle);
+                 requestorEmail = requestor.getEmail() != null ? requestor.getEmail() : BundleUtil.getStringFromBundle("notification.email.info.unavailable", null, bundle);
+                pattern = BundleUtil.getStringFromBundle("notification.email.wasSubmittedForReview", null, bundle);
 
                 String[] paramArraySubmittedDataset = {version.getDataset().getDisplayName(), getDatasetDraftLink(version.getDataset()), 
                     version.getDataset().getOwner().getDisplayName(),  getDataverseLink(version.getDataset().getOwner()),
@@ -519,28 +541,28 @@ public class MailServiceBean implements java.io.Serializable {
                 return messageText;
             case PUBLISHEDDS:
                 version =  (DatasetVersion) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.wasPublished");
+                pattern = BundleUtil.getStringFromBundle("notification.email.wasPublished", null, bundle);
                 String[] paramArrayPublishedDataset = {version.getDataset().getDisplayName(), getDatasetLink(version.getDataset()), 
                     version.getDataset().getOwner().getDisplayName(),  getDataverseLink(version.getDataset().getOwner())};
                 messageText += MessageFormat.format(pattern, paramArrayPublishedDataset);
                 return messageText;
             case PUBLISHFAILED_PIDREG:
                 version =  (DatasetVersion) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.publishFailedPidReg");
+                pattern = BundleUtil.getStringFromBundle("notification.email.publishFailedPidReg", null, bundle);
                 String[] paramArrayPublishFailedDatasetPidReg = {version.getDataset().getDisplayName(), getDatasetLink(version.getDataset()), 
                     version.getDataset().getOwner().getDisplayName(),  getDataverseLink(version.getDataset().getOwner())};
                 messageText += MessageFormat.format(pattern, paramArrayPublishFailedDatasetPidReg);
                 return messageText;
             case RETURNEDDS:
                 version =  (DatasetVersion) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.wasReturnedByReviewer");
+                pattern = BundleUtil.getStringFromBundle("notification.email.wasReturnedByReviewer", null, bundle);
 
                 String[] paramArrayReturnedDataset = {version.getDataset().getDisplayName(), getDatasetDraftLink(version.getDataset()), 
                     version.getDataset().getOwner().getDisplayName(),  getDataverseLink(version.getDataset().getOwner())};
                 messageText += MessageFormat.format(pattern, paramArrayReturnedDataset);
 
                 if (comment != null && !comment.isEmpty()) {
-                    messageText += "\n\n" + MessageFormat.format(BundleUtil.getStringFromBundle("notification.email.wasReturnedByReviewerReason"), comment);
+                    messageText += "\n\n" + MessageFormat.format(BundleUtil.getStringFromBundle("notification.email.wasReturnedByReviewerReason", null, bundle), comment);
                 }
 
                 Dataverse d = (Dataverse) version.getDataset().getOwner();
@@ -550,35 +572,35 @@ public class MailServiceBean implements java.io.Serializable {
                 }
                 if (!contactEmailList.isEmpty()) {
                     String contactEmails = String.join(", ", contactEmailList);
-                    messageText += "\n\n" + MessageFormat.format(BundleUtil.getStringFromBundle("notification.email.wasReturnedByReviewer.collectionContacts"), contactEmails);
+                    messageText += "\n\n" + MessageFormat.format(BundleUtil.getStringFromBundle("notification.email.wasReturnedByReviewer.collectionContacts", null, bundle), contactEmails);
                 }
                 return messageText;
 
             case WORKFLOW_SUCCESS:
                 version =  (DatasetVersion) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.workflow.success");
+                pattern = BundleUtil.getStringFromBundle("notification.email.workflow.success", null, bundle);
                 if (comment == null) {
-                    comment = BundleUtil.getStringFromBundle("notification.email.workflow.nullMessage");
+                    comment = BundleUtil.getStringFromBundle("notification.email.workflow.nullMessage", null, bundle);
                 }
                 String[] paramArrayWorkflowSuccess = {version.getDataset().getDisplayName(), getDatasetLink(version.getDataset()), comment};
                 messageText += MessageFormat.format(pattern, paramArrayWorkflowSuccess);
                 return messageText;
             case WORKFLOW_FAILURE:
                 version =  (DatasetVersion) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.workflow.failure");
+                pattern = BundleUtil.getStringFromBundle("notification.email.workflow.failure", null, bundle);
                 if (comment == null) {
-                    comment = BundleUtil.getStringFromBundle("notification.email.workflow.nullMessage");
+                    comment = BundleUtil.getStringFromBundle("notification.email.workflow.nullMessage", null, bundle);
                 }
                 String[] paramArrayWorkflowFailure = {version.getDataset().getDisplayName(), getDatasetLink(version.getDataset()), comment};
                 messageText += MessageFormat.format(pattern, paramArrayWorkflowFailure);
                 return messageText;
             case STATUSUPDATED:
                 version =  (DatasetVersion) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.status.change");
+                pattern = BundleUtil.getStringFromBundle("notification.email.status.change", null, bundle);
                 CurationStatus status = version.getCurationStatusAsOfDate(userNotification.getSendDateTimestamp());
                 String curationLabel = DatasetUtil.getLocaleCurationStatusLabel(status);
                 if(curationLabel == null) {
-                    curationLabel = BundleUtil.getStringFromBundle("dataset.curationstatus.none");
+                    curationLabel = BundleUtil.getStringFromBundle("dataset.curationstatus.none", null, bundle);
                 }
                 String[] paramArrayStatus = {
                         version.getDataset().getDisplayName(),
@@ -592,7 +614,7 @@ public class MailServiceBean implements java.io.Serializable {
                 return messageText;
             case PIDRECONCILED:
                 version =  (DatasetVersion) targetObject;
-                pattern = BundleUtil.getStringFromBundle("notification.email.pid.reconciled");
+                pattern = BundleUtil.getStringFromBundle("notification.email.pid.reconciled", null, bundle);
                 messageText += MessageFormat.format(pattern, new String[] {version.getDataset().getDisplayName(), version.getDataset().getGlobalId().asString()});
                 return messageText;
             case CREATEACC:
@@ -602,7 +624,7 @@ public class MailServiceBean implements java.io.Serializable {
                         systemConfig.getGuidesVersion(),
                         BrandingUtil.getSupportTeamName(getSystemAddress().orElse(null)),
                         BrandingUtil.getSupportTeamEmailAddress(getSystemAddress().orElse(null))
-                ));
+                ), bundle);
                 String optionalConfirmEmailAddon = confirmEmailService.optionalConfirmEmailAddonMsg(userNotification.getUser());
                 accountCreatedMessage += optionalConfirmEmailAddon;
                 logger.fine("accountCreatedMessage: " + accountCreatedMessage);
@@ -612,7 +634,7 @@ public class MailServiceBean implements java.io.Serializable {
                 dataset =  (Dataset) targetObject;
                 String checksumFailMsg = BundleUtil.getStringFromBundle("notification.checksumfail", Arrays.asList(
                         dataset.getGlobalId().asString()
-                ));
+                ), bundle);
                 logger.fine("checksumFailMsg: " + checksumFailMsg);
                 return messageText += checksumFailMsg;
 
@@ -622,74 +644,74 @@ public class MailServiceBean implements java.io.Serializable {
                         systemConfig.getDataverseSiteUrl(),
                         version.getDataset().getGlobalId().asString(),
                         version.getDataset().getDisplayName()
-                ));
+                ), bundle);
                 logger.fine("fileImportMsg: " + fileImportMsg);
                 return messageText += fileImportMsg;
 
             case GLOBUSUPLOADCOMPLETED:
                 dataset =  (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String uploadCompletedMessage = messageText + BundleUtil.getStringFromBundle("notification.mail.globus.upload.completed", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
                         dataset.getDisplayName(),
                         comment
-                ))  ;
+                ), bundle)  ;
                 return  uploadCompletedMessage;
 
             case GLOBUSDOWNLOADCOMPLETED:
                 dataset =  (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String downloadCompletedMessage = messageText + BundleUtil.getStringFromBundle("notification.mail.globus.download.completed", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
                         dataset.getDisplayName(),
                         comment
-                ))  ;
+                ), bundle)  ;
                 return downloadCompletedMessage;
                         
             case GLOBUSUPLOADCOMPLETEDWITHERRORS:
                 dataset =  (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String uploadCompletedWithErrorsMessage = messageText + BundleUtil.getStringFromBundle("notification.mail.globus.upload.completedWithErrors", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
                         dataset.getDisplayName(),
                         comment
-                ))  ;
+                ), bundle)  ;
                 return  uploadCompletedWithErrorsMessage;
             
             case GLOBUSUPLOADREMOTEFAILURE:
                 dataset =  (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String uploadFailedRemotelyMessage = messageText + BundleUtil.getStringFromBundle("notification.mail.globus.upload.failedRemotely", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
                         dataset.getDisplayName(),
                         comment
-                ))  ;
+                ), bundle)  ;
                 return  uploadFailedRemotelyMessage;
 
             case GLOBUSUPLOADLOCALFAILURE:
                 dataset =  (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String uploadFailedLocallyMessage = messageText + BundleUtil.getStringFromBundle("notification.mail.globus.upload.failedLocally", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
                         dataset.getDisplayName(),
                         comment
-                ))  ;
+                ), bundle)  ;
                 return  uploadFailedLocallyMessage;
                 
                 case GLOBUSDOWNLOADCOMPLETEDWITHERRORS:
                 dataset =  (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String downloadCompletedWithErrorsMessage = messageText + BundleUtil.getStringFromBundle("notification.mail.globus.download.completedWithErrors", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
                         dataset.getDisplayName(),
                         comment
-                ))  ;
+                ), bundle)  ;
                 return downloadCompletedWithErrorsMessage;
 
             case CHECKSUMIMPORT:
@@ -697,18 +719,18 @@ public class MailServiceBean implements java.io.Serializable {
                 String checksumImportMsg = BundleUtil.getStringFromBundle("notification.import.checksum", Arrays.asList(
                         version.getDataset().getGlobalId().asString(),
                         version.getDataset().getDisplayName()
-                ));
+                ), bundle);
                 logger.fine("checksumImportMsg: " + checksumImportMsg);
                 return messageText += checksumImportMsg;
 
             case APIGENERATED:
                 String message = BundleUtil.getStringFromBundle("notification.email.apiTokenGenerated", Arrays.asList(
-                        userNotification.getUser().getFirstName(), userNotification.getUser().getFirstName() ));
+                        userNotification.getUser().getFirstName(), userNotification.getUser().getFirstName() ), bundle);
                 return message;
 
             case INGESTCOMPLETED:
                 dataset = (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String ingestedCompletedMessage = messageText + BundleUtil.getStringFromBundle("notification.ingest.completed", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
@@ -716,12 +738,12 @@ public class MailServiceBean implements java.io.Serializable {
                         systemConfig.getGuidesBaseUrl(),
                         systemConfig.getGuidesVersion(),
                         comment
-                ));
+                ), bundle);
 
                 return ingestedCompletedMessage;
             case INGESTCOMPLETEDWITHERRORS:
                 dataset = (Dataset) targetObject;
-                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                 String ingestedCompletedWithErrorsMessage = messageText + BundleUtil.getStringFromBundle("notification.ingest.completedwitherrors", Arrays.asList(
                         systemConfig.getDataverseSiteUrl(),
                         dataset.getGlobalId().asString(),
@@ -729,7 +751,7 @@ public class MailServiceBean implements java.io.Serializable {
                         systemConfig.getGuidesBaseUrl(),
                         systemConfig.getGuidesVersion(),
                         comment
-                ));
+                ), bundle);
 
                 return ingestedCompletedWithErrorsMessage;
             case DATASETMENTIONED:
@@ -739,7 +761,7 @@ public class MailServiceBean implements java.io.Serializable {
                 citingResource = JsonUtil.getJsonObject(additionalInfo);
                 
 
-                pattern = BundleUtil.getStringFromBundle("notification.email.datasetWasMentioned");
+                pattern = BundleUtil.getStringFromBundle("notification.email.datasetWasMentioned", null, bundle);
                 Object[] paramArrayDatasetMentioned = {
                         userNotification.getUser().getName(),
                         BrandingUtil.getInstallationBrandName(), 
@@ -756,14 +778,14 @@ public class MailServiceBean implements java.io.Serializable {
                 //Notification to requestor when they make a request
                 datafile = (DataFile) targetObject;
                 
-                pattern = BundleUtil.getStringFromBundle("notification.email.requestedFileAccess");
-                 messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html");
+                pattern = BundleUtil.getStringFromBundle("notification.email.requestedFileAccess", null, bundle);
+                 messageText = BundleUtil.getStringFromBundle("notification.email.greeting.html", null, bundle);
                  messageText += MessageFormat.format(pattern, getDvObjectLink(datafile), datafile.getOwner().getDisplayName());
                 far = datafile.getAccessRequestForAssignee(requestor);
                 gbr = far.getGuestbookResponse();
                 if (gbr != null) {
                     messageText += MessageFormat.format(
-                            BundleUtil.getStringFromBundle("notification.email.requestFileAccess.guestbookResponse"), gbr.toHtmlFormattedResponse());
+                            BundleUtil.getStringFromBundle("notification.email.requestFileAccess.guestbookResponse", null, bundle), gbr.toHtmlFormattedResponse());
                 }
                 return messageText;
         }

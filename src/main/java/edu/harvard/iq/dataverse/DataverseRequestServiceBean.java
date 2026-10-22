@@ -6,6 +6,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Locale;
 
 /**
  * The service bean to go to when one needs the current {@link DataverseRequest}.
@@ -25,7 +26,8 @@ public class DataverseRequestServiceBean {
     
     @PostConstruct
     protected void setup() {
-        dataverseRequest = new DataverseRequest(dataverseSessionSvc.getUser(), request);
+        Locale notificationLocale = Locale.forLanguageTag(dataverseSessionSvc.getLocaleCode().replace('_', '-'));
+        dataverseRequest = new DataverseRequest(dataverseSessionSvc.getUser(), request, notificationLocale);
     }
     
     public DataverseRequest getDataverseRequest() {

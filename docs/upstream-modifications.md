@@ -130,3 +130,24 @@ CSS counter rule displays hierarchical numbers. Footer sources/generated HTML
 activate the policy destination with hreflang="uk". No existing native JSF template,
 Java, JavaScript, authentication or locale logic was changed. Preserve both XHTML
 files and the scoped stylesheet rules during upgrades; see policies-page.md.
+
+## Publication email locale propagation 2026-10-22
+
+Capture the native JSF locale in `DataverseRequestServiceBean` and carry an optional
+immutable locale in `engine/command/DataverseRequest`. Persist it for waiting
+workflows through `workflow/PendingWorkflowInvocation`'s existing map, excluding
+the reserved metadata key from resumed step data. No schema migration is added.
+
+`engine/command/impl/FinalizeDatasetPublicationCommand` passes that locale to
+publication success/failure and associated granted-access notifications through
+new `UserNotificationServiceBean` overloads. `MailServiceBean`, `util/MailUtil`,
+and `branding/BrandingUtil` use one selected bundle for email subject, body,
+greeting, closing and support label. Existing callers without an explicit locale
+retain the prior fallback behavior. No global locale, recipient-language profile,
+authentication, permission, translation-file, or SMTP configuration change is made.
+
+Upgrade review: preserve request capture, the pending-workflow reserved map key,
+and explicit bundle propagation together. Recheck upstream recipient-language
+support before carrying this patch to another version. See
+[publication-email-language.md](publication-email-language.md) for behavior,
+tests, runtime verification, deployment and pending-workflow rollback notes.

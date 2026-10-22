@@ -4,6 +4,7 @@ import edu.harvard.iq.dataverse.DataverseServiceBean;
 import edu.harvard.iq.dataverse.settings.SettingsServiceBean;
 import edu.harvard.iq.dataverse.util.BundleUtil;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import jakarta.mail.internet.InternetAddress;
@@ -31,6 +32,10 @@ public class BrandingUtil {
     }
 
     public static String getSupportTeamName(InternetAddress systemAddress) {
+        return getSupportTeamName(systemAddress, BundleUtil.getResourceBundle("Bundle"));
+    }
+
+    public static String getSupportTeamName(InternetAddress systemAddress, ResourceBundle bundle) {
         if (systemAddress != null) {
             String personalName = systemAddress.getPersonal();
             if (personalName != null) {
@@ -39,10 +44,10 @@ public class BrandingUtil {
         }
         String rootDataverseName = dataverseService.getRootDataverseName();
         if (rootDataverseName != null && !rootDataverseName.isEmpty()) {
-            return rootDataverseName + " " + BundleUtil.getStringFromBundle("contact.support");
+            return rootDataverseName + " " + BundleUtil.getStringFromBundle("contact.support", null, bundle);
         }
-        String saneDefault = BundleUtil.getStringFromBundle("dataverse");
-        return BundleUtil.getStringFromBundle("contact.support", Arrays.asList(saneDefault));
+        String saneDefault = BundleUtil.getStringFromBundle("dataverse", null, bundle);
+        return BundleUtil.getStringFromBundle("contact.support", Arrays.asList(saneDefault), bundle);
     }
 
     public static String getSupportTeamEmailAddress(InternetAddress systemAddress) {
