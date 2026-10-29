@@ -179,7 +179,7 @@
                             <div class="form-horizontal" jsf:rendered="#{LoginPage.authProvider.OAuthProvider}">
                                 <o:form useRequestURI="true">
                                     <p class="help-block">
-                                        <h:outputFormat value="#{bundle['auth.providers.blurb']}" escape="false">
+                                        <h:outputFormat value="#{fn:contains(LoginPage.authProvider.id, 'orcid') ? bundle['org.login.orcid.blurb'] : bundle['auth.providers.blurb']}" escape="false">
                                             <o:param value="#{LoginPage.authProvider.info.title}"/>
                                             <o:param value="#{settingsWrapper.guidesBaseUrl}"/>
                                             <o:param value="#{systemConfig.guidesVersion}"/>
@@ -202,14 +202,6 @@
                                             <h:outputText rendered="#{not fn:contains(LoginPage.authProvider.id, 'orcid')}" value="#{LoginPage.getLoginButtonText()}"/>
                                             <h:outputText rendered="#{fn:contains(LoginPage.authProvider.id, 'orcid')}" value=" #{bundle['login.button.orcid']}"/>
                                         </h:outputLink>
-                                        <ui:fragment rendered="#{fn:contains(LoginPage.authProvider.id, 'orcid')}">
-                                            <p class="help-block small" style="margin-top:1em;">
-                                                <h:outputText value="#{bundle['auth.providers.orcid.helpmessage1']}"  escape="false"/>
-                                            </p>
-                                            <p class="help-block small" style="margin-top:1em;">
-                                                <h:outputText value="#{bundle['auth.providers.orcid.helpmessage2']}"  escape="false"/>
-                                            </p>
-                                        </ui:fragment>
                                     </div>
                                 </div>
                             </div>

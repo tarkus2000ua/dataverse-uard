@@ -151,3 +151,29 @@ and explicit bundle propagation together. Recheck upstream recipient-language
 support before carrying this patch to another version. See
 [publication-email-language.md](publication-email-language.md) for behavior,
 tests, runtime verification, deployment and pending-workflow rollback notes.
+
+## ORCID login presentation (2026-10-29)
+
+`src/main/webapp/loginpage.xhtml` selects `org.login.orcid.blurb` only for the
+existing ORCID ID condition and removes its two long ORCID explanation paragraphs.
+The native heading/button/logo, OAuth `linkFor(providerId, redirectPage)` binding,
+support component/parameters, forms, rendering and redirect metadata are preserved.
+No Java, credentials, provider configuration, settings or database data changes.
+
+The new grouped `org.*` key is in the packaged English
+`src/main/java/propertyFiles/Bundle.properties` and both existing external bundles
+under `customization/lang/`. The Ukrainian external bundle also corrects the
+single ASCII apostrophe in `auth.providers.blurb` to doubled apostrophes for
+`MessageFormat`, fixing literal `{3}` output. Preserve the pre-existing Ukrainian
+bundle replacement and all other translations; merge only these entries remotely.
+
+Upgrade review: compare upstream login/ORCID presentation and carry this small
+view diff and bundle key together. Retain the four format parameters (support at
+index 3), enabled-provider selection, native locale and OAuth redirect flow.
+Local compile/FRD, HTTP builtin login smoke, XML, Java MessageFormat/Jakarta EL,
+binding/preservation checks and branding consistency pass. Local ORCID is not
+configured; authorization/callback and ORCID-only layout require test-server QA.
+See [orcid-login.md](orcid-login.md) for the exact file map, incremental bundle
+merge, verification limits, deployment and acceptance steps. The feature commit
+excludes the pre-existing wholesale Ukrainian translation replacement; the full
+local/upload bundle retains it. No remote deployment was performed.
