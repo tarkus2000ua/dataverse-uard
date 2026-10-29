@@ -53,3 +53,29 @@ remain for remote verification. The remote HTML browse page returned HTTP 403 to
 automated read-only access; its public metadata APIs were readable.
 Remote deployment was not performed. This package requires the matching UaRD
 homepage resources and the linked-card CSS already used in the successful A test.
+
+## Hero repository button (2026-10-25)
+
+The former parenthetical Dataverse attribution below the hero title is replaced
+by a blue repository navigation button. Ukrainian: “Перейти в репозитарій”;
+English: “Go to repository”. Its native /dataverse.xhtml destination opens the
+root repository browse page without an object-type filter or a hardcoded alias.
+It is a normal anchor, usable without JavaScript, with a visible keyboard focus
+outline and a minimum 44px height.
+
+Edit template.html and locales/{en,uk}.json under customization/homepage; regenerate
+customization/branding/custom-homepage.html with build-homepage.py. Publish that
+fragment and the matching custom-stylesheet.css together. JavaScript, application
+resources and settings are unchanged; mounted local branding refreshes directly.
+
+Verification: both branding builders --check and git diff --check pass. An isolated
+preview of the generated fragment and stylesheet verified Ukrainian/English labels,
+native target href, keyboard focus, static fallback without the homepage script,
+46px button height and no page overflow at 1440/768/375/320px. Desktop and mobile
+screenshots were inspected. This preview excludes the native JSF shell and uses
+an empty featured-list fixture; it is not a live Dataverse navigation test.
+
+Live local verification on 2026-10-25 confirmed navigation through the new
+button to the native repository browse page, existing featured collections/logos,
+UA -> EN -> UA switching and desktop/mobile layouts. No remote deployment or
+settings changes were performed for this homepage update.

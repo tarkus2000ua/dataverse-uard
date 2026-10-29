@@ -5,7 +5,9 @@
             <img class="dv-home__brand" src="{{logo}}" width="128" height="128" alt="UaRD">
             <div class="dv-home__body">
                 <h1 class="dv-home__title" id="dv-home-title" data-home-content="title">{{content.title}}</h1>
-                <p class="dv-home__intro">(<span data-home-content="intro">{{content.intro}}</span> <a href="https://dataverse.org/">Dataverse</a>)</p>
+                <div class="dv-home__actions">
+                    <a class="dv-home__repository" href="/dataverse.xhtml"><span data-home-ui="goToRepository">{{ui.goToRepository}}</span><span aria-hidden="true">→</span></a>
+                </div>
                 <div class="dv-home__search-row">
                     <form class="dv-home__search" action="/dataverse.xhtml" method="get" role="search" aria-labelledby="dv-home-search-label" accept-charset="UTF-8">
                         <label class="dv-home__visually-hidden" id="dv-home-search-label" for="dv-home-query" data-home-ui="searchLabel">{{ui.searchLabel}}</label>
