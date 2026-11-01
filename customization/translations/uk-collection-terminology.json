@@ -1,0 +1,1668 @@
+{
+  "format": 1,
+  "target": "Dataverse 6.12",
+  "language": "Ukrainian",
+  "entries": [
+    {
+      "key": "dataverse",
+      "before": "Dataverse",
+      "after": "Колекція",
+      "english": "Dataverse"
+    },
+    {
+      "key": "newDataverse",
+      "before": "Новий Dataverse",
+      "after": "Нова колекція",
+      "english": "New Dataverse"
+    },
+    {
+      "key": "hostDataverse",
+      "before": "Головний Dataverse",
+      "after": "Батьківська колекція",
+      "english": "Host Dataverse"
+    },
+    {
+      "key": "dataverses",
+      "before": "Dataverse-и",
+      "after": "Колекції",
+      "english": "Dataverses"
+    },
+    {
+      "key": "createDataverse",
+      "before": "Створити Dataverse",
+      "after": "Створити колекцію",
+      "english": "Create Dataverse"
+    },
+    {
+      "key": "header.search.title",
+      "before": "Шукати всі Dataverse-и...",
+      "after": "Шукати в усіх колекціях…",
+      "english": "Search all dataverses..."
+    },
+    {
+      "key": "contact.dataverse.header",
+      "before": "Контактна електронна пошта Dataverse",
+      "after": "Зв’язатися з контактною особою колекції",
+      "english": "Email Dataverse Contact"
+    },
+    {
+      "key": "contact.context.dataverse.intro",
+      "before": "{0}Вам щойно було надіслано таке повідомлення від {1} через розміщений {2} Dataverse під назвою \"{3}\":\\n\\n---\\n\\n",
+      "after": "{0}Вам щойно надіслано таке повідомлення від {1} через розміщену в {2} колекцію «{3}»:\\n\\n---\\n\\n",
+      "english": "{0}You have just been sent the following message from {1} via the {2} hosted dataverse named \"{3}\":\\n\\n---\\n\\n"
+    },
+    {
+      "key": "contact.context.dataverse.ending",
+      "before": "\\n\\n---\\n\\n{0}\\n{1}\\n\\nПерейти до Dataverse {2}/dataverse/{3}\\n\\nВи отримали цей електронний лист, оскільки вас було вказано як контактну особу для Dataverse. Якщо ви вважаєте, що це була помилка, будь ласка, зв'яжіться з {4} за адресою {5}. Щоб відповісти безпосередньо особі, яка надіслала повідомлення, просто дайте відповідь на цей електронний лист.",
+      "after": "\\n\\n---\\n\\n{0}\\n{1}\\n\\nПерейти до колекції: {2}/dataverse/{3}\\n\\nВи отримали цей електронний лист, оскільки вас зазначено як контактну особу колекції. Якщо ви вважаєте, що це помилка, зв’яжіться з {4} за адресою {5}. Щоб відповісти безпосередньо відправнику, дайте відповідь на цей лист.",
+      "english": "\\n\\n---\\n\\n{0}\\n{1}\\n\\nGo to dataverse {2}/dataverse/{3}\\n\\nYou received this email because you have been listed as a contact for the dataverse. If you believe this was an error, please contact {4} at {5}. To respond directly to the individual who sent the message, simply reply to this email."
+    },
+    {
+      "key": "contact.context.dataverse.noContact",
+      "before": "Для цього Dataverse немає контактної адреси, тому це повідомлення надсилається на системну адресу.\\n\\n",
+      "after": "Для цієї колекції не вказано контактної адреси, тому повідомлення надсилається на системну адресу.\\n\\n",
+      "english": "There is no contact address on file for this dataverse so this message is being sent to the system address.\\n\\n"
+    },
+    {
+      "key": "user.helpOAuthBeforeLink",
+      "before": "Ваш акаунт Dataverse використовує {0} для входу. Якщо ви зацікавлені в зміні методів входу, зв'яжіться з нами",
+      "after": "Ваш обліковий запис репозитарію використовує {0} для входу. Щоб змінити спосіб входу, зв’яжіться з нами.",
+      "english": "Your Dataverse account uses {0} for login. If you are interested in changing login methods, please contact"
+    },
+    {
+      "key": "notification.createDataverse",
+      "before": "{0} створено в {1}. Щоб дізнатись більше про те, що ви можете зробити з Dataverse, перегляньте {2}.",
+      "after": "{0} створено в {1}. Щоб дізнатися більше про можливості вашої колекції, перегляньте {2}.",
+      "english": "{0} was created in {1} . To learn more about what you can do with your dataverse, check out the {2}. "
+    },
+    {
+      "key": "notification.dataverse.management.title",
+      "before": "Управління Dataverse - Довідник користувача Dataverse",
+      "after": "Керування колекціями — Посібник користувача Dataverse",
+      "english": "Dataverse Management - Dataverse User Guide"
+    },
+    {
+      "key": "notification.generic.objectDeleted",
+      "before": "Dataverse, набір даних або файл для цього сповіщення були видалені.",
+      "after": "Колекцію, набір даних або файл, якого стосується це сповіщення, видалено.",
+      "english": "The dataverse, dataset, or file for this notification has been deleted."
+    },
+    {
+      "key": "notification.access.granted.fileDownloader.additionalDataverse",
+      "before": "{0} Тепер у вас є доступ до всіх опублікованих обмежених і необмежених файлів у цьому Dataverse.",
+      "after": "{0} Тепер ви маєте доступ до всіх опублікованих файлів з обмеженим і відкритим доступом у цій колекції.",
+      "english": "{0} You now have access to all published restricted and unrestricted files in this dataverse."
+    },
+    {
+      "key": "notification.typeDescription.CREATEDV",
+      "before": "Колекцію Dataverse створено",
+      "after": "Колекцію створено",
+      "english": "Dataverse collection is created"
+    },
+    {
+      "key": "user.message.signup.tip",
+      "before": "Навіщо потрібен обліковий запис Dataverse? Щоб створити власний датаверс і налаштувати його, додати набори даних або запитати доступ до обмежених файлів.",
+      "after": "Навіщо потрібен обліковий запис репозитарію? Щоб створити й налаштувати власну колекцію, додати набори даних або запитати доступ до файлів з обмеженим доступом.",
+      "english": "Why have a Dataverse account? To create your own dataverse and customize it, add datasets, or request access to restricted files."
+    },
+    {
+      "key": "user.signup.otherLogInOptions.tip",
+      "before": "Ви також можете створити акаунт Dataverse за допомогою одного з наших параметрів входу <a href=\"/loginpage.xhtml\" title=\"Dataverse Log In\"> </a>.",
+      "after": "Ви також можете створити обліковий запис репозитарію за допомогою одного з доступних <a href=\"/loginpage.xhtml\" title=\"Увійти в репозитарій\">способів входу</a>.",
+      "english": "You can also create a Dataverse account with one of our other <a href=\"/loginpage.xhtml\" title=\"Dataverse Log In\">log in options</a>."
+    },
+    {
+      "key": "user.acccountterms.iagree",
+      "before": "Я прочитав та погоджуюсь із загальними умовами користування Dataverse, як зазначено вище.",
+      "after": "Я прочитав і погоджуюся з наведеними вище загальними умовами користування репозитарієм.",
+      "english": "I have read and accept the Dataverse General Terms of Use as outlined above."
+    },
+    {
+      "key": "user.updatePassword.welcome",
+      "before": "Ласкаво просимо до Dataverse {0}, {1}",
+      "after": "Ласкаво просимо до репозитарію {0}, {1}",
+      "english": "Welcome to Dataverse {0}"
+    },
+    {
+      "key": "login.builtin",
+      "before": "Акаунт Dataverse",
+      "after": "Обліковий запис репозитарію",
+      "english": "Dataverse Account"
+    },
+    {
+      "key": "login.signup.blurb",
+      "before": "<a href=\"{0}\">Зареєструйтеся для облікового запису Dataverse</a>.",
+      "after": "<a href=\"{0}\">Створіть обліковий запис репозитарію</a>.",
+      "english": "<a href=\"{0}\">Sign up for a Dataverse account</a>."
+    },
+    {
+      "key": "auth.providers.tip",
+      "before": "Ви можете перетворити акаунт Dataverse, щоб скористатись однією із наведених вище опцій. <a href=\"{0}/{1}/user/account.html\" target=\"_blank\">Дізнайтеся більше</a>.",
+      "after": "Ви можете змінити спосіб входу до облікового запису репозитарію, вибравши один із варіантів вище. <a href=\"{0}/{1}/user/account.html\" target=\"_blank\">Дізнатися більше</a>.",
+      "english": "You can convert a Dataverse account to use one of the options above. More <a href=\"{0}/{1}/user/account.html\" title=\"Account Creation + Management - Dataverse User Guide\" target=\"_blank\" rel=\"noopener\">information about account creation</a>."
+    },
+    {
+      "key": "shib.askToConvert",
+      "before": "Ви хочете перетворити свій акаунт Dataverse, щоб завжди використовувати логін вашої установи?",
+      "after": "Бажаєте змінити спосіб входу до облікового запису репозитарію, щоб надалі використовувати облікові дані вашої установи?",
+      "english": "Would you like to convert your Dataverse account to always use your institutional log in?"
+    },
+    {
+      "key": "shib.welcomeExistingUserMessage",
+      "before": "Ваші облікові дані установи для {0} відповідають електронній адресі, яка вже використовується для акаунту Dataverse. Ввівши свій поточний пароль Dataverse нижче, ваш існуючий акаунт Dataverse можна конвертувати для використання ваших облікових даних установи. Після конвертації вам потрібно буде використовувати лише ваші облікові дані установи.",
+      "after": "Електронна адреса в облікових даних вашої установи {0} вже використовується для облікового запису репозитарію. Введіть поточний пароль облікового запису репозитарію, щоб пов’язати його з обліковими даними установи. Після цього для входу потрібно буде використовувати облікові дані установи.",
+      "english": "Your institutional log in for {0} matches an email address already being used for a Dataverse account. By entering your current Dataverse password below, your existing Dataverse account can be converted to use your institutional log in. After converting, you will only need to use your institutional log in."
+    },
+    {
+      "key": "shib.dataverseUsername",
+      "before": "Ім'я користувача Dataverse",
+      "after": "Ім’я користувача репозитарію",
+      "english": "Dataverse Username"
+    },
+    {
+      "key": "shib.currentDataversePassword",
+      "before": "Поточний пароль Dataverse",
+      "after": "Поточний пароль облікового запису репозитарію",
+      "english": "Current Dataverse Password"
+    },
+    {
+      "key": "shib.offerToCreateNewAccount",
+      "before": "Ця інформація надається вашою установою та буде використана для створення вашого акаунт Dataverseу.",
+      "after": "Інформацію, надану вашою установою, буде використано для створення облікового запису репозитарію.",
+      "english": "This information is provided by your institution and will be used to create your Dataverse account."
+    },
+    {
+      "key": "oauth2.askToConvert",
+      "before": "Ви хочете перетворити свій акаунт Dataverse, щоб завжди використовувати логін вашої установи?",
+      "after": "Бажаєте змінити спосіб входу до облікового запису репозитарію, щоб надалі використовувати облікові дані вашої установи?",
+      "english": "Would you like to convert your Dataverse account to always use your institutional log in?"
+    },
+    {
+      "key": "oauth2.welcomeExistingUserMessage",
+      "before": "Логін вашої установи для {0} відповідає електронній адресі, яка вже використовується для акаунт Dataverseу. Введіть свій поточний Dataverse пароль нижче, щоб ваш існуючий акаунт Dataverse можна було перетворити для використовування логіну вашої установи. Після перетворення вам потрібно буде використовувати лише логін вашої установи.",
+      "after": "Електронна адреса в облікових даних вашої установи {0} вже використовується для облікового запису репозитарію. Введіть поточний пароль облікового запису репозитарію, щоб пов’язати його з обліковими даними установи. Після цього для входу потрібно буде використовувати облікові дані установи.",
+      "english": "Your institutional log in for {0} matches an email address already being used for a Dataverse account. By entering your current Dataverse password below, your existing Dataverse account can be converted to use your institutional log in. After converting, you will only need to use your institutional log in."
+    },
+    {
+      "key": "oauth2.dataverseUsername",
+      "before": "Ім'я користувача Dataverse",
+      "after": "Ім’я користувача репозитарію",
+      "english": "Dataverse Username"
+    },
+    {
+      "key": "oauth2.currentDataversePassword",
+      "before": "Поточний пароль Dataverse",
+      "after": "Поточний пароль облікового запису репозитарію",
+      "english": "Current Dataverse Password"
+    },
+    {
+      "key": "oauth2.newAccount.welcomeWithName",
+      "before": "Ласкаво просимо до Dataverse, {0}",
+      "after": "Ласкаво просимо до репозитарію, {0}",
+      "english": "Welcome to Dataverse, {0}"
+    },
+    {
+      "key": "oauth2.newAccount.welcomeNoName",
+      "before": "Ласкаво просимо до Dataverse",
+      "after": "Ласкаво просимо до репозитарію",
+      "english": "Welcome to Dataverse"
+    },
+    {
+      "key": "oauth2.newAccount.username.tip",
+      "before": "Це ім'я буде вашим унікальним ідентифікатором користувача Dataverse.",
+      "after": "Це ім’я буде вашим унікальним ідентифікатором користувача репозитарію.",
+      "english": "This username will be your unique identifier as a Dataverse user."
+    },
+    {
+      "key": "oauth2.convertAccount.success",
+      "before": "Ваш акаунт Dataverse тепер зв'язаний з вашим акаунтом {0}.",
+      "after": "Ваш обліковий запис репозитарію тепер пов’язано з обліковим записом {0}.",
+      "english": "Your Dataverse account is now associated with your {0} account."
+    },
+    {
+      "key": "dashboard.card.move.dataverse.manage",
+      "before": "Перемістити Dataverse",
+      "after": "Перемістити колекцію",
+      "english": "Move Dataverse"
+    },
+    {
+      "key": "harvestclients.noClients.how.tip1",
+      "before": "Щоб збирати метадані, створюється <i>Harvesting Client</i> та компонується для кожного віддаленого репозиторію. Зауважте, що при зборі клієнтів вам необхідно буде вибрати існуючу локальну програму dataverse для прийому зібраних наборів даних.",
+      "after": "Щоб збирати метадані, створіть і налаштуйте <i>клієнт збору метаданих</i> для кожного віддаленого репозитарію. Під час створення клієнта виберіть наявну локальну колекцію для розміщення зібраних наборів даних.",
+      "english": "To harvest metadata, a <i>Harvesting Client</i> is created and configured for each remote repository. Note that when creating a client you will need to select an existing local dataverse to host harvested datasets."
+    },
+    {
+      "key": "harvestclients.newClientDialog.dataverse",
+      "before": "Локальна Dataverse",
+      "after": "Локальна колекція",
+      "english": "Local Dataverse"
+    },
+    {
+      "key": "harvestclients.newClientDialog.dataverse.tip",
+      "before": "Dataverse, що прийматиме набори даних, зібрані з цього віддаленого ресурсу.",
+      "after": "Колекція, до якої надходитимуть набори даних із цього віддаленого ресурсу.",
+      "english": "Dataverse that will host the datasets harvested from this remote resource."
+    },
+    {
+      "key": "harvestclients.newClientDialog.dataverse.menu.enterName",
+      "before": "Введіть ім'я Dataverse.",
+      "after": "Введіть назву колекції.",
+      "english": "Enter Dataverse Alias"
+    },
+    {
+      "key": "harvestclients.newClientDialog.dataverse.menu.header",
+      "before": "Назва Dataverse (установа), ім'я.",
+      "after": "Назва колекції (організація), коротка назва",
+      "english": "Dataverse Name (Affiliate), Alias"
+    },
+    {
+      "key": "harvestserver.noSets.how.tip2",
+      "before": "Після активації служби ви можете визначити сукупність локальних наборів даних, які будуть доступні для віддалених збирачів <i>OAI Sets</i>. Набори визначаються пошуковими запитами (наприклад, назва автора: king; або parentId: 1234 - щоб вибрати всі набори даних, що належать вказаній dataverse; або dsPersistentId: \"doi: 1234 /\" щоб вибрати всі набори даних за допомогою вказаного постійного ідентифікатора). Для отримання додаткової інформації про пошукові запити зверніться до розділу \"Пошук API\" у Довіднику користувача Dataverse.",
+      "after": "Після активації служби можна визначити групи локальних наборів даних, доступні віддаленим клієнтам як <i>OAI Sets</i>. Їх визначають пошуковими запитами (наприклад, authorName:king; parentId:1234 — усі набори даних у вказаній колекції; dsPersistentId:\"doi:1234/\" — набори даних із вказаним префіксом постійного ідентифікатора). Докладніше про пошукові запити дивіться в розділі «Search API» Посібника користувача Dataverse.",
+      "english": "Once the service is enabled, you can define collections of local datasets that will be available to remote harvesters as <i>OAI Sets</i>. Sets are defined by search queries (for example, authorName:king; or parentId:1234 - to select all the datasets that belong to the dataverse specified; or dsPersistentId:\"doi:1234/\" to select all the datasets with the persistent identifier authority specified). Consult the Search API section of the Dataverse User Guide for more information on the search queries.  "
+    },
+    {
+      "key": "dashboard.move.dataset.message",
+      "before": "Керуйте та організовуйте свою інсталяцію, переміщуючи набори даних з однієї основної датаверс в іншу. Дивіться також <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних та датаверсами</a> в Посібнику адміністратора.",
+      "after": "Керуйте вмістом репозитарію, переміщуючи набори даних з однієї батьківської колекції до іншої. Дивіться також <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних і колекціями</a> в Посібнику адміністратора.",
+      "english": "Manage and curate your installation by moving datasets from one host dataverse to another. See also <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Managing Datasets and Dataverses</a> in the Admin Guide."
+    },
+    {
+      "key": "dashboard.move.dataset.newdataverse.header",
+      "before": "Новий хост-збірник датаверс",
+      "after": "Нова батьківська колекція",
+      "english": "New dataverse collection host"
+    },
+    {
+      "key": "dashboard.move.dataset.dataverse.label",
+      "before": "Датаверс",
+      "after": "Колекція",
+      "english": "Dataverse"
+    },
+    {
+      "key": "dashboard.move.dataset.dataverse.placeholder",
+      "before": "Введіть ідентифікатор датаверс...",
+      "after": "Введіть ідентифікатор колекції…",
+      "english": "Enter Dataverse Identifier..."
+    },
+    {
+      "key": "dashboard.move.dataset.dataverse.menu.header",
+      "before": "Назва датаверс (філіал), ідентифікатор",
+      "after": "Назва колекції (організація), ідентифікатор",
+      "english": "Dataverse Name (Affiliate), Identifier"
+    },
+    {
+      "key": "dashboard.move.dataset.menu.header",
+      "before": "Постійний ідентифікатор набору даних, назва, ідентифікатор хост-датаверс",
+      "after": "Постійний ідентифікатор набору даних, назва, ідентифікатор батьківської колекції",
+      "english": "Dataset Persistent ID, Title, Host Dataverse Identifier"
+    },
+    {
+      "key": "dashboard.move.dataset.command.error.targetDataverseUnpublishedDatasetPublished",
+      "before": "Опублікований набір даних не може бути переміщений до неопублікованої датаверс. Ви можете повторити спробу переміщення після публікації {0}.",
+      "after": "Опублікований набір даних неможливо перемістити до неопублікованої колекції. Повторіть спробу після публікації {0}.",
+      "english": "A published dataset may not be moved to an unpublished dataverse. You can retry the move after publishing {0}."
+    },
+    {
+      "key": "dashboard.move.dataset.command.error.targetDataverseSameAsOriginalDataverse",
+      "before": "Цей набір даних вже знаходиться в цій датаверс.",
+      "after": "Цей набір даних уже розміщено в цій колекції.",
+      "english": "This dataset is already in this dataverse."
+    },
+    {
+      "key": "dashboard.move.dataset.command.error.unforced.datasetGuestbookNotInTargetDataverse",
+      "before": "Гостьова книга буде видалена з цього набору даних, якщо ви його перемістите, оскільки гостьова книга відсутня в новій хост-датаверс.",
+      "after": "Після переміщення гостьову книгу буде вилучено з цього набору даних, оскільки її немає в новій батьківській колекції.",
+      "english": "The guestbook would be removed from this dataset if you moved it because the guestbook is not in the new host dataverse. "
+    },
+    {
+      "key": "dashboard.move.dataset.command.error.unforced.linkedToTargetDataverseOrOneOfItsParents",
+      "before": "Цей набір даних пов'язаний з новою хост-датаверс або одним з її батьків. Це переміщення призведе до видалення посилання на цей набір даних.",
+      "after": "Цей набір даних пов’язано з новою батьківською колекцією або однією з її батьківських колекцій. Переміщення видалить це посилання.",
+      "english": "This dataset is linked to the new host dataverse or one of its parents. This move would remove the link to this dataset. "
+    },
+    {
+      "key": "dashboard.move.dataset.command.error.unforced.suggestForce",
+      "before": "Примусове переміщення наразі доступне лише через API. Будь ласка, дивіться \"Переміщення набору даних\" у розділі <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних та датаверсами</a> в Посібнику адміністратора для отримання детальної інформації.",
+      "after": "Примусове переміщення доступне лише через API. Докладніше дивіться в розділі «Переміщення набору даних» на сторінці <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних і колекціями</a> Посібника адміністратора.",
+      "english": "Forcing this move is currently only available via API. Please see \"Move a Dataset\" under <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Managing Datasets and Dataverses</a> in the Admin Guide for details."
+    },
+    {
+      "key": "dashboard.move.dataverse.message.summary",
+      "before": "Перемістити колекцію датаверс",
+      "after": "Перемістити колекцію",
+      "english": "Move Dataverse Collection"
+    },
+    {
+      "key": "dashboard.move.dataverse.message.detail",
+      "before": "Керуйте та організовуйте свою інсталяцію, переміщуючи колекцію датаверс з однієї хост-колекції датаверс в іншу. Дивіться також <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних та датаверсами</a> в Посібнику адміністратора.",
+      "after": "Керуйте вмістом репозитарію, переміщуючи колекцію з однієї батьківської колекції до іншої. Дивіться також <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних і колекціями</a> в Посібнику адміністратора.",
+      "english": "Manage and curate your installation by moving a dataverse collection from one host dataverse collection to another. See also <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Managing Datasets and Dataverses</a> in the Admin Guide."
+    },
+    {
+      "key": "dashboard.move.dataverse.selectdataverse.header",
+      "before": "Колекція датаверс для переміщення",
+      "after": "Колекція для переміщення",
+      "english": "Dataverse collection to move"
+    },
+    {
+      "key": "dashboard.move.dataverse.newdataverse.header",
+      "before": "Новий хост-збірник датаверс",
+      "after": "Нова батьківська колекція",
+      "english": "New dataverse collection host"
+    },
+    {
+      "key": "dashboard.move.dataverse.label",
+      "before": "Датаверс",
+      "after": "Колекція",
+      "english": "Dataverse"
+    },
+    {
+      "key": "dashboard.move.dataverse.confirm.dialog",
+      "before": "Ви впевнені, що хочете перемістити цю колекцію датаверс?",
+      "after": "Ви впевнені, що хочете перемістити цю колекцію?",
+      "english": "Are you sure you want to move this dataverse collection?"
+    },
+    {
+      "key": "dashboard.move.dataverse.message.success",
+      "before": "Датаверс \"{0}\" успішно переміщено до {1}.",
+      "after": "Колекцію «{0}» успішно переміщено до {1}.",
+      "english": "The dataverse \"{0}\" has been successfully moved to {1}."
+    },
+    {
+      "key": "dashboard.move.dataverse.message.failure.summary",
+      "before": "Не вдалося перемістити датаверс",
+      "after": "Не вдалося перемістити колекцію",
+      "english": "Failed to moved dataverse"
+    },
+    {
+      "key": "dashboard.move.dataverse.message.failure.details",
+      "before": "Датаверс \"{0}\" не вдалося перемістити до {1}. {2}",
+      "after": "Не вдалося перемістити колекцію «{0}» до {1}. {2}",
+      "english": "The dataverse \"{0}\" could not be moved to {1}. {2}"
+    },
+    {
+      "key": "dashboard.move.dataverse.placeholder",
+      "before": "Введіть ідентифікатор датаверс...",
+      "after": "Введіть ідентифікатор колекції…",
+      "english": "Enter Dataverse Identifier..."
+    },
+    {
+      "key": "dashboard.move.dataverse.menu.header",
+      "before": "Назва датаверс (філіал), ідентифікатор",
+      "after": "Назва колекції (організація), ідентифікатор",
+      "english": "Dataverse Name (Affiliate), Identifier"
+    },
+    {
+      "key": "notification.email.create.dataverse.subject",
+      "before": "{0}: Ваша dataverse створена.",
+      "after": "{0}: вашу колекцію створено.",
+      "english": "{0}: Your dataverse has been created"
+    },
+    {
+      "key": "notification.email.createDataverse",
+      "before": "Ваша нова dataverse під назвою {0} (перегляд на {1}) була створена в {2} (перегляд {3}). Щоб дізнатись більше про те, що ви можете зробити з вашою dataverse, перегляньте розділ \"Управління Dataverse - Довідник користувача\" на {4}/{5}/user/dataverse-management.html.",
+      "after": "Вашу нову колекцію «{0}» (переглянути: {1}) створено в {2} (переглянути: {3}). Докладніше про можливості колекції дивіться в розділі «Керування колекціями» Посібника користувача Dataverse: {4}/{5}/user/dataverse-management.html.",
+      "english": "Your new dataverse named {0} (view at {1} ) was created in {2} (view at {3} ). To learn more about what you can do with your dataverse, check out the Dataverse Management - User Guide at {4}/{5}/user/dataverse-management.html ."
+    },
+    {
+      "key": "notification.email.passwordReset",
+      "before": "Привіт, {0},\\n\\nХтось, сподіваємося, ви, надіслав запит на скидання пароля для {1}.\\n\\nБудь ласка, перейдіть за посиланням нижче, щоб скинути пароль свого облікового запису Dataverse:\\n\\n {2} \\n\\n Зазначене вище посилання буде дійсним лише протягом наступних {3} хвилин.\\n\\n Будь ласка, зв'яжіться з нами, якщо ви не надсилали цей запит на скидання пароля або потребуєте додаткової допомоги.",
+      "after": "Вітаємо, {0}!\\n\\nХтось, сподіваємося, ви, надіслав запит на скидання пароля для {1}.\\n\\nПерейдіть за посиланням нижче, щоб скинути пароль облікового запису репозитарію:\\n\\n{2}\\n\\nПосилання дійсне протягом наступних {3} хвилин.\\n\\nЗв’яжіться з нами, якщо ви не надсилали цей запит або потребуєте допомоги.",
+      "english": "Hi {0},\\n\\nSomeone, hopefully you, requested a password reset for {1}.\\n\\nPlease click the link below to reset your Dataverse account password:\\n\\n {2} \\n\\n The link above will only work for the next {3} minutes.\\n\\n Please contact us if you did not request this password reset or need further help."
+    },
+    {
+      "key": "notification.email.passwordReset.subject",
+      "before": "Запит на скидання пароля Dataverse",
+      "after": "Запит на скидання пароля облікового запису репозитарію",
+      "english": "Dataverse Password Reset Requested"
+    },
+    {
+      "key": "dataverse.name",
+      "before": "Назва датаверс",
+      "after": "Назва колекції",
+      "english": "Dataverse Name"
+    },
+    {
+      "key": "dataverse.name.title",
+      "before": "Проєкт, відділ, університет, професор або журнал, для яких ця датаверс міститиме дані.",
+      "after": "Проєкт, відділ, університет, дослідник або журнал, для яких ця колекція міститиме дані.",
+      "english": "The project, department, university, professor, or journal this dataverse will contain data for."
+    },
+    {
+      "key": "dataverse.host.title",
+      "before": "датаверс, що містить ці дані.",
+      "after": "Колекція, у якій розміщуються ці дані.",
+      "english": "The dataverse which contains this data."
+    },
+    {
+      "key": "dataverse.host.tip",
+      "before": "Зміна хост-датаверс очистить будь-які поля, в які ви могли ввести дані.",
+      "after": "Зміна батьківської колекції очистить усі вже заповнені поля.",
+      "english": "Changing the host dataverse will clear any fields you may have entered data into."
+    },
+    {
+      "key": "dataverse.identifier.title",
+      "before": "Коротке ім'я, яке використовується для URL-адреси цієї датаверс.",
+      "after": "Коротка назва, яка використовується в URL-адресі цієї колекції.",
+      "english": "Short name used for the URL of this dataverse."
+    },
+    {
+      "key": "dataverse.affiliation.title",
+      "before": "Організація, з якою пов'язана ця датаверс.",
+      "after": "Організація, з якою пов’язана ця колекція.",
+      "english": "The organization with which this dataverse is affiliated."
+    },
+    {
+      "key": "dataverse.storage.title",
+      "before": "Служба зберігання, яка використовуватиметься для наборів даних у цій датаверс.",
+      "after": "Служба зберігання для наборів даних у цій колекції.",
+      "english": "A storage service to be used for datasets in this dataverse."
+    },
+    {
+      "key": "dataverse.metadatalanguage.title",
+      "before": "Метадані, введені для наборів даних у цій датаверс, вважатимуться написаними обраною мовою.",
+      "after": "Метадані наборів даних у цій колекції вважатимуться написаними обраною мовою.",
+      "english": "Metadata entered for datasets in this dataverse will be assumed to be in the selected language."
+    },
+    {
+      "key": "dataverse.category.title",
+      "before": "Тип, який найбільше відображає цю dataverse.",
+      "after": "Тип, який найкраще відповідає цій колекції.",
+      "english": "The type that most closely reflects this dataverse."
+    },
+    {
+      "key": "dataverse.description.title",
+      "before": "Резюме, що описує мету, характер чи обсяг даної dataverse.",
+      "after": "Короткий опис мети, характеру або тематичного охоплення цієї колекції.",
+      "english": "A summary describing the purpose, nature, or scope of this dataverse."
+    },
+    {
+      "key": "dataverse.email.title",
+      "before": "Адреса (и) електронної пошти контакту (ів) для dataverse.",
+      "after": "Електронні адреси контактних осіб колекції.",
+      "english": "The e-mail address(es) of the contact(s) for the dataverse."
+    },
+    {
+      "key": "dataverse.share.dataverseShare",
+      "before": "Поділитися Dataverse.",
+      "after": "Поділитися колекцією",
+      "english": "Share Dataverse"
+    },
+    {
+      "key": "dataverse.share.dataverseShare.tip",
+      "before": "Поділіться цією Dataverse у своїх улюблених соціальних мережах.",
+      "after": "Поділіться цією колекцією в соціальних мережах.",
+      "english": "Share this dataverse on your favorite social media networks."
+    },
+    {
+      "key": "dataverse.share.dataverseShare.shareText",
+      "before": "Перегляньте цю dataverse.",
+      "after": "Перегляньте цю колекцію.",
+      "english": "View this dataverse."
+    },
+    {
+      "key": "dataverse.subject.title",
+      "before": "Тема (и), про які йдеться у цій dataverse.",
+      "after": "Теми, які охоплює ця колекція.",
+      "english": "Subject(s) covered in this dataverse."
+    },
+    {
+      "key": "dataverse.metadataElements.tip",
+      "before": "Виберіть поля метаданих для використання в шаблонах набору даних і при додаванні набору даних до цієї dataverse.",
+      "after": "Виберіть поля метаданих для шаблонів наборів даних і додавання наборів даних до цієї колекції.",
+      "english": "Choose the metadata fields to use in dataset templates and when adding a dataset to this dataverse."
+    },
+    {
+      "key": "dataverse.facetPickList.tip",
+      "before": "Виберіть поля метаданих, які будуть використовуватися як аспекти для перегляду наборів даних dataverses у цій dataverse.",
+      "after": "Виберіть поля метаданих, які використовуватимуться як фасети для перегляду наборів даних і підколекцій у цій колекції.",
+      "english": "Choose the metadata fields to use as facets for browsing datasets and dataverses in this dataverse."
+    },
+    {
+      "key": "dataverse.option.featuredDataverse",
+      "before": "Вибрані Dataverses",
+      "after": "Вибрані колекції",
+      "english": "Featured Dataverses"
+    },
+    {
+      "key": "dataverse.option.deleteDataverse",
+      "before": "Видалити Dataverse",
+      "after": "Видалити колекцію",
+      "english": "Delete Dataverse"
+    },
+    {
+      "key": "dataverse.publish.header",
+      "before": "Опублікувати Dataverse",
+      "after": "Опублікувати колекцію",
+      "english": "Publish Dataverse"
+    },
+    {
+      "key": "dataverse.nopublished",
+      "before": "Немає опублікованих Dataverses",
+      "after": "Немає опублікованих колекцій",
+      "english": "No Published Dataverses"
+    },
+    {
+      "key": "dataverse.nopublished.tip",
+      "before": "Для використання цієї функції ви повинні мати принаймні одну опубліковану dataverse.",
+      "after": "Для використання цієї функції потрібна принаймні одна опублікована колекція.",
+      "english": "In order to use this feature you must have at least one published or linked dataverse."
+    },
+    {
+      "key": "dataverse.contact",
+      "before": "Eлектронна адреса Dataverse",
+      "after": "Електронна адреса контактної особи колекції",
+      "english": "Email Dataverse Contact"
+    },
+    {
+      "key": "dataverse.link",
+      "before": "Посилання на Dataverse",
+      "after": "Пов’язати колекцію",
+      "english": "Link Dataverse"
+    },
+    {
+      "key": "dataverse.link.btn.tip",
+      "before": "Посилання на Вашу Dataverse",
+      "after": "Пов’язати з вашою колекцією",
+      "english": "Link to Your Dataverse"
+    },
+    {
+      "key": "dataverse.link.yourDataverses",
+      "before": "Ваша {0, choice, 1#Dataverse|2#Dataverses}",
+      "after": "{0,choice,1#Ваша колекція|2#Ваші колекції}",
+      "english": "Your Dataverse"
+    },
+    {
+      "key": "dataverse.link.yourDataverses.inputPlaceholder",
+      "before": "Введіть назву Dataverse",
+      "after": "Введіть назву колекції",
+      "english": "Enter Dataverse Name"
+    },
+    {
+      "key": "dataverse.link.save",
+      "before": "Зберегти пов'язану Dataverse",
+      "after": "Зберегти пов’язану колекцію",
+      "english": "Save Linked Dataverse"
+    },
+    {
+      "key": "dataverse.link.dataverse.choose",
+      "before": "Виберіть, який із ваших dataverses ви хотіли б пов'язати з цією dataverse.",
+      "after": "Виберіть вашу колекцію, яку потрібно пов’язати з цією колекцією.",
+      "english": "Choose which of your dataverses you would like to link this dataverse to."
+    },
+    {
+      "key": "dataverse.link.dataset.none",
+      "before": "Немає доступних Dataverse для посилання.",
+      "after": "Немає колекцій, доступних для пов’язування.",
+      "english": "No linkable dataverses available."
+    },
+    {
+      "key": "dataverse.link.no.choice",
+      "before": "У вас є одна dataverse, до якої ви можете додати пов'язані dataverses і набори даних.",
+      "after": "У вас є одна колекція, до якої можна додати пов’язані колекції та набори даних.",
+      "english": "You have one dataverse you can add linked dataverses and datasets in."
+    },
+    {
+      "key": "dataverse.link.no.linkable",
+      "before": "Щоб мати змогу пов'язати dataverse або набір даних, вам потрібно мати власну dataverse. Щоб розпочати, натисніть кнопку Додати дані на домашній сторінці.",
+      "after": "Щоб пов’язати колекцію або набір даних, потрібно мати власну колекцію. Для початку створіть колекцію.",
+      "english": "To be able to link a dataverse or dataset, you need to have your own dataverse. Create a dataverse to get started."
+    },
+    {
+      "key": "dataverse.link.no.linkable.remaining",
+      "before": "Ви вже пов'язали всі ваші прийнятні dataverses.",
+      "after": "Ви вже пов’язали всі доступні вам колекції.",
+      "english": "You have already linked all of your eligible dataverses."
+    },
+    {
+      "key": "dataverse.unlink.dataset.choose",
+      "before": "Введіть назву dataverse, з якої ви хотіли б відв'язати цей набір даних.",
+      "after": "Введіть назву колекції, з якою потрібно розірвати зв’язок цього набору даних.",
+      "english": "Enter the name of the dataverse you would like to unlink this dataset from."
+    },
+    {
+      "key": "dataverse.unlink.dataset.none",
+      "before": "Немає доступних пов'язаних dataverses.",
+      "after": "Немає пов’язаних колекцій.",
+      "english": "No linked dataverses available."
+    },
+    {
+      "key": "dataverse.savedsearch.dataverse.choose",
+      "before": "Виберіть, до якої з ваших dataverse ви хотіли б прив'язати цей пошук.",
+      "after": "Виберіть вашу колекцію, з якою потрібно пов’язати цей пошук.",
+      "english": "Choose which of your dataverses you would like to link this search to."
+    },
+    {
+      "key": "dataverse.savedsearch.no.choice",
+      "before": "У вас є одна dataverse, до якої ви можете додати збережений пошук.",
+      "after": "У вас є одна колекція, до якої можна додати збережений пошук.",
+      "english": "You have one dataverse to which you may add a saved search."
+    },
+    {
+      "key": "dataverse.byCategory",
+      "before": "Dataverses за категорією.",
+      "after": "Колекції за категоріями",
+      "english": "Dataverses by Category"
+    },
+    {
+      "key": "dataverse.displayFeatured",
+      "before": "Відображати вибрані нижче dataverses на домашній сторінці для цієї dataverse.",
+      "after": "Показувати вибрані нижче колекції на сторінці цієї колекції.",
+      "english": "Display the dataverses selected below on the landing page of this dataverse."
+    },
+    {
+      "key": "dataverse.selectToFeature",
+      "before": "Виберіть dataverses, які потрібно показати на домашній сторінці цієї dataverse.",
+      "after": "Виберіть колекції для показу на сторінці цієї колекції.",
+      "english": "Select dataverses to feature on the landing page of this dataverse."
+    },
+    {
+      "key": "dataverse.publish.failed.tip",
+      "before": "Ця dataverse не може бути опублікованою, тому що її dataverse не була опублікована.",
+      "after": "Цю колекцію неможливо опублікувати, оскільки її батьківську колекцію ще не опубліковано.",
+      "english": "This dataverse cannot be published because the dataverse it is in has not been published."
+    },
+    {
+      "key": "dataverse.publish.failure",
+      "before": "Цю dataverse неможливо опублікувати.",
+      "after": "Не вдалося опублікувати колекцію.",
+      "english": "This dataverse was not able to be published."
+    },
+    {
+      "key": "dataverse.delete.tip",
+      "before": "Ви впевнені, що хочете видалити свою dataverse? Ви не можете відновити цю dataverse.",
+      "after": "Ви впевнені, що хочете видалити цю колекцію? Відновити її буде неможливо.",
+      "english": "Are you sure you want to delete your dataverse? You cannot undelete this dataverse."
+    },
+    {
+      "key": "dataverse.delete",
+      "before": "Видалити Dataverse",
+      "after": "Видалити колекцію",
+      "english": "Delete Dataverse"
+    },
+    {
+      "key": "dataverse.delete.success",
+      "before": "Ваша dataverse видалена.",
+      "after": "Колекцію видалено.",
+      "english": "Your dataverse has been deleted."
+    },
+    {
+      "key": "dataverse.delete.failure",
+      "before": "Цю dataverse неможливо видалити.",
+      "after": "Не вдалося видалити колекцію.",
+      "english": "This dataverse was not able to be deleted."
+    },
+    {
+      "key": "dataverse.create.success",
+      "before": "Ви успішно створили свою dataverse! Щоб дізнатись більше про те, що ви можете зробити з вашою dataverse, перегляньте <a href=\"{0}/{1}/user/dataverse-management.html\" title=\" Управління Dataverse - Довідник користувача Dataverse\" target=\"_blank\">User Guide</a>.",
+      "after": "Колекцію успішно створено! Докладніше про можливості вашої колекції дивіться в <a href=\"{0}/{1}/user/dataverse-management.html\" title=\"Керування колекціями — Посібник користувача Dataverse\" target=\"_blank\">Посібнику користувача</a>.",
+      "english": "You have successfully created your dataverse! To learn more about what you can do with your dataverse, check out the <a href=\"{0}/{1}/user/dataverse-management.html\" title=\"Dataverse Management - Dataverse User Guide\" target=\"_blank\">User Guide</a>."
+    },
+    {
+      "key": "dataverse.create.failure",
+      "before": "Цю dataverse неможливо створити.",
+      "after": "Не вдалося створити колекцію.",
+      "english": "This dataverse was not able to be created."
+    },
+    {
+      "key": "dataverse.create.authenticatedUsersOnly",
+      "before": "Тільки автентифіковані користувачі можуть створювати dataverses.",
+      "after": "Лише автентифіковані користувачі можуть створювати колекції.",
+      "english": "Only authenticated users can create dataverses."
+    },
+    {
+      "key": "dataverse.update.success",
+      "before": "Ви успішно оновили свою dataverse!",
+      "after": "Колекцію успішно оновлено.",
+      "english": "You have successfully updated your dataverse!"
+    },
+    {
+      "key": "dataverse.update.failure",
+      "before": "Цю dataverse неможливо оновити.",
+      "after": "Не вдалося оновити колекцію.",
+      "english": "This dataverse was not able to be updated."
+    },
+    {
+      "key": "dataverse.listing.error",
+      "before": "Фатальна помилка при спробі перерахувати вміст dataverse. Будь ласка, повідомте про цю помилку адміністратору Dataverse.",
+      "after": "Помилка під час отримання вмісту колекції. Повідомте про неї адміністратору репозитарію.",
+      "english": "Fatal error trying to list the contents of the dataverse. Please report this error to the Dataverse administrator."
+    },
+    {
+      "key": "dataverse.datasize",
+      "before": "Загальний розмір файлів, що зберігаються в цій dataverse: {0} байт",
+      "after": "Загальний розмір файлів у цій колекції: {0} байт",
+      "english": "Total size of the files stored in this dataverse: {0} bytes"
+    },
+    {
+      "key": "dataverse.datasize.ioerror",
+      "before": "Фатальна помилка введення/виведення під час спроби визначити загальний розмір файлів, що зберігаються в dataverse. Будь ласка, повідомте про цю помилку адміністратору Dataverse.",
+      "after": "Помилка введення/виведення під час визначення загального розміру файлів у колекції. Повідомте про неї адміністратору репозитарію.",
+      "english": "Fatal IO error while trying to determine the total size of the files stored in the dataverse. Please report this error to the Dataverse administrator."
+    },
+    {
+      "key": "dataverse.inherited",
+      "before": "(успадковано від Dataverse, що містить)",
+      "after": "(успадковано від батьківської колекції)",
+      "english": "(inherited from enclosing Dataverse)"
+    },
+    {
+      "key": "dataverse.create.error.jsonparsetodataverse",
+      "before": "Помилка розбору POST-запиту Json в dataverse: {0}",
+      "after": "Помилка розбору JSON із POST-запиту для колекції: {0}",
+      "english": "Error parsing the POSTed json into a dataverse: {0}"
+    },
+    {
+      "key": "dataverse.delete.featuredItems.success",
+      "before": "Усі вибрані елементи цієї Dataverse були успішно видалені.",
+      "after": "Усі вибрані елементи цієї колекції успішно видалено.",
+      "english": "All featured items of this Dataverse have been successfully deleted."
+    },
+    {
+      "key": "advanced.search.header.dataverses",
+      "before": "Dataverses",
+      "after": "Колекції",
+      "english": "Dataverses"
+    },
+    {
+      "key": "advanced.search.dataverses.name.tip",
+      "before": "Проект, відділ, університет, професор або журнал, для яких ця dataverse міститиме дані.",
+      "after": "Проєкт, відділ, університет, дослідник або журнал, для яких ця колекція міститиме дані.",
+      "english": "The project, department, university, professor, or journal this Dataverse will contain data for."
+    },
+    {
+      "key": "advanced.search.dataverses.description.tip",
+      "before": "Резюме, що описує мету, характер чи сферу застосування цієї Dataverse.",
+      "after": "Короткий опис мети, характеру або тематичного охоплення цієї колекції.",
+      "english": "A summary describing the purpose, nature, or scope of this Dataverse."
+    },
+    {
+      "key": "dataverse.search.input.watermark",
+      "before": "Шукати цю dataverse...",
+      "after": "Шукати в цій колекції…",
+      "english": "Search this dataverse..."
+    },
+    {
+      "key": "dataverse.results.btn.addData.newDataverse",
+      "before": "Нова Dataverse",
+      "after": "Нова колекція",
+      "english": "New Dataverse"
+    },
+    {
+      "key": "dataverse.results.dialog.addDataGuest.msg",
+      "before": "Увійдіть, щоб створити dataverse або додати набір даних.",
+      "after": "Увійдіть, щоб створити колекцію або додати набір даних.",
+      "english": "Log in to create a dataverse or add a dataset."
+    },
+    {
+      "key": "dataverse.results.dialog.addDataGuest.signup.title",
+      "before": "Зареєструватися в акаунті Dataverse",
+      "after": "Створити обліковий запис репозитарію",
+      "english": "Sign Up for a Dataverse Account"
+    },
+    {
+      "key": "dataverse.results.dialog.addDataGuest.login.title",
+      "before": "Увійти у свій акаунт Dataverse",
+      "after": "Увійти в обліковий запис репозитарію",
+      "english": "Log into your Dataverse Account"
+    },
+    {
+      "key": "dataverse.results.empty.zero",
+      "before": "Немає dataverses, наборів даних, чи файлів, які відповідають вашому пошуку. Будь ласка, спробуйте новий пошук, використовуючи інші або більш широкі терміни. Ви також можете переглянути для довідки: <a href=\"{0}/{1}/user/find-use-data.html\" title=\"Пошук та використання даних - Посібник користувача Dataverse\" target=\"_blank\">посібник з пошуку</a>",
+      "after": "Немає колекцій, наборів даних або файлів, які відповідають вашому пошуку. Спробуйте інші або ширші пошукові терміни. Поради наведено в <a href=\"{0}/{1}/user/find-use-data.html\" title=\"Пошук і використання даних — Посібник користувача Dataverse\" target=\"_blank\">посібнику з пошуку</a>.",
+      "english": "There are no dataverses, datasets, or files that match your search. Please try a new search by using other or broader terms. You can also check out the <a href=\"{0}/{1}/user/find-use-data.html\" title=\"Finding &amp; Using Data - Dataverse User Guide\" target=\"_blank\">search guide</a> for tips."
+    },
+    {
+      "key": "dataverse.results.empty.browse.guest.zero",
+      "before": "Ця dataverse наразі не має dataverses, наборів даних або файлів. Будь ласка, спробуйте <a href=\"/loginpage.xhtml{0}\" title=\"Увійти у свій акаунт Dataverse\"> ввійти </a> щоб дізнатися, чи можете ви додати до нього.",
+      "after": "У цій колекції поки немає підколекцій, наборів даних або файлів. <a href=\"/loginpage.xhtml{0}\" title=\"Увійти в обліковий запис репозитарію\">Увійдіть</a>, щоб дізнатися, чи можете ви додавати до неї дані.",
+      "english": "This dataverse currently has no dataverses, datasets, or files. Please <a href=\"/loginpage.xhtml{0}\" title=\"Log into your Dataverse Account\">log in</a> to see if you are able to add to it."
+    },
+    {
+      "key": "dataverse.results.empty.browse.guest.hidden",
+      "before": "Ця dataverse не має dataverses. Будь ласка, увійдіть, щоб дізнатися, чи можете ви додати до нього.",
+      "after": "У цій колекції немає підколекцій. Увійдіть, щоб дізнатися, чи можете ви їх додавати.",
+      "english": "There are no dataverses within this dataverse. Please <a href=\"/loginpage.xhtml{0}\" title=\"Log into your Dataverse Account\">log in</a> to see if you are able to add to it."
+    },
+    {
+      "key": "dataverse.results.empty.browse.loggedin.noperms.zero",
+      "before": "Ця dataverse наразі не має dataverses, наборів даних або файлів. Ви можете скористатися кнопкою Email Dataverse Contact, розташованою вище, щоб запитати про цю dataverse або попросити про доступу до цієї dataverse.",
+      "after": "У цій колекції поки немає підколекцій, наборів даних або файлів. Скористайтеся кнопкою зв’язку з контактною особою колекції вище, щоб поставити запитання або запитати доступ.",
+      "english": "This dataverse currently has no dataverses, datasets, or files. You can use the Email Dataverse Contact button above to ask about this dataverse or request access for this dataverse."
+    },
+    {
+      "key": "dataverse.results.empty.browse.loggedin.noperms.hidden",
+      "before": "Ця dataverse не має dataverses.",
+      "after": "У цій колекції немає підколекцій.",
+      "english": "There are no dataverses within this dataverse."
+    },
+    {
+      "key": "dataverse.results.empty.browse.loggedin.perms.zero",
+      "before": "Ця dataverse наразі не має dataverses, наборів даних або файлів. Ви можете додати їх, скориставшись кнопкою Add Data (Додати дані) на цій сторінці.",
+      "after": "У цій колекції поки немає підколекцій, наборів даних або файлів. Додайте їх за допомогою кнопки «Додати дані» на цій сторінці.",
+      "english": "This dataverse currently has no dataverses, datasets, or files. You can add to it by using the Add Data button on this page."
+    },
+    {
+      "key": "account.results.empty.browse.loggedin.perms.zero",
+      "before": "У вас немає dataverses, наборів даних або файлів, пов'язаних з вашим акаунтом. Ви можете додати dataverse або набір даних, натиснувши кнопку Додати Дані. Докладніше про додавання даних див. у <a href=\"{0}/{1}/user/dataverse-management.html\" title=\"Управління Dataverse - Посібник користувача Dataverse\" target=\"_blank\">Посібнику користувача</a>.",
+      "after": "З вашим обліковим записом поки не пов’язано жодних колекцій, наборів даних або файлів. Натисніть «Додати дані», щоб створити колекцію або додати набір даних. Докладніше дивіться в <a href=\"{0}/{1}/user/dataverse-management.html\" title=\"Керування колекціями — Посібник користувача Dataverse\" target=\"_blank\">Посібнику користувача</a>.",
+      "english": "You have no dataverses, datasets, or files associated with your account. You can add a dataverse or dataset by clicking the Add Data button above. Read more about adding data in the <a href=\"{0}/{1}/user/dataverse-management.html\" title=\"Dataverse Management - Dataverse User Guide\" target=\"_blank\">User Guide</a>."
+    },
+    {
+      "key": "dataverse.results.empty.browse.loggedin.perms.hidden",
+      "before": "Ця dataverse не має dataverses. Ви можете додати їх, скориставшись кнопкою Add Data (Додати Дані) на цій сторінці.",
+      "after": "У цій колекції немає підколекцій. Додайте їх за допомогою кнопки «Додати дані» на цій сторінці.",
+      "english": "There are no dataverses within this dataverse. You can add to it by using the Add Data button on this page."
+    },
+    {
+      "key": "dataverse.theme.inheritCustomization.title",
+      "before": "Для цієї dataverse використовуйте ті самі теми, що і в батьківській dataverse.",
+      "after": "Використовувати для цієї колекції ту саму тему, що й для батьківської колекції.",
+      "english": "For this dataverse, use the same theme as the parent dataverse."
+    },
+    {
+      "key": "dataverse.theme.logo.tip",
+      "before": "Підтримувані типи зображень - це JPG, TIF або PNG, і їх розмір не повинен перевищувати 500 КБ. Максимальний розмір зображення для файлу зображення в темі dataverse складає 940 пікселів завширшки і120 пікселів заввишки.",
+      "after": "Підтримувані типи зображень — JPG, TIF і PNG; розмір файлу не повинен перевищувати 500 КБ. Максимальний розмір зображення в темі колекції — 940 пікселів завширшки та 120 пікселів заввишки.",
+      "english": "Supported image types are JPG and PNG, must be no larger than 500 KB. The maximum display size for an image file in a dataverse's theme is 940 pixels wide by 120 pixels high."
+    },
+    {
+      "key": "dataverse.theme.success",
+      "before": "Ви успішно оновили тему для цієї dataverse!",
+      "after": "Тему цієї колекції успішно оновлено.",
+      "english": "You have successfully updated the theme for this dataverse!"
+    },
+    {
+      "key": "dataverse.theme.failure",
+      "before": "Тема dataverse не була оновлена.",
+      "after": "Не вдалося оновити тему колекції.",
+      "english": "The dataverse theme has not been updated."
+    },
+    {
+      "key": "dataverse.theme.logo.image.title",
+      "before": "Файл логотипу або зображення, який ви хочете відобразити в заголовку цієї dataverse.",
+      "after": "Файл логотипу або зображення для заголовка цієї колекції.",
+      "english": "The logo or image file you wish to display in the header of this dataverse."
+    },
+    {
+      "key": "dataverse.theme.logo.image.footer",
+      "before": "Файл логотипу або зображення, який ви бажаєте відобразити в нижньому колонтитулі цієї dataverse.",
+      "after": "Файл логотипу або зображення для нижнього колонтитула цієї колекції.",
+      "english": "The logo or image file you wish to display in the footer of this dataverse."
+    },
+    {
+      "key": "dataverse.theme.logo.image.thumbnail",
+      "before": "Файл логотипу або зображення, який ви бажаєте відобразити у вибраній колекції цієї dataverse.",
+      "after": "Файл логотипу або зображення для представлення цієї колекції серед вибраних колекцій.",
+      "english": "The logo or image file you wish to display in the featured collection of this dataverse."
+    },
+    {
+      "key": "dataverse.theme.logo.format.title",
+      "before": "Форма для файлу логотипу або зображення, який ви завантажуєте для цієї dataverse.",
+      "after": "Форма логотипу або зображення, яке ви завантажуєте для цієї колекції.",
+      "english": "The shape for the logo or image file you upload for this dataverse."
+    },
+    {
+      "key": "dataverse.theme.logo.backColor.title",
+      "before": "Виберіть колір фону логотипу цієї dataverse.",
+      "after": "Виберіть колір фону логотипу цієї колекції.",
+      "english": "Select a color to display in the header or footer of this dataverse."
+    },
+    {
+      "key": "dataverse.theme.headerColor.tip",
+      "before": "Кольори, які ви обираєте для дизайну заголовка цієї dataverse.",
+      "after": "Кольори для оформлення заголовка цієї колекції.",
+      "english": "Colors you select to style the header of this dataverse."
+    },
+    {
+      "key": "dataverse.theme.txtColor.title",
+      "before": "Колір тексту заголовка та назва. Колір слогану та назви цієї dataverse.",
+      "after": "Колір тексту слогану та назви цієї колекції.",
+      "english": "Color for the tagline text and the name of this dataverse."
+    },
+    {
+      "key": "dataverse.theme.tagline.title",
+      "before": "Фраза або речення, що описує цю dataverse.",
+      "after": "Фраза або речення, що описує цю колекцію.",
+      "english": "A phrase or sentence that describes this dataverse."
+    },
+    {
+      "key": "dataverse.theme.website.title",
+      "before": "URL для вашого особистого веб-сайту, установи чи будь-якого веб-сайту, що стосується цієї dataverse.",
+      "after": "URL-адреса вашого особистого вебсайту, установи або іншого вебсайту, пов’язаного з цією колекцією.",
+      "english": "URL for your personal website, institution, or any website that relates to this dataverse."
+    },
+    {
+      "key": "dataverse.theme.disabled",
+      "before": "Тема для основної dataverse була в адміністративному порядку деактивована за допомогою налаштування бази даних: DisableRootDataveseTheme.",
+      "after": "Тему кореневої колекції вимкнено адміністратором за допомогою налаштування :DisableRootDataverseTheme.",
+      "english": "The theme for the root dataverse has been administratively disabled with the :DisableRootDataverseTheme database setting."
+    },
+    {
+      "key": "dataverse.widgets.notPublished.why.reason1",
+      "before": "Збільшує видимість ваших даних, дозволяючи вставляти ваші dataverse та набори даних у ваш персональний або проектний веб-сайт.",
+      "after": "Підвищують видимість ваших даних, даючи змогу вбудувати колекцію та набори даних у ваш особистий або проєктний вебсайт.",
+      "english": "Increases the web visibility of your data by allowing you to embed your dataverse and datasets into your personal or project website."
+    },
+    {
+      "key": "dataverse.widgets.notPublished.why.reason2",
+      "before": "Дозволяє іншим переглядати ваші dataverse та набори даних, не виходячи з вашого особистого або проектного веб-сайту.",
+      "after": "Дають іншим змогу переглядати колекцію та набори даних, не залишаючи вашого особистого або проєктного вебсайту.",
+      "english": "Allows others to browse your dataverse and datasets without leaving your personal or project website."
+    },
+    {
+      "key": "dataverse.widgets.notPublished.how.tip1",
+      "before": "Для використання віджетів, ваші dataverse та набори даних повинні бути опубліковані.",
+      "after": "Для використання віджетів колекцію та набори даних потрібно опублікувати.",
+      "english": "To use widgets, your dataverse and datasets need to be published."
+    },
+    {
+      "key": "dataverse.widgets.notPublished.getStarted",
+      "before": "Щоб розпочати, опублікуйте свою dataverse. Щоб дізнатися більше про віджети, відвідайте розділ <a  href=\"{0}/{1}/user/dataverse-management.html#theme-widgets\" title=\"Тема + Віджети - Посібник користувача Dataverse\" target=\"_blank\">Тема + Віджети</a> у Посібнику користувача.",
+      "after": "Спочатку опублікуйте колекцію. Докладніше про віджети дивіться в розділі <a href=\"{0}/{1}/user/dataverse-management.html#theme-widgets\" title=\"Тема та віджети — Посібник користувача Dataverse\" target=\"_blank\">«Тема та віджети»</a> Посібника користувача.",
+      "english": "To get started, publish your dataverse. To learn more about Widgets, visit the <a href=\"{0}/{1}/user/dataverse-management.html#theme-widgets\" title=\"Theme + Widgets - Dataverse User Guide\" target=\"_blank\">Theme + Widgets</a> section of the User Guide."
+    },
+    {
+      "key": "dataverse.widgets.searchBox.txt",
+      "before": "Поле пошуку Dataverse",
+      "after": "Поле пошуку колекції",
+      "english": "Dataverse Search Box"
+    },
+    {
+      "key": "dataverse.widgets.searchBox.tip",
+      "before": "Додайте шлях, щоб відвідувачі вашого веб-сайту могли шукати Dataverse.",
+      "after": "Додайте на свій вебсайт поле пошуку в колекції.",
+      "english": "Add a way for visitors on your website to be able to search Dataverse."
+    },
+    {
+      "key": "dataverse.widgets.dataverseListing.txt",
+      "before": "Складання списків Dataverse.",
+      "after": "Список колекцій",
+      "english": "Dataverse Listing"
+    },
+    {
+      "key": "dataverse.widgets.dataverseListing.tip",
+      "before": "Додайте шлях, щоб відвідувачі вашого веб-сайту могли бачити ваші dataverses та набори даних, сортувати або переглядати їх.",
+      "after": "Додайте на свій вебсайт можливість переглядати й сортувати ваші колекції та набори даних.",
+      "english": "Add a way for visitors on your website to be able to view your dataverses and datasets, sort, or browse through them."
+    },
+    {
+      "key": "dataverse.widgets.advanced.prompt",
+      "before": "Надішліть перелік наборів даних постійних URL-адрес на ваш особистий веб-сайт. Сторінка, яку ви заявляєте як URL-адреса персонального веб-сайту, повинна містити фрагмент коду для віджета Dataverse Listing.",
+      "after": "Спрямовуйте постійні посилання з цитувань наборів даних на ваш особистий вебсайт. Сторінка, вказана як URL-адреса особистого вебсайту, має містити код віджета «Список колекцій».",
+      "english": "Forward dataset citation persistent URL's to your personal website. The page you submit as your Personal Website URL must contain the code snippet for the Dataverse Listing widget."
+    },
+    {
+      "key": "dataverse.widgets.advanced.failure.message",
+      "before": "URL- адреса особистого dataverse веб-сайту не оновлена.",
+      "after": "URL-адресу особистого вебсайту колекції не оновлено.",
+      "english": "The dataverse Personal Website URL has not been updated."
+    },
+    {
+      "key": "dataverse.permissions.usersOrGroups.description",
+      "before": "Усі користувачі та групи, які мають доступ до вашої dataverse.",
+      "after": "Усі користувачі та групи, які мають доступ до цієї колекції.",
+      "english": "All the users and groups that have access to your dataverse."
+    },
+    {
+      "key": "dataverse.permissions.roles.description",
+      "before": "Всі ролі, налаштовані у вашій dataverse, які ви можете призначити користувачам і групам.",
+      "after": "Ролі, налаштовані для цієї колекції, які можна призначати користувачам і групам.",
+      "english": "All the roles set up in your dataverse, that you can assign to users and groups."
+    },
+    {
+      "key": "dataverse.permissions.description",
+      "before": "Конфігурація поточного доступу до вашої dataverse.",
+      "after": "Поточні налаштування доступу до цієї колекції.",
+      "english": "Current access configuration to your dataverse."
+    },
+    {
+      "key": "dataverse.permissions.tip",
+      "before": "Виберіть: всі чи лише окремі користувачі зможуть додавати до цієї dataverse, натиснувши кнопку Редагувати доступ.",
+      "after": "Натисніть «Редагувати доступ», щоб визначити, хто може додавати дані до цієї колекції: усі зареєстровані користувачі чи лише користувачі з відповідними дозволами.",
+      "english": "Select if all users or only certain users are able to add to this dataverse, by clicking the Edit Access button."
+    },
+    {
+      "key": "dataverse.permissions.Q1",
+      "before": "Хто може додавати до цієї dataverse?",
+      "after": "Хто може додавати дані до цієї колекції?",
+      "english": "Who can add to this dataverse?"
+    },
+    {
+      "key": "dataverse.permissions.Q1.answer1",
+      "before": "Кожен хто додає до цієї dataverse, повинен мати доступ.",
+      "after": "Додавати дані до цієї колекції можуть лише користувачі, яким надано відповідні дозволи.",
+      "english": "Anyone adding to this dataverse needs to be given access"
+    },
+    {
+      "key": "dataverse.permissions.Q1.answer2",
+      "before": "Кожен, хто має акаунт Dataverse, може додавати суб- dataverses.",
+      "after": "Кожен, хто має обліковий запис репозитарію, може додавати підколекції.",
+      "english": "Anyone with a Dataverse account can add sub dataverses"
+    },
+    {
+      "key": "dataverse.permissions.Q1.answer3",
+      "before": "Кожен, хто має акаунт Dataverse, може додавати набори даних.",
+      "after": "Кожен, хто має обліковий запис репозитарію, може додавати набори даних.",
+      "english": "Anyone with a Dataverse account can add datasets"
+    },
+    {
+      "key": "dataverse.permissions.Q1.answer4",
+      "before": "Кожен, хто має акаунт Dataverse, може додавати суб- dataverses та набори даних.",
+      "after": "Кожен, хто має обліковий запис репозитарію, може додавати підколекції та набори даних.",
+      "english": "Anyone with a Dataverse account can add sub dataverses and datasets"
+    },
+    {
+      "key": "dataverse.permissions.Q2",
+      "before": "Коли користувач додає новий набір даних до цієї dataverse, яку роль слід автоматично присвоювати їм в цьому наборі даних?",
+      "after": "Яку роль автоматично надавати користувачу в наборі даних, який він додає до цієї колекції?",
+      "english": "When a user adds a new dataset to this dataverse, which role should be automatically assigned to them on that dataset?"
+    },
+    {
+      "key": "permission.anyoneWithAccount",
+      "before": "Будь-хто, хто має обліковий запис Dataverse",
+      "after": "Кожен, хто має обліковий запис репозитарію",
+      "english": "Anyone with a Dataverse account"
+    },
+    {
+      "key": "dataverse.permissions.roles.roleList.authorizedUserOnly",
+      "before": "Дозволи з інформаційною піктограмою вказують дії, які можуть виконувати користувачі не зареєстровані в Dataverse.",
+      "after": "Зірочкою позначено дозволи на дії, які можуть виконувати користувачі, що не ввійшли в репозитарій.",
+      "english": "Permissions with an asterisk icon indicate actions that can be performed by users not logged into Dataverse."
+    },
+    {
+      "key": "dataverse.permissions.explicitGroupEditDialog.groupIdentifier.taken",
+      "before": "Ідентифікатор групи, який вже використовується у цій dataverse.",
+      "after": "Цей ідентифікатор групи вже використовується в цій колекції.",
+      "english": "Group identifier already used in this dataverse"
+    },
+    {
+      "key": "dataset.manageTemplates.noTemplates.why.reason2",
+      "before": "Шаблони можна використовувати для введення інструкцій для тих, хто завантажує набори даних у вашу dataverse, якщо ви хочете, щоб поле метаданих заповнювалось певним способом.",
+      "after": "За допомогою шаблонів можна надати інструкції користувачам, які додають набори даних до колекції, якщо певне поле метаданих потрібно заповнювати в установленому форматі.",
+      "english": "Templates can be used to input instructions for those uploading datasets into your dataverse if you have a specific way you want a metadata field to be filled out."
+    },
+    {
+      "key": "dataset.manageTemplates.noTemplates.how.tip1",
+      "before": "Шаблони створені на рівні dataverse, можна видаляти (щоб вони не відображалися для майбутніх наборів даних); їх встановлюють за замовчуванням (необовя'зково), і можна копіювати. Тому вам не потрібно починати все спочатку при створенні нового шаблону зі схожими метаданими з іншого шаблону. Видалення шаблону не впливає на набори даних, які вже використали цей шаблон шаблон.",
+      "after": "Шаблони створюють на рівні колекції. Їх можна копіювати, вибирати за замовчуванням або видаляти, щоб вони не пропонувалися для нових наборів даних. Копіювання дає змогу створити схожий шаблон без повторного введення всіх метаданих. Видалення шаблону не впливає на набори даних, у яких його вже використано.",
+      "english": "Templates are created at the dataverse level, can be deleted (so it does not show for future datasets), set to default (not required), and can be copied so you do not have to start over when creating a new template with similar metadata from another template. When a template is deleted, it does not impact the datasets that have used the template already."
+    },
+    {
+      "key": "dataset.manageTemplates.noTemplates.how.tip2",
+      "before": "Будь ласка, зауважте, що можна вибрати, які поля метаданих є прихованими, обов'язковими або необов'язковими, на сторінці <a  href=\"/dataverse/{0}?editMode=INFO\" title=\" Загальна інформація про Dataverse\">Загальна інформація</a>.",
+      "after": "Вибрати приховані, обов’язкові та необов’язкові поля метаданих можна на сторінці <a href=\"/dataverse/{0}?editMode=INFO\" title=\"Загальна інформація про колекцію\">«Загальна інформація»</a>.",
+      "english": "Please note that the ability to choose which metadata fields are hidden, required, or optional is done on the <a href=\"/dataverse/{0}?editMode=INFO\" title=\"Dataverse General Information\">General Information</a> page for this dataverse."
+    },
+    {
+      "key": "dataset.manageTemplates.delete.usedAsDefault",
+      "before": "Це є шаблон за замовчуванням для наступної (их) dataverse(s). Його також буде видалено за замовчуванням.",
+      "after": "Цей шаблон використовується за замовчуванням у наведених нижче колекціях. Його також буде скасовано як шаблон за замовчуванням.",
+      "english": "This template is the default template for the following dataverse(s). It will be removed as default as well."
+    },
+    {
+      "key": "dataset.metadatalanguage.create.guidance",
+      "before": "Будь ласка, введіть метадані мовою <b>{0}</b>, або змініть вибір мови метаданих у батьківському dataverse, перш ніж продовжити.",
+      "after": "Введіть метадані мовою <b>{0}</b> або змініть мову метаданих у батьківській колекції, перш ніж продовжити.",
+      "english": "Please enter metadata in the <b>{0}</b> language, or change the metadata language choice in the parent dataverse before proceeding."
+    },
+    {
+      "key": "template.asterisk.tip",
+      "before": "Зірочки позначають поля метаданих, які користувачі повинні заповнити під час додавання набору даних до цієї dataverse.",
+      "after": "Зірочками позначено поля метаданих, які потрібно заповнити під час додавання набору даних до цієї колекції.",
+      "english": "Asterisks indicate metadata fields that users will be required to fill out while adding a dataset to this dataverse."
+    },
+    {
+      "key": "dataverse.manageGroups.pageTitle",
+      "before": "Керувати групами Dataverse",
+      "after": "Керування групами колекції",
+      "english": "Manage Dataverse Groups"
+    },
+    {
+      "key": "dataverse.manageGroups.tab.action.btn.view.dialog.header",
+      "before": "Група Dataverse",
+      "after": "Група колекції",
+      "english": "Dataverse Group"
+    },
+    {
+      "key": "dataset.manageGuestbooks.tip.downloadascsv",
+      "before": "Натисніть \\\"Завантажити всі відповіді\\\", щоб завантажити всі зібрані відповіді у гостьовій книзі для цієї dataverse у вигляді CSV файлу. Для пошуку та аналізу ваших зібраних відповідей ми рекомендуємо імпортувати цей CSV файл в Excel, Google Таблиці або аналогічні програми.",
+      "after": "Натисніть «Завантажити всі відповіді», щоб отримати всі відповіді гостьової книги цієї колекції у файлі CSV. Для перегляду й аналізу відповідей можна імпортувати цей файл в Excel, Google Таблиці або подібну програму.",
+      "english": "Click \\\"Download All Responses\\\" to download all collected guestbook responses for this dataverse, as a CSV file. To navigate and analyze your collected responses, we recommend importing this CSV file into Excel, Google Sheets or similar software."
+    },
+    {
+      "key": "dataset.manageGuestbooks.guestbook.dataCollected.description",
+      "before": "Відомості про акаунт Dataverse, які збиратимуться, коли користувач завантажить файл. Перевірте ті, які будуть вимагатися.",
+      "after": "Відомості облікового запису репозитарію, які збиратимуться під час завантаження файлу. Виберіть обов’язкові відомості.",
+      "english": "Dataverse account information that will be collected when a user downloads a file. Check the ones that will be required."
+    },
+    {
+      "key": "dataset.link.not.to.owner",
+      "before": "Неможливо прив'язати набір даних до його власного датаверсу",
+      "after": "Неможливо пов’язати набір даних із колекцією, у якій він розміщений.",
+      "english": "Can't link a dataset to its dataverse"
+    },
+    {
+      "key": "dataset.link.not.to.parent.dataverse",
+      "before": "Неможливо прив'язати набір даних до його батьківських датаверсів",
+      "after": "Неможливо пов’язати набір даних із його батьківськими колекціями.",
+      "english": "Can't link a dataset to its parent dataverses"
+    },
+    {
+      "key": "dataset.link.not.already.linked",
+      "before": "Неможливо прив'язати набір даних, який вже був прив'язаний до цього датаверсу",
+      "after": "Цей набір даних уже пов’язано з цією колекцією.",
+      "english": "Can't link a dataset that has already been linked to this dataverse"
+    },
+    {
+      "key": "dataset.host.tip",
+      "before": "Зміна головного Dataverse очистить усі поля, у які ви, можливо, вводили дані.",
+      "after": "Зміна батьківської колекції очистить усі вже заповнені поля.",
+      "english": "Changing the host dataverse will clear any fields you may have entered data into."
+    },
+    {
+      "key": "dataset.privateurl.infoMessageReviewer",
+      "before": "Приватна URL-адреса для неопублікованого набору даних - Цей неопублікований набір даних поширюється у приватному порядку. - Ви не зможете отримати доступ до нього при вході в ваш акаунт Dataverse.",
+      "after": "Приватне посилання на неопублікований набір даних. Цей набір даних поширюється приватно. Після входу в обліковий запис репозитарію ви не зможете отримати до нього доступ за цим посиланням.",
+      "english": "You are viewing a preview of this unpublished dataset version."
+    },
+    {
+      "key": "dataset.privateurl.tip",
+      "before": "Використовуйте приватну URL-адресу для неопублікованого набору даних, щоб дозволити тим, хто не має акаунт Dataverseів отримати доступ до вашого неопублікованого набору даних. Для отримання додаткової інформації про функцію Private URL, будь ласка, зверніться до  <a href=\"{0}/{1}/user/dataset-management.html#private-url-for-reviewing-an-unpublished-dataset\" title=\"Private URL for Reviewing an Unpublished Dataset - Dataverse User Guide\" target=\"_blank\">Довідник користувача</a>.",
+      "after": "Використовуйте приватне посилання, щоб надати доступ до неопублікованого набору даних людям без облікового запису репозитарію. Докладніше про цю можливість дивіться в <a href=\"{0}/{1}/user/dataset-management.html#private-url-for-reviewing-an-unpublished-dataset\" title=\"Private URL for Reviewing an Unpublished Dataset - Dataverse User Guide\" target=\"_blank\">Посібнику користувача</a>.",
+      "english": "To cite this data in publications, use the dataset''s persistent ID instead of this URL. For more information about the Preview URL feature, please refer to the <a href=\"{0}/{1}/user/dataset-management.html#private-url-to-review-unpublished-dataset\" title=\"Preview URL for Reviewing an Unpublished Dataset - Dataverse User Guide\" target=\"_blank\">User Guide</a>."
+    },
+    {
+      "key": "dataset.privateurl.anonymous.description.paragraph.two",
+      "before": "Файли набору даних не змінюються, і користувачі анонімної URL-адреси попереднього перегляду зможуть отримати до них доступ. Користувачі анонімної URL-адреси попереднього перегляду не зможуть бачити назву Dataverse, в якому знаходиться цей набір даних, але зможуть бачити назву репозиторію, що може розкрити особи авторів набору даних.",
+      "after": "Файли набору даних не змінюються та доступні користувачам анонімного посилання для попереднього перегляду. Користувачі цього посилання не бачать назви колекції, у якій розміщено набір даних, але бачать назву репозитарію, що може розкрити особи авторів набору даних.",
+      "english": "The dataset's files are not changed and users of the Anonymous Preview URL will be able to access them. Users of the Anonymous Preview URL will not be able to see the name of the Dataverse that this dataset is in but will be able to see the name of the repository, which might expose the dataset authors' identities."
+    },
+    {
+      "key": "file.requestAccess.dialog.msg",
+      "before": "Вам потрібно <a href=\"/loginpage.xhtml{0}\" target=\"{2}\" title=\"Увійти у свій акаунт Dataverse\">увійти</a>, щоб надіслати запит про доступ до цього файлу.",
+      "after": "Щоб запитати доступ до цього файлу, потрібно <a href=\"/loginpage.xhtml{0}\" target=\"{2}\" title=\"Увійти в обліковий запис репозитарію\">увійти</a>.",
+      "english": "You need to <a href=\"/loginpage.xhtml{0}\" target=\"{2}\" title=\"Log into your Dataverse Account\">Log In</a> to request access."
+    },
+    {
+      "key": "file.requestAccess.dialog.msg.signup",
+      "before": "Вам потрібно <a href=\"{1}\" target=\"{2}\" title=\"Зареєструватися для акаунту Dataverse\">зареєструватися</a> або <a href=\"/loginpage.xhtml{0}\" target=\"{2}\" title=\"Увійти у свій акаунт Dataverse\">увійти</a>, щоб надіслати запит про доступ до цього файлу.",
+      "after": "Щоб запитати доступ до цього файлу, потрібно <a href=\"{1}\" target=\"{2}\" title=\"Створити обліковий запис репозитарію\">зареєструватися</a> або <a href=\"/loginpage.xhtml{0}\" target=\"{2}\" title=\"Увійти в обліковий запис репозитарію\">увійти</a>.",
+      "english": "You need to <a href=\"{1}\" target=\"{2}\" title=\"Sign Up for a Dataverse Account\">Sign Up</a> or <a href=\"/loginpage.xhtml{0}\" target=\"{2}\" title=\"Log into your Dataverse Account\">Log In</a> to request access."
+    },
+    {
+      "key": "dataset.widgets.notPublished.why.reason1",
+      "before": "Підвищують видимість ваших даних, дозволяючи вставляти ваші dataverse та набори даних на вашому особистому або проектному веб-сайті.",
+      "after": "Підвищують видимість ваших даних, даючи змогу вбудувати колекцію та набори даних у ваш особистий або проєктний вебсайт.",
+      "english": "Increases the web visibility of your data by allowing you to embed your dataverse and datasets into your personal or project website."
+    },
+    {
+      "key": "dataset.widgets.notPublished.why.reason2",
+      "before": "Дозволяє іншим переглядати ваші dataverse та набори даних, не виходячи з вашого особистого або проектного веб-сайту.",
+      "after": "Дають іншим змогу переглядати колекцію та набори даних, не залишаючи вашого особистого або проєктного вебсайту.",
+      "english": "Allows others to browse your dataverse and datasets without leaving your personal or project website."
+    },
+    {
+      "key": "dataset.widgets.notPublished.how.tip1",
+      "before": "Для використання віджетів, ваші dataverse та набори даних повинні бути опубліковані.",
+      "after": "Для використання віджетів колекцію та набори даних потрібно опублікувати.",
+      "english": "To use widgets, your dataverse and datasets need to be published."
+    },
+    {
+      "key": "dataset.widgets.advanced.failure.message",
+      "before": "URL-адресу персонального dataverse веб-сайту не оновлено.",
+      "after": "URL-адресу особистого вебсайту колекції не оновлено.",
+      "english": "The dataverse Personal Website URL has not been updated."
+    },
+    {
+      "key": "find.datasetlinking.error.not.found.ids",
+      "before": "Dataverse для зв'язування набору даних з ідентифікатором набору даних {0} та ідентифікатором dataverse для зв'язування набору даних {1} не знайдено.",
+      "after": "Не знайдено зв’язок набору даних з ідентифікатором {0} із колекцією з ідентифікатором {1}.",
+      "english": "Dataset linking dataverse with dataset ID {0} and dataset linking dataverse ID {1} not found."
+    },
+    {
+      "key": "find.datasetlinking.error.not.found.bad.ids",
+      "before": "Невірний номер ID набору даних: {0} або номер ID Dataverse для зв'язування набору даних: {1}.",
+      "after": "Недійсний ідентифікатор набору даних {0} або колекції для пов’язування {1}.",
+      "english": "Bad dataset ID number: {0} or dataset linking dataverse ID number: {1}."
+    },
+    {
+      "key": "find.dataverselinking.error.not.found.ids",
+      "before": "Dataverse, що зв'язує Dataverse з ID Dataverse {0} та ID Dataverse для зв'язування {1}, не знайдено.",
+      "after": "Не знайдено зв’язок колекції з ідентифікатором {0} із колекцією з ідентифікатором {1}.",
+      "english": "Dataverse linking dataverse with dataverse ID {0} and dataverse linking dataverse ID {1} not found."
+    },
+    {
+      "key": "find.dataverselinking.error.not.found.bad.ids",
+      "before": "Невірний номер ID Dataverse: {0} або номер ID Dataverse для зв'язування Dataverse: {1}.",
+      "after": "Недійсний ідентифікатор колекції {0} або колекції для пов’язування {1}.",
+      "english": "Bad dataverse ID number: {0} or dataverse linking dataverse ID number: {1}."
+    },
+    {
+      "key": "find.dataverse.role.error.role.not.found.id",
+      "before": "Роль Dataverse з ID {0} не знайдено.",
+      "after": "Роль колекції з ідентифікатором {0} не знайдено.",
+      "english": "Dataverse Role with ID {0} not found."
+    },
+    {
+      "key": "find.dataverse.role.error.role.not.found.bad.id",
+      "before": "Невірний номер ID ролі Dataverse: {0}",
+      "after": "Недійсний ідентифікатор ролі колекції: {0}",
+      "english": "Bad Dataverse Role ID number: {0}"
+    },
+    {
+      "key": "find.dataverse.role.error.role.not.found.alias",
+      "before": "Роль Dataverse з псевдонімом {0} не знайдено.",
+      "after": "Роль колекції з короткою назвою {0} не знайдено.",
+      "english": "Dataverse Role with alias {0} not found."
+    },
+    {
+      "key": "mydataFragment.infoAccess",
+      "before": "Тут знаходяться всі Dataverse, набори даних та файли, до яких ви маєте доступ. Ви можете фільтрувати їх за статусом публікації та ролями.",
+      "after": "Тут наведено всі колекції, набори даних і файли, до яких ви маєте доступ. Їх можна фільтрувати за статусом публікації та ролями.",
+      "english": "Here are all the dataverses, datasets, and files you have access to. You can filter through them by publication status and roles."
+    },
+    {
+      "key": "permission.addDataverseDataverse",
+      "before": "Додати датаверс всередині іншого датаверсу",
+      "after": "Додати підколекцію",
+      "english": "Add a dataverse within another dataverse"
+    },
+    {
+      "key": "permission.deleteDataverse",
+      "before": "Видалити неопублікований датаверс",
+      "after": "Видалити неопубліковану колекцію",
+      "english": "Delete an unpublished dataverse"
+    },
+    {
+      "key": "permission.publishDataverse",
+      "before": "Опублікувати датаверс",
+      "after": "Опублікувати колекцію",
+      "english": "Publish a dataverse"
+    },
+    {
+      "key": "permission.managePermissionsDataverse",
+      "before": "Керувати дозволами для датаверсу",
+      "after": "Керувати дозволами колекції",
+      "english": "Manage permissions for a dataverse"
+    },
+    {
+      "key": "permission.editDataverse",
+      "before": "Редагувати метадані, фасети, налаштування та шаблони датаверсу",
+      "after": "Редагувати метадані, фасети, налаштування та шаблони колекції",
+      "english": "Edit a dataverse's metadata, facets, customization, and templates "
+    },
+    {
+      "key": "permission.viewUnpublishedDataverse",
+      "before": "Переглянути неопублікований датаверс",
+      "after": "Переглянути неопубліковану колекцію",
+      "english": "View an unpublished dataverse"
+    },
+    {
+      "key": "permission.addDatasetDataverse",
+      "before": "Додати набір даних до датаверсу",
+      "after": "Додати набір даних до колекції",
+      "english": "Add a dataset to a dataverse"
+    },
+    {
+      "key": "dataverse.edit.msg",
+      "before": "Редагувати датаверс",
+      "after": "Редагування колекції",
+      "english": "Edit Dataverse"
+    },
+    {
+      "key": "dataverse.edit.detailmsg",
+      "before": "Відредагуйте свій датаверс і натисніть Зберегти зміни. Зірочками позначені обов'язкові поля.",
+      "after": "Відредагуйте колекцію та натисніть «Зберегти зміни». Зірочками позначено обов’язкові поля.",
+      "english": "Edit your dataverse and click Save Changes. Asterisks indicate required fields."
+    },
+    {
+      "key": "dataverse.feature.update",
+      "before": "Рекомендовані датаверси для цього датаверсу були оновлені.",
+      "after": "Вибрані колекції оновлено.",
+      "english": "The featured dataverses for this dataverse have been updated."
+    },
+    {
+      "key": "dataverse.link.select",
+      "before": "Ви повинні вибрати датаверс для зв'язування.",
+      "after": "Виберіть колекцію для пов’язування.",
+      "english": "You must select a linking dataverse."
+    },
+    {
+      "key": "dataset.noSelectedDataverse.header",
+      "before": "Виберіть Датаверс(и)",
+      "after": "Виберіть колекції",
+      "english": "Select Dataverse(s)"
+    },
+    {
+      "key": "dataverse.link.user",
+      "before": "Лише автентифіковані користувачі можуть зв'язувати датаверс.",
+      "after": "Лише автентифіковані користувачі можуть пов’язати колекцію.",
+      "english": "Only authenticated users can link a dataverse."
+    },
+    {
+      "key": "harvest.create.error",
+      "before": "Не вдалося створити нову конфігурацію клієнта збору даних: не вибрано датаверс призначення.",
+      "after": "Не вдалося створити конфігурацію клієнта збору метаданих: не вибрано колекцію призначення.",
+      "english": "Failed to create a new Harvesting Client configuration: no destination dataverse selected."
+    },
+    {
+      "key": "dataverse.release.authenticatedUsersOnly",
+      "before": "Лише автентифіковані користувачі можуть опублікувати датаверс.",
+      "after": "Лише автентифіковані користувачі можуть опублікувати колекцію.",
+      "english": "Only authenticated users can release a dataverse."
+    },
+    {
+      "key": "dataset.linking.popop.already.linked.note",
+      "before": "Примітка: Цей набір даних вже пов'язаний з такими датаверсами:",
+      "after": "Примітка: цей набір даних уже пов’язано з такими колекціями:",
+      "english": "Note: This dataset is already linked to the following dataverse(s):  "
+    },
+    {
+      "key": "dataset.linking.popup.not.linked.note",
+      "before": "Примітка: Цей набір даних не пов'язаний з жодним із ваших доступних датаверсів",
+      "after": "Цей набір даних не пов’язано з жодною з доступних вам колекцій.",
+      "english": "Note: This dataset is not linked to any of your accessible dataverses"
+    },
+    {
+      "key": "dataverse.save.failed",
+      "before": "Не вдалося зберегти датаверс -",
+      "after": "Не вдалося зберегти колекцію —",
+      "english": "Dataverse Save Failed -"
+    },
+    {
+      "key": "dataverse.shib.success",
+      "before": "Ваш обліковий запис Dataverse тепер пов'язаний з вашим інституційним обліковим записом.",
+      "after": "Ваш обліковий запис репозитарію тепер пов’язано з обліковим записом вашої установи.",
+      "english": "Your Dataverse account is now associated with your institutional account."
+    },
+    {
+      "key": "dataverses.api.move.dataverse.failure.itself",
+      "before": "Неможливо перемістити датаверс у себе",
+      "after": "Неможливо перемістити колекцію в саму себе.",
+      "english": "Cannot move a dataverse into itself"
+    },
+    {
+      "key": "dataverses.api.move.dataverse.failure.not.published",
+      "before": "Опублікований датаверс не може бути переміщений до неопублікованого датаверсу. Ви можете опублікувати {1} та повторити спробу переміщення.",
+      "after": "Опубліковану колекцію неможливо перемістити до неопублікованої колекції. Опублікуйте {1} і повторіть спробу.",
+      "english": "Published dataverse may not be moved to unpublished dataverse. You may publish {1} and re-try the move."
+    },
+    {
+      "key": "dataverses.api.move.dataverse.error.guestbook",
+      "before": "Гостьова книга набору даних відсутня у цільовому датаверсі.",
+      "after": "У цільовій колекції немає гостьової книги набору даних.",
+      "english": "Dataset guestbook is not in target dataverse. "
+    },
+    {
+      "key": "dataverses.api.move.dataverse.error.template",
+      "before": "Шаблон датаверсу відсутній у цільовому датаверсі.",
+      "after": "У цільовій колекції немає шаблону колекції.",
+      "english": "Dataverse template is not in target dataverse."
+    },
+    {
+      "key": "dataverses.api.move.dataverse.error.featured",
+      "before": "Датаверс представлений у поточному датаверсі.",
+      "after": "Цю колекцію додано до вибраних у поточній колекції.",
+      "english": "Dataverse is featured in current dataverse."
+    },
+    {
+      "key": "dataverses.api.delete.featured.collections.successful",
+      "before": "Представлені датаверси видалено",
+      "after": "Вибрані колекції видалено.",
+      "english": "Featured dataverses have been removed"
+    },
+    {
+      "key": "dataverses.api.move.dataverse.error.metadataBlock",
+      "before": "Блок метаданих датаверсу відсутній у цільовому датаверсі.",
+      "after": "У цільовій колекції немає блоку метаданих колекції.",
+      "english": "Dataverse metadata block is not in target dataverse. "
+    },
+    {
+      "key": "dataverses.api.move.dataverse.error.dataverseLink",
+      "before": "Датаверс пов'язаний з цільовим датаверсом або одним з його батьківських елементів.",
+      "after": "Колекцію пов’язано з цільовою колекцією або однією з її батьківських колекцій.",
+      "english": "Dataverse is linked to target dataverse or one of its parents. "
+    },
+    {
+      "key": "dataverses.api.move.dataverse.error.datasetLink",
+      "before": "Набір даних пов'язаний з цільовим датаверсом або одним з його батьківських елементів.",
+      "after": "Набір даних пов’язано з цільовою колекцією або однією з її батьківських колекцій.",
+      "english": "Dataset is linked to target dataverse or one of its parents.   "
+    },
+    {
+      "key": "dataverses.api.move.dataverse.error.forceMove",
+      "before": "Будь ласка, скористайтеся API та перегляньте \"Перемістити колекцію датаверсу\" з параметром ?forceMove=true для завершення переміщення. Це видалить усе з датаверсу, що несумісне з цільовим датаверсом.",
+      "after": "Для примусового переміщення скористайтеся операцією API «Перемістити колекцію» з параметром ?forceMove=true. Несумісні з цільовою колекцією елементи буде вилучено з колекції.",
+      "english": "Please use the API and see \"Move a Dataverse Collection\" with the parameter ?forceMove=true to complete the move. This will remove anything from the dataverse that is not compatible with the target dataverse."
+    },
+    {
+      "key": "dataverses.api.validate.json.succeeded",
+      "before": "Наданий JSON набору даних є дійсним для цієї колекції датаверсів.",
+      "after": "Наданий JSON набору даних дійсний для цієї колекції.",
+      "english": "The Dataset JSON provided is valid for this Dataverse Collection."
+    },
+    {
+      "key": "permission.AddDataverse.label",
+      "before": "ДодатиДатаверс",
+      "after": "Додати підколекцію",
+      "english": "AddDataverse"
+    },
+    {
+      "key": "permission.ViewUnpublishedDataverse.label",
+      "before": "ПереглянутиНеопублікованийДатаверс",
+      "after": "Переглянути неопубліковану колекцію",
+      "english": "ViewUnpublishedDataverse"
+    },
+    {
+      "key": "permission.EditDataverse.label",
+      "before": "РедагуватиДатаверс",
+      "after": "Редагувати колекцію",
+      "english": "EditDataverse"
+    },
+    {
+      "key": "permission.ManageDataversePermissions.label",
+      "before": "КеруватиДозволамиДатаверсу",
+      "after": "Керувати дозволами колекції",
+      "english": "ManageDataversePermissions"
+    },
+    {
+      "key": "permission.PublishDataverse.label",
+      "before": "ОпублікуватиДатаверс",
+      "after": "Опублікувати колекцію",
+      "english": "PublishDataverse"
+    },
+    {
+      "key": "permission.DeleteDataverse.label",
+      "before": "ВидалитиДатаверс",
+      "after": "Видалити колекцію",
+      "english": "DeleteDataverse"
+    },
+    {
+      "key": "permission.AddDataverse.desc",
+      "before": "Додати датаверс в інший датаверс",
+      "after": "Додати підколекцію",
+      "english": "Add a dataverse within another dataverse"
+    },
+    {
+      "key": "permission.DeleteDataverse.desc",
+      "before": "Видалити неопублікований датаверс",
+      "after": "Видалити неопубліковану колекцію",
+      "english": "Delete an unpublished dataverse"
+    },
+    {
+      "key": "permission.PublishDataverse.desc",
+      "before": "Опублікувати датаверс",
+      "after": "Опублікувати колекцію",
+      "english": "Publish a dataverse"
+    },
+    {
+      "key": "permission.ManageDataversePermissions.desc",
+      "before": "Керувати дозволами для датаверсу",
+      "after": "Керувати дозволами колекції",
+      "english": "Manage permissions for a dataverse"
+    },
+    {
+      "key": "permission.EditDataverse.desc",
+      "before": "Редагувати метадані, фасети, налаштування та шаблони датаверсу",
+      "after": "Редагувати метадані, фасети, налаштування та шаблони колекції",
+      "english": "Edit a dataverse's metadata, facets, customization, and templates "
+    },
+    {
+      "key": "permission.ViewUnpublishedDataverse.desc",
+      "before": "Переглянути неопублікований датаверс",
+      "after": "Переглянути неопубліковану колекцію",
+      "english": "View an unpublished dataverse"
+    },
+    {
+      "key": "permission.AddDataset.desc",
+      "before": "Додати набір даних до датаверсу",
+      "after": "Додати набір даних до колекції",
+      "english": "Add a dataset to a dataverse"
+    },
+    {
+      "key": "dashboard.card.datamove.message",
+      "before": "Керуйте та налаштовуйте вашу інсталяцію, переміщуючи набори даних з одного хост-датаверсу до іншого. Також дивіться розділ <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних та датаверсами</a> у посібнику адміністратора.",
+      "after": "Керуйте вмістом репозитарію, переміщуючи набори даних з однієї батьківської колекції до іншої. Дивіться також <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних і колекціями</a> в Посібнику адміністратора.",
+      "english": "Manage and curate your installation by moving datasets from one host dataverse to another. See also <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Managing Datasets and Dataverses</a> in the Admin Guide.",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.newdataverse.header",
+      "before": "Новий хост-датаверс",
+      "after": "Нова батьківська колекція",
+      "english": "New dataverse collection host",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataverse.label",
+      "before": "Датаверс",
+      "after": "Колекція",
+      "english": "Dataverse",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataverse.placeholder",
+      "before": "Введіть ідентифікатор датаверсу\\u2026",
+      "after": "Введіть ідентифікатор колекції…",
+      "english": "Enter Dataverse Identifier...",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataverse.menu.header",
+      "before": "Назва датаверсу (Афілійований з), Ідентифікатор",
+      "after": "Назва колекції (організація), ідентифікатор",
+      "english": "Dataverse Name (Affiliate), Identifier",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataset.menu.header",
+      "before": "Постійний ідентифікатор набору даних, Назва, Ідентифікатор хост-датаверсу",
+      "after": "Постійний ідентифікатор набору даних, назва, ідентифікатор батьківської колекції",
+      "english": "Dataset Persistent ID, Title, Host Dataverse Identifier",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataset.command.error.targetDataverseUnpublishedDatasetPublished",
+      "before": "Опублікований набір даних не може бути переміщений до неопублікованого датаверсу. Спробуйте перемістити його знову після публікації {0}.",
+      "after": "Опублікований набір даних неможливо перемістити до неопублікованої колекції. Повторіть спробу після публікації {0}.",
+      "english": "A published dataset may not be moved to an unpublished dataverse. You can retry the move after publishing {0}.",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataset.command.error.targetDataverseSameAsOriginalDataverse",
+      "before": "Цей набір даних вже знаходиться в цьому датаверсі.",
+      "after": "Цей набір даних уже розміщено в цій колекції.",
+      "english": "This dataset is already in this dataverse.",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataset.command.error.unforced.datasetGuestbookNotInTargetDataverse",
+      "before": "Гостьова книга буде видалена з цього набору даних, якщо ви його перемістите, оскільки її немає в новому хост-датаверсі.",
+      "after": "Після переміщення гостьову книгу буде вилучено з цього набору даних, оскільки її немає в новій батьківській колекції.",
+      "english": "The guestbook would be removed from this dataset if you moved it because the guestbook is not in the new host dataverse. ",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataset.command.error.unforced.linkedToTargetDataverseOrOneOfItsParents",
+      "before": "Цей набір даних пов'язаний з новим хост-датаверсом або одним з його батьківських датаверсів. Це переміщення призведе до видалення посилання на цей набір даних.",
+      "after": "Цей набір даних пов’язано з новою батьківською колекцією або однією з її батьківських колекцій. Переміщення видалить це посилання.",
+      "english": "This dataset is linked to the new host dataverse or one of its parents. This move would remove the link to this dataset. ",
+      "englishEquivalent": true
+    },
+    {
+      "key": "dashboard.card.datamove.dataset.command.error.unforced.suggestForce",
+      "before": "Примусове переміщення наразі можливе лише через API. Докладніше дивіться у розділі «\\u00A0Переміщення набору даних\\u00A0» в <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних та датаверсами</a> посібника адміністратора.",
+      "after": "Примусове переміщення доступне лише через API. Докладніше дивіться в розділі «Переміщення набору даних» на сторінці <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Керування наборами даних і колекціями</a> Посібника адміністратора.",
+      "english": "Forcing this move is currently only available via API. Please see \"Move a Dataset\" under <a href=\"{0}/{1}/admin/dataverses-datasets.html\">Managing Datasets and Dataverses</a> in the Admin Guide for details.",
+      "englishEquivalent": true
+    },
+    {
+      "key": "notification.email.datasetWasMoved",
+      "before": "Dataset \"<a href = \"{0}\">{1}</a>\" was just moved by {2} to the {3} collection.",
+      "after": "Набір даних «<a href = \"{0}\">{1}</a>» щойно переміщено користувачем {2} до колекції {3}.",
+      "english": "Dataset \"<a href = \"{0}\">{1}</a>\" was just moved by {2} to the {3} collection."
+    },
+    {
+      "key": "dataverse.setDefaultTemplate.success",
+      "before": "The default dataset template has been successfully set for this dataverse.",
+      "after": "Шаблон набору даних за замовчуванням для цієї колекції успішно встановлено.",
+      "english": "The default dataset template has been successfully set for this dataverse."
+    },
+    {
+      "key": "dataverse.removeDefaultTemplate.success",
+      "before": "The default dataset template has been successfully removed from this dataverse.",
+      "after": "Шаблон набору даних за замовчуванням для цієї колекції успішно скасовано.",
+      "english": "The default dataset template has been successfully removed from this dataverse."
+    },
+    {
+      "key": "dataverse.locallyfair.title",
+      "before": "The published collection and its published datasets and their files are only visible to the users/groups listed. If the list is empty, standard Dataverse rules apply.",
+      "after": "Опублікована колекція, її опубліковані набори даних і файли видимі лише вказаним користувачам і групам. Якщо список порожній, діють стандартні правила Dataverse.",
+      "english": "The published collection and its published datasets and their files are only visible to the users/groups listed. If the list is empty, standard Dataverse rules apply."
+    },
+    {
+      "key": "file.selectToAdd.tipTotalSizeUsed",
+      "before": "Total size of Collection: {0}.",
+      "after": "Загальний розмір колекції: {0}.",
+      "english": "Total size of Collection: {0}."
+    },
+    {
+      "key": "permission.linkDataset",
+      "before": "Link a dataset to a dataverse",
+      "after": "Пов’язати набір даних із колекцією",
+      "english": "Link a dataset to a dataverse"
+    },
+    {
+      "key": "permission.linkDataverse",
+      "before": "Link a dataverse to another dataverse",
+      "after": "Пов’язати колекцію з іншою колекцією",
+      "english": "Link a dataverse to another dataverse"
+    },
+    {
+      "key": "permission.LinkDataverse.label",
+      "before": "LinkDataverse",
+      "after": "Пов’язати колекцію",
+      "english": "LinkDataverse"
+    },
+    {
+      "key": "permission.LinkDataverse.desc",
+      "before": "Link a dataverse",
+      "after": "Пов’язати колекцію",
+      "english": "Link a dataverse"
+    },
+    {
+      "key": "notification.email.passwordResetCompleted",
+      "before": "Вітаємо, {0}!\\n\\nПароль вашого облікового запису Dataverse було успішно змінено.\\n\\nЗв'яжіться з нами, якщо ви не надсилали запит на скидання пароля або потребуєте додаткової допомоги.",
+      "after": "Вітаємо, {0}!\\n\\nПароль облікового запису репозитарію успішно змінено.\\n\\nЗв’яжіться з нами, якщо ви не надсилали запит на скидання пароля або потребуєте допомоги.",
+      "english": "Hi {0},\\n\\nYour Dataverse account password was successfully changed.\\n\\nPlease contact us if you did not request this password reset or need further help."
+    },
+    {
+      "key": "notification.email.passwordResetCompleted.subject",
+      "before": "Пароль Dataverse успішно змінено",
+      "after": "Пароль облікового запису репозитарію успішно змінено",
+      "english": "Dataverse Password Reset Successfully Changed"
+    }
+  ]
+}

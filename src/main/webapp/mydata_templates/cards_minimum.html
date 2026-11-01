@@ -15,7 +15,7 @@
     <div style="border:1px solid {{ card_border_color }};padding:4px 10px; margin-bottom:20px; overflow: hidden; font-size: 90%; {{ card_bg_color.next() }}">
         <div class="card-title-icon-block" style="font-size: 110%;"> 
  {% if card_info.type == "dataverse" %}
-            <span class="icon-dataverse text-brand pull-right" title="Dataverse"></span>
+            <span class="icon-dataverse text-brand pull-right" title="{{ dataverseLabel }}"></span>
             <a href="/dataverse/{{ card_info.identifier }}"><span style="padding:4px 0;">{{ card_info.name }}</span></a>
            {# <span class="text-muted">(<em>Affiliation</em>)</span>#}
   {% elif card_info.type == "dataset" %}

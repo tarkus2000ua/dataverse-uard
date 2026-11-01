@@ -177,3 +177,21 @@ See [orcid-login.md](orcid-login.md) for the exact file map, incremental bundle
 merge, verification limits, deployment and acceptance steps. The feature commit
 excludes the pre-existing wholesale Ukrainian translation replacement; the full
 local/upload bundle retains it. No remote deployment was performed.
+
+## Ukrainian collection terminology and My Data tooltip (2026-11-01)
+
+The external Ukrainian bundle uses колекція for the content container, підколекція
+for nested collections, and батьківська колекція for Host Dataverse. Action labels
+retain infinitive verbs. Account wording uses обліковий запис репозитарію where
+reviewed; Dataverse platform attribution, technical identifiers and URLs remain.
+
+Three upstream presentation files connect the My Data card tooltip to the existing
+native bundle.dataverse key: mydata_fragment.xhtml supplies an escaped data
+attribute on the existing result container; resources/js/mydata.js passes its
+value into the Nunjucks render context; mydata_templates/cards_minimum.html uses
+that value for the icon title. Nunjucks autoescaping remains enabled. Search,
+permission checks, object types, routes, actions and locale selection are unchanged.
+No Java or database changes are required. During upgrades, carry these three small
+diffs together or use an equivalent upstream localization hook. See
+[ukrainian-collection-terminology.md](ukrainian-collection-terminology.md) for the
+translation manifest, remote merge procedure and verification.

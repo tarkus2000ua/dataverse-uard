@@ -443,7 +443,9 @@ function submit_my_data_search(){
             // (4) Let's render the cards
             // --------------------------------
             // Pass the solr docs to the cards template
-            var card_html =  nunjucks.render('mydata_templates/cards_minimum.html', data);
+            var card_html = nunjucks.render('mydata_templates/cards_minimum.html', $.extend({}, data, {
+                dataverseLabel: $('#resultsTable').attr('data-dataverse-label')
+            }));
             if (APPEND_CARDS_TO_BOTTOM){
                 //console.log('add cards to bottom results');
                 // Add new cards after existing cards
