@@ -23,9 +23,9 @@ The heading still uses `login=Увійти`. The native button still uses
 Only providers matching the native ORCID ID condition receive the new
 `org.login.orcid.blurb` string:
 
-> Увійдіть або створіть обліковий запис UaRD за допомогою ORCID. Виникли проблеми? Зверніться до [служби підтримки] по допомогу.
+> Увійдіть або створіть обліковий запис UaRD за допомогою ORCID — [дізнайтеся більше](/guide/). Виникли проблеми? Зверніться до [служби підтримки] по допомогу.
 
-The bracketed phrase above represents the native support link. Its actual label
+The [служби підтримки] placeholder above represents the native support link. Its actual label
 comes from `settingsWrapper.supportTeamName`; it is not hardcoded by this patch.
 The two lengthy `auth.providers.orcid.helpmessage1/2` paragraphs are removed from
 this view; their bundle values remain untouched. Other OAuth providers retain
@@ -151,3 +151,43 @@ in the tracked Ukrainian baseline. The larger, pre-existing replacement with the
 supplied server translation remains local pending work and is excluded from this
 feature commit. The prepared full upload bundle retains that complete server
 translation. Unrelated staged and untracked work remains outside this commit.
+
+## Local documentation link restored (2026-11-01)
+
+`org.login.orcid.blurb` includes a root-relative `/guide/` link before the
+support sentence. Ukrainian uses **дізнайтеся більше** and English **learn more**.
+The link opens in a new tab with `target="_blank"` and `rel="noopener"`. It uses
+the current server hostname and retains the trailing slash; it does not use the
+official versioned documentation base. The existing support placeholder `{3}`
+and all four `o:param` children remain unchanged. No login XHTML, OAuth provider
+configuration, credentials, authentication flow or locale setting change is needed.
+
+The updated key is in the packaged English fallback and both maintained external
+bundles. For uard2, back up the active external bundles, then merge only these
+entries into the matching files, preserving all other server translations:
+
+English (`Bundle.properties`):
+
+```properties
+org.login.orcid.blurb=Sign in or create a UaRD account using ORCID — <a href="/guide/" target="_blank" rel="noopener">learn more</a>. Having trouble? Please contact {3} for assistance.
+```
+
+Ukrainian (the server's existing `Bundle_ua.properties` or `Bundle_uk.properties`):
+
+```properties
+org.login.orcid.blurb=Увійдіть або створіть обліковий запис UaRD за допомогою ORCID — <a href="/guide/" target="_blank" rel="noopener">дізнайтеся більше</a>. Виникли проблеми? Зверніться до {3} по допомогу.
+```
+
+Use the established Payara reload/redeploy procedure to clear bundle caches.
+Previously prepared ORCID packages predate this restored link. Keep the updated
+key in the maintained source/deployment artifacts. On the ORCID-enabled server,
+check the new-tab guide destination, unchanged support dialog/button and native
+language switching. No remote deployment is included in this change.
+
+Verified locally for the restored link: Java 21 MessageFormat and HTML parsing
+confirm `/guide/`, new-tab/noopener attributes and the support parameter in all
+three maintained bundles, without unresolved placeholders or official versioned
+guide URLs. Fast redeploy succeeded; both mounted external bundles match the
+updated sources. The existing builtin login page and complete `/guide/` return
+HTTP 200. Local ORCID remains unconfigured, so the ORCID-only rendered login
+and callback require verification on the existing ORCID-enabled server.
