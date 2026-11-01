@@ -1,0 +1,2 @@
+# Store supplied HTML with consistent Linux line endings in Git.
+*.html text eol=lf

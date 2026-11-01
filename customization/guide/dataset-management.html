@@ -1,0 +1,194 @@
+<h1>Управління наборами даних + файлами</h1>
+<p>Набір даних (dataset) в інсталяції Dataverse — це контейнер для ваших даних, документації, коду та метаданих, що
+    описують цей набір даних.</p>
+<p><img alt="Структура набору даних: метадані, файли, документація, програмний код і процес обробки даних" class="img-responsive" src="pics/2.jpg" width="1280" height="1024"/></p><div class="local-toc well well-sm" style="margin-top: 20px;"><strong>Вміст:</strong><ul><li><a href="#supported-metadata">Підтримувані метадані</a></li><ul><li><a href="#metadata-export-formats">Підтримувані формати експорту метаданих</a></li></ul><li><a href="#adding-a-new-dataset">Додавання нового набору даних</a></li><ul><li><a href="#html-fields">Підтримувані HTML-поля</a></li></ul><li><a href="#file-upload">Завантаження файлів (File Upload)</a></li><ul><li><a href="#http-upload">HTTP завантаження</a></li><li><a href="#dropbox-upload">Завантаження з Dropbox</a></li><li><a href="#folder-upload">Завантаження папки</a></li><li><a href="#dvuploader">Спеціальний завантажувач з командного рядка (DVUploader)</a></li><li><a href="#duplicate-files">Дублікати файлів</a></li><li><a href="#bagit-support">Підтримка BagIt</a></li></ul><li><a href="#file-handling">Обробка файлів (File Handling)</a></li><ul><li><a href="#file-previews">Попередній перегляд файлів</a></li><li><a href="#tabular-data-files">Табличні файли даних</a></li><li><a href="#research-code">Дослідницький код</a></li><li><a href="#computational-workflow">Обчислювальний робочий процес (Computational Workflow)</a></li><li><a href="#special-files-preview">Астрономічні (FITS), Геопросторові та інші файли</a></li></ul><li><a href="#restricted-files">Файли з обмеженим доступом (Restricted Files)</a></li><li><a href="#edit-files">Редагування файлів</a></li><ul><li><a href="#edit-file-metadata">Редагувати метадані файлів</a></li><li><a href="#file-path">Шлях до файлу (File Path)</a></li></ul><li><a href="#replace-files">Заміна файлів</a></li><li><a href="#terms">Умови (Terms)</a></li><ul><li><a href="#creating-dp-metadata">Створення диференційно приватних метаданих DP (Експериментально)</a></li><li><a href="#guestbook">Гостьова книга (Guestbook)</a></li></ul><li><a href="#roles-permissions">Ролі та дозволи</a></li><li><a href="#data-provenance">Походження даних (Data Provenance)</a></li><ul><li><a href="#dataset-level-prov">На рівні набору даних</a></li><li><a href="#file-level-prov">На рівні файлу</a></li></ul><li><a href="#thumbnails-widgets">Мініатюри (Thumbnails) + Віджети</a></li><ul><li><a href="#thumbnails">Мініатюри</a></li><li><a href="#widgets">Віджети</a></li></ul><li><a href="#publish-dataset">Публікація набору даних</a></li><li><a href="#submit-for-review">Відправка на розгляд (Submit for Review)</a></li><li><a href="#preview-url">URL для попереднього перегляду неопублікованого набору даних</a></li><li><a href="#embargoes">Ембарго та Періоди зберігання (Retention Periods)</a></li><li><a href="#dataset-versions">Версії наборів даних</a></li><ul><li><a href="#view-diff">Деталі версій</a></li></ul><li><a href="#metrics-data-count">Метрики наборів даних і Make Data Count</a></li><li><a href="#cloud-storage">Хмарне сховище + Обчислення (Cloud Storage + Computing)</a></li><li><a href="#dataset-deaccession">Деаксесія набору даних (Dataset Deaccession)</a></li><li><a href="#dataset-types">Типи наборів даних</a></li></ul></div><hr/>
+<h2 id="supported-metadata">Підтримувані метадані</h2>
+<p>Набір даних містить три рівні метаданих:</p>
+<ol>
+<li><strong>Метадані цитування (Citation Metadata):</strong> будь-які метадані, які будуть потрібні для генерації
+        цитування даних, та інші загальні метадані, які можуть бути застосовані до будь-якого набору даних;</li>
+<li><strong>Доменно-специфічні метадані (Domain Specific Metadata):</strong> з поточною підтримкою специфічних
+        метаданих для соціальних наук, наук про життя, геопросторових та астрономічних наборів даних; і</li>
+<li><strong>Метадані на рівні файлів (File-level Metadata):</strong> варіюються залежно від типу файлу даних.</li>
+</ol>
+<h3 id="metadata-export-formats">Підтримувані формати експорту метаданих</h3>
+<p>Після публікації набору даних його метадані можна експортувати в різні інші стандарти та формати метаданих, що
+    допомагає зробити набори даних більш доступними для пошуку та використання в інших системах, таких як інші сховища
+    даних. На кожній сторінці метаданих набору даних доступні наступні формати експорту:</p>
+<ul>
+<li>Dublin Core</li>
+<li>DDI (Data Documentation Initiative Codebook 2.5)</li>
+<li>DDI HTML Codebook (Більш читабельна HTML-версія експорту метаданих DDI Codebook 2.5)</li>
+<li>DataCite 4</li>
+<li>JSON (власний формат програмного забезпечення Dataverse)</li>
+<li>OAI_ORE</li>
+<li>OpenAIRE</li>
+<li>Schema.org JSON-LD</li>
+</ul>
+<p>Додаткові формати можуть бути увімкнені адміністратором (наприклад: Croissant, RO-Crate). Кожен з цих експортів
+    метаданих містить метадані останньої опублікованої версії набору даних.</p>
+<h2 id="adding-a-new-dataset">Додавання нового набору даних</h2>
+<ol>
+<li>Перейдіть до колекції Dataverse, в яку ви хочете додати набір даних.</li>
+<li>Натисніть кнопку "Add Data" (Додати дані) і в спадному меню виберіть "New Dataset" (Новий набір даних).
+        <strong>Примітка:</strong> Якщо ви знаходитесь у кореневій колекції Dataverse, створений набір даних буде
+        розміщено в кореневій колекції (ви також можете вибрати іншу хост-колекцію на етапі створення, але цю опцію не
+        можна буде змінити після створення).
+    </li>
+<li>Щоб швидко розпочати, заповніть принаймні всі обов'язкові поля з зірочкою (Назва набору даних, Ім'я автора,
+        Текст опису, Email контактної особи та Тема), щоб отримати цитування даних з DOI.</li>
+<li>Прокрутіть униз до розділу "Files" (Файли) і натисніть "Select Files to Add" (Вибрати файли для додавання), щоб
+        додати всі відповідні файли до вашого набору даних. Ви можете перетягувати файли (drag and drop) або
+        завантажувати їх з Dropbox. Тут ви також можете додавати описи і теги, і для кожного файлу буде додана
+        MD5-контрольна сума.</li>
+<li>Після завершення натисніть кнопку "Save Dataset" (Зберегти набір даних). Ваш неопублікований набір даних тепер
+        створено.</li>
+</ol>
+<p>Примітка: Ви можете додати додаткові метадані після створення, натиснувши кнопку "Edit" і вибравши "Metadata".</p>
+<h3 id="html-fields">Підтримувані HTML-поля</h3>
+<p>Ми підтримуємо такі HTML-теги для будь-яких наших текстових полів метаданих (тобто Опис): &lt;a&gt;, &lt;b&gt;,
+    &lt;blockquote&gt;, &lt;br&gt;, &lt;code&gt;, &lt;del&gt;, &lt;dd&gt;, &lt;dl&gt;, &lt;dt&gt;, &lt;em&gt;,
+    &lt;hr&gt;, &lt;h1&gt;-&lt;h3&gt;, &lt;i&gt;, &lt;img&gt;, &lt;kbd&gt;, &lt;li&gt;, &lt;ol&gt;, &lt;p&gt;,
+    &lt;pre&gt;, &lt;s&gt;, &lt;sup&gt;, &lt;sub&gt;, &lt;strong&gt;, &lt;strike&gt;, &lt;u&gt;, &lt;ul&gt;.</p>
+<h2 id="file-upload">Завантаження файлів (File Upload)</h2>
+<p>Програмне забезпечення Dataverse пропонує кілька методів завантаження файлів до набору даних. Ці методи
+    налаштовуються адміністратором. Набір даних може використовувати лише один метод завантаження.</p>
+<h3 id="http-upload">HTTP завантаження</h3>
+<p>Це звичайний інструмент для завантаження на основі браузера. Ви можете завантажувати файли по HTTP, вибравши їх за
+    допомогою браузера або перетягнувши їх у віджет завантаження.</p>
+<h3 id="dropbox-upload">Завантаження з Dropbox</h3>
+<p>Деякі інсталяції Dataverse підтримують можливість завантажувати файли безпосередньо з Dropbox. Натисніть кнопку
+    "Upload from Dropbox" (Завантажити з Dropbox), увійдіть у систему в спливаючому вікні та виберіть файли.</p>
+<h3 id="folder-upload">Завантаження папки</h3>
+<p>Можливість завантажувати папки з підпапками. Натисніть "Upload from Folder", виберіть папку і почніть завантаження.
+    (Потребує увімкненого DVWebloader).</p>
+<h3 id="dvuploader">Спеціальний завантажувач з командного рядка (DVUploader)</h3>
+<p>Використовується для завантаження величезної кількості файлів, які незручно завантажувати через браузер. Працює як
+    програма на Java.</p>
+<h3 id="duplicate-files">Дублікати файлів</h3>
+<p>Починаючи з Dataverse 5.0, обробка дублікатів була покращена: файли з тією самою контрольною сумою можна включати в
+    набір даних (навіть в одному каталозі), файл з однаковим ім'ям буде перейменовано додаванням "-1" або "-2", якщо він
+    уже є в каталозі.</p>
+<h3 id="bagit-support">Підтримка BagIt</h3>
+<p>Якщо включено BagIt, під час завантаження система буде перевіряти файли-маніфести з контрольними сумами. Якщо
+    виникнуть помилки перевірки маніфесту BagIt, вони будуть відображені в інтерфейсі завантаження файлу:</p>
+<img alt="BagIt Handler Errors" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/bagit-handler-errors.png"/>
+<h2 id="file-handling">Обробка файлів (File Handling)</h2>
+<h3 id="file-previews">Попередній перегляд файлів</h3>
+<p>Інсталяції Dataverse можуть додавати програми попереднього перегляду (previewers) для поширених типів файлів (Text,
+    PDF, Markdown, Tabular, Code R, Images, MP3, MP4, Zip, HTML, GeoJSON та багато іншого). Вони з’являються на сторінці
+    файлу після того, як користувач погоджується з умовами використання файлу.</p>
+<h3 id="tabular-data-files">Табличні файли даних</h3>
+<p>Файли Stata, SPSS, R, Excel (xlsx), CSV і TSV можуть бути оброблені як табличні дані. Вони можуть бути завантажені у
+    вигляді оригінального файлу, у форматі з розділеними табуляцією значеннями, у форматі R, як метадані змінних DDI,
+    або цитування файлу (RIS, BibTeX і т.д.).</p>
+<h3 id="research-code">Дослідницький код</h3>
+<p>Файли коду (Stata, R, MATLAB, Python) часто супроводжують дані. Бажано мати файл README, використовувати відносні
+    шляхи файлів і зберігати середовище і залежності (conda env export, requirements.txt, install.R, або Dockerfile).
+</p>
+<h3 id="computational-workflow">Обчислювальний робочий процес (Computational Workflow)</h3>
+<p>Обчислювальні робочі процеси описують багатоетапний процес для координації кількох завдань. Для їх створення
+    використовують Common Workflow Language (CWL), Snakemake, Jupyter Notebook, MATLAB Script тощо.</p>
+<img alt="Обчислювальний робочий процес: завдання, умова та продукти даних" class="img-responsive" src="pics/3.jpg" width="1280" height="497"/>
+<p>Їх можна позначати тегами "Workflow" для кращого пошуку.</p>
+<img alt="File Tags Link" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/file-tags-link.png"/>
+<img alt="File Tags Options" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/file-tags-options.png"/>
+<p>Ви також можете описати свої обчислювальні робочі процеси у метаданих:</p>
+<img alt="Computational Workflow Metadata" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/computational-workflow-metadata.png"/>
+<p>А потім шукати їх серед фасетів:</p>
+<img alt="Computational Workflow Facets" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/computational-workflow-facets.png"/>
+<img alt="File Tags Facets" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/file-tags-facets.png"/>
+<h3 id="special-files-preview">Астрономічні (FITS), Геопросторові та інші файли</h3>
+<ul>
+<li>FITS (Flexible Image Transport System): метадані витягуються автоматично.</li>
+<li>GeoJSON, GeoTIFF, Shapefile мають карти попереднього перегляду, де вказуються обмеження за розміром файлу.</li>
+<li>NetCDF та HDF5: Можна візуалізувати через попередній переглядач H5Web, а також з них витягується геопросторовий
+        Bounding Box (широта і довгота).
+        <br/>
+<img alt="H5Web Previewer" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/h5web.png"/>
+</li>
+<li>Стиснуті файли (.zip): Автоматично розпаковуються. Якщо структура каталогів включена, вона буде дотримана (File
+        Path). Максимально 1000 файлів.</li>
+</ul>
+<h2 id="restricted-files">Файли з обмеженим доступом (Restricted Files)</h2>
+<p>Коли ви обмежуєте доступ до файлу, його неможливо завантажити без дозволу. Користувачам може бути надана можливість
+    запитувати доступ, і ви, як власник, повинні будете цей запит схвалити.</p>
+<h2 id="edit-files">Редагування файлів</h2>
+<h3 id="edit-file-metadata">Редагувати метадані файлів</h3>
+<p>Перейдіть до редагування набору даних, виберіть "Files". Виділіть файли, і натисніть "Edit Files", де можна видаляти,
+    редагувати ім'я і опис, обмежувати (або знімати обмеження) файли, і додавати теги.</p>
+<h3 id="file-path">Шлях до файлу (File Path)</h3>
+<p>Поле метаданих File Path відображає розташування файлу в ієрархії. Коли завантажується zip-архів з папками, він
+    автоматично заповнює це поле. Якщо файлів багато, для них з'явиться можливість відображатися як деревоподібна
+    структура:</p>
+<img alt="File Tree View" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/file-tree-view.png"/>
+<h2 id="replace-files">Заміна файлів</h2>
+<p>Ви можете оновити існуючий файл, скориставшись функцією Replace File (Замінити файл). Вона зберігає історію версій.
+    Заміна файлу можлива тільки після публікації попередньої версії файлу.</p>
+<h2 id="terms">Умови (Terms)</h2>
+<p>Умови використання набору даних можна переглянути та відредагувати на вкладці Terms (Умови) на сторінці набору даних.
+    Ви можете встановити умови доступу, вибрати стандартну ліцензію (наприклад, Creative Commons CC0), або ввести
+    спеціальні власні умови використання.</p>
+<h3 id="creating-dp-metadata">Створення диференційно приватних метаданих DP (Експериментально)</h3>
+<p>Ви можете створювати диференційно приватні (Differentially Private) метадані за допомогою модуля OpenDP Tool. Це дає
+    змогу дослідникам бачити статистику по обмежених табличних файлах.</p>
+<h3 id="guestbook">Гостьова книга (Guestbook)</h3>
+<p>Ви можете увімкнути гостьову книгу для фіксування завантажень користувачами (і збирати від них дані як от їхню
+    афіліацію).</p>
+<h2 id="roles-permissions">Ролі та дозволи</h2>
+<p>Ви можете призначати ролі і користувачам (Users/Groups), керуючи їх рівнями доступу, на рівні набору даних і також на
+    рівні конкретного файлу (File-level access restrictions).</p>
+<h2 id="data-provenance">Походження даних (Data Provenance)</h2>
+<h3 id="dataset-level-prov">На рівні набору даних</h3>
+<p>Ви можете додати "Version Note" (Примітку до версії), яка пояснюватиме користувачам, чому була створена нова версія
+    набору даних, чим дані відрізняються від попередньої версії.</p>
+<h3 id="file-level-prov">На рівні файлу</h3>
+<p>Ви можете додати файл походження (Provenance File) (наприклад, з RDataTracker, NoWorkFlow, або CamFlow) формату PROV
+    (JSON) або текстовий опис "Provenance Description" для детального відстеження життя файлу.</p>
+<img alt="Data Provenance Overview" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/prov0.png"/>
+<img alt="Data Provenance Upload" class="img-responsive" src="https://guides.dataverse.org/en/6.6/_images/prov1.png"/>
+<h2 id="thumbnails-widgets">Мініатюри (Thumbnails) + Віджети</h2>
+<h3 id="thumbnails">Мініатюри</h3>
+<p>Зображення (JPEG, PNG, TIFF) з вашого набору будуть автоматично вибрані мініатюрою набору даних. Ви також можете
+    змінити це вручну, або завантажити свою окрему мініатюру на вкладці "Thumbnails + Widgets".</p>
+<h3 id="widgets">Віджети</h3>
+<p>Віджет набору даних (Dataset Widget) та Віджет цитування (Citation Widget) дозволяють вам вбудувати ваш набір даних
+    або інформацію щодо того, як його цитувати, на вашому персональному вебсайті за допомогою спеціального HTML коду.
+</p>
+<h2 id="publish-dataset">Публікація набору даних</h2>
+<p>Коли ви публікуєте набір даних (кнопка "Publish"), він переходить з чернетки у публічний стан і назавжди стає видимим
+    світові.</p>
+<h2 id="submit-for-review">Відправка на розгляд (Submit for Review)</h2>
+<p>Якщо ви маєте функцію Contributor, після заповнення даних ви не можете публікувати самостійно, тому ви маєте
+    відправити набір "Submit for review" кураторам (Curator / Admin) вашої колекції.</p>
+<h2 id="preview-url">URL для попереднього перегляду неопублікованого набору даних</h2>
+<p>Щоб інші колеги могли проглянути ваші набори до публікації без реєстрації, ви можете створити для них General Preview
+    URL (або Anonymous Preview URL, який приховуватиме імена авторів і дозволяє анонімне рецензування).</p>
+<h2 id="embargoes">Ембарго та Періоди зберігання (Retention Periods)</h2>
+<ul>
+<li><strong>Ембарго (Embargoes):</strong> Дозволяють публікувати набір уже зараз, але заборонити можливість
+        скачування до певної визначеної дати.</li>
+<li><strong>Періоди зберігання (Retention Periods):</strong> Роблять файлы недоступними після певної дати (наприклад
+        з юридичних міркувань, якщо за угодою дані можуть бути доступні лише кілька років).</li>
+</ul>
+<h2 id="dataset-versions">Версії наборів даних</h2>
+<p>Кожна зміна після публікації створює нову версію, і ви матимете малу версію (1.1, 1.2, якщо мінялися лише метадані),
+    і велику версію (2.0, 3.0, якщо замінювалися файли).</p>
+<img alt="Життєвий цикл набору даних: чернетка, публікація та версії 1, 1.1 і 2" class="img-responsive" src="pics/4.jpg" width="1280" height="773"/>
+<h3 id="view-diff">Деталі версій</h3>
+<p>Глядачі зможуть перевірити таблицю версій і використати кнопку "View Differences" аби легко знайти, які саме поля або
+    файли були змінені або додані.</p>
+<h2 id="metrics-data-count">Метрики наборів даних і Make Data Count</h2>
+<p>Dataverse підраховує кількість завантажень файлів і цитувань використовуючи систему Make Data Count і збирає дані з
+    Crossref.</p>
+<h2 id="cloud-storage">Хмарне сховище + Обчислення (Cloud Storage + Computing)</h2>
+<p>Кнопка Compute (Обчислити) дозволяє вам швидко перейти до інструментів хмарних обчислень на базі Swift object
+    storage, з якими може бути налаштований цей датаверс. А Cloud Storage Access надає вам гнучкий доступ до
+    ідентифікатора контейнера.</p>
+<h2 id="dataset-deaccession">Деаксесія набору даних (Dataset Deaccession)</h2>
+<p>Видалення опублікованого набору дуже не вітається. Але якщо з юридичних та інших причин набір все ж повинно бути
+    видалено, він проходить процедуру Деаксесії. URL-адреса набору буде довічно продовжувати вести на "Tombstone"
+    (надгробок) зі скромним повідомленням про те що набір був деаксесований і чому.</p>
+<h2 id="dataset-types">Типи наборів даних</h2>
+<p>Нові датаверси за замовчуванням мають тип "dataset", але суперкористувачі можуть додавати інші типи ("software",
+    "workflow"), до яких застосовуються різні правила відправки метаданих і фільтрації.</p>

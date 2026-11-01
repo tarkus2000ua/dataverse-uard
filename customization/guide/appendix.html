@@ -1,0 +1,63 @@
+<h1>Додаток</h1>
+<p>Додаткова документація, що доповнює Посібник користувача.</p><div class="local-toc well well-sm" style="margin-top: 20px;"><strong>Вміст:</strong><ul><li><a href="#metadata-references">Довідники метаданих (Metadata References)</a></li><ul><li><a href="#supported-metadata">Підтримувані метадані</a></li><li><a href="#experimental-metadata">Експериментальні метадані</a></li><li><a href="#see-also">Дивіться також (See Also)</a></li></ul></ul></div><hr/>
+<h2 id="metadata-references">Довідники метаданих (Metadata References)</h2>
+<p>Проект Dataverse прагне використовувати стандартизовані метадані для того, щоб переконатися, що метадані інсталяції
+    Dataverse можуть бути легко зіставлені зі стандартними схемами метаданих та експортовані у формат JSON (XML для
+    метаданих табличних файлів) для (архівного) збереження та інтероперабельності.</p>
+<h3 id="supported-metadata">Підтримувані метадані</h3>
+<p>Нижче докладно описані схеми метаданих, які ми підтримуємо для метаданих цитування та доменно-специфічних метаданих у
+    проекті Dataverse:</p>
+<ul>
+<li>
+<strong>Метадані цитування (Citation Metadata):</strong> сумісні з DDI Lite, DDI 2.5 Codebook, DataCite 4.5 та
+        термінами метаданих DCMI (Dublin Core). Поле "Мова" використовує контрольований словник ISO 639-1.
+    </li>
+<li>
+<strong>Геопросторові метадані (Geospatial Metadata):</strong> сумісні з DDI Lite, DDI 2.5 Codebook, DataCite
+        4.5 та Dublin Core. Поле "Країна / Нація" використовує контрольований словник ISO 3166-1.
+    </li>
+<li>
+<strong>Метадані соціальних та гуманітарних наук (Social Science &amp; Humanities Metadata):</strong> сумісні з DDI
+        Lite, DDI 2.5 Codebook та Dublin Core.
+    </li>
+<li>
+<strong>Метадані астрономії та астрофізики (Astronomy and Astrophysics Metadata):</strong> Ці елементи метаданих
+        можуть бути зіставлені/експортовані у формат VOResource Schema Міжнародного альянсу віртуальних обсерваторій
+        (IVOA) і базуються на параметрах відкриття та походження віртуальної обсерваторії (Virtual Observatory, VO).
+    </li>
+<li>
+<strong>Метадані наук про життя (Life Sciences Metadata):</strong> засновані на специфікації ISA-Tab, разом із
+        контрольованим словником із підмножин онтології OBI та таксономії організмів NCBI (Taxonomy for Organisms).
+    </li>
+<li>
+<strong>Метадані журналів (Journal Metadata):</strong> створені на основі Journal Archiving and Interchange Tag
+        Set, версія 1.2.
+    </li>
+<li>
+<strong>Метадані 3D об'єктів (3D Objects Metadata).</strong>
+</li>
+</ul>
+<h3 id="experimental-metadata">Експериментальні метадані</h3>
+<p>На відміну від підтримуваних метаданих, експериментальні метадані за замовчуванням не ввімкнені у новій інсталяції
+    Dataverse. Зворотній зв'язок через будь-який канал з радістю вітається!</p>
+<ul>
+<li>
+<strong>Метадані програмного забезпечення CodeMeta:</strong> створено на основі схеми метаданих програмного
+        забезпечення CodeMeta, версія 2.0.
+    </li>
+<li>
+<strong>Метадані обчислювального робочого процесу (Computational Workflow Metadata):</strong> адаптовані з
+        профілю Bioschemas Computational Workflow, версія 1.0 та Codemeta.
+    </li>
+<li>
+<strong>Архівні метадані (Archival Metadata):</strong> Дозволяє репозиторіям реєструвати метадані, що стосуються
+        потенційного архівування набору даних в архіві-депозитарії, незалежно від того, чи це ваш власний інституційний
+        архів чи зовнішній архів, тобто історичний архів.
+    </li>
+</ul>
+<p>Зверніть увагу: ці спеціальні (custom) схеми метаданих за замовчуванням не включені в схему Solr для індексації, вам
+    потрібно буде додати їх у міру необхідності для ваших спеціальних блоків метаданих. Див. "Update the Solr Schema" у
+    розділі "Metadata Customization".</p>
+<h3 id="see-also">Дивіться також (See Also)</h3>
+<p>Перегляньте також документ "Dataverse Software 4.0 Metadata Crosswalk: DDI, DataCite, DC, DCTerms, VO, ISA-Tab" та
+    розділ "Metadata Customization" посібника адміністратора.</p>
