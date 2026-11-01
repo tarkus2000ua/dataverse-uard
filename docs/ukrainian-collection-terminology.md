@@ -134,3 +134,27 @@ No database rollback, import, Solr reset or volume deletion is required.
 The maintained sources are the Ukrainian bundle, the manifest at **customization/translations/uk-collection-terminology.json**, the helper at **scripts/customization/apply-bundle-update.py**, its tests, the three My Data files, **docs/reports/ukrainian-collection-terminology.html**, and **docs/upstream-modifications.md**.
 
 Local source changes use the required **./scripts/dev/dev-frd.sh** workflow. The packaged **VALIDATION.md** records what was actually checked and any authenticated/browser limitations.
+
+## Logo exception (2026-11-01)
+
+The default navbar logo displays the product name **Dataverse** in every locale.
+Collection labels and tooltips continue to use **Колекція** in Ukrainian.
+The logo uses a literal product name in `src/main/webapp/dataverse_header.xhtml`
+instead of the shared `bundle.dataverse` entry. Keep `dataverse=Колекція` in the
+Ukrainian bundle. The native custom-logo hook remains available.
+
+For an existing remote installation, back up its active `dataverse_header.xhtml`
+and merge only this change in the default `navbar-brand` span:
+
+```xhtml
+<!-- Before -->
+<span class="navbar-brand"><span id="icon-dataverse" class="icon-dataverse"></span> #{bundle.dataverse}</span>
+<!-- After -->
+<span class="navbar-brand"><span id="icon-dataverse" class="icon-dataverse"></span> Dataverse</span>
+```
+
+Retain the surrounding JSF rendering conditions and all other server header
+customizations. Reload/redeploy the existing application through its normal
+Payara workflow and refresh the browser. Include the change in the maintained
+deployment source/artifact so it survives later deployments. This logo-only
+update requires no bundle replacement, setting update or database change.

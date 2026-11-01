@@ -220,3 +220,22 @@ Upgrade review: preserve the mapping, build step and generated pages/images
 together; do not replace the real header or alter authentication/permissions.
 The hook is a database setting configured per environment. No uard2 change is
 included. See [local-user-guide.md](local-user-guide.md).
+
+## Preserve the Dataverse logo wordmark (2026-11-01)
+
+`src/main/webapp/dataverse_header.xhtml` uses the literal product name Dataverse
+next to the existing orange icon in the default navbar logo. The generic
+`bundle.dataverse` remains localized as Колекція in Ukrainian for collection
+labels and tooltips. The custom-logo rendering conditions, homepage link, icon,
+locale selector, authentication, permissions and native JSF bindings are retained.
+
+Upgrade review: carry this one-line presentation change unless upstream offers
+a separate product-brand label. Merge the same line into the remote active
+`dataverse_header.xhtml` and reload through the normal application workflow;
+no language bundle or database setting change is needed. See the logo exception
+in [ukrainian-collection-terminology.md](ukrainian-collection-terminology.md).
+
+Verified locally: required fast redeploy succeeded; browser checks show Dataverse
+in Ukrainian and through native Ukrainian -> English -> Ukrainian switching.
+XHTML parsing and the exact one-line source diff pass; the Ukrainian collection
+key remains Колекція. No remote deployment is included.
