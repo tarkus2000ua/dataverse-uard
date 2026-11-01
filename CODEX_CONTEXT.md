@@ -1,5 +1,54 @@
 # CODEX_CONTEXT.md - Current Project State
 
+## Current handoff (2026-11-01)
+
+This section and README_HANDOFF.md supersede the dated checkpoints below.
+Current branch: `codex/login-local-guide`; origin is
+`git@github.com:tarkus2000ua/dataverse-uard.git`. The user requested committing
+necessary changes and publishing this branch. Check actual Git/remote status
+for final hashes and push success; no application deployment is implied.
+
+- Dataverse 6.12 remains on the migrated WSL2/Docker Desktop environment, with
+  PostgreSQL 17 and Solr 9.8. Existing volumes/databases must be preserved.
+- The remote-supplied Ukrainian baseline is maintained in
+  `customization/lang/Bundle_ua.properties`, matching the local native `ua` code.
+  The compose override enables its mounted directory with JAVA_TOOL_OPTIONS.
+- 275 reviewed Ukrainian entries use колекція/підколекція and infinitive action
+  labels. My Data tooltips use the native collection translation.
+- The navbar logo retains the product name Dataverse in every locale. Its
+  one-line header exception leaves collection terminology localized.
+- `/guide/` and complete `.html` chapter pages are built from
+  `customization/guide/` into `src/main/webapp/guide/`. Deploy generated pages,
+  not the template containing `{{guideContent}}`. Four translated diagrams,
+  section anchors, refresh/Back/Forward and no-JS navigation are included.
+- `:NavbarGuidesUrl=http://localhost:8080/guide/` uses the native new-tab header
+  link. The target uard2 setting is `https://uard2.dntb.gov.ua/guide/`; keep `/`.
+- The concise ORCID login text now links to `/guide/` in a new tab. Only
+  `org.login.orcid.blurb` changes in packaged English and external English/UA
+  bundles; `{3}`, support, OAuth button and login XHTML remain intact.
+- FRD helpers detect stale application mounts, propagate errors, clean temporary
+  password files and bound startup readiness. The full startup script refreshes
+  only the application container; use quick FRD on the existing running stack.
+- Source, branding, routing and earlier email/ORCID changes remain on this branch's
+  history. See upstream-modifications.md and feature guides for upgrade diffs.
+- Preserve the staged unused custom-header.html, untracked design assets and
+  dataverse.zip outside this publication. Never reset unrelated work.
+
+Current production/test hosts are `uard.dntb.gov.ua` and `uard2.dntb.gov.ua`.
+The user handles remote deployment. Guide source placeholders were observed in
+an uard2 screenshot; generated replacement files were supplied, but remote
+success has not been independently confirmed. Local ORCID is unconfigured, so
+OAuth-only layout/callback verification remains on the existing test server.
+
+References: [handoff](README_HANDOFF.md), [collection terminology](docs/ukrainian-collection-terminology.md),
+[guide](docs/local-user-guide.md), [ORCID/login deployment](docs/orcid-login.md),
+[FRD recovery](docs/frd-troubleshooting.md), [remote deployment](docs/remote-deployment.md).
+
+## Historical checkpoints
+
+The older sections below record previous revisions. Their branch names,
+publication status and statements about unchanged headers/bundles are historical.
+
 ## Current handoff and PC transfer (2026-10-12)
 
 Current implementation commit is dabff35642 on codex/homepage-hero, adding all

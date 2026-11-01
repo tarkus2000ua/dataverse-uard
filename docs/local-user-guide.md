@@ -140,3 +140,38 @@ errors occurred; desktop/mobile screenshots were inspected.
 The seven editorial source fragments and supplied JPG bytes are unchanged by
 the URL fix. Original staging and unrelated dirty/untracked work are preserved.
 No uard2 changes or push are included.
+
+## uard2 deployment and template diagnosis (2026-11-01)
+
+The current test hostname is `uard2.dntb.gov.ua`. The user performs deployment;
+no remote application change was made by the agent. A screenshot of /guide/
+showed literal `{{guideContent}}`, indicating an unprocessed source template
+was being served. Successful remote correction is not independently confirmed.
+
+Upload the contents of **src/main/webapp/guide/** into the active application's
+**guide/** directory: eight complete HTML pages and four files under pics/.
+Do not deploy customization/guide/index.html or the source chapter fragments.
+The prepared guide ZIP's application/guide/ contains the same generated runtime
+files. Preserve/merge the PrettyFaces mapping and keep the generated files in
+the maintained deployment artifact. If an existing reverse proxy serves /guide/
+from another static directory, confirm and update that active directory instead.
+
+Identify an enabled Payara deployment with `asadmin list-applications --long`
+and `asadmin get 'applications.application.*.location'`. Its root contains
+dataverse_template.xhtml and WEB-INF; a matching inactive copy is insufficient.
+The root directory is deployment-specific, not the local development path.
+
+Run on uard2 with its established admin API access and actual local HTTP port
+(8080 below):
+
+```bash
+curl --fail-with-body -X PUT \
+  --data-binary 'https://uard2.dntb.gov.ua/guide/' \
+  'http://localhost:8080/api/admin/settings/:NavbarGuidesUrl'
+```
+
+The login explanation's separate `/guide/` link is in org.login.orcid.blurb.
+Its current English/Ukrainian entries are documented in orcid-login.md; earlier
+ORCID packages predate that restored link. Guide-only deployment does not need
+header or language file replacement. Merge the logo wordmark separately if
+needed, preserving all server header customizations.

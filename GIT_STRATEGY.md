@@ -104,3 +104,19 @@ Reason:
 - institutional navigation redesign
 - original JSF auth/permission behavior preserved
 ```
+
+## Current publication and exclusions (2026-11-01)
+
+Actual origin: `git@github.com:tarkus2000ua/dataverse-uard.git`; upstream remains
+`https://github.com/IQSS/dataverse.git`. Use `codex/` for new feature branch names.
+Current branch `codex/login-local-guide` contains the preceding ORCID, Ukrainian
+collection terminology, guide and logo commits. The user authorized publishing
+the necessary current changes to this branch; this does not authorize remote
+application deployment or unrelated future pushes.
+
+Use explicit paths or an isolated index to exclude the staged dummy
+`customization/branding/custom-header.html`. Keep design inputs under
+`customization/homepage/assets/` and `dataverse.zip` outside this publication.
+The installed Ukrainian bundle and FRD recovery helpers/tests are maintained
+source, unlike database/volume backups and generated local archives. Never
+force-push shared history to reconcile unexpected remote changes.

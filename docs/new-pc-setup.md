@@ -1,6 +1,6 @@
 # Move UaRD development to another Windows PC
 
-Updated 2026-10-12. This transfers the local Dataverse 6.12 development setup,
+Updated 2026-11-01. This transfers the local Dataverse 6.12 development setup,
 not the production server. Use Git for source files and a private archive for
 local data. Keep the new checkout in Ubuntu's Linux filesystem.
 
@@ -8,7 +8,7 @@ local data. Keep the new checkout in Ubuntu's Linux filesystem.
 
 | Item | Transfer method | Why |
 | --- | --- | --- |
-| Repository source, branding, resources, articles, language files, compose configuration, dev scripts and maintained docs | Clone `codex/homepage-hero` from `tarkus2000ua/dataverse-uard` | These are versioned |
+| Repository source, branding, resources, articles, language files, compose configuration, dev scripts and maintained docs | Clone `codex/login-local-guide` from `tarkus2000ua/dataverse-uard` | These are versioned |
 | Entire `docker-dev-volumes/` directory | Copy a cold Linux tar archive | Local database, settings, accounts, collections, search index, logos/application data and secrets stored in bind mounts |
 | Dataset storage outside those mounts, if configured | Separate private backup | A container's writable filesystem is not included in the bind-mount archive |
 | Cached Docker images | Optional private `docker image save` archive; recommended for this move | Preserve working `unstable`/`latest` tags and avoid downloading changed images |
@@ -151,7 +151,7 @@ docker version
 docker compose version
 mkdir -p ~/projects
 cd ~/projects
-git clone --branch codex/homepage-hero \
+git clone --branch codex/login-local-guide \
   git@github.com:tarkus2000ua/dataverse-uard.git dataverse
 cd dataverse
 ```
@@ -159,6 +159,10 @@ cd dataverse
 SSH cloning requires GitHub SSH access on the new PC. HTTPS is an alternative:
 `https://github.com/tarkus2000ua/dataverse-uard.git`.
 The tracked `docker-compose.override.yml` already mounts branding/language files.
+Since the 2026-10-22 local translation install, it also sets `JAVA_TOOL_OPTIONS`
+with `-Ddataverse.lang.directory=/var/www/dataverse/lang`; keep this option when
+merging local overrides. The remote Ukrainian bundle is installed under the local
+`Bundle_ua.properties` filename to match the unchanged native `ua` locale.
 Do not clone into `/mnt/c/` or create a Windows checkout to sync back to WSL.
 
 ## 3. Restore data before starting the new stack
@@ -227,8 +231,9 @@ curl --fail-with-body http://localhost:8080/api/dataverses/:root/featured
 
 Open http://localhost:8080 and verify your old account login, featured institution
 logos, collection/dataset inventory, a dataset download, UA/EN switching, article
-links and local support dialog. Native top-menu About should retain the restored
-`:NavbarAboutUrl` setting. The existing `localhost:8080` settings still apply when
+links, `/guide/` chapter links and the local support dialog. Native top-menu About
+and User Guide should retain the restored `:NavbarAboutUrl` and
+`:NavbarGuidesUrl` settings. The existing `localhost:8080` settings still apply when
 you use that same local port on the new PC.
 
 The current taxonomy-card links target the remote alias `/dataverse/uard` and its
@@ -238,3 +243,17 @@ local data restoration failed. See [homepage navigation](homepage-navigation.md)
 For source/resource changes use `./scripts/dev/dev-frd.sh`; mounted branding CSS
 and generated HTML refresh normally. Read [README_HANDOFF.md](../README_HANDOFF.md)
 and [DEV_SETUP.md](../DEV_SETUP.md) before the next change.
+
+## After the migrated-environment fixes (2026-11-01)
+
+The current branch also versions the installed Ukrainian baseline, the guide
+builder/generated pages, the unchanged Dataverse logo wordmark, and the restored
+ORCID documentation link. Guide menu settings move with the database; if absent
+on a new local setup, configure the native hook for `http://localhost:8080/guide/`
+after deploying the generated files. Preserve the trailing slash.
+
+Read [FRD troubleshooting](frd-troubleshooting.md) for stale WSL bind mounts.
+The full startup script refreshes only the application container after extracting
+the WAR; quick FRD checks the bind mount and propagates deployment errors.
+Do not reconnect/recreate a database automatically because an application mount
+is stale. Existing runtime data and cached images still move privately, not in Git.

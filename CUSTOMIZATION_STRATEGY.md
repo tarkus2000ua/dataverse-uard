@@ -102,8 +102,14 @@ under application resources. See `docs/resource-assets.md`. React
 remains an option for future complexity, not a dependency of the hero.
 Advanced search and results use native Dataverse pages.
 
-The only current intentional upstream source change is the JSF default-locale
-configuration, requested by the user. Navbar restructuring is still planned.
+Current upstream changes include the native locale default, article wrappers,
+publication-email locale propagation, concise ORCID presentation, My Data tooltip
+localization, the static guide route/resources and the logo product-name exception.
+Their exact upgrade diffs are maintained in docs/upstream-modifications.md.
+Native header behavior stays JSF-backed; the logo exception changes only its
+wordmark. UI wording stays in native bundles, including the restored login link
+to /guide/. The guide uses generated static pages rather than a new SPA runtime.
+
 A future shared design system must cover internal collection/search/dataset
 templates as well as the homepage. Organizations, knowledge areas and clusters
 have separate content models and must not be collapsed into one generic carousel.

@@ -265,3 +265,70 @@ Detailed guides: docs/custom-about.md, custom-system.md, ecosystem-pages.md,
 operator-pages.md, policies-page.md and custom-footer.md. Clean URL aliases were
 only discussed and are not configured. Native Ukrainian UI coverage remains
 incomplete despite the translated custom articles/homepage/footer.
+
+## Local server translation installed 2026-10-22
+
+The user-supplied remote `Bundle_uk.properties` was installed byte-for-byte as
+`customization/lang/Bundle_ua.properties`, matching the existing local `ua` locale
+in `:Languages` and `faces-config.xml`. No translation strings, native locale codes,
+or language settings were changed. The English base bundle is unchanged.
+SHA-256 of the installed Ukrainian file:
+`5dac5203bf725222bd38cffaaee340f2c206ce5f851ba1c376077b3b3bcb35d1`.
+
+The running local Payara had no effective `dataverse.lang.directory` option despite
+the directory being mounted. `docker-compose.override.yml` now supplies
+`JAVA_TOOL_OPTIONS=-Ddataverse.lang.directory=/var/www/dataverse/lang`, so recreated
+application containers load the mounted native bundles. At installation,
+`JAVA_TOOL_OPTIONS` was previously absent; preserve/merge any future JVM options.
+The environment `LANG`/`LC_ALL` remains unchanged.
+
+Only `dev_dataverse` was recreated, using its existing cached image and
+`SKIP_DEPLOY=1`. Existing deployment DDL generation was `none`; no database setup
+or seeding was run. PostgreSQL, Solr and MailDev were not recreated. The application
+was redeployed through `./scripts/dev/dev-frd.sh`. A fresh page uses native `ua`
+and translated login/support labels. The uploaded Contact Support apostrophe issue
+is intentionally preserved for the user's unchanged-translation test.
+
+The previous Ukrainian bundle and compose override were backed up outside the
+repository in this chat's `work/local-translation-backup/9a3f18e40184ee8c/` folder.
+Remote production files and settings were not changed.
+
+## Current migrated environment and UI workflow (2026-11-01)
+
+Current feature branch: `codex/login-local-guide`; see README_HANDOFF.md for the
+latest source/deployment map. The October 22 bundle hash above is the historical
+installation baseline; later ORCID and collection terminology edits changed it.
+The current remote-supplied Ukrainian baseline is versioned, but is not a claim
+of complete Dataverse 6.12 translation coverage.
+
+Existing services remain Dataverse 6.12, PostgreSQL 17 and Solr 9.8. Source/UI
+updates use `./scripts/dev/dev-frd.sh`, which calls the shared deployment helper.
+The helper checks host/container WEB-INF/web.xml, propagates deployment failure
+and removes its temporary local-development password file. Full startup now
+refreshes only the application mount and bounds readiness checks; do not use
+full startup as a routine check against the running migrated environment.
+See [FRD troubleshooting](docs/frd-troubleshooting.md). Do not recreate volumes
+or databases without explicit approval.
+
+```bash
+python3 scripts/customization/build-guide.py
+python3 scripts/customization/build-guide.py --check
+./scripts/dev/dev-frd.sh
+# Isolated checks; no container/database operations:
+python3 scripts/dev/tests/test_frd.py
+python3 -m unittest discover -s scripts/customization/tests -v
+```
+
+Guide templates live in `customization/guide/`; public generated pages/images
+live in `src/main/webapp/guide/`. The `/guide/` route uses PrettyFaces and the
+native `:NavbarGuidesUrl=http://localhost:8080/guide/` setting. Keep its slash.
+Deploy generated pages to avoid visible template placeholders.
+
+The default navbar logo stays Dataverse while collection labels use Колекція.
+The concise ORCID login explanation links to `/guide/` via the single
+`org.login.orcid.blurb` key in both external bundles and packaged English.
+External bundle edits need application reload to clear caches. Local ORCID is
+unconfigured; verify its final screen/callback on the existing enabled server.
+HeaderCustomizationFile and LogoCustomizationFile are absent locally; preserve
+the staged dummy header without activating it. Existing STORAGE_DIR/version
+Compose warnings remain outside these UI changes.

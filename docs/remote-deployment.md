@@ -4,8 +4,9 @@ This guide deploys the current homepage, header styling, collection strips and
 custom footer onto an **existing Dataverse 6.12 installation**. It does not install
 a new Dataverse instance or migrate the local development database.
 
-Baseline: commit `1c5b70e053` on `codex/homepage-hero` (2026-10-04).
-Build from that revision or an explicitly reviewed later revision. Keep the WAR,
+Historical baseline: commit `1c5b70e053` on `codex/homepage-hero` (2026-10-04).
+For current work use the reviewed `codex/login-local-guide` revision and the
+2026-11-01 incremental section below. Keep the WAR,
 branding fragments and asset versions from the same build together.
 
 ## Target server and working assumptions
@@ -602,3 +603,76 @@ identifies its content language with uk. No admin setting or resource JS/native
 language-bundle change is required. See [policies-page.md](policies-page.md).
 The refreshed combined footer package includes all seven current Ukrainian footer
 articles and the matching CSS/HTML. Remote deployment was not performed.
+
+## Current uard2 guide, logo and login updates (2026-11-01)
+
+This section supersedes historical statements that the navbar source is unchanged
+or that local bundles are still the original community baseline. Target test
+host: **https://uard2.dntb.gov.ua/**. The agent has not deployed to this host.
+Keep its actual Payara application path, local admin port, language filename,
+provider configuration and existing data. Publishing Git does not deploy it.
+
+| Update | Files/settings to merge or install | Reload |
+| --- | --- | --- |
+| Ukrainian terminology | Reviewed bundle entries and the three My Data presentation files in ukrainian-collection-terminology.md | Existing application reload; browser refresh |
+| User Guide | Generated src/main/webapp/guide/ (eight HTML pages and pics/1.jpg through 4.jpg), plus /guide/ PrettyFaces mapping | Normal application deployment/reload for routing |
+| Native guide menu | :NavbarGuidesUrl=https://uard2.dntb.gov.ua/guide/ | Setting update; retain trailing slash |
+| Logo product name | One-line default navbar-brand change in dataverse_header.xhtml: replace its bundle.dataverse expression with literal Dataverse | Normal view/application reload |
+| Restored ORCID guide link | org.login.orcid.blurb in active external English and Ukrainian bundles | Clear bundle caches through normal application reload |
+
+Find the active application on the server using its normal admin connection:
+
+```bash
+asadmin list-applications --long
+asadmin get 'applications.application.*.location'
+```
+
+Use the enabled deployment's location, whose root contains dataverse_template.xhtml
+and WEB-INF. Do not mistake the checkout, branding directory or an inactive copy
+for the active application. If location contains a Payara variable, resolve it
+against the domain being administered.
+
+For the guide, deploy **generated** src/main/webapp/guide/, not the editable
+customization/guide/. Visible {{guideContent}} means a source template is served.
+Merge this mapping inside the existing WEB-INF/pretty-config.xml root element,
+preserving every other mapping and avoiding duplicate IDs/patterns:
+
+```xml
+<url-mapping id="uard-user-guide">
+    <pattern value="/guide/" />
+    <view-id value="/guide/index.html" />
+</url-mapping>
+```
+
+If Nginx/Apache already serves /guide/ from another static directory, confirm that
+active route and place the complete generated pages there instead. Keep files
+in the maintained remote artifact so the next deployment retains them.
+
+Set the native menu on uard2 with the existing admin API procedure and its actual
+local port (8080 in this example):
+
+```bash
+curl --fail-with-body -X PUT \
+  --data-binary 'https://uard2.dntb.gov.ua/guide/' \
+  'http://localhost:8080/api/admin/settings/:NavbarGuidesUrl'
+```
+
+The restored login link is bundle-only and uses root-relative /guide/, `_blank`
+and noopener. No additional login XHTML edit is needed. Exact English/Ukrainian
+entries are in [ORCID login](orcid-login.md#local-documentation-link-restored-2026-11-01).
+Merge that single key into current server bundles, retaining `{3}` for support.
+The user may choose full-file replacement with current customization/lang files
+after backing up and preserving remote-only edits; upload Ukrainian under the
+server's existing Bundle_ua.properties or Bundle_uk.properties name. Earlier
+ORCID archives predate this link update. Do not alter locale/JVM/provider settings.
+
+Verify /guide/, direct chapters and section hashes, refresh/Back/Forward, the
+four translated images and the native menu's new-tab behavior. Check the logo
+in both locales and ORCID login's guide/support links on the existing enabled
+server. Local formatting checks pass, but local ORCID is unconfigured and
+end-to-end ORCID-only layout/callback remains a test-server check.
+
+This update requires no database import/schema change, metadata migration, Solr
+reset or Docker volume recreation. Dev-start/FRD helpers belong to the local
+workspace and are not production deployment commands. Back up changed files and
+prior setting values for rollback; do not restore a database for a text/link fix.

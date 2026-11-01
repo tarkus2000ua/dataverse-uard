@@ -167,3 +167,31 @@ The Policies overview also uses a Ukrainian editorial fragment in either UI loca
 Its English parenthetical policy names are part of the supplied Ukrainian article,
 not a complete English translation. Follow the shared wrapper pattern when full
 English copy is available; see [policies-page.md](docs/policies-page.md).
+
+## Current Ukrainian terminology, product name and guide (2026-11-01)
+
+The active local Ukrainian baseline was supplied from the remote installation
+on October 22 and is maintained under `customization/lang/Bundle_ua.properties`.
+Its local native locale remains `ua`; use the target server's existing `ua`/`uk`
+filename and settings remotely. The compose override supplies the mounted
+language-directory option. Preserve additional JVM options when merging it.
+
+The reviewed 275-entry manifest uses **колекція**, **підколекція** and
+**батьківська колекція**. Actions retain verbs such as **Видалити колекцію**,
+**Опублікувати колекцію** and **Пов’язати колекцію**. The navbar logo is a product
+name exception: **Dataverse** in every locale, while `dataverse=Колекція` stays
+in the Ukrainian bundle for content labels/tooltips. Do not change the generic
+key to repair the logo. See [terminology and deployment](docs/ukrainian-collection-terminology.md).
+
+The static editorial guide is Ukrainian in both UI locales and explicitly
+retains its supplied Dataverse 6.6 attribution. It does not create an independent
+language preference. Its builder generates complete chapter pages and preserves
+section IDs and translated diagrams; see [guide](docs/local-user-guide.md).
+
+`org.login.orcid.blurb` uses a root-relative `/guide/` link, `_blank` and
+`rel="noopener"`. English says learn more; Ukrainian says дізнайтеся більше.
+Retain the native `{3}` support placeholder and MessageFormat apostrophe rules.
+The key exists in packaged English and both active external bundles. Merge the
+one key remotely, or replace complete bundles only after backing up and
+preserving remote-only entries. Reload the application to clear bundle caches.
+Exact entries: [ORCID login guide](docs/orcid-login.md#local-documentation-link-restored-2026-11-01).

@@ -239,3 +239,31 @@ Verified locally: required fast redeploy succeeded; browser checks show Datavers
 in Ukrainian and through native Ukrainian -> English -> Ukrainian switching.
 XHTML parsing and the exact one-line source diff pass; the Ukrainian collection
 key remains Колекція. No remote deployment is included.
+
+## ORCID login link to the local User Guide (2026-11-01)
+
+The `org.login.orcid.blurb` entry in the packaged English fallback and the
+external English/Ukrainian bundles restores a learn-more link to `/guide/`.
+The root-relative destination uses the current installation, including uard2,
+and opens a new tab with noopener. The native support parameter `{3}` and login
+view bindings remain unchanged. No Java or XHTML change is required.
+
+Upgrade/deployment: retain the updated entry in all active bundles and reload
+through the existing Payara process to clear translation caches. Merge only the
+one key remotely; do not replace maintained server translations. See the latest
+section of [orcid-login.md](orcid-login.md) for exact entries and acceptance.
+
+## Migrated environment FRD recovery helpers (2026-11-01 publication)
+
+Previously local fixes in scripts/dev/dev-start-frd.sh and dev-frd.sh are now
+maintained with the shared dev-deploy-frd.sh and isolated regression tests.
+After full build/start, only the application container is refreshed to see the
+new exploded directory. Readiness is bounded. Quick FRD keeps containers running;
+both wrappers verify bind mounts and propagate deployment failures through the
+shared helper, which cleans its temporary development password file.
+
+These are development workflow changes, not production deployment scripts or
+database recovery commands. Upgrades should preserve failure propagation and
+recheck how upstream handles exploded WAR mounts. The compose override enables
+the mounted native language directory through JAVA_TOOL_OPTIONS. See
+[FRD troubleshooting](frd-troubleshooting.md) and [local setup](../DEV_SETUP.md).
