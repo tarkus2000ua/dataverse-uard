@@ -3,6 +3,9 @@ services:
     mem_limit: 8g
     mem_reservation: 4g
 
+    environment:
+      JAVA_TOOL_OPTIONS: "-Ddataverse.lang.directory=/var/www/dataverse/lang"
+
     volumes:
       - ./customization/branding:/var/www/dataverse/branding
       - ./customization/lang:/var/www/dataverse/lang

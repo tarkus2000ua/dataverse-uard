@@ -32,12 +32,7 @@ if [ -d "src/main/webapp" ]; then
 fi
 
 echo "Redeploying to Payara..."
-docker exec dev_dataverse /bin/bash -lc '
-    printf "AS_ADMIN_PASSWORD=%s\n" admin > /tmp/pwdfile;
-    asadmin --user admin --passwordfile /tmp/pwdfile \
-        deploy --force --upload=false /opt/payara/deployments/dataverse 2>&1 \
-        | grep -v "PER01001\|PER01003\|Command deploy completed with warnings";
-    rm /tmp/pwdfile'
+./scripts/dev/dev-deploy-frd.sh
 
 echo ""
 echo "✓ Fast redeploy complete (~12s)"

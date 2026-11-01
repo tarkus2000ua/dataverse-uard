@@ -43,24 +43,33 @@ fi
 echo "Starting dev stack (SKIP_DEPLOY=1)..."
 export SKIP_DEPLOY=1
 # Use override file if it exists (for local customizations like memory limits)
+compose=(docker compose -f docker-compose-dev.yml)
 if [ -f docker-compose.override.yml ]; then
-    docker compose -f docker-compose-dev.yml -f docker-compose.override.yml up -d
-else
-    docker compose -f docker-compose-dev.yml up -d
+    compose+=(-f docker-compose.override.yml)
 fi
+"${compose[@]}" up -d
+
+# Maven clean replaces target/dataverse. An existing bind mount can still point
+# at the removed directory, so recreate only the application container afterward.
+echo "Refreshing the application bind mounts..."
+"${compose[@]}" up -d --no-deps --force-recreate dev_dataverse
 
 echo "Waiting for Payara to be ready..."
-until curl -sf http://localhost:8080/ >/dev/null 2>&1; do
+payara_ready=false
+for ((attempt = 0; attempt < 90; attempt++)); do
+    if curl -sf --max-time 5 http://localhost:8080/ >/dev/null 2>&1; then
+        payara_ready=true
+        break
+    fi
     sleep 2
 done
+if [ "$payara_ready" != true ]; then
+    echo "Error: Payara did not become ready. Inspect docker logs dev_dataverse." >&2
+    exit 1
+fi
 
 echo "Deploying exploded WAR..."
-docker exec dev_dataverse /bin/bash -lc '
-    printf "AS_ADMIN_PASSWORD=%s\n" admin > /tmp/pwdfile;
-    asadmin --user admin --passwordfile /tmp/pwdfile \
-        deploy --upload=false /opt/payara/deployments/dataverse 2>&1 \
-        | grep -v "PER01001\|PER01003\|Command deploy completed with warnings";
-    rm /tmp/pwdfile'
+./scripts/dev/dev-deploy-frd.sh
 
 echo ""
 echo "✓ Fast redeploy environment ready!"
