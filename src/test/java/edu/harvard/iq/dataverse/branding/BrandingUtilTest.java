@@ -4,6 +4,10 @@ import edu.harvard.iq.dataverse.DataverseServiceBean;
 import edu.harvard.iq.dataverse.settings.SettingsServiceBean;
 import edu.harvard.iq.dataverse.util.BundleUtil;
 import java.io.UnsupportedEncodingException;
+import java.io.StringReader;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
+
 import java.util.Arrays;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -110,6 +114,45 @@ public class BrandingUtilTest {
         Mockito.when(dataverseSvc.getRootDataverseName()).thenReturn(mockedRootName);
         // when & then
         assertEquals(expected, BrandingUtil.getSupportTeamName(email));
+    }
+
+    @Test
+    public void testUkrainianGeneratedSupportNameAndHeader() throws Exception {
+        ResourceBundle bundle = ukrainianSupportBundle();
+        assertEquals("Підтримка " + DEFAULT_NAME, BrandingUtil.getSupportTeamName(null, bundle));
+        assertEquals("Зв’язатися з підтримкою " + DEFAULT_NAME, BrandingUtil.getContactHeader(null, bundle));
+        InternetAddress address = new InternetAddress("support@example.org");
+        assertEquals("Зв’язатися з підтримкою " + DEFAULT_NAME, BrandingUtil.getContactHeader(address, bundle));
+    }
+
+    @Test
+    public void testUkrainianConfiguredSupportNameTakesPrecedence() throws Exception {
+        ResourceBundle bundle = ukrainianSupportBundle();
+        InternetAddress address = new InternetAddress("support@example.org", "Команда UaRD");
+        assertEquals("Команда UaRD", BrandingUtil.getSupportTeamName(address, bundle));
+        assertEquals("Зв’язатися з Команда UaRD", BrandingUtil.getContactHeader(address, bundle));
+        address.setPersonal("");
+        assertEquals("", BrandingUtil.getSupportTeamName(address, bundle));
+        assertEquals("Зв’язатися з ", BrandingUtil.getContactHeader(address, bundle));
+    }
+
+    @Test
+    public void testUkrainianSupportWithoutRootName() throws Exception {
+        ResourceBundle bundle = ukrainianSupportBundle();
+        for (String rootName : new String[] {null, ""}) {
+            Mockito.when(dataverseSvc.getRootDataverseName()).thenReturn(rootName);
+            assertEquals("Підтримка", BrandingUtil.getSupportTeamName(null, bundle));
+            assertEquals("Зв’язатися з Підтримка", BrandingUtil.getContactHeader(null, bundle));
+        }
+    }
+
+    private static ResourceBundle ukrainianSupportBundle() throws Exception {
+        return new PropertyResourceBundle(new StringReader(
+                "contact.header=Зв’язатися з {0}\n"
+                + "contact.support=Підтримка\n"
+                + "dataverse=Колекція\n"
+                + "org.support.team.root=Підтримка {0}\n"
+                + "org.contact.header.root=Зв’язатися з підтримкою {0}\n"));
     }
 
     static Stream<Arguments> supportEmailAddress() throws UnsupportedEncodingException, AddressException {

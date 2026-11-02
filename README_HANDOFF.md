@@ -236,6 +236,28 @@ Do not upload dev startup scripts, local credentials, design archives or a stale
 local target WAR. No database import, schema/metadata update, Solr reset or volume
 recreation is part of these presentation updates. See remote-deployment.md.
 
+## Support dialog checkpoint (2026-11-02)
+
+The native support/contact dialog now has scoped UaRD styling in the external
+stylesheet: pale-blue title bar, navy text, blue primary action, visible focus,
+mobile labels and scrollable content. contactFormFragment.xhtml remains unchanged.
+The Ukrainian contact.header apostrophe is corrected. BrandingUtil supports
+optional org.support.team.root and org.contact.header.root entries so generated
+names read Підтримка UaRD and Зв’язатися з підтримкою UaRD, using the actual root
+collection name. Explicit support-email personal names and other locales retain
+their existing behavior. No mail/authentication/database setting was changed.
+
+BrandingUtilTest passed (22 tests), local FRD succeeded, and native UA -> EN -> UA
+checks confirmed the names. Desktop/375px/320px dialog layouts, focus and cancel
+were checked without sending mail. See docs/support-form.md and the latest
+upstream-modifications.md section for deployment scope.
+
+Cloudflare Turnstile Managed mode is the planned next task; no integration,
+widget keys or provider configuration is present yet. The existing arithmetic
+check remains active. Local tests can use Cloudflare's official dummy keys;
+real-key verification belongs on uard2 before production. Do not start CAPTCHA
+implementation from this checkpoint without the user's next request.
+
 ## Verification and open work
 
 Completed local checks include FRD deployment, native UA -> EN -> UA logo checks,

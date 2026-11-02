@@ -44,6 +44,9 @@ public class BrandingUtil {
         }
         String rootDataverseName = dataverseService.getRootDataverseName();
         if (rootDataverseName != null && !rootDataverseName.isEmpty()) {
+            if (bundle.containsKey("org.support.team.root")) {
+                return BundleUtil.getStringFromBundle("org.support.team.root", Arrays.asList(rootDataverseName), bundle);
+            }
             return rootDataverseName + " " + BundleUtil.getStringFromBundle("contact.support", null, bundle);
         }
         String saneDefault = BundleUtil.getStringFromBundle("dataverse", null, bundle);
@@ -58,7 +61,20 @@ public class BrandingUtil {
     }
 
     public static String getContactHeader(InternetAddress systemAddress) {
-        return BundleUtil.getStringFromBundle("contact.header", Arrays.asList(getSupportTeamName(systemAddress)));
+        return getContactHeader(systemAddress, BundleUtil.getResourceBundle("Bundle"));
+    }
+
+    public static String getContactHeader(InternetAddress systemAddress, ResourceBundle bundle) {
+        // A generated team name may need different word order/case in a sentence.
+        // Explicitly configured personal names retain the standard contact header.
+        if ((systemAddress == null || systemAddress.getPersonal() == null)
+                && bundle.containsKey("org.contact.header.root")) {
+            String rootDataverseName = dataverseService.getRootDataverseName();
+            if (rootDataverseName != null && !rootDataverseName.isEmpty()) {
+                return BundleUtil.getStringFromBundle("org.contact.header.root", Arrays.asList(rootDataverseName), bundle);
+            }
+        }
+        return BundleUtil.getStringFromBundle("contact.header", Arrays.asList(getSupportTeamName(systemAddress, bundle)), bundle);
     }
 
     public static void injectServices(DataverseServiceBean dataverseSvc, SettingsServiceBean settingsSvc) {

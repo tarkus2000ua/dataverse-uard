@@ -267,3 +267,18 @@ database recovery commands. Upgrades should preserve failure propagation and
 recheck how upstream handles exploded WAR mounts. The compose override enables
 the mounted native language directory through JAVA_TOOL_OPTIONS. See
 [FRD troubleshooting](frd-troubleshooting.md) and [local setup](../DEV_SETUP.md).
+
+## Ukrainian generated support name and title (2026-11-02)
+
+src/main/java/edu/harvard/iq/dataverse/branding/BrandingUtil.java supports optional
+org.support.team.root and org.contact.header.root bundle entries for generated
+support names. Ukrainian uses Підтримка {0} as a label and Зв’язатися з підтримкою
+{0} as the contact-dialog title, with the native root collection name as argument.
+Explicit support-email personal names retain precedence; locales without the new
+keys retain the old behavior. A bundle-accepting contact-header overload follows
+the existing support-name pattern and allows isolated localized regression tests.
+
+Keep the helper and Ukrainian entries together during upgrades/deployment.
+No native contact-form XHTML, mail transport/recipients, permissions or locale
+selection is changed. The generated support name is reused in native links/email
+branding. See support-form.md. Remote deployment was not performed.
