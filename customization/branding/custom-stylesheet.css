@@ -521,16 +521,16 @@ footer:has(> #uard-footer) #dvfooter a:focus-visible { outline: 2px solid #8bd3f
     outline-offset: 2px;
     box-shadow: none;
 }
-#contactDialog .form-group:has(input[id$="messageSum"]) {
+#contactDialog .uard-contact-challenge {
     margin: 20px 0;
     padding: 16px;
     border: 1px solid #dcebf5;
     border-radius: 8px;
     background: #f4f9fd;
 }
-#contactDialog .form-group:has(input[id$="messageSum"]) > div { float: none; width: 100%; margin-left: 0; padding: 0; }
-#contactDialog .form-group:has(input[id$="messageSum"]) p { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
-#contactDialog .form-group:has(input[id$="messageSum"]) .highlightBold { font-weight: 400; }
+#contactDialog .uard-contact-challenge > div { float: none; width: 100%; margin-left: 0; padding: 0; }
+#contactDialog .uard-contact-challenge p { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
+#contactDialog .uard-contact-challenge .highlightBold { font-weight: 400; }
 #contactDialog label[for$="messageSum"] { margin-right: 8px; }
 #contactDialog input[id$="messageSum"] { width: 84px; }
 #contactDialog .text-danger { color: #a32d32; }
@@ -579,3 +579,13 @@ footer:has(> #uard-footer) #dvfooter a:focus-visible { outline: 2px solid #8bd3f
     #contactDialog .form-control-static { min-height: 0; padding-top: 0; padding-bottom: 0; }
     #contactDialog .button-block .btn { flex: 1 1 180px; }
 }
+
+
+/* Turnstile shares the native contact challenge panel and retry/status styling. */
+#contactDialog [data-contact-turnstile] { width: 100%; min-height: 65px; }
+#contactDialog .uard-contact-challenge:has([data-contact-turnstile]) { margin: 16px 0; padding: 12px; }
+#contactDialog .uard-contact-challenge .uard-contact-verification-status { margin: 8px 0 0; color: #355775; }
+#contactDialog .uard-contact-verification-status.sr-only { margin: 0; }
+#contactDialog .uard-contact-verification-retry[hidden] { display: none !important; }
+#contactDialog .uard-contact-verification-status:empty { display: none; }
+#contactDialog .uard-contact-verification-retry { min-height: 44px; padding: 8px 0; white-space: normal; }

@@ -44,6 +44,15 @@ public enum JvmSettings {
     FQDN(PREFIX, "fqdn"),
     SITE_URL(PREFIX, "siteUrl"),
     
+    // Contact dialog CAPTCHA. Arithmetic remains the default.
+    SCOPE_CONTACT(PREFIX, "contact"),
+    CONTACT_CAPTCHA_PROVIDER(SCOPE_CONTACT, "captcha-provider"),
+    SCOPE_CONTACT_TURNSTILE(SCOPE_CONTACT, "turnstile"),
+    CONTACT_TURNSTILE_SITE_KEY(SCOPE_CONTACT_TURNSTILE, "site-key"),
+    CONTACT_TURNSTILE_SECRET_KEY(SCOPE_CONTACT_TURNSTILE, "secret-key"),
+    CONTACT_TURNSTILE_HOSTNAME(SCOPE_CONTACT_TURNSTILE, "hostname"),
+    CONTACT_TURNSTILE_TEST_MODE(SCOPE_CONTACT_TURNSTILE, "test-mode"),
+
     // FILES SETTINGS
     SCOPE_FILES(PREFIX, "files"),
     FILES_DIRECTORY(SCOPE_FILES, "directory"),

@@ -2,6 +2,8 @@ package edu.harvard.iq.dataverse;
 
 import edu.harvard.iq.dataverse.branding.BrandingUtil;
 import edu.harvard.iq.dataverse.feedback.Feedback;
+import edu.harvard.iq.dataverse.feedback.ContactCaptchaService;
+import edu.harvard.iq.dataverse.feedback.TurnstileVerifier;
 import edu.harvard.iq.dataverse.feedback.FeedbackUtil;
 import edu.harvard.iq.dataverse.settings.JvmSettings;
 import edu.harvard.iq.dataverse.settings.SettingsServiceBean;
@@ -59,6 +61,8 @@ public class SendFeedbackDialog implements java.io.Serializable {
      */
     Long userSum;
 
+    private String turnstileToken = "";
+
     /**
      * Either the dataverse or the dataset that the message is pertaining to. If
      * there is no recipient, this is a general feedback message.
@@ -69,6 +73,9 @@ public class SendFeedbackDialog implements java.io.Serializable {
      * :SystemEmail (the main support address for an installation).
      */
     private InternetAddress systemAddress;
+
+    @EJB
+    ContactCaptchaService contactCaptcha;
 
     @EJB
     MailServiceBean mailService;
@@ -101,6 +108,7 @@ public class SendFeedbackDialog implements java.io.Serializable {
         op1 = Long.valueOf(random.nextInt(10));
         op2 = Long.valueOf(random.nextInt(10));
         userSum = null;
+        turnstileToken = "";
         systemAddress = mailService.getSupportAddress().orElse(null);
     }
 
@@ -209,7 +217,58 @@ public class SendFeedbackDialog implements java.io.Serializable {
         }
     }
 
+    public boolean isMathCaptcha() {
+        return contactCaptcha.isMathEnabled();
+    }
+
+    public String getTurnstileSiteKey() {
+        return contactCaptcha.getSiteKey();
+    }
+
+    public String getTurnstileLanguage() {
+        String locale = dataverseSession.getLocaleCode();
+        return "ua".equals(locale) ? "uk" : locale;
+    }
+
+    public String getTurnstileToken() {
+        return turnstileToken;
+    }
+
+    public void setTurnstileToken(String token) {
+        turnstileToken = token;
+    }
+
+    private boolean verifyContactChallenge() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        String messageKey;
+        String component;
+        if (isMathCaptcha()) {
+            if (op1 != null && op2 != null && userSum != null && userSum.equals(op1 + op2)) {
+                return true;
+            }
+            component = "emailForm:messageSum";
+            messageKey = "contact.sum.invalid";
+        } else {
+            TurnstileVerifier.Result result = contactCaptcha.verify(turnstileToken,
+                    context.getExternalContext().getRequestServerName());
+            turnstileToken = "";
+            if (result == TurnstileVerifier.Result.VERIFIED) {
+                return true;
+            }
+            component = "emailForm:turnstileToken";
+            messageKey = result == TurnstileVerifier.Result.UNAVAILABLE
+                    ? "org.contact.verification.unavailable" : "org.contact.verification.required";
+        }
+        context.validationFailed();
+        context.addMessage(component, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                BundleUtil.getStringFromBundle(messageKey), null));
+        return false;
+    }
+
     public String sendMessage() {
+        if (!verifyContactChallenge()) {
+            return null;
+        }
         String installationBrandName = BrandingUtil.getInstallationBrandName();
         String supportTeamName = BrandingUtil.getSupportTeamName(systemAddress);
 

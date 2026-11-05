@@ -60,8 +60,8 @@
                         <h:message for="userMessage" styleClass="bg-danger text-danger"/>
                     </div>
                 </div>
-                <!-- validation -->
-                <div class="form-group">
+                <!-- Native arithmetic fallback, selected server-side. -->
+                <div class="form-group uard-contact-challenge" jsf:rendered="#{sendFeedbackDialog.mathCaptcha}">
                     <div class="col-sm-offset-3 col-sm-9">
                         <p>
                             <h:outputText styleClass="highlightBold" value="#{bundle['contact.question']}"/> <span class="glyphicon glyphicon-asterisk text-danger" title="#{bundle.requiredField}"/>
@@ -78,10 +78,28 @@
                         <h:message for="messageSum" styleClass="bg-danger text-danger"/>
                     </div>
                 </div>
+                <div class="form-group uard-contact-challenge" jsf:rendered="#{!sendFeedbackDialog.mathCaptcha}">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <h:inputHidden id="turnstileToken" value="#{sendFeedbackDialog.turnstileToken}"/>
+                        <div data-contact-turnstile="true"
+                             data-sitekey="#{sendFeedbackDialog.turnstileSiteKey}"
+                             data-language="#{sendFeedbackDialog.turnstileLanguage}"
+                             data-pending="#{bundle['org.contact.verification.pending']}"
+                             data-verified="#{bundle['org.contact.verification.verified']}"
+                             data-unavailable="#{bundle['org.contact.verification.unavailable']}"></div>
+                        <p class="uard-contact-verification-status sr-only" role="status" aria-live="polite"></p>
+                        <h:message for="turnstileToken" styleClass="bg-danger text-danger"/>
+                        <button type="button" class="btn btn-link uard-contact-verification-retry" hidden="hidden"
+                                onclick="if (window.uardContactTurnstile) window.uardContactTurnstile.retry();">
+                            #{bundle['org.contact.verification.retry']}
+                        </button>
+                        <noscript><p class="text-danger">#{bundle['org.contact.verification.javascript']}</p></noscript>
+                    </div>
+                </div>
                 <!-- send | cancel buttons -->
                 <div class="button-block">
                     <p:commandButton styleClass="btn btn-default" value="#{bundle['contact.send']}"
-                                   update="@form,messagePanel" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('contactForm').hide();" actionListener="#{sendFeedbackDialog.sendMessage}">
+                                   update="@form,messagePanel" oncomplete="if (window.uardContactTurnstile) window.uardContactTurnstile.afterSubmit(args); if (args &amp;&amp; !args.validationFailed) PF('contactForm').hide();" actionListener="#{sendFeedbackDialog.sendMessage}">
                         <f:param name="DO_VALIDATION" value="true"/>
                     </p:commandButton>
                     <button class="btn btn-link" onclick="PF('contactForm').hide()" type="button">
@@ -91,4 +109,5 @@
             </h:form>
         </p:fragment>
     </p:dialog>
+    <script defer="defer" src="#{resource['js/uard/contact-turnstile.js']}?v=60b719011b40"></script>
 </ui:composition>

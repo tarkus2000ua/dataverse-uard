@@ -282,3 +282,34 @@ Keep the helper and Ukrainian entries together during upgrades/deployment.
 No native contact-form XHTML, mail transport/recipients, permissions or locale
 selection is changed. The generated support name is reused in native links/email
 branding. See support-form.md. Remote deployment was not performed.
+
+## Native contact Turnstile integration (2026-11-02, local test mode)
+
+SendFeedbackDialog and contactFormFragment.xhtml select configured arithmetic or
+Turnstile protection while retaining native form fields, recipients/CC and mail
+composition. SendFeedbackDialog gates the mail action on server verification and
+marks JSF validation failed on rejection/unavailability. Arithmetic receives an
+action-level check as well. No authentication or SMTP logic/settings are changed.
+
+JvmSettings adds contact CAPTCHA properties, defaulting to math. Added feedback/
+ContactCaptchaService and TurnstileVerifier validate configuration and call the
+fixed Cloudflare HTTPS endpoint with bounded timeouts. Real mode checks hostname
+and contact_form action; official dummy credentials/responses require explicit
+loopback-only test mode. Missing/bad configuration fails closed without fallback.
+
+Added resources/js/uard/contact-turnstile.js manages widget lifecycle across native
+AJAX updates, retry, expiry, close/reopen and responsive sizing. Dataverse's existing
+Dialog.postShow override omits the standard onShow hook, so the new code observes
+visibility/content changes without modifying native resize code. The view loads
+the script with a content-version query. Preserve the script/view/version together.
+
+Keep all service, configuration, view, JavaScript, external CSS and message changes
+together during upgrades. Existing native locale maps ua to widget uk. Focused
+tests mock mail delivery; no real support message was sent. See turnstile-local.md
+for current local dummy configuration, checks, deployment map and rollback.
+
+The contact view initially hides the verification retry control and makes our
+duplicate status screen-reader-only. The widget script reveals both only on
+error; regular pending/success stays compact while preserving aria-live updates.
+The matching stylesheet tightens the verification panel. Vendor widget contents
+and required branding are not modified.

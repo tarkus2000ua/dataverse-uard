@@ -3,7 +3,7 @@
 ## Current handoff (2026-11-01)
 
 This section and README_HANDOFF.md supersede the dated checkpoints below.
-Current branch: `codex/login-local-guide`; origin is
+Current branch: `codex/contact-form`, based on `codex/login-local-guide`; origin is
 `git@github.com:tarkus2000ua/dataverse-uard.git`. The user requested committing
 necessary changes and publishing this branch. Check actual Git/remote status
 for final hashes and push success; no application deployment is implied.
@@ -43,6 +43,23 @@ OAuth-only layout/callback verification remains on the existing test server.
 References: [handoff](README_HANDOFF.md), [collection terminology](docs/ukrainian-collection-terminology.md),
 [guide](docs/local-user-guide.md), [ORCID/login deployment](docs/orcid-login.md),
 [FRD recovery](docs/frd-troubleshooting.md), [remote deployment](docs/remote-deployment.md).
+
+## Local contact/Turnstile work (2026-11-02)
+
+The support-dialog styling, corrected contact.header apostrophe and grammatical
+dynamic Ukrainian support names are checkpointed in 0ee582bbbc on codex/contact-form.
+Subsequent local work integrates Cloudflare Turnstile into the native contact
+dialog with server verification and arithmetic rollback. See docs/turnstile-local.md
+and the support-dialog section in README_HANDOFF.md for exact configuration,
+deployment scope and verified limits; inspect Git status for publication state.
+
+Local Payara contact-only properties currently select official dummy keys,
+hostname=localhost and explicit test-mode=true. No real keys or remote deployment
+are involved. These domain properties survive FRD but may need restoring after
+container recreation. Authentication, SMTP, database settings and data are unchanged.
+35 focused tests passed with mocked mail. Browser checks cover native AJAX retry,
+UA/EN, mobile layout and script recovery; the deployed verifier handled official
+pass/fail/spent dummy responses. No support message was sent.
 
 ## Historical checkpoints
 

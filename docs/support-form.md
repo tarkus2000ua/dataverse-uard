@@ -42,10 +42,10 @@ in the maintained deployment artifacts.
 
 ## CAPTCHA replacement options
 
-The current support form uses a view-scoped addition question and a server-side
-validateUserSum method. No provider switch is exposed for this form in the
-inspected view/bean/settings. A widget alone is insufficient; replace validation
-before accepting/sending mail, preserving JSF validation and AJAX retry behavior.
+The original native form uses a view-scoped addition question and a server-side
+validateUserSum method. The local Turnstile integration now adds a configurable
+provider and server verification before sending mail, preserving JSF validation
+and AJAX retry behavior. See turnstile-local.md.
 
 - Cloudflare Turnstile: recommended hosted option for minimal user interaction.
   Requires site/secret keys and server-side Siteverify checks.
@@ -59,13 +59,13 @@ before accepting/sending mail, preserving JSF validation and AJAX retry behavior
   https://docs.hcaptcha.com/
   https://docs.hcaptcha.com/invisible
 
-Cloudflare Turnstile Managed mode is selected for the next implementation phase.
-The current checkpoint includes planning only; the arithmetic check remains active.
-Local integration can use official test keys before real-key verification on uard2.
+Cloudflare Turnstile is now integrated locally with official dummy keys.
+See turnstile-local.md for configuration, verification and remote rollout.
+Arithmetic remains the default on installations without explicit configuration.
 Integrate widget initialization/reset with PrimeFaces dialog AJAX updates, native UA/EN labels, expired/reused tokens, server
 timeouts and failed form validation. Keep secrets outside public resources/Git.
-Rate limiting complements any CAPTCHA. No provider or authentication settings
-were changed, and the existing arithmetic check remains active.
+Rate limiting complements any CAPTCHA. Only local contact CAPTCHA configuration was changed; authentication settings
+are untouched. Arithmetic remains available through explicit provider selection.
 
 ## Verification scope
 

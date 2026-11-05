@@ -38,7 +38,7 @@ Treat older implementation notes as history; inspect the actual source/runtime.
 
 ## Git state and preservation
 
-Current feature branch: codex/login-local-guide.
+Current feature branch: codex/contact-form (based on codex/login-local-guide).
 Origin: git@github.com:tarkus2000ua/dataverse-uard.git.
 Upstream: https://github.com/IQSS/dataverse.git.
 
@@ -240,7 +240,8 @@ recreation is part of these presentation updates. See remote-deployment.md.
 
 The native support/contact dialog now has scoped UaRD styling in the external
 stylesheet: pale-blue title bar, navy text, blue primary action, visible focus,
-mobile labels and scrollable content. contactFormFragment.xhtml remains unchanged.
+mobile labels and scrollable content. That styling checkpoint left the native
+view unchanged; the subsequent Turnstile integration adds native view hooks.
 The Ukrainian contact.header apostrophe is corrected. BrandingUtil supports
 optional org.support.team.root and org.contact.header.root entries so generated
 names read Підтримка UaRD and Зв’язатися з підтримкою UaRD, using the actual root
@@ -252,11 +253,15 @@ checks confirmed the names. Desktop/375px/320px dialog layouts, focus and cancel
 were checked without sending mail. See docs/support-form.md and the latest
 upstream-modifications.md section for deployment scope.
 
-Cloudflare Turnstile Managed mode is the planned next task; no integration,
-widget keys or provider configuration is present yet. The existing arithmetic
-check remains active. Local tests can use Cloudflare's official dummy keys;
-real-key verification belongs on uard2 before production. Do not start CAPTCHA
-implementation from this checkpoint without the user's next request.
+Cloudflare Turnstile is integrated locally with official dummy keys; see
+docs/turnstile-local.md for the implementation/configuration and verification.
+The existing Payara domain selects turnstile with hostname=localhost and explicit
+test-mode=true; other installations default to math. The contact-only properties
+were set through asadmin, not Compose, and may need restoring after container
+recreation. No containers were restarted/recreated. Real keys and remote
+deployment remain separate work for uard2; no remote change has been made.
+The widget's red test-only banner is expected with dummy keys. No support mail
+was sent, and successful delivery tests use a mocked mail service.
 
 ## Verification and open work
 
