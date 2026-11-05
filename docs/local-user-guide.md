@@ -28,14 +28,18 @@ The supported local setting is:
 
     :NavbarGuidesUrl=http://localhost:8080/guide/
 
-Use the trailing slash in the menu setting: JSF can append ;jsessionid on first
-visits, and the default directory redirect can otherwise mis-encode that URL.
+Use the trailing slash in the menu setting as the canonical directory URL.
+The native About and User Guide links use ordinary anchors with dynamic JSF
+expressions, so their URLs stay free of ;jsessionid even on the first request.
+The slash alone does not fix session-ID URLs on all deployments: the public
+server returned 404 for both /guide;jsessionid=... and /guide/;jsessionid=....
 Typing /guide in the address bar still redirects normally to /guide/.
 
-The real native header is unchanged. Its User Guide item retains its own
-target="_blank", rel="noopener", translated label and session behavior. The
-separate :NavbarAboutUrl remains http://localhost:8080/system.xhtml, and the
-bilingual footer article remains /about.xhtml.
+The native User Guide item retains target="_blank", rel="noopener", its translated
+label, configured destination and official-guide fallback. Session tracking for
+the rest of Dataverse is unchanged. The separate :NavbarAboutUrl remains
+http://localhost:8080/system.xhtml, and the bilingual footer article remains
+/about.xhtml.
 
 The setting is stored in the local database. No uard2 configuration or deployment
 is included in this local task.

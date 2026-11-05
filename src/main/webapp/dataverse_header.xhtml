@@ -70,14 +70,14 @@
                             </ul>
                         </li>
                         <li jsf:rendered="#{!empty settingsWrapper.get(':NavbarAboutUrl')}">
-                            <h:outputLink value="#{settingsWrapper.get(':NavbarAboutUrl')}" target="_blank" rel="noopener">
+                            <a href="#{settingsWrapper.get(':NavbarAboutUrl')}" rel="noopener">
                                 <h:outputText value="#{bundle['header.about']}"/>
-                            </h:outputLink>
+                            </a>
                         </li>
                         <li>
-                            <h:outputLink value="#{settingsWrapper.get(':NavbarGuidesUrl', settingsWrapper.guidesBaseUrl.concat('/').concat(settingsWrapper.guidesVersion).concat('/user'))}" target="_blank" rel="noopener">
+                            <a href="#{settingsWrapper.get(':NavbarGuidesUrl', settingsWrapper.guidesBaseUrl.concat('/').concat(settingsWrapper.guidesVersion).concat('/user'))}" target="_blank" rel="noopener">
                                 <h:outputText value="#{bundle['header.guides.user']}"/>
-                            </h:outputLink>
+                            </a>
                         </li>
                         <li jsf:rendered="#{!empty settingsWrapper.get(':NavbarSupportUrl')}">
                             <h:outputLink value="#{settingsWrapper.get(':NavbarSupportUrl')}" target="_blank" rel="noopener">
