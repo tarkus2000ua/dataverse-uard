@@ -1,6 +1,23 @@
 # CODEX_CONTEXT.md - Current Project State
 
-## Current handoff (2026-11-01)
+## Current Git baseline (2026-11-05)
+
+Maintained branch: `custom/6.12`. The user authorized consolidating the previous
+feature chain and publishing the accepted baseline, then retiring merged feature
+branches. All preceding commits are preserved. Contact styling is `0ee582bbbc`;
+Turnstile is `e5e1424bbf`. Start new independent work on `codex/<task>` explicitly
+from updated `custom/6.12`; see GIT_STRATEGY.md. Preserve `develop` tracking
+`upstream/develop` and the original `v6.12` tag.
+
+The 38 focused tests passed on November 5; JS syntax, XHTML, content version and
+whitespace checks also passed. Turnstile still uses official dummy keys locally.
+No remote deployment or server-configuration change was made by this Git transition.
+Preserve the staged dummy header, untracked original design assets and dataverse.zip.
+
+The dated handoff below describes the former feature-chain checkpoints; this
+section and README_HANDOFF.md control current branch selection and publication state.
+
+## Previous handoff (2026-11-01)
 
 This section and README_HANDOFF.md supersede the dated checkpoints below.
 Current branch: `codex/contact-form`, based on `codex/login-local-guide`; origin is

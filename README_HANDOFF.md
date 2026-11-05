@@ -1,6 +1,6 @@
 # UaRD - continuation handoff
 
-Updated 2026-11-01. Target: Dataverse 6.12. This file describes the current
+Updated 2026-11-05. Target: Dataverse 6.12. This file describes the current
 implementation and supersedes earlier dated checkpoints. It does not select a
 new task or authorize a remote application deployment.
 
@@ -38,7 +38,13 @@ Treat older implementation notes as history; inspect the actual source/runtime.
 
 ## Git state and preservation
 
-Current feature branch: codex/contact-form (based on codex/login-local-guide).
+Maintained branch: custom/6.12. Start independent tasks on codex/<task> from
+this updated baseline; see GIT_STRATEGY.md. The former feature chain, including
+contact styling (0ee582bbbc) and Turnstile (e5e1424bbf), has been consolidated
+without rewriting commits. Completed codex/ feature branches are retired.
+
+The original upstream release remains available as tag v6.12. The develop branch
+continues to track upstream/develop; it is not the UaRD feature baseline.
 Origin: git@github.com:tarkus2000ua/dataverse-uard.git.
 Upstream: https://github.com/IQSS/dataverse.git.
 

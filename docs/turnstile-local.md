@@ -1,6 +1,7 @@
 # Local Turnstile integration for UaRD
 
-Updated 2026-11-02. Dataverse 6.12; work branch `codex/contact-form`.
+Updated 2026-11-05. Dataverse 6.12. Integrated into `custom/6.12`; original
+work branch `codex/contact-form` is retired. Implementation commit: `e5e1424bbf`.
 
 ## What is implemented
 
@@ -172,3 +173,6 @@ dummy keys; duplicate status is screen-reader-only and retry is hidden.
 Blocking the vendor script reveals both error text and retry; successful retry
 hides them again. The 320px viewport has no page/content horizontal overflow.
 JavaScript syntax, XHTML parsing and Git whitespace checks pass. No mail sent.
+
+On 2026-11-05, all 38 focused tests passed together before baseline integration.
+The Git transition did not deploy the application or change server configuration.

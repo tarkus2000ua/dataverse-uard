@@ -1,122 +1,107 @@
 # GIT_STRATEGY.md
 
-## Remote model
-Recommended:
-```text
-upstream -> https://github.com/IQSS/dataverse.git
-origin   -> organization/private Dataverse repository
-```
+Updated 2026-11-05. Target: Dataverse 6.12.
 
-If the current local clone still has IQSS as `origin`:
+## Maintained baseline and remotes
 
-```bash
-git remote rename origin upstream
-git remote add origin git@github.com:YOUR-ORG/dataverse-custom.git
-git remote -v
-```
+- `origin`: git@github.com:tarkus2000ua/dataverse-uard.git (UaRD).
+- `upstream`: https://github.com/IQSS/dataverse.git (official Dataverse).
+- `v6.12`: original upstream release; retain it as the comparison point.
+- `custom/6.12`: accepted, locally tested UaRD code and GitHub default branch.
+- `codex/<task>`: temporary branch for a focused change.
+- `develop`: tracks `upstream/develop`; preserve that relationship. Do not use it
+  as the baseline for UaRD 6.12 features.
 
-## Maintained release branches
-Use versioned customization branches:
+The maintained branch is an integration baseline, not proof of remote deployment.
+The user/administrator handles deployment and records deployed revisions separately.
 
-```text
-custom/6.12
-custom/6.13
-custom/6.14
-```
+## Solo development workflow
 
-Avoid one eternal `custom` branch.
+Inspect `git status` first. Record or safely set aside pending work before switching
+between unrelated tasks. Uncommitted changes are working-directory/index state;
+creating a branch does not isolate them.
 
-## Feature branches
-Examples:
-```text
-feature/custom-homepage
-feature/header-redesign
-feature/footer-redesign
-feature/ukrainian-ui
-feature/homepage-react
-```
+Start each independent task from the updated baseline:
 
-Create from:
 ```bash
 git switch custom/6.12
-git switch -c feature/header-redesign
+git pull --ff-only origin custom/6.12
+git switch -c codex/task-name custom/6.12
 ```
 
-## Commit strategy
-Prefer small semantic commits.
+Make small, focused commits. Review the staged diff and select paths explicitly.
+Do not include the existing staged dummy `customization/branding/custom-header.html`.
+With that unrelated file still staged, use `git commit --only -- <task-paths>` or
+an isolated index; an ordinary `git commit` would include all staged files.
+Keep original design inputs in `customization/homepage/assets/` and `dataverse.zip`
+out of source commits. Preserve all other unrelated local work.
 
-Good:
-```text
-Add custom institutional homepage
-Add Ukrainian navigation labels
-Restructure global navbar markup
-Preserve account menu in custom header layout
-Add branding bind mount for local development
+Review and validate the task before integration:
+
+```bash
+git log --oneline custom/6.12..HEAD
+git diff --stat custom/6.12...HEAD
+git diff --check
 ```
 
-Avoid:
-```text
-UI changes
-fixes
-final changes
+Run checks appropriate to the change and the documented local FRD workflow after
+source changes. Keep `docs/upstream-modifications.md` current for upstream edits.
+Publish the task branch when requested/authorized; a GitHub pull request is an
+optional self-review record. After acceptance, with pending work safely handled:
+
+```bash
+git switch custom/6.12
+git merge --ff-only codex/task-name
+git push origin custom/6.12
 ```
 
-## Upgrade flow
-When moving to a new Dataverse release:
+If fast-forward is refused, inspect the divergence. Merge the maintained baseline
+into the feature, resolve/test, then integrate, or use a reviewed normal merge.
+Never force-push shared history to reconcile unexpected remote changes.
+After verifying the feature is included in the published baseline, delete its local
+branch with `git branch -d codex/task-name` and its origin branch when appropriate.
+Create the next independent task from the updated `custom/6.12`.
 
-```text
-custom/6.12
-   |
-upgrade/6.13
-   |
-custom/6.13
-```
+A task that needs unfinished feature work may explicitly branch from that feature.
+Document the dependency, integrate the prerequisite first, then the dependent work.
+Avoid accumulating a chain of completed features without updating the baseline.
+A new chat should inspect status and this workflow before selecting a branch;
+branch creation, commits, pushes and deployment follow the user's current scope.
 
-Suggested:
+## Transition from the previous feature chain (2026-11-05)
+
+The previous `custom/6.12` tip was the unmodified `v6.12` commit `97691073fc`.
+The feature branches formed a linear chain rather than independent changes.
+The user authorized consolidating the chain and retiring completed feature branches.
+
+- Fast-forwarded the baseline to `codex/login-local-guide` at `321aef0015`,
+  preserving all 22 preceding customization commits.
+- Committed Turnstile as `e5e1424bbf`; the contact styling checkpoint remains
+  `0ee582bbbc`.
+- Fast-forwarded the baseline through both contact-form commits. All former
+  feature tips remain ancestors of the maintained baseline; no commits were rewritten.
+- Consolidated the workflow/handoff in a separate documentation commit.
+- Retired the merged `codex/` feature branches locally and on origin after publication.
+  `develop`, upstream branches, release tags and unmerged Dependabot branches remain.
+
+The 38 focused contact/configuration tests passed on November 5, with mocked mail.
+JavaScript syntax, XHTML parsing, script version and whitespace checks passed.
+Turnstile remains configured locally with official dummy keys. No remote application
+was deployed. Code publication does not transfer Payara settings, databases or files.
+
+## Upgrades and deployment records
+
+For a future explicitly requested upgrade, start from the accepted UaRD baseline:
+
 ```bash
 git fetch upstream --tags
-git switch custom/6.12
-git switch -c upgrade/6.13
+git switch -c upgrade/6.13 custom/6.12
 git merge v6.13
 ```
 
-For an internal institutional fork, merge-based upgrades are usually easier to audit than rebasing shared history.
+Review upstream source changes using `docs/upstream-modifications.md`, test, and
+establish `custom/6.13` when accepted. Preserve shared history with merge-based upgrades.
 
-## Deployment/version tags
-Use your own deployment tags, e.g.:
-
-```text
-org-dataverse-6.12.0
-org-dataverse-6.12.1
-org-dataverse-6.12.2
-```
-
-## Track upstream modifications
-Maintain:
-```text
-docs/upstream-modifications.md
-```
-
-Example:
-```text
-src/main/webapp/dataverse_header.xhtml
-Reason:
-- institutional navigation redesign
-- original JSF auth/permission behavior preserved
-```
-
-## Current publication and exclusions (2026-11-01)
-
-Actual origin: `git@github.com:tarkus2000ua/dataverse-uard.git`; upstream remains
-`https://github.com/IQSS/dataverse.git`. Use `codex/` for new feature branch names.
-Current branch `codex/login-local-guide` contains the preceding ORCID, Ukrainian
-collection terminology, guide and logo commits. The user authorized publishing
-the necessary current changes to this branch; this does not authorize remote
-application deployment or unrelated future pushes.
-
-Use explicit paths or an isolated index to exclude the staged dummy
-`customization/branding/custom-header.html`. Keep design inputs under
-`customization/homepage/assets/` and `dataverse.zip` outside this publication.
-The installed Ukrainian bundle and FRD recovery helpers/tests are maintained
-source, unlike database/volume backups and generated local archives. Never
-force-push shared history to reconcile unexpected remote changes.
+Use UaRD-specific tags such as `uard-6.12.1` for confirmed deployment revisions.
+Record the deployed commit, artifact and required environment configuration.
+Do not invent deployment tags for code that has only been merged or tested locally.
