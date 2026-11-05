@@ -1,0 +1,6 @@
+interface:
+  display_name: "UaRD Development"
+  short_description: "Automatic branch setup for UaRD development"
+  default_prompt: "Use $uard-development to implement this UaRD change with automatic Git setup and relevant validation."
+policy:
+  allow_implicit_invocation: true

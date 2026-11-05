@@ -35,6 +35,20 @@ Primary goals:
 14. When changing upstream files, update `docs/upstream-modifications.md`.
 15. Keep feature work in focused branches and commits.
 
+## Automatic development workflow
+
+For implementation tasks, apply the `uard-development` skill automatically; the
+user should not need a special prompt or create a branch manually. Reuse a related
+active feature branch or create `codex/<task>` from the updated `custom/6.12` before
+editing, following GIT_STRATEGY.md. Read-only reviews require no branch changes.
+
+Read `.agents/skills/uard-development/SKILL.md` when not already loaded. This
+versioned repository copy is authoritative and travels with the checkout. A personal
+installation also exists under the Codex user's `skills/uard-development/`; keep
+it in sync when changing the repository skill.
+Commit, merge, push and branch cleanup follow the user's current authorized scope;
+creating a task branch does not imply remote deployment.
+
 ## Development environment
 - Windows 11
 - WSL2 Ubuntu
