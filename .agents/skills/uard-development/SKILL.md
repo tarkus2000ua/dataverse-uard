@@ -62,21 +62,48 @@ unrelated files already staged, use `git commit --only -- <task-paths>` or an
 isolated index so those files retain their original staged state. Avoid blanket
 staging. Verify the final task diff and preservation of unrelated work.
 
-## Finish within the requested Git scope
+## Complete Git work when the user asks to commit
 
-An implementation request authorizes automatic local branch setup and validation;
-it does not by itself authorize commits, publication, integration or branch deletion.
-Honor explicit Git-completion instructions in the current conversation without
-asking again. Do not carry a one-time publication approval into future tasks.
+The user has established a standing UaRD preference: an operative request such as
+"commit", "commit the changes", or "commit and push" means complete the current
+task's Git workflow. Do not require the user to repeat the longer instruction or
+ask for separate merge, push or cleanup confirmation.
 
-When the user requests the complete workflow, perform its authorized steps:
-checkpoint task files, validate, integrate accepted commits into `custom/6.12`,
-publish, verify the live remote tip, then retire task branches whose commits are
-contained in the published baseline. Prefer fast-forward integration when possible;
-inspect divergence rather than rewriting shared history. For dependent branches,
-retain the commits and prerequisite relationships through integration.
+A question explaining Git commands or a quoted example is not a commit request.
+Implementation alone still authorizes branch setup and validation; wait for the
+user's commit instruction before checkpointing or publishing the task.
 
-Otherwise leave the result reviewable on its task branch and report its branch,
-validation and commit/publication state concisely. Update handoff references when
-branch lifecycle changes would make them misleading. Code publication is separate
-from application deployment; deployment tags require an actual confirmed deployment.
+When asked to commit:
+
+1. Review the task diff and pending index. Run relevant validation before committing;
+   use existing passing results if no subsequent change invalidated them. If required
+   checks fail, resolve task-related failures or report the blocker before integration.
+2. Commit only the task files, preserving unrelated staged and untracked work.
+   Confirm any earlier branch commits being integrated are also accepted task work.
+3. Refresh origin refs as needed, inspect divergence, then integrate the task into
+   `custom/6.12`. Prefer fast-forward integration. Preserve shared history; do not
+   reset or force-push to reconcile unexpected remote changes. If unrelated work or
+   a prerequisite prevents safe integration, report the specific blocker and retain
+   the task branch rather than silently including unfinished changes.
+4. Push `custom/6.12` to origin and verify the live remote tip contains the task.
+   A separate feature-branch push is optional when it adds review/backup value.
+5. After verified publication, delete the completed local feature branch with
+   `git branch -d`, and its origin branch if it exists and its tip is contained in
+   the published baseline. Recheck remote state before deletion; preserve any new
+   remote commits. Finish on `custom/6.12` with unrelated local work intact.
+
+An explicit narrower instruction overrides this default. For example, "commit only"
+means a local commit; "don't push", "keep the branch", or "don't merge" must be
+honored. Do not repeatedly request permission for the remaining authorized steps.
+If publication fails, retain the commits and branches needed to retry and report
+exactly what completed and what remains.
+
+This standing preference is limited to the UaRD task's code publication. It does
+not authorize application deployment, server configuration changes, database/volume
+operations, destructive history changes or publication of unrelated work. Remote
+application deployment requires a separate user request. Deployment tags require
+an actual confirmed deployment.
+
+Without a commit request, leave the result reviewable on its task branch. Report
+branch, validation and Git completion state concisely. Update handoff references
+when branch lifecycle changes would otherwise make them misleading.

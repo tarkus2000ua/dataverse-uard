@@ -46,8 +46,13 @@ git diff --check
 
 Run checks appropriate to the change and the documented local FRD workflow after
 source changes. Keep `docs/upstream-modifications.md` current for upstream edits.
-Publish the task branch when requested/authorized; a GitHub pull request is an
-optional self-review record. After acceptance, with pending work safely handled:
+The user's standing preference is that an operative request to "commit" completes
+validation, task-only commit, integration into `custom/6.12`, push, verification,
+and retirement of the completed local/remote feature branch. No additional prompt
+is needed. Explicit limits such as "commit only", "don't push" or "keep the branch"
+override this default. A code change request alone does not trigger publication;
+application deployment always requires a separate request. A GitHub pull request
+is an optional self-review record. With accepted work and pending files safely handled:
 
 ```bash
 git switch custom/6.12
