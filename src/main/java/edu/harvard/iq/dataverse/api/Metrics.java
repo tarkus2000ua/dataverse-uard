@@ -867,7 +867,9 @@ public class Metrics extends AbstractApiBean {
                 return error(Response.Status.BAD_REQUEST, "Country must be one of the ISO 1366 Country Codes");
             }
         }
-        String metricName = "MDC-" + metricType.toString() + ((country == null) ? "" : "-" + country);
+        // Version only cumulative MDC cache keys: old entries omit full-date rows
+        // in the requested month, and historical entries may never expire.
+        String metricName = "MDC-toMonth-v2-" + metricType.toString() + ((country == null) ? "" : "-" + country);
 
         String sanitizedyyyymm = null;
         if (yyyymm != null) {

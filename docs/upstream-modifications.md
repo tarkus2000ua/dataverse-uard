@@ -266,6 +266,54 @@ Verified locally: XHTML parsing, whitespace checks and required fast redeploy pa
 Fresh and returning sessions on `/` and `/dataverse.xhtml` receive clean menu URLs;
 both destinations return HTTP 200. Native login URL session encoding is retained.
 
+## Aggregate Make Data Count metrics (2026-11-08)
+
+`src/main/java/edu/harvard/iq/dataverse/metrics/MetricsServiceBean.java` compares
+the first seven characters of `datasetmetrics.monthyear` with the requested
+`YYYY-MM` for cumulative MDC totals. This includes the entire requested month
+for both older `YYYY-MM` rows and imported `YYYY-MM-DD` dates, excluding later
+months, consistently with the existing monthly grouping. Stored reports and
+dataset-level metrics are unchanged.
+
+The shared subtree helper now converts native numeric IDs to `Long` and formats
+them without narrowing to `int`. All its callers still select the same released
+Dataverse/Dataset descendants; Dataverse queries retain the released parent,
+and empty subtrees retain the SQL `IN (null)` behavior. An empty MDC time series
+now returns `[]` rather than attempting to read a nonexistent first row.
+
+`src/main/java/edu/harvard/iq/dataverse/api/Metrics.java` uses the versioned
+`MDC-toMonth-v2-` cache prefix only for cumulative MDC totals (both the current
+month shortcut and explicit `toMonth`). Existing cumulative entries can contain
+incorrect zeros indefinitely for historical months. They remain stored but are
+no longer read by these endpoints. Monthly MDC and all other metric cache keys,
+country/collection scoping, and expiration rules are unchanged. No global cache
+clear, database migration or report reimport is required.
+
+Regression coverage: `MetricsTest` checks stale-cache bypass and reuse of the
+corrected cache for current/historical months, with and without country/parent
+filters, and retention of monthly MDC cache keys. `MetricsServiceBeanIT` executes
+the service SQL against isolated PostgreSQL fixtures, covering month/year
+boundaries, both date formats, nested and empty collections, country filters,
+published-only descendants and IDs above `Integer.MAX_VALUE`. Run with:
+
+```bash
+mvn -Dtest=MetricsTest,MetricsUtilTest,DatasetMetricsServiceBeanTest -DskipIntegrationTests test
+mvn -Dit.test=MetricsServiceBeanIT -Dpostgresql.server.version=17 failsafe:integration-test failsafe:verify
+```
+
+Verified locally on 2026-11-08: all 30 focused unit tests and 8 PostgreSQL 17
+integration cases pass, with no skipped cases. FRD succeeded on Dataverse 6.12.
+The existing pilot dataset `doi:10.5072/FK2/FW4KVR`, aggregate current/November
+totals, monthly series and `parentAlias=uard` variants all report 1; October
+reports 0. The nested `adminntest` collection reports 1; empty `dntb` returns 0
+and `[]`. Country filtering and repeated cache reads pass. The original
+`datasetmetrics` row and all preexisting MDC cache rows are unchanged. Shared
+helper smoke checks for dataverse/dataset totals also return HTTP 200.
+
+Upgrade/deployment: retain both Java changes together until upstream supplies
+equivalent fixes. Use the ordinary application redeploy workflow; Git publication
+and deployment to uard2 remain separate actions.
+
 ## ORCID login link to the local User Guide (2026-11-01)
 
 The `org.login.orcid.blurb` entry in the packaged English fallback and the

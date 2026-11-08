@@ -17,12 +17,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import edu.harvard.iq.dataverse.util.json.JsonUtil;
 import jakarta.ejb.EJB;
@@ -630,13 +630,14 @@ public class MetricsServiceBean implements Serializable {
                 );
         logger.log(Level.FINE, "Metric query: {0}", query);
         List<Object[]> results = query.getResultList();
-        return MetricsUtil.timeSeriesToJson(results, true);
+        return results.isEmpty() ? JsonUtil.createArrayBuilder().build() : MetricsUtil.timeSeriesToJson(results, true);
     }
 
     public JsonObject getMDCDatasetMetrics(MetricType metricType, String yyyymm, String country, Dataverse d) {
         String queryStr = "SELECT coalesce(sum(" + metricType.toString() + "),0) as count FROM DatasetMetrics\n"
                 + ((d == null) ? "WHERE " : "WHERE dataset_id in ( " + getCommaSeparatedIdStringForSubtree(d, "Dataset") + ") and\n")
-                + " monthYear <= '" + yyyymm + "' "
+                // Imports store YYYY-MM-DD; older rows may contain only YYYY-MM.
+                + " substring(monthYear from 1 for 7) <= '" + yyyymm + "' "
                 + ((country == null) ? ";" : " and countryCode = '" + country + "';");
         logger.info("final query: " + queryStr);
 
@@ -805,8 +806,8 @@ public class MetricsServiceBean implements Serializable {
         // Start with parentID if returning a subtree of dataverses
         String idString = (dtype.equals("Dataverse")) ? (d.isReleased() ? Long.toString(d.getId()) : "null") : "null";
 
-        String[] dvObjectIds = Arrays.stream(getChildrenIdsRecursively(d.getId(), dtype, DatasetVersion.VersionState.RELEASED).stream().mapToInt(i -> i).toArray())
-                .mapToObj(String::valueOf).toArray(String[]::new);
+        String[] dvObjectIds = getChildrenIdsRecursively(d.getId(), dtype, DatasetVersion.VersionState.RELEASED).stream()
+                .map(String::valueOf).toArray(String[]::new);
         if (dvObjectIds.length != 0) {
             // Append parent if returning Dataverses
             idString = String.join(",", dvObjectIds) + ((dtype.equals("Dataverse")) ? ("," + idString) : "");
@@ -814,7 +815,7 @@ public class MetricsServiceBean implements Serializable {
         return idString;
     }
 
-    private List<Integer> getChildrenIdsRecursively(Long dvId, String dtype, DatasetVersion.VersionState versionState) {
+    private List<Long> getChildrenIdsRecursively(Long dvId, String dtype, DatasetVersion.VersionState versionState) {
 
         //Intended to be called only with dvId != null
         String sql = "WITH RECURSIVE querytree AS (\n"
@@ -843,7 +844,8 @@ public class MetricsServiceBean implements Serializable {
         sql += ";";
 
         logger.fine("query  - (" + dvId + ") - getChildrenIdsRecursively: " + sql);
-        return em.createNativeQuery(sql).getResultList();
+        List<Number> ids = em.createNativeQuery(sql).getResultList();
+        return ids.stream().map(Number::longValue).collect(Collectors.toList());
     }
 
     public JsonObject getDataverseTree(Dataverse d, String yyyymm, DatasetVersion.VersionState state) {
