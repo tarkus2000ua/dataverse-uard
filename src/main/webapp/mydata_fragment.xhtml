@@ -68,6 +68,7 @@
             </div>
             <!-- end: publish states -->
             <!-- start: role states -->
+            <ui:remove><!-- UaRD: hide the role filter controls; keep the original markup for restoration. -->
             <b>#{bundle['mydataFragment.roles']}</b>
             <div id="div_role_states" style="border-bottom:1px solid #ddd; padding-bottom:8px; margin-bottom:0.5em;">
             <ui:repeat value="#{MyDataPage.roleInfoForCheckboxes}" var="roleInfoList">
@@ -79,6 +80,11 @@
                 </div>    
             </ui:repeat>
             </div>
+            </ui:remove>
+            <!-- The My Data API requires role_ids; preserve the default all-roles search. -->
+            <ui:repeat value="#{MyDataPage.roleInfoForCheckboxes}" var="roleInfoList">
+                <input type="hidden" name="role_ids" value="#{roleInfoList[0]}" />
+            </ui:repeat>
             <!-- end: role states -->
             <!-- start: metadata validity -->
             <div jsf:rendered="#{MyDataPage.showValidityFilter()}">

@@ -4,6 +4,23 @@ This file records intentional changes to Dataverse 6.12 source and their upgrade
 review points. Branding HTML/CSS, translations and assets under `customization/`
 are maintained separately.
 
+## Hidden My Data role filters
+
+`src/main/webapp/mydata_fragment.xhtml` retains the original Roles heading and
+checkboxes inside `ui:remove`, so Facelets omits them from the rendered page.
+Hidden `role_ids` inputs use the same `MyDataPage.roleInfoForCheckboxes` list to
+preserve the default all-roles search; the API rejects a request without roles.
+Object-type, publication-status and metadata-validity filters, result-card role
+badges, authentication and permission checks retain their native behavior.
+The `mydataFragment.infoAccess` help text in the packaged English fallback and
+external English/Ukrainian bundles no longer advertises filtering by roles.
+
+Deploy through the normal application update (local development:
+`./scripts/dev/dev-frd.sh`). On upgrade, verify that hidden role inputs still
+serialize with the filters and searches return the same accessible items. To
+restore the controls, remove the `ui:remove` wrapper and the hidden-input repeat
+together to avoid submitting duplicate role IDs, and restore the help text.
+
 ## Author identifier choices in metadataFragment.xhtml
 
 The native author identifier dropdown offers ORCID, ROR, ResearcherID and
