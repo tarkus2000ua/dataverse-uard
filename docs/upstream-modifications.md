@@ -4,6 +4,38 @@ This file records intentional changes to Dataverse 6.12 source and their upgrade
 review points. Branding HTML/CSS, translations and assets under `customization/`
 are maintained separately.
 
+## Author identifier choices in metadataFragment.xhtml
+
+The native author identifier dropdown offers ORCID, ROR, ResearcherID and
+ScopusID. Its JSF select-items expression filters only `authorIdentifierScheme`;
+ResearcherID uses its canonical name regardless of the UI/metadata language.
+Other controlled vocabularies retain their original choices and translations.
+
+An existing identifier outside this list remains available in its own author row
+so editing unrelated metadata does not clear it or fail JSF validation. New rows
+offer only the four preferred schemes. The database vocabulary, metadata-block
+TSV, API imports/exports, converter, value binding and permissions are unchanged.
+Commenting out TSV entries would not hide values already loaded in the database.
+
+Deploy this XHTML through the normal application update (local development:
+`./scripts/dev/dev-frd.sh`); no metadata reload or database migration is required.
+On upgrade, recheck the compound-field single-select component, new/repeated
+author rows, existing legacy selections, and ResearcherID in both UI languages.
+
+## Keyword vocabulary dropdown
+
+`datasetFieldForEditFragment.xhtml` uses the standard PrimeFaces dropdown to
+offer UNESCO Thesaurus, AGROVOC and MeSH in each Keyword row. Changing the selection fills the
+matching URL in that row. Depositors enter the term and term URI separately.
+The vocabulary is optional, and a previously stored custom vocabulary remains
+selectable in its own row. The existing field binding, validation and metadata
+schema still apply. The dropdown only renders when the name field is not
+managed by an external vocabulary configuration.
+
+`metadataFragment.xhtml` associates the field label with the dropdown. Deploy
+both fragments together. On upgrade, verify keyword rows added through AJAX,
+legacy vocabulary names and the URL written by each choice.
+
 ## src/main/webapp/WEB-INF/faces-config.xml
 
 Status: implemented for the UaRD hero revision on branch `codex/homepage-hero`.

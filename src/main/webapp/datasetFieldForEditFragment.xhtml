@@ -11,9 +11,28 @@
         <!-- input text start UPDATE: UI:REMOVE applied due to duplicate ID errors, left code as reference in case test scripts complain -->
         <span id="pre-input-#{dsf.datasetFieldType.name}" class="pre-input-tag"/></ui:remove>
     <ui:fragment rendered="#{cvoc==null}">
+        <c:set var="uardKeywordVocabulary" value="#{dsfv.datasetField.datasetFieldType.name eq 'keywordVocabulary'}"/>
+        <c:set var="uardKeywordVocabularyNames" value="#{['UNESCO Thesaurus', 'AGROVOC', 'MeSH']}"/>
+        <p:selectOneMenu id="keywordVocabularySelect" value="#{dsfv.valueForEdit}"
+                         rendered="#{uardKeywordVocabulary}" pt:aria-required="#{dsf.required}"
+                         style="width: auto !important; max-width:100%; min-width:200px;"
+                         onchange="const url = this.closest('.edit-compound-field').querySelector('.uard-keyword-vocabulary-url');
+                                   if (url) {
+                                       const urls = new Map([
+                                           ['UNESCO Thesaurus', 'https://vocabularies.unesco.org/en/en'],
+                                           ['AGROVOC', 'https://www.fao.org/agrovoc/'],
+                                           ['MeSH', 'https://www.nlm.nih.gov/mesh/meshhome.html']
+                                       ]);
+                                       url.value = urls.get(this.value) ?? (this.value === '' ? '' : url.defaultValue);
+                                   }">
+            <f:selectItem itemLabel="#{bundle.select}" itemValue="" noSelectionOption="true"/>
+            <f:selectItems value="#{uardKeywordVocabularyNames}"/>
+            <!-- Preserve a vocabulary entered before the dropdown was added. -->
+            <f:selectItems value="#{not empty dsfv.valueForEdit and not uardKeywordVocabularyNames.contains(dsfv.valueForEdit) ? [dsfv.valueForEdit] : []}"/>
+        </p:selectOneMenu>
         <p:inputText value="#{dsfv.valueForEdit}" id="inputText" pt:aria-required="#{dsf.required}"
-                 styleClass="form-control #{dsfv.datasetField.datasetFieldType.name == 'title' and DatasetPage.editMode == 'CREATE'  ? 'datasetfield-title' : ''}"
-                 rendered="#{!dsfv.datasetField.datasetFieldType.controlledVocabulary
+                 styleClass="form-control #{dsfv.datasetField.datasetFieldType.name == 'title' and DatasetPage.editMode == 'CREATE' ? 'datasetfield-title' : ''} #{dsfv.datasetField.datasetFieldType.name eq 'keywordVocabularyURI' ? 'uard-keyword-vocabulary-url' : ''}"
+                 rendered="#{!uardKeywordVocabulary and !dsfv.datasetField.datasetFieldType.controlledVocabulary
                              and (dsfv.datasetField.datasetFieldType.fieldType == 'TEXT'
                              or dsfv.datasetField.datasetFieldType.fieldType == 'STRING'
                              or dsfv.datasetField.datasetFieldType.fieldType == 'INT'
@@ -26,7 +45,7 @@
                 <f:passThroughAttribute name="aria-label" value="#{bundle['dataset.additionalEntry']}" />
             </c:if>
         </p:inputText>
-        <p:watermark for="inputText" value="#{dsfv.datasetField.datasetFieldType.localeWatermark}"></p:watermark>
+        <p:watermark for="inputText" value="#{dsfv.datasetField.datasetFieldType.localeWatermark}" rendered="#{!uardKeywordVocabulary}"></p:watermark>
     </ui:fragment>
     <ui:fragment rendered="#{cvoc!=null and cvoc.getString('term-uri-field').equals(dsfv.datasetField.datasetFieldType.name)}">
         <p:inputText value="#{dsfv.valueForEdit}" id="cvocInputText" pt:aria-required="#{dsf.required}"

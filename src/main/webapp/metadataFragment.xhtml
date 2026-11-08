@@ -366,7 +366,12 @@
                                                                     <h:outputText value="#{bundle.htmlAllowedMsg}" escape="false"/>
                                                                 </p>
                                                             </ui:fragment>
-                                                            <label jsf:for="#{subdsf.datasetFieldType.controlledVocabulary ? 'cvv_focus' : subdsf.datasetFieldType.fieldType == 'TEXTBOX' ? 'description' : cvocConf.containsKey(subdsf.datasetFieldType.id) ? 'cvocInputText' : cvocConf.containsKey(dsf.datasetFieldType.id) ? 'cvocInputText2' : 'inputText'}" class="control-label">
+                                                            <label jsf:for="#{subdsf.datasetFieldType.controlledVocabulary ? 'cvv_focus'
+                                                                              : subdsf.datasetFieldType.fieldType == 'TEXTBOX' ? 'description'
+                                                                              : cvocConf.containsKey(subdsf.datasetFieldType.id) ? 'cvocInputText'
+                                                                              : cvocConf.containsKey(dsf.datasetFieldType.id) ? 'cvocInputText2'
+                                                                              : subdsf.datasetFieldType.name eq 'keywordVocabulary' ? 'keywordVocabularySelect_focus'
+                                                                              : 'inputText'}" class="control-label">
                                                                 #{subdsf.datasetFieldType.localeTitle}
                                                                 <span class="glyphicon glyphicon-asterisk text-danger" jsf:rendered="#{subdsf.required and dsf.required}"/>
                                                                 <span class="glyphicon glyphicon-question-sign tooltip-icon"
@@ -385,7 +390,13 @@
                                                                 <p:selectOneMenu id="cvv" value="#{subdsf.singleControlledVocabularyValue}" converter="controlledVocabularyValueConverter" style="width: auto !important; max-width:100%; min-width:200px;"
                                                                                  rendered="#{!subdsf.datasetFieldType.allowMultiples}" filter="#{(subdsf.datasetFieldType.controlledVocabularyValues.size() lt 10) ? 'false':'true'}" filterMatchMode="contains" >
                                                                     <f:selectItem itemLabel="#{bundle.select}" itemValue="" noSelectionOption="true"/>
-                                                                    <f:selectItems value="#{subdsf.datasetFieldType.controlledVocabularyValues}" var="cvv" itemLabel="#{cvv.getLocaleStrValue(mdLangCode)}" itemValue="#{cvv}" />
+                                                                    <!-- UaRD: limit new author identifiers; retain an existing legacy selection when editing. -->
+                                                                    <f:selectItems value="#{subdsf.datasetFieldType.name eq 'authorIdentifierScheme'
+                                                                                           ? subdsf.datasetFieldType.controlledVocabularyValues.stream().filter(v -> ['ORCID', 'ROR', 'ResearcherID', 'ScopusID'].contains(v.strValue) or v eq subdsf.singleControlledVocabularyValue).toList()
+                                                                                           : subdsf.datasetFieldType.controlledVocabularyValues}"
+                                                                                   var="cvv"
+                                                                                   itemLabel="#{subdsf.datasetFieldType.name eq 'authorIdentifierScheme' and cvv.strValue eq 'ResearcherID' ? cvv.strValue : cvv.getLocaleStrValue(mdLangCode)}"
+                                                                                   itemValue="#{cvv}" />
                                                                 </p:selectOneMenu>
                                                                 <!--
                                                                 <p:outputPanel id="selectedValsListCompound" style="padding-top:.5em;">
