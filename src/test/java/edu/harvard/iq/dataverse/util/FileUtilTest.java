@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,6 +68,16 @@ public class FileUtilTest {
     @MethodSource("dataReplaceNames")
     void testReplaceExtension(String expectedString, String originalName, String newExtension) {
         assertEquals(expectedString, FileUtil.replaceExtension(originalName, newExtension));
+    }
+
+    @Test
+    void testDecodeMultipartFilename() {
+        String filename = "таблиця-даних.txt";
+        String jerseyFilename = new String(filename.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1);
+
+        assertEquals(filename, FileUtil.decodeFileName(jerseyFilename));
+        assertEquals(filename, FileUtil.decodeFileName(filename));
+        assertEquals("café.txt", FileUtil.decodeFileName("café.txt"));
     }
 
     static class FileUtilNoParamTest {

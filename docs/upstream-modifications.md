@@ -436,3 +436,17 @@ duplicate status screen-reader-only. The widget script reveals both only on
 error; regular pending/success stays compact while preserving aria-live updates.
 The matching stylesheet tightens the verification panel. Vendor widget contents
 and required branding are not modified.
+
+## Native API multipart filenames
+
+The single-file add and replace endpoints in `Datasets.java` and `Files.java`
+recover UTF-8 filenames from Jersey's multipart header before persisting them.
+`FileUtil.decodeFileName` keeps the supplied name when strict decoding fails,
+including names sent in legacy Latin-1 that are invalid UTF-8. This correction
+applies to the multipart filename only. File names supplied in JSON for direct
+storage uploads bypass it.
+
+See [Dataverse issue #12470](https://github.com/IQSS/dataverse/issues/12470).
+On upgrade, check whether Jersey or Dataverse already decodes the multipart
+filename. Verify Cyrillic and ASCII names via both add and replace before
+keeping or removing the workaround.

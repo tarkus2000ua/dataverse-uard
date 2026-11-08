@@ -63,6 +63,8 @@ import javax.xml.stream.XMLStreamReader;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -1903,17 +1905,20 @@ public class FileUtil implements java.io.Serializable  {
     }
 
     /**
-     * Converts a filename from ISO_8859_1 to UTF_8 to handle encoding issues.
+     * Recovers a UTF-8 filename from a multipart header read by Jersey as ISO-8859-1.
+     * Keeps the original filename if it cannot be recovered as valid UTF-8.
      * Ref: https://github.com/eclipse-ee4j/jersey/issues/1700
-     *
-     * @param originalFileName the original filename
-     * @return the filename converted to UTF_8
      */
     public static String decodeFileName(String originalFileName) {
         if (originalFileName == null) {
             return null;
         }
-        return new String(originalFileName.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        try {
+            ByteBuffer filenameBytes = StandardCharsets.ISO_8859_1.newEncoder().encode(CharBuffer.wrap(originalFileName));
+            return StandardCharsets.UTF_8.newDecoder().decode(filenameBytes).toString();
+        } catch (CharacterCodingException e) {
+            return originalFileName;
+        }
     }
     
     /**
