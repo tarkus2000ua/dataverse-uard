@@ -54,6 +54,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.io.ByteOrderMark;
+import org.apache.commons.io.input.BOMInputStream;
 
 /**
  * Dataverse 4.0 implementation of <code>TabularDataFileReader</code> for the
@@ -119,7 +121,12 @@ public class CSVFileReader extends TabularDataFileReader {
         TabularDataIngest ingesteddata = new TabularDataIngest();
         DataTable dataTable = new DataTable();
 
-        BufferedReader localBufferedReader = new BufferedReader(new InputStreamReader(stream));
+        BOMInputStream inputWithoutBom = BOMInputStream.builder()
+                .setInputStream(stream)
+                .setByteOrderMarks(ByteOrderMark.UTF_8)
+                .setInclude(false)
+                .get();
+        BufferedReader localBufferedReader = new BufferedReader(new InputStreamReader(inputWithoutBom));
 
         File tabFileDestination = File.createTempFile("data-", ".tab");
         PrintWriter tabFileWriter = new PrintWriter(tabFileDestination.getAbsolutePath());

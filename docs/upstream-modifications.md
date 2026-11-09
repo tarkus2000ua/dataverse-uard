@@ -450,3 +450,15 @@ See [Dataverse issue #12470](https://github.com/IQSS/dataverse/issues/12470).
 On upgrade, check whether Jersey or Dataverse already decodes the multipart
 filename. Verify Cyrillic and ASCII names via both add and replace before
 keeping or removing the workaround.
+
+## UTF-8 BOM in CSV and TSV ingest
+
+`CSVFileReader.read` skips a leading UTF-8 byte order mark before parsing
+the first header field. This keeps the mark out of variable metadata and the
+downloaded tabular header, including when the first field is quoted. A
+`U+FEFF` character inside a value is preserved. This applies when ingesting
+a file. Previously ingested files retain their stored metadata.
+
+On upgrade, check upstream BOM handling with quoted and unquoted first
+headers. `CSVFileReaderTest` covers both cases and checks the generated
+tabular header and value.

@@ -13,16 +13,22 @@ import edu.harvard.iq.dataverse.ingest.tabulardata.TabularDataIngest;
 import edu.harvard.iq.dataverse.util.BundleUtil;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 import org.dataverse.unf.UNFUtil;
 import org.dataverse.unf.UnfException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -72,6 +78,24 @@ public class CSVFileReaderTest {
             line++;
         }
 
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"id", "\"id\""})
+    void testReadUtf8Bom(String firstHeader) throws IOException {
+        String csv = "\uFEFF" + firstHeader + ",value\r\n1,a\uFEFFb\r\n";
+        byte[] csvBytes = csv.getBytes(StandardCharsets.UTF_8);
+        try (BufferedInputStream stream = new BufferedInputStream(new ByteArrayInputStream(csvBytes))) {
+            CSVFileReader reader = new CSVFileReader(new CSVFileReaderSpi(), ',');
+            TabularDataIngest result = reader.read(stream, true, null);
+            var tabFile = result.getTabDelimitedFile().toPath();
+            try {
+                assertEquals("id", result.getDataTable().getDataVariables().getFirst().getName());
+                assertEquals(List.of("id\tvalue", "1\t\"a\uFEFFb\""), Files.readAllLines(tabFile, StandardCharsets.UTF_8));
+            } finally {
+                Files.deleteIfExists(tabFile);
+            }
+        }
     }
 
     /*
