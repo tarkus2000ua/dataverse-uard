@@ -24,6 +24,11 @@ import java.net.URISyntaxException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,6 +65,7 @@ public class DatasetVersion implements Serializable {
 
     private static final Logger logger = Logger.getLogger(DatasetVersion.class.getCanonicalName());
     private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+    private static final LocalDate EARLIEST_DEPOSIT_DATE = LocalDate.of(1900, 1, 1);
 
     /**
      * Convenience comparator to compare dataset versions by their version number.
@@ -1763,6 +1769,50 @@ public class DatasetVersion implements Serializable {
             }
         } else {
             dsf.getDatasetFieldCompoundValues().forEach(cv -> cv.getChildDatasetFields().forEach(v -> removeEmptyValues(v)));
+        }
+    }
+
+    /** Validates a new or changed deposit date and sets the field error for the metadata form. */
+    public Optional<String> validateDepositDate(DatasetVersion previousVersion) {
+        for (DatasetField field : getDatasetFields()) {
+            if (!DatasetFieldConstant.dateOfDeposit.equals(field.getDatasetFieldType().getName())) {
+                continue;
+            }
+
+            String value = StringUtils.trimToNull(field.getValue());
+            DatasetField previousField = previousVersion == null ? null : previousVersion.getDatasetField(field.getDatasetFieldType());
+            String previousValue = previousField == null ? null : StringUtils.trimToNull(previousField.getValue());
+            if (value == null || DatasetField.NA_VALUE.equals(value) || value.equals(previousValue)) {
+                continue;
+            }
+
+            LocalDate today = currentDepositDate();
+            if (!isDepositDateInRange(value, today)) {
+                String message = BundleUtil.getStringFromBundle("dataset.metadata.invalidDepositDate",
+                        List.of(EARLIEST_DEPOSIT_DATE.toString(), today.toString()));
+                field.setValidationMessage(message);
+                return Optional.of(message);
+            }
+        }
+        return Optional.empty();
+    }
+
+    static LocalDate currentDepositDate() {
+        return LocalDate.now(ZoneId.of("Europe/Kyiv"));
+    }
+
+    private static boolean isDepositDateInRange(String value, LocalDate today) {
+        try {
+            // A partial date falls within the range if its first possible day does.
+            LocalDate firstDay = switch (value.length()) {
+                case 4 -> Year.parse(value).atDay(1);
+                case 7 -> YearMonth.parse(value).atDay(1);
+                case 10 -> LocalDate.parse(value);
+                default -> null;
+            };
+            return firstDay != null && !firstDay.isBefore(EARLIEST_DEPOSIT_DATE) && !firstDay.isAfter(today);
+        } catch (DateTimeParseException ex) {
+            return false;
         }
     }
 

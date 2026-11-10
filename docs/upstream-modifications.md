@@ -4,6 +4,20 @@ This file records intentional changes to Dataverse 6.12 source and their upgrade
 review points. Branding HTML/CSS, translations and assets under `customization/`
 are maintained separately.
 
+## Deposit Date range validation
+
+`DatasetVersion` checks new and changed `dateOfDeposit` values in the metadata
+form and dataset version write commands. It accepts calendar dates between
+1900-01-01 and today in Europe/Kyiv, inclusive. The form uses the same time zone
+when filling in a default. Year and year-month values are checked at their
+entered precision. Updates compare the submitted date with
+the previous version so an unchanged legacy date does not block unrelated edits.
+The form displays the error by the field and the Native API returns a bad request.
+The message is in the packaged English and external English/Ukrainian bundles.
+
+On upgrade, recheck form and Native API saves, including partial dates and edits
+to a draft with a preexisting out-of-range value.
+
 ## Hidden My Data role filters
 
 `src/main/webapp/mydata_fragment.xhtml` retains the original Roles heading and

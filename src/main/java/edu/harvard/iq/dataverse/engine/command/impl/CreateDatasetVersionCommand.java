@@ -71,7 +71,7 @@ public class CreateDatasetVersionCommand extends AbstractDatasetCommand<DatasetV
         //because it includes validation and we need the validation
         //to happen after file metdata is added to return a 
         //good wrapped response if the TOA/Request Access not in compliance
-        prepareDatasetAndVersion();
+        prepareDatasetAndVersion(latest);
         
         DatasetVersion version = ctxt.datasets().storeVersion(newVersion);
         if (ctxt.index() != null) {
@@ -88,10 +88,15 @@ public class CreateDatasetVersionCommand extends AbstractDatasetCommand<DatasetV
      * @throws CommandException 
      */
     public void prepareDatasetAndVersion() throws CommandException {
+        prepareDatasetAndVersion(null);
+    }
+
+    private void prepareDatasetAndVersion(DatasetVersion previousVersion) throws CommandException {
         newVersion.setDataset(dataset);
         newVersion.setDatasetFields(newVersion.initDatasetFields());
         newVersion.setCreateTime(getTimestamp());
         newVersion.setLastUpdateTime(getTimestamp());
+        validateDepositDateOrDie(newVersion, previousVersion);
         //Switching the order of validate and tidy up
         //originally missing/empty required fields were not
         //throwing constraint violations because they

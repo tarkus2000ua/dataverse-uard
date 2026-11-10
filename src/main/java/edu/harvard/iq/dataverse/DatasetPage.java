@@ -81,7 +81,6 @@ import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -2654,7 +2653,7 @@ public class DatasetPage implements java.io.Serializable {
                     dsf.getDatasetFieldValues().get(0).setValue(au.getLastName() + ", " + au.getFirstName());
                 }
                 if (dsf.getDatasetFieldType().getName().equals(DatasetFieldConstant.dateOfDeposit) && dsf.isEmpty()) {
-                    dsf.getDatasetFieldValues().get(0).setValue(new SimpleDateFormat("yyyy-MM-dd").format(new Timestamp(new Date().getTime())));
+                    dsf.getDatasetFieldValues().get(0).setValue(DatasetVersion.currentDepositDate().toString());
                 }
 
                 if (dsf.getDatasetFieldType().getName().equals(DatasetFieldConstant.datasetContact) && dsf.isEmpty()) {
@@ -4048,7 +4047,8 @@ public class DatasetPage implements java.io.Serializable {
         }
         // Validate
         workingVersion.validate(); // add validation messages to dataset fields
-        if (!workingVersion.isValid()) {
+        if (workingVersion.validateDepositDate(editMode == EditMode.CREATE ? null : clone).isPresent()
+                || !workingVersion.isValid()) {
             FacesContext.getCurrentInstance().validationFailed();
             return "";
         }

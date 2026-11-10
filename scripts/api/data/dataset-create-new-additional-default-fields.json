@@ -645,7 +645,7 @@
             "typeName": "dateOfDeposit",
             "multiple": false,
             "typeClass": "primitive",
-            "value": "1002-01-01"
+            "value": "2002-01-01"
           },
           {
             "typeName": "timePeriodCovered",

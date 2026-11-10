@@ -120,6 +120,7 @@ public class UpdateDatasetVersionCommand extends AbstractDatasetCommand<Dataset>
         
         //Will throw an IllegalCommandException if a system metadatablock is changed and the appropriate key is not supplied.
         checkSystemMetadataKeyIfNeeded(getDataset().getOrCreateEditVersion(fmVarMet), persistedVersion);
+        validateDepositDateOrDie(getDataset().getOrCreateEditVersion(fmVarMet), persistedVersion);
 
         getDataset().getOrCreateEditVersion().setLastUpdateTime(getTimestamp());
 

@@ -8,6 +8,8 @@ import java.net.URI;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -36,6 +38,46 @@ public class DatasetVersionTest {
         BrandingUtilTest.setupMocks();
     }
     
+    @Test
+    public void testDepositDateValidation() {
+        DatasetFieldType type = new DatasetFieldType();
+        type.setName(DatasetFieldConstant.dateOfDeposit);
+        type.setFieldType(DatasetFieldType.FieldType.DATE);
+        type.setChildDatasetFieldTypes(List.of());
+        DatasetField field = new DatasetField();
+        field.setDatasetFieldType(type);
+        DatasetVersion version = new DatasetVersion();
+        version.setDatasetFields(List.of(field));
+        DatasetVersion previous = new DatasetVersion();
+        DatasetField previousField = new DatasetField();
+        previousField.setDatasetFieldType(type);
+        previousField.setSingleValue("1002-01-01");
+        previous.setDatasetFields(List.of(previousField));
+
+        LocalDate today = DatasetVersion.currentDepositDate();
+        for (String value : List.of("1002-01-01", "1899-12", "2026-13-40", today.plusDays(1).toString(),
+                YearMonth.from(today).plusMonths(1).toString(), Integer.toString(today.getYear() + 1))) {
+            field.setSingleValue(value);
+            String message = version.validateDepositDate(null).orElseThrow();
+            assertEquals(message, field.getValidationMessage());
+        }
+
+        field.setSingleValue("1002-01-01");
+        assertTrue(version.validateDepositDate(previous).isEmpty());
+        field.setSingleValue("1026-01-01");
+        assertTrue(version.validateDepositDate(previous).isPresent());
+
+        for (String value : List.of("", DatasetField.NA_VALUE, "1900", "1900-01", "1900-01-01",
+                Integer.toString(today.getYear()), YearMonth.from(today).toString(), today.toString())) {
+            field.setSingleValue(value);
+            assertTrue(version.validateDepositDate(null).isEmpty(), value);
+        }
+
+        type.setName(DatasetFieldConstant.distributionDate);
+        field.setSingleValue("1002-01-01");
+        assertTrue(version.validateDepositDate(null).isEmpty());
+    }
+
     @Test
     public void testComparator() {
         DatasetVersion ds1_0 = new DatasetVersion();

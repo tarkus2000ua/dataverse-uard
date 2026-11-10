@@ -18,6 +18,7 @@ import edu.harvard.iq.dataverse.engine.command.DataverseRequest;
 import edu.harvard.iq.dataverse.engine.command.exception.CommandException;
 import edu.harvard.iq.dataverse.engine.command.exception.CommandExecutionException;
 import edu.harvard.iq.dataverse.engine.command.exception.IllegalCommandException;
+import edu.harvard.iq.dataverse.engine.command.exception.InvalidCommandArgumentsException;
 import edu.harvard.iq.dataverse.pidproviders.PidProvider;
 import edu.harvard.iq.dataverse.pidproviders.PidUtil;
 import edu.harvard.iq.dataverse.pidproviders.doi.fake.FakeDOIProvider;
@@ -96,6 +97,14 @@ public abstract class AbstractDatasetCommand<T> extends AbstractCommand<T> {
         ctxt.em().persist(datasetDataverseUser);
     }
     
+    protected void validateDepositDateOrDie(DatasetVersion version, DatasetVersion previousVersion)
+            throws InvalidCommandArgumentsException {
+        var error = version.validateDepositDate(previousVersion);
+        if (error.isPresent()) {
+            throw new InvalidCommandArgumentsException(error.get(), this);
+        }
+    }
+
     /**
      * Validates the fields of the {@link DatasetVersion} passed. Throws an
      * informational error if validation fails.

@@ -64,6 +64,7 @@ public class CuratePublishedDatasetVersionCommand extends AbstractDatasetCommand
         DatasetVersion updateVersion = getDataset().getLatestVersionForCopy();
 
         DatasetVersion newVersion = getDataset().getOrCreateEditVersion();
+        validateDepositDateOrDie(newVersion, updateVersion);
         // Copy metadata from draft version to latest published version
         updateVersion.setDatasetFields(newVersion.initDatasetFields());
         newVersion.setDatasetFields(new ArrayList<DatasetField>());
