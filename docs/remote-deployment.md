@@ -349,9 +349,8 @@ column is hidden. No upstream footer template replacement is required.
 
 ## 6. Preserve and verify existing localization
 
-Localization is already configured on the target. Skip language installation:
+Keep the target's existing localization configuration.
 
-- Do not copy our local `customization/lang/` files.
 - Do not create or replace the language-directory JVM option.
 - Do not overwrite `:Languages` or reimport metadata translation bundles.
 - Preserve the current translated UI and metadata files, including any custom
@@ -374,6 +373,22 @@ normal application redeployment still applies. If the console checks reveal an
 unconfigured or incompatible setup, plan that correction separately before rollout.
 The [Dataverse language-directory documentation](https://guides.dataverse.org/en/6.12/installation/config.html#configuring-the-lang-directory)
 describes the configuration mechanism.
+
+### Enable UaRD MIME type detection
+
+Install [the MIME detection bundle](../customization/lang/MimeTypeDetectionByFileExtension.properties)
+in the directory already configured by `dataverse.lang.directory`. If that
+directory already has a MIME detection bundle, merge the UaRD entries into it
+and retain the site's existing mappings. Keep the packaged Dataverse mappings
+in the external base bundle because Dataverse loads it as a replacement.
+Refresh those mappings when upgrading Dataverse.
+
+Restart Payara to reload the bundle. A WAR rebuild is unnecessary. Verify the
+seven recommended extensions through Native API multipart upload with the file
+part set to `application/octet-stream`. Check `dataFile.contentType` in the
+draft file listing. For existing files, use
+`POST /api/files/{id}/redetect?dryRun=true` to review the detected type before
+saving it.
 
 ## 7. Configure the remote homepage collections and destinations
 
