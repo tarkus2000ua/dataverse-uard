@@ -45,12 +45,17 @@ public class ConfigureFragmentBean implements java.io.Serializable{
     DataFileServiceBean datafileService;
     @Inject
     DataverseSession session;
+    @Inject
+    UardApiUi uardApiUi;
     @EJB
     AuthenticationServiceBean authService;
     @EJB
     UserNotificationServiceBean userNotificationService;
     
     public String configureExternalAlert() {
+        if (!uardApiUi.isVisible()) {
+            return "";
+        }
         generateApiToken();
         PrimeFaces.current().executeScript("location.reload(true)");
         String httpString = "window.open('" + toolHandler.getToolUrlWithQueryParams()+  "','_blank'" +")";

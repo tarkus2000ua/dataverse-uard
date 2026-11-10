@@ -60,6 +60,9 @@ public class DataverseHeaderFragment implements java.io.Serializable {
     @Inject
     SettingsWrapper settingsWrapper;
 
+    @Inject
+    UardApiUi uardApiUi;
+
     @Inject 
     NavigationWrapper navigationWrapper;    
 
@@ -151,7 +154,9 @@ public class DataverseHeaderFragment implements java.io.Serializable {
         }
         
         try{
-            this.unreadNotificationCount = userNotificationService.getUnreadNotificationCountByUser(userId);
+            this.unreadNotificationCount = uardApiUi.isVisible()
+                    ? userNotificationService.getUnreadNotificationCountByUser(userId)
+                    : userNotificationService.findTotalCountByUser(userId, true, UserNotification.Type.APIGENERATED);
         }catch (Exception e){
             logger.warning("Error trying to retrieve unread notification count for user." + e.getMessage());
             this.unreadNotificationCount = 0L; 

@@ -75,7 +75,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#{settingsWrapper.get(':NavbarGuidesUrl', settingsWrapper.guidesBaseUrl.concat('/').concat(settingsWrapper.guidesVersion).concat('/user'))}" target="_blank" rel="noopener">
+                            <a href="#{uardApiUi.launchRestricted ? '/guide/' : settingsWrapper.get(':NavbarGuidesUrl', settingsWrapper.guidesBaseUrl.concat('/').concat(settingsWrapper.guidesVersion).concat('/user'))}" target="_blank" rel="noopener">
                                 <h:outputText value="#{bundle['header.guides.user']}"/>
                             </a>
                         </li>
@@ -162,7 +162,7 @@
                                             <h:outputText value="#{bundle['header.accountInfo']}" />
                                         </h:outputLink>
                                     </li>
-                                    <li tabindex="-1">
+                                    <li jsf:rendered="#{uardApiUi.visible}" tabindex="-1">
                                         <h:outputLink value="/dataverseuser.xhtml">
                                             <f:param name="selectTab" value="apiTokenTab" />
                                             <h:outputText value="#{bundle['header.user.selectTab.apiToken']}" />

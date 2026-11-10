@@ -80,13 +80,22 @@ def navigation(template, chapter):
     return re.sub(r"<a\b[^>]*>", mark, template)
 
 
-def build():
+def build(with_api=False):
     template = (SOURCE / "index.html").read_text(encoding="utf-8")
     if template.count("{{guideContent}}") != 1 or template.count("{{guideTitle}}") != 1:
         raise ValueError("Expected one content and one title placeholder in the guide template")
     sources = {name: (SOURCE / name).read_text(encoding="utf-8") for name in CHAPTERS}
     parsed = {}
     for name, content in sources.items():
+        content = re.sub(
+            r"<!-- api-guide:start -->(.*?)<!-- api-guide:end -->",
+            r"\1" if with_api else "",
+            content,
+            flags=re.S,
+        )
+        if "<!-- api-guide:" in content:
+            raise ValueError("Unmatched API guide marker: " + name)
+        sources[name] = content
         parser = GuideLinks()
         parser.feed(content)
         if not parser.heading:
@@ -138,17 +147,19 @@ def build():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Verify generated guide pages and pictures")
+    parser.add_argument("--with-api", action="store_true", help="Build the full guide with API instructions")
+    parser.add_argument("--output", type=Path, default=OUTPUT, help="Destination directory for the generated guide")
     args = parser.parse_args()
-    files = build()
+    files = build(with_api=args.with_api)
     if args.check:
         stale = [name for name, data in files.items()
-                 if not (OUTPUT / name).is_file() or (OUTPUT / name).read_bytes() != data]
+                 if not (args.output / name).is_file() or (args.output / name).read_bytes() != data]
         if stale:
             parser.exit(1, "Guide output is stale: " + ", ".join(stale) + "\n")
         print("Guide pages, direct links, section anchors and local images match their sources.")
     else:
         for name, data in files.items():
-            destination = OUTPUT / name
+            destination = args.output / name
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_bytes(data)
         print("Prepared " + str(len(files)) + " complete guide pages/pictures for fast redeploy.")

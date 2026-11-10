@@ -271,7 +271,7 @@
         </div>
     </p:dialog>
 
-    <p:dialog id="configureToolPopup" styleClass="smallPopUp" header="#{configureFragmentBean.configurePopupToolHandler.externalTool.getDisplayNameLang()}" widgetVar="configureToolPopup" modal="true">
+    <p:dialog id="configureToolPopup" rendered="#{uardApiUi.visible}" styleClass="smallPopUp" header="#{configureFragmentBean.configurePopupToolHandler.externalTool.getDisplayNameLang()}" widgetVar="configureToolPopup" modal="true">
         <ui:include src="file-configure-popup-fragment.xhtml" />
     </p:dialog>
     

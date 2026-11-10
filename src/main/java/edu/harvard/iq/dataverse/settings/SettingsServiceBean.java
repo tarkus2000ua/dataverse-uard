@@ -380,6 +380,7 @@ public class SettingsServiceBean {
         
         // Option to override multiple guides with a single url
         NavbarGuidesUrl,
+        UardHidePublicApiUi,
 
         // Option to overide the feedback dialog display with a link to an external page via its url
         NavbarSupportUrl,

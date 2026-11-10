@@ -668,7 +668,7 @@
                                 </table>
                             </div>
                         </p:tab>
-                        <p:tab id="apiTokenTab" title="#{bundle['apitoken.title']}">
+                        <p:tab id="apiTokenTab" title="#{bundle['apitoken.title']}" rendered="#{uardApiUi.visible}">
                             <p class="help-block">
                                 <h:outputFormat value="#{bundle['apitoken.message']}" escape="false">
                                     <f:param value="&lt;a href=&#34;#{systemConfig.guidesBaseUrl}/#{systemConfig.guidesVersion}/api&#34; target=&#34;_blank&#34;&gt;"/>

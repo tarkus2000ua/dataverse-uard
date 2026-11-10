@@ -476,3 +476,16 @@ a file. Previously ingested files retain their stored metadata.
 On upgrade, check upstream BOM handling with quoted and unquoted first
 headers. `CSVFileReaderTest` covers both cases and checks the generated
 tabular header and value.
+
+## Public API presentation at launch
+
+`:UardHidePublicApiUi` defaults to true. UaRD gates token navigation, the JSF
+tab and its actions, API token notifications and the UI that configures
+token-generating file tools. The system superuser retains these controls.
+File/dataset views keep normal download actions, including a browser button
+in the package dialog, and omit programmatic download instructions.
+Registration filters only the UaRD API agreement item from displayed terms.
+The standalone API agreement and legacy DataTags test pages are gated in
+the same mode. The API routes and token persistence are unchanged.
+Public About fragments use the switch and the static guide has two build
+modes. See [activation and restoration](api-launch-visibility.md).

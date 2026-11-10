@@ -18,6 +18,7 @@ import edu.harvard.iq.dataverse.SettingsWrapper;
 import edu.harvard.iq.dataverse.validation.UserNameValidator;
 import edu.harvard.iq.dataverse.UserNotification;
 import edu.harvard.iq.dataverse.UserNotification.Type;
+import edu.harvard.iq.dataverse.UardApiUi;
 import edu.harvard.iq.dataverse.UserNotificationServiceBean;
 import edu.harvard.iq.dataverse.UserServiceBean;
 import edu.harvard.iq.dataverse.authorization.AuthUtil;
@@ -141,6 +142,9 @@ public class DataverseUserPage implements java.io.Serializable {
     private String currentPassword;
     private Long dataverseId;
     private List<UserNotification> notificationsList;
+    @Inject
+    private UardApiUi uardApiUi;
+
     private int activeIndex;
     private String selectTab = "dataRelatedToMe";
     UIInput usernameField;
@@ -181,9 +185,14 @@ public class DataverseUserPage implements java.io.Serializable {
         if (session.getUser(true).isAuthenticated()) {
             setCurrentUser((AuthenticatedUser) session.getUser());
             userAuthProvider = authenticationService.lookupProvider(currentUser);
+            boolean apiUiVisible = uardApiUi.isVisible();
             notificationsList = userNotificationService.findByUser(currentUser.getId());
+            if (!apiUiVisible) {
+                notificationsList.removeIf(notification -> notification.getType() == Type.APIGENERATED);
+            }
             notificationTypeList = Arrays.asList(Type.values()).stream()
                     .filter(x -> !Type.CONFIRMEMAIL.equals(x) && x.hasDescription() && !settingsWrapper.isAlwaysMuted(x))
+                    .filter(x -> apiUiVisible || x != Type.APIGENERATED)
                     .collect(Collectors.toList());
             mutedEmails = new HashSet<>(currentUser.getMutedEmails());
             mutedNotifications = new HashSet<>(currentUser.getMutedNotifications());
@@ -203,7 +212,7 @@ public class DataverseUserPage implements java.io.Serializable {
                     activeIndex = 2;
                     break;
                 case "apiTokenTab":
-                    activeIndex = 3;
+                    activeIndex = apiUiVisible ? 3 : 2;
                     break;
                 default:
                     //TODO: Do we need to call mydatapage.init(); here too?
@@ -769,9 +778,13 @@ public class DataverseUserPage implements java.io.Serializable {
     }
 
     public void setToReceiveEmails(Set<Type> toReceiveEmails) {
+        boolean keepApiMuted = !uardApiUi.isVisible() && mutedEmails.contains(Type.APIGENERATED);
         this.mutedEmails = notificationTypeList.stream().filter(
             x -> !isDisabled(x) && !toReceiveEmails.contains(x)
         ).collect(Collectors.toSet());
+        if (keepApiMuted) {
+            mutedEmails.add(Type.APIGENERATED);
+        }
     }
 
     public Set<Type> getToReceiveNotifications() {
@@ -781,9 +794,13 @@ public class DataverseUserPage implements java.io.Serializable {
     }
 
     public void setToReceiveNotifications(Set<Type> toReceiveNotifications) {
+        boolean keepApiMuted = !uardApiUi.isVisible() && mutedNotifications.contains(Type.APIGENERATED);
         this.mutedNotifications = notificationTypeList.stream().filter(
-            x -> !isDisabled(x) && !toReceiveNotifications.contains(x) 
+            x -> !isDisabled(x) && !toReceiveNotifications.contains(x)
         ).collect(Collectors.toSet());
+        if (keepApiMuted) {
+            mutedNotifications.add(Type.APIGENERATED);
+        }
     }
     
     public boolean isDisabled(Type t) {

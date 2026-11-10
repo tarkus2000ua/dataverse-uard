@@ -523,7 +523,7 @@
                                                         </th>
                                                         <td>#{FilePage.file.getGlobalId()}</td>
                                                     </tr>
-                                                    <tr id="fileDownloadUrlBlock" jsf:rendered="#{FilePage.publiclyDownloadable and !FilePage.fileMetadata.dataFile.filePackage}">
+                                                    <tr id="fileDownloadUrlBlock" jsf:rendered="#{uardApiUi.visible and FilePage.publiclyDownloadable and !FilePage.fileMetadata.dataFile.filePackage}">
                                                         <!--Only show Public download url if identifier is available -->
                                                         <th scope="row">
                                                             #{bundle['file.metadataTab.fileMetadata.downloadUrl.label']}

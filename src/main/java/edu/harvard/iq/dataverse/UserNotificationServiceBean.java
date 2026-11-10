@@ -85,18 +85,25 @@ public class UserNotificationServiceBean {
      * @return The total count as a Long.
      */
     public Long findTotalCountByUser(Long userId, boolean onlyUnread) {
+        return findTotalCountByUser(userId, onlyUnread, null);
+    }
+
+    public Long findTotalCountByUser(Long userId, boolean onlyUnread, Type excludedType) {
         if (userId == null) {
             return 0L;
         }
 
-        TypedQuery<Long> query = em.createQuery(
-                "select count(un) from UserNotification un " +
-                        "where un.user.id = :userId and (:onlyUnread = false or un.readNotification = false)",
-                Long.class
-        );
-
+        String jpql = "select count(un) from UserNotification un "
+                + "where un.user.id = :userId and (:onlyUnread = false or un.readNotification = false)";
+        if (excludedType != null) {
+            jpql += " and un.type <> :excludedType";
+        }
+        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
         query.setParameter("userId", userId);
         query.setParameter("onlyUnread", onlyUnread);
+        if (excludedType != null) {
+            query.setParameter("excludedType", excludedType);
+        }
 
         return query.getSingleResult();
     }

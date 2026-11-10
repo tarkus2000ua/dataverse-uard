@@ -137,7 +137,7 @@
             <!-- Основний контент -->
             <div class="col-sm-9 col-md-10">
                 <div id="content" class="main-content" role="main">
-<h1>Створення та управління акаунтом</h1><div class="local-toc well well-sm" style="margin-top: 20px;"><strong>Вміст:</strong><ul><li><a href="#account-information">Інформація облікового запису</a></li><ul><li><a href="#account-log-in-options">Варіанти входу до облікового запису</a></li><li><a href="#create-account">Створення облікового запису</a></li><li><a href="#edit-account">Редагування облікового запису</a></li><li><a href="#convert-account">Конвертація облікового запису</a></li><li><a href="#reset-account-password">Скидання пароля облікового запису</a></li></ul><li><a href="#remote-authentication">Віддалена автентифікація</a></li><ul><li><a href="#institutional-log-in">Інституційний вхід (Institutional Log In)</a></li><li><a href="#orcid-log-in">ORCID Log In (Вхід через ORCID)</a></li><li><a href="#microsoft-google-github">Вхід через Microsoft Azure AD, GitHub та Google</a></li></ul><li><a href="#linking-orcid">Зв'язування ORCID з вашим профілем облікового запису</a></li><li><a href="#my-data">My Data (Мої дані)</a></li><li><a href="#notifications">Повідомлення (Notifications)</a></li><li><a href="#api-token">API Токен (API Token)</a></li><ul><li><a href="#what-are-apis">Що таке API і чому вони корисні</a></li><li><a href="#like-a-password">Як ваш API токен схожий на пароль</a></li><li><a href="#create-api-token">Як створити свій API Token</a></li><li><a href="#recreate-api-token">Як перестворити (Recreate) ваш API Token</a></li><li><a href="#additional-api-info">Додаткова інформація про токени API та API системи Dataverse</a></li></ul></ul></div><hr/>
+<h1>Створення та управління акаунтом</h1><div class="local-toc well well-sm" style="margin-top: 20px;"><strong>Вміст:</strong><ul><li><a href="#account-information">Інформація облікового запису</a></li><ul><li><a href="#account-log-in-options">Варіанти входу до облікового запису</a></li><li><a href="#create-account">Створення облікового запису</a></li><li><a href="#edit-account">Редагування облікового запису</a></li><li><a href="#convert-account">Конвертація облікового запису</a></li><li><a href="#reset-account-password">Скидання пароля облікового запису</a></li></ul><li><a href="#remote-authentication">Віддалена автентифікація</a></li><ul><li><a href="#institutional-log-in">Інституційний вхід (Institutional Log In)</a></li><li><a href="#orcid-log-in">ORCID Log In (Вхід через ORCID)</a></li><li><a href="#microsoft-google-github">Вхід через Microsoft Azure AD, GitHub та Google</a></li></ul><li><a href="#linking-orcid">Зв'язування ORCID з вашим профілем облікового запису</a></li><li><a href="#my-data">My Data (Мої дані)</a></li><li><a href="#notifications">Повідомлення (Notifications)</a></li></ul></div><hr/>
 <h2 id="account-information">Інформація облікового запису</h2>
 <p>Як зареєстрований користувач, ви можете:</p>
 <ul>
@@ -346,38 +346,11 @@
         отримають сповіщення про такі запити доступу).</li>
 <li>Файл в одному з ваших наборів даних успішно пройшов процес обробки (ingest).</li>
 </ul>
-<p>Існують і інші типи повідомлень: про призначення ролей, створення ключа API тощо. Ці типи сповіщень є менш поширеними
+<p>Існують і інші типи повідомлень: про призначення ролей тощо. Ці типи сповіщень є менш поширеними
     і не описані тут. Деякі обмежені ролями (напр. рецензенти (reviewers) отримують сповіщення, коли набір подано на
     розгляд).</p>
 <p>Сповіщення дублюються на email лише один раз, навіть якщо ви їх ще не прочитали у системі.</p>
-<p>Керувати повідомленнями можна і через API. (Див. API Guide).</p>
-<h2 id="api-token">API Токен (API Token)</h2>
-<h3 id="what-are-apis">Що таке API і чому вони корисні</h3>
-<p>API означає "Application Programming Interface" (Інтерфейс програмування додатків), і API програмного забезпечення
-    Dataverse дозволяють вам користуватися інтеграціями з іншим програмним забезпеченням, що могли налаштувати
-    адміністратори. Див. посібник для адміністраторів у розділах "External Tools" та "Integrations".</p>
-<p>Крім того, якщо ви бажаєте написати трохи коду (або знайти когось, хто це зробить для вас), API надають спосіб
-    автоматизувати частини вашого робочого процесу. Див. розділ "Getting Started with APIs" у посібнику по API для
-    подробиць.</p>
-<h3 id="like-a-password">Як ваш API токен схожий на пароль</h3>
-<p>У багатьох випадках, наприклад, при депозитуванні даних, потрібен API Token для взаємодії з API Dataverse. Слово
-    "токен" означає послідовність літер та цифр, наприклад, <code>c6527048-5bdc-48b0-a1d5-ed1b62c8113b</code>. Будь-хто,
-    у кого є ваш API Token, може додавати чи видаляти дані від вашого імені, тому слід ставитись до нього з такою ж
-    обережністю, як до пароля.</p>
-<h3 id="create-api-token">Як створити свій API Token</h3>
-<p>Щоб створити ваш API токен, натисніть на назву свого облікового запису у навігаційній панелі, потім виберіть "API
-    Token" у випадаючому меню. У цій вкладці натисніть "Create Token".</p>
-<h3 id="recreate-api-token">Як перестворити (Recreate) ваш API Token</h3>
-<p>Якщо ваш API Token був скомпрометований або закінчився його термін дії (expired), натисніть на назву свого облікового
-    запису у верхньому меню і виберіть "API Token" з меню. У цій вкладці натисніть "Recreate Token".</p>
-<h3 id="additional-api-info">Додаткова інформація про токени API та API системи Dataverse</h3>
-<p>API програмного забезпечення Dataverse документовані у посібнику з API (API Guide), проте наступні розділи можуть
-    становити особливий інтерес:</p>
-<ul>
-<li>Getting Started with APIs (Початок роботи з API)</li>
-<li>API Tokens and Authentication (Токени API та автентифікація)</li>
-<li>Frequently Asked Questions (Часто задавані питання)</li>
-</ul>
+
                 </div>
                 <footer>
                     &copy; 2026 ДНТБ України. На базі офіційної документації Dataverse v6.6.

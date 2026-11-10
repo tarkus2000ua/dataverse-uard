@@ -26,13 +26,15 @@ public class ApiTokenPage implements java.io.Serializable {
 
     @Inject
     DataverseSession session;
+    @Inject
+    UardApiUi uardApiUi;
     @EJB
     AuthenticationServiceBean authSvc;
 
     ApiToken apiToken;
     
     public boolean checkForApiToken() {
-        if (session.getUser().isAuthenticated()){
+        if (uardApiUi.isVisible() && session.getUser().isAuthenticated()){
             AuthenticatedUser au = (AuthenticatedUser) session.getUser();
             apiToken = authSvc.findApiTokenByUser(au);
             if (apiToken != null) {
@@ -44,7 +46,7 @@ public class ApiTokenPage implements java.io.Serializable {
 
     public String getApiToken() {
 
-        if (session.getUser().isAuthenticated()) {
+        if (uardApiUi.isVisible() && session.getUser().isAuthenticated()) {
             AuthenticatedUser au = (AuthenticatedUser) session.getUser();
             apiToken = authSvc.findApiTokenByUser(au);
             if (apiToken != null) {
@@ -62,7 +64,7 @@ public class ApiTokenPage implements java.io.Serializable {
     }
 
     public void generate() {
-        if (session.getUser().isAuthenticated()) {
+        if (uardApiUi.isVisible() && session.getUser().isAuthenticated()) {
             AuthenticatedUser au = (AuthenticatedUser) session.getUser();
 
             apiToken = authSvc.findApiTokenByUser(au);
@@ -77,7 +79,7 @@ public class ApiTokenPage implements java.io.Serializable {
     }
     
     public String getApiTokenExpiration() {
-        if (session.getUser().isAuthenticated()) {
+        if (uardApiUi.isVisible() && session.getUser().isAuthenticated()) {
             AuthenticatedUser au = (AuthenticatedUser) session.getUser();
             apiToken = authSvc.findApiTokenByUser(au);
             if (apiToken != null) {
@@ -96,7 +98,7 @@ public class ApiTokenPage implements java.io.Serializable {
     }
     
     public void revoke() {
-        if (session.getUser().isAuthenticated()) {
+        if (uardApiUi.isVisible() && session.getUser().isAuthenticated()) {
             AuthenticatedUser au = (AuthenticatedUser) session.getUser();
             apiToken = authSvc.findApiTokenByUser(au);
             if (apiToken != null) {
