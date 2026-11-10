@@ -212,7 +212,9 @@ Settings are stored in the database and do not travel with Git.
 
 Production: https://uard.dntb.gov.ua/.
 Current test deployment target: https://uard2.dntb.gov.ua/.
-The user performs remote file updates; the agent has not deployed to either host.
+The API visibility release was deployed to uard2 on 2026-11-10.
+See [the uard2 release record](docs/api-launch-visibility.md#запис-розгортання-на-uard2).
+Production deployments are tracked separately.
 Actual active Payara path, admin port, configured language filename and final
 remote file state still require confirmation. A user screenshot showed the guide
 source placeholder on uard2; correct generated files were supplied, but successful
