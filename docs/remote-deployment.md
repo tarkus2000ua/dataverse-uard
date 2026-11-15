@@ -691,3 +691,43 @@ This update requires no database import/schema change, metadata migration, Solr
 reset or Docker volume recreation. Dev-start/FRD helpers belong to the local
 workspace and are not production deployment commands. Back up changed files and
 prior setting values for rollback; do not restore a database for a text/link fix.
+
+## Confirmed uard2 language-bundle update (2026-11-15)
+
+At the user's request, the active external bundles on host `uard2` were updated
+from the local working copies on November 15, 2026, at 16:37 Europe/Kyiv.
+The preceding comparison found no remote-only keys in these three files.
+The server's existing `uk` locale and `/dv/langBundles` directory were retained:
+
+| Local source under customization/lang | Installed file under /dv/langBundles |
+| --- | --- |
+| Bundle.properties | Bundle.properties |
+| Bundle_ua.properties | Bundle_uk.properties |
+| citation_ua.properties | citation_uk.properties |
+
+The release directory is
+`/home/designer/uard-releases/lang-bundles-20261115T143514Z/`.
+It contains the full pre-update language-directory archive
+`before-langBundles.tar`, the uploaded files and checksum plan, and the
+`before.json`, `installed.json` and `verified.json` audit records. Installation
+preserved each file's owner, group and mode. All other files in the language
+directory were verified unchanged; the English citation and MIME mappings
+already matched local values semantically and were not replaced.
+
+Only the existing `payara_domain1.service` was restarted to clear bundle caches.
+Post-restart checks confirmed the three installed files match their local
+sources byte for byte, all 65 audited directory files match the installation
+record, and the version API reports Dataverse 6.12. A public-browser native
+Ukrainian → English → Ukrainian round trip displayed the corresponding
+`Авторське право` / `Copyright` footer text. The live public advanced-search
+page also rendered `Куратор`. Authenticated dataset editing was not exercised.
+
+This deployment updated external language bundles only. The earlier local
+description-help XHTML removal and title-prefix-button CSS rule are separate
+presentation changes and were not part of this upload. No WAR, metadata schema,
+database settings or locale configuration was replaced.
+
+To roll back only these three files, extract `langBundles/Bundle.properties`,
+`langBundles/Bundle_uk.properties` and `langBundles/citation_uk.properties` from
+the retained archive into `/dv`, preserving ownership and permissions, then
+restart the same Payara service and repeat the language/version checks.

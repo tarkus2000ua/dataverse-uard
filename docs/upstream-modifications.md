@@ -4,6 +4,21 @@ This file records intentional changes to Dataverse 6.12 source and their upgrade
 review points. Branding HTML/CSS, translations and assets under `customization/`
 are maintained separately.
 
+## Dataset description help text
+
+`src/main/webapp/metadataFragment.xhtml` omits the HTML-tags help paragraph above
+the Description text area. The native field label, tooltip, required marker,
+input binding, validation and repeat controls remain intact in all locales.
+The shared `htmlAllowedMsg` translation is retained for other forms.
+
+The external Ukrainian citation bundle also labels `producer` as `Куратор`.
+The metadata field name, stored values and export mappings remain unchanged.
+
+Deploy the XHTML through the normal application update (local development:
+`./scripts/dev/dev-frd.sh`) and reload the external bundle with the application.
+On upgrade, recheck the Description compound field and the localized producer
+label in the metadata form.
+
 ## Deposit Date range validation
 
 `DatasetVersion` checks new and changed `dateOfDeposit` values in the metadata

@@ -1,4 +1,7 @@
 /* UaRD branding: existing JSF navbar and custom homepage. */
+/* Hide the optional title-prefix helper in the dataset form. */
+#datasetForm #replicationDataButton { display: none; }
+
 #content:has(> .dv-home) { width: 100%; max-width: none; padding: 0; }
 .dv-home {
     --uard-ink: #07376b;
