@@ -462,7 +462,8 @@ public class MailServiceBean implements java.io.Serializable {
                         parentDataverseDisplayName,
                         parentDataverseUrl,
                         systemConfig.getGuidesBaseUrl(),
-                        systemConfig.getGuidesVersion()), bundle);
+                        systemConfig.getGuidesVersion(),
+                        systemConfig.getDataverseSiteUrl()), bundle);
                 logger.fine(dataverseCreatedMessage);
                 return messageText += dataverseCreatedMessage;
             case REQUESTFILEACCESS:
@@ -514,7 +515,8 @@ public class MailServiceBean implements java.io.Serializable {
                         version.getDataset().getOwner().getDisplayName(),
                         getDataverseLink(version.getDataset().getOwner()),
                         systemConfig.getGuidesBaseUrl(),
-                        systemConfig.getGuidesVersion()
+                        systemConfig.getGuidesVersion(),
+                        systemConfig.getDataverseSiteUrl()
                 ), bundle);
                 logger.fine(datasetCreatedMessage);
                 return messageText += datasetCreatedMessage;
@@ -623,7 +625,8 @@ public class MailServiceBean implements java.io.Serializable {
                         systemConfig.getGuidesBaseUrl(),
                         systemConfig.getGuidesVersion(),
                         BrandingUtil.getSupportTeamName(getSystemAddress().orElse(null)),
-                        BrandingUtil.getSupportTeamEmailAddress(getSystemAddress().orElse(null))
+                        BrandingUtil.getSupportTeamEmailAddress(getSystemAddress().orElse(null)),
+                        systemConfig.getDataverseSiteUrl()
                 ), bundle);
                 String optionalConfirmEmailAddon = confirmEmailService.optionalConfirmEmailAddonMsg(userNotification.getUser());
                 accountCreatedMessage += optionalConfirmEmailAddon;

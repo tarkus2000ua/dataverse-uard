@@ -731,3 +731,49 @@ To roll back only these three files, extract `langBundles/Bundle.properties`,
 `langBundles/Bundle_uk.properties` and `langBundles/citation_uk.properties` from
 the retained archive into `/dv`, preserving ownership and permissions, then
 restart the same Payara service and repeat the language/version checks.
+
+## Confirmed uard2 email-guide update (2026-11-15)
+
+At the user's request, the five email templates containing documentation links
+were updated on uard2 on November 15, 2026, at 18:50 Europe/Kyiv. Welcome emails
+link to the guide index; collection and dataset creation emails link to their
+management chapters; both ingest completion notices link to the tabular-files
+section. All links use the configured Dataverse site address.
+
+The release directory is
+`/home/designer/uard-releases/email-guide-20261115T164609Z/`.
+The active application remains
+`/usr/local/payara7/glassfish/domains/domain1/applications/dataverse/`.
+Only four files were installed:
+
+- `WEB-INF/classes/edu/harvard/iq/dataverse/MailServiceBean.class`.
+- The five email entries in `WEB-INF/classes/propertyFiles/Bundle.properties`.
+- The five email entries in `/dv/langBundles/Bundle.properties`.
+- The five email entries in `/dv/langBundles/Bundle_uk.properties`.
+
+The mail class was compiled against the installed uard2 libraries. Its baseline
+bytecode matched the committed source before the patch, and its enum helper
+remained identical. Bundle updates merged only the reviewed entries, preserving
+all other content, file ownership and modes. The installed class is byte-identical
+to the locally validated compiled class. The existing `uk` locale was retained.
+
+The release retains `before-app.war`, `before-langBundles.tar`, source inputs,
+the checksum plan, and `before.json`, `prepared.json`, `installed.json` and
+`verified.json` audit records. It also contains a complete updated application
+artifact, `dataverse-email-guide-after.war`, with SHA-256
+`d8a56bec96d4ee30d768d06c89e6910adae08fe17bd541e566ca243cf3cb1fc8`.
+Use this artifact with the updated external bundles when redeploying this
+uard2 revision; an older WAR would restore the previous mail class.
+
+The existing `payara_domain1.service` was restarted. Post-startup audit verified
+all 2,016 application files and 65 language files against the plan, with no
+unrelated content changes. All 15 installed English/Ukrainian/fallback template
+renders passed; support and failed-file details remained resolved. Public and
+local version APIs returned 6.12, and the guide index, management chapters and
+tabular-files anchor were verified. Local validation had passed 65 existing
+unit tests and 45 template renders. No real SMTP message was sent.
+
+To roll back this update, stop the same Payara service, restore only the two
+application files from `before-app.war` and the two external bundles from
+`before-langBundles.tar`, preserving their recorded metadata, then start Payara
+and repeat the version, guide and template checks. No database restore is needed.

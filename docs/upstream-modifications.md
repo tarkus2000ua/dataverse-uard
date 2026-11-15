@@ -4,6 +4,25 @@ This file records intentional changes to Dataverse 6.12 source and their upgrade
 review points. Branding HTML/CSS, translations and assets under `customization/`
 are maintained separately.
 
+## Email documentation links
+
+The five email templates with documentation links now use the local guide:
+welcome links to `/guide/`, collection and dataset creation link to their
+respective management chapters, and both ingest completion notices link to
+`/guide/dataset-management.html#tabular-data-files`. The packaged English
+fallback and external English/Ukrainian bundles are updated together.
+
+`MailServiceBean` appends the configured Dataverse site URL to the welcome
+and creation template arguments. Existing argument positions are retained for
+compatibility with external translations; ingest templates reuse their existing
+site URL argument. Email URLs are absolute and follow each installation's site
+address. Other email links and locale selection retain their native behavior.
+
+Deploy the application change and external bundles together (local development:
+`./scripts/dev/dev-frd.sh`). No guide-related setting change is needed. On
+upgrade, audit all email-producing templates for new documentation links and
+verify MessageFormat substitutions, the guide chapters and the ingest anchor.
+
 ## Dataset description help text
 
 `src/main/webapp/metadataFragment.xhtml` omits the HTML-tags help paragraph above

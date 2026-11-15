@@ -32,16 +32,16 @@ public class BundleUtilTest {
                 + "was created in parentDvName (view at parentDvUrl ). To learn more "
                 + "about what you can do with your dataverse, check out "
                 + "the Dataverse Management - User Guide at "
-                + "http://guides.dataverse.org/en/4.0/user/dataverse-management.html .",
+                + "https://repository.example/guide/dataverse-management.html .",
                 BundleUtil.getStringFromBundle("notification.email.createDataverse",
-                        Arrays.asList("dvName", "dvUrl", "parentDvName", "parentDvUrl", "http://guides.dataverse.org/en", "4.0")));
+                        Arrays.asList("dvName", "dvUrl", "parentDvName", "parentDvUrl", "http://guides.dataverse.org/en", "4.0", "https://repository.example")));
         assertEquals("Your new dataset named dsName (view at dsUrl ) "
                 + "was created in parentDvName (view at parentDvUrl ). "
                 + "To learn more about what you can do with a dataset, "
                 + "check out the Dataset Management - User Guide at "
-                + "http://guides.dataverse.org/en/4.0/user/dataset-management.html .",
+                + "https://repository.example/guide/dataset-management.html .",
                 BundleUtil.getStringFromBundle("notification.email.createDataset",
-                        Arrays.asList("dsName", "dsUrl", "parentDvName", "parentDvUrl", "http://guides.dataverse.org/en", "4.0")));
+                        Arrays.asList("dsName", "dsUrl", "parentDvName", "parentDvUrl", "http://guides.dataverse.org/en", "4.0", "https://repository.example")));
         assertEquals("There are no dataverses, datasets, or files that match your search. "
                 + "Please try a new search by using other or broader terms. You can also check out "
                 + "the <a href=\"http://guides.dataverse.org/en/4.2/user/find-use-data.html\" title=\"Finding &amp; Using "

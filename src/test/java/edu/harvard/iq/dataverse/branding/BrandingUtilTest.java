@@ -203,11 +203,12 @@ public class BrandingUtilTest {
                         "http://guides.librascholar.edu/en",
                         "4.3",
                         "LibraScholar Support",
-                        "support@librascholar.edu"
+                        "support@librascholar.edu",
+                        "https://librascholar.edu"
                 ));
         log.fine("message: " + message);
         assertEquals("Welcome to LibraScholar! Get started by adding or finding data. "
-                + "Have questions? Check out the User Guide at http://guides.librascholar.edu/en/4.3/user or"
+                + "Have questions? Check out the User Guide at https://librascholar.edu/guide/ or"
                 + " contact LibraScholar Support at support@librascholar.edu for assistance.",
                 message);
     }
