@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+<article class="uard-about uard-video-guides" lang="en" aria-labelledby="video-guides-title">
+    <div class="uard-about__hero">
+        <div class="uard-about__inner">
+            <h1 id="video-guides-title">Video guides</h1>
+            <p class="uard-video-guides__intro">Short videos to help you get started with UaRD: create an account, update your details and confirm your email address.</p>
+        </div>
+    </div>
+    <div class="uard-about__inner uard-about__layout">
+        <ui:include src="/uard/components/video-guide.xhtml">
+            <ui:param name="videoSlug" value="orcid-registration" />
+            <ui:param name="videoNumber" value="01" />
+            <ui:param name="videoTitle" value="Register with ORCID" />
+            <ui:param name="videoDescription" value="How to create a UaRD account using ORCID." />
+            <ui:param name="videoDuration" value="2:19" />
+            <ui:param name="videoDurationIso" value="PT2M19S" />
+        </ui:include>
+        <ui:include src="/uard/components/video-guide.xhtml">
+            <ui:param name="videoSlug" value="account-details" />
+            <ui:param name="videoNumber" value="02" />
+            <ui:param name="videoTitle" value="Update your account details" />
+            <ui:param name="videoDescription" value="How to edit the personal details in your account." />
+            <ui:param name="videoDuration" value="0:44" />
+            <ui:param name="videoDurationIso" value="PT44S" />
+        </ui:include>
+        <ui:include src="/uard/components/video-guide.xhtml">
+            <ui:param name="videoSlug" value="email-confirmation" />
+            <ui:param name="videoNumber" value="03" />
+            <ui:param name="videoTitle" value="Confirm your email address" />
+            <ui:param name="videoDescription" value="How to confirm the email address associated with your account." />
+            <ui:param name="videoDuration" value="0:53" />
+            <ui:param name="videoDurationIso" value="PT53S" />
+        </ui:include>
+        <p class="uard-about__back"><a href="#{request.contextPath}/">&#8592; #{bundle['org.videoGuides.backHome']}</a></p>
+    </div>
+</article>
+</ui:composition>

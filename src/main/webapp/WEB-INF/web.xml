@@ -129,6 +129,11 @@
         <!-- Uncomment the line below to disble `;jsessionid=` in URLs -->
 	<!-- tracking-mode>COOKIE</tracking-mode -->
     </session-config>
+    <!-- UaRD browser-playable video guides. -->
+    <mime-mapping>
+        <extension>mp4</extension>
+        <mime-type>video/mp4</mime-type>
+    </mime-mapping>
     <!-- web fonts, bootstrap css map, favicon -->
     <mime-mapping>
         <extension>eot</extension>

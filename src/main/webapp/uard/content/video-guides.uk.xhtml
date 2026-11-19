@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+<article class="uard-about uard-video-guides" lang="uk" aria-labelledby="video-guides-title">
+    <div class="uard-about__hero">
+        <div class="uard-about__inner">
+            <h1 id="video-guides-title">Відеоінструкції</h1>
+            <p class="uard-video-guides__intro">Короткі відео, які допоможуть розпочати роботу з UaRD: створити обліковий запис, змінити свої дані та підтвердити електронну адресу.</p>
+        </div>
+    </div>
+    <div class="uard-about__inner uard-about__layout">
+        <ui:include src="/uard/components/video-guide.xhtml">
+            <ui:param name="videoSlug" value="orcid-registration" />
+            <ui:param name="videoNumber" value="01" />
+            <ui:param name="videoTitle" value="Реєстрація через ORCID" />
+            <ui:param name="videoDescription" value="Як створити обліковий запис UaRD за допомогою ORCID." />
+            <ui:param name="videoDuration" value="2:19" />
+            <ui:param name="videoDurationIso" value="PT2M19S" />
+        </ui:include>
+        <ui:include src="/uard/components/video-guide.xhtml">
+            <ui:param name="videoSlug" value="account-details" />
+            <ui:param name="videoNumber" value="02" />
+            <ui:param name="videoTitle" value="Зміна даних в обліковому записі" />
+            <ui:param name="videoDescription" value="Як відредагувати особисті дані у своєму обліковому записі." />
+            <ui:param name="videoDuration" value="0:44" />
+            <ui:param name="videoDurationIso" value="PT44S" />
+        </ui:include>
+        <ui:include src="/uard/components/video-guide.xhtml">
+            <ui:param name="videoSlug" value="email-confirmation" />
+            <ui:param name="videoNumber" value="03" />
+            <ui:param name="videoTitle" value="Підтвердження електронної адреси" />
+            <ui:param name="videoDescription" value="Як підтвердити адресу електронної пошти, зазначену в обліковому записі." />
+            <ui:param name="videoDuration" value="0:53" />
+            <ui:param name="videoDurationIso" value="PT53S" />
+        </ui:include>
+        <p class="uard-about__back"><a href="#{request.contextPath}/">&#8592; #{bundle['org.videoGuides.backHome']}</a></p>
+    </div>
+</article>
+</ui:composition>

@@ -4,6 +4,34 @@ This file records intentional changes to Dataverse 6.12 source and their upgrade
 review points. Branding HTML/CSS, translations and assets under `customization/`
 are maintained separately.
 
+## Video guides page (2026-11-19)
+
+The added `video-guides.xhtml` wrapper uses the existing native Dataverse template,
+with bilingual editorial fragments and a shared player under `uard/`.
+Three local MP4 recordings and posters live in `resources/videos/uard/`.
+`WEB-INF/web.xml` adds an explicit mp4 → video/mp4 MIME mapping so direct
+links and range responses carry the correct Content-Type.
+The packaged English bundle adds four `org.videoGuides.*` player labels and two
+`org.header.guides.*` menu labels, mirrored in the active external English/Ukrainian
+bundles. Scoped styling lives in the supported branding stylesheet.
+
+`dataverse_header.xhtml` turns the existing User Guide entry into a native
+Bootstrap dropdown with Written guide and Video guides submenu links. The
+written guide retains the exact launch-restriction/configured-URL/fallback
+expression and its new-tab/noopener behavior. The video link uses the current
+application context and also opens a new tab. Labels follow native bundles;
+the dropdown reuses existing desktop/mobile styling and Bootstrap controls.
+Authentication, permissions, support, locale actions, footer and routing remain
+unchanged.
+
+Upgrade/deployment: keep the header dropdown, wrapper, fragments, player, media
+assets, bundle keys and scoped CSS together, including the MP4 MIME mapping. MP4s use the original
+H.264 video stream without re-encoding. The supplied sources have empty audio
+tracks; the MP4s remain silent. See [video guides](video-guides.md) for the file
+map and preparation.
+Local development uses FRD; remote deployment records identify the installed
+artifact and preserved server-specific files.
+
 ## Email documentation links
 
 The five email templates with documentation links now use the local guide:

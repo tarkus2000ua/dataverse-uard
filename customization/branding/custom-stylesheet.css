@@ -441,6 +441,23 @@ footer:has(> #uard-footer) #dvfooter a:focus-visible { outline: 2px solid #8bd3f
     .uard-about__text { max-width: none; }
 }
 
+/* Video guides reuse the article shell and keep screencasts large enough to read. */
+.uard-video-guides__intro { max-width: 840px; margin: 14px 0 0; font-size: 18px; }
+.uard-video-guides__item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 32px; align-items: start; padding: 32px 0; border-bottom: 1px solid #dcebf5; scroll-margin-top: 96px; }
+.uard-video-guides__item:first-child { padding-top: 0; }
+.uard-video-guides__item:last-of-type { border-bottom: 0; padding-bottom: 0; }
+.uard-video-guides__number { display: block; margin-bottom: 12px; color: #0067ad; font-size: 18px; font-weight: 700; }
+.uard-video-guides__description h2 { margin: 0 0 14px; font-size: 26px; font-weight: 700; line-height: 1.3; }
+.uard-video-guides__description p { margin: 0 0 14px; }
+.uard-video-guides__meta { color: #53687a; font-size: 14px; }
+.uard-video-guides__open { display: inline-flex; align-items: center; min-height: 44px; }
+.uard-video-guides__player { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 1px solid #c5d9e8; }
+.uard-video-guides__player:focus-visible { outline: 3px solid #0067ad; outline-offset: 4px; }
+@media (max-width: 900px) {
+    .uard-video-guides__item { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .uard-video-guides__description h2 { font-size: 23px; }
+}
+
 /* Supporting platform attribution in the hero. */
 .dv-home__intro a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 

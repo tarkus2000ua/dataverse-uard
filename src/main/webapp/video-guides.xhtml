@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle"
+              value="#{dataverseSession.localeCode eq 'en' ? 'Video guides — UaRD' : 'Відеоінструкції — UaRD'}" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="description"
+              content="#{dataverseSession.localeCode eq 'en' ? 'UaRD video guides: register with ORCID, update your account details and confirm your email address.' : 'Відеоінструкції UaRD: реєстрація через ORCID, зміна даних облікового запису та підтвердження електронної адреси.'}" />
+    </ui:define>
+    <ui:define name="body">
+        <ui:include src="#{dataverseSession.localeCode eq 'en'
+                          ? '/uard/content/video-guides.en.xhtml'
+                          : '/uard/content/video-guides.uk.xhtml'}" />
+    </ui:define>
+</ui:composition>
