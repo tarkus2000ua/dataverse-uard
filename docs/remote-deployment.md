@@ -777,3 +777,33 @@ To roll back this update, stop the same Payara service, restore only the two
 application files from `before-app.war` and the two external bundles from
 `before-langBundles.tar`, preserving their recorded metadata, then start Payara
 and repeat the version, guide and template checks. No database restore is needed.
+
+## Confirmed uard2 publication identifier update (2026-11-19)
+
+At the user's request, the Related Publication identifier-type dropdown was
+updated on uard2 to offer doi, handle, url, isbn, issn and eissn for new
+selections. An existing legacy type remains selectable in its own row.
+
+Only `metadataFragment.xhtml` in the active application at
+`/usr/local/payara7/glassfish/domains/domain1/applications/dataverse/` was
+patched. The server's existing description-help paragraph, which differs from
+the local baseline, was retained. File ownership and mode remain
+`dataverse:dataverse`, `0644`. No metadata-block reload or database change was
+needed. The existing `payara_domain1.service` was restarted.
+
+The release directory is
+`/home/designer/uard-releases/publication-identifiers-20261119T095121Z/`.
+It retains the original and installed XHTML, the checksum plan, the
+`before.json`, `installed.json` and `verified.json` audit records, and public
+HTTPS/runtime-expression check results. The installed XHTML SHA-256 is
+`3b9edb80caff94abd7721dabd58344f6272501b7d70f228dfba18328303de296`.
+
+The post-restart audit verified all 2,016 application files, with only this
+XHTML changed. All 20 publication-choice checks passed against the installed
+XHTML and server Jakarta EL libraries. Public HTTPS checks passed for the
+version API (6.12), homepage, root collection and existing DataCite test dataset.
+Authenticated browser editing was not exercised.
+
+To roll back, restore `before-metadataFragment.xhtml` to the active application
+with owner/group `dataverse:dataverse` and mode `0644`, restart the same Payara
+service and repeat the version/page checks. No database restore is needed.

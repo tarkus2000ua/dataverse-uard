@@ -74,7 +74,7 @@ together to avoid submitting duplicate role IDs, and restore the help text.
 The native author identifier dropdown offers ORCID, ROR, ResearcherID and
 ScopusID. Its JSF select-items expression filters only `authorIdentifierScheme`;
 ResearcherID uses its canonical name regardless of the UI/metadata language.
-Other controlled vocabularies retain their original choices and translations.
+Other author identifier labels retain their original translations.
 
 An existing identifier outside this list remains available in its own author row
 so editing unrelated metadata does not clear it or fail JSF validation. New rows
@@ -86,6 +86,20 @@ Deploy this XHTML through the normal application update (local development:
 `./scripts/dev/dev-frd.sh`); no metadata reload or database migration is required.
 On upgrade, recheck the compound-field single-select component, new/repeated
 author rows, existing legacy selections, and ResearcherID in both UI languages.
+
+## Related publication identifier choices in metadataFragment.xhtml
+
+The native Related Publication identifier-type dropdown (`publicationIDType`)
+offers doi, handle, url, isbn, issn and eissn for new selections. Its JSF
+select-items expression filters the loaded vocabulary, so no metadata-block
+reload or database migration is required.
+
+An existing identifier type outside this list remains selectable in its own
+row, preserving older records during unrelated edits. Stored values, API
+imports/exports, translations, converter and value binding remain unchanged.
+
+Deploy through `./scripts/dev/dev-frd.sh` for local development. On upgrade,
+recheck new/repeated publication rows, legacy selections and both UI languages.
 
 ## Keyword vocabulary dropdown
 

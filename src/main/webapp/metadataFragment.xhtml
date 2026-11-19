@@ -385,9 +385,11 @@
                                                                 <p:selectOneMenu id="cvv" value="#{subdsf.singleControlledVocabularyValue}" converter="controlledVocabularyValueConverter" style="width: auto !important; max-width:100%; min-width:200px;"
                                                                                  rendered="#{!subdsf.datasetFieldType.allowMultiples}" filter="#{(subdsf.datasetFieldType.controlledVocabularyValues.size() lt 10) ? 'false':'true'}" filterMatchMode="contains" >
                                                                     <f:selectItem itemLabel="#{bundle.select}" itemValue="" noSelectionOption="true"/>
-                                                                    <!-- UaRD: limit new author identifiers; retain an existing legacy selection when editing. -->
+                                                                    <!-- UaRD: limit new author and publication identifiers; retain an existing legacy selection when editing. -->
                                                                     <f:selectItems value="#{subdsf.datasetFieldType.name eq 'authorIdentifierScheme'
                                                                                            ? subdsf.datasetFieldType.controlledVocabularyValues.stream().filter(v -> ['ORCID', 'ROR', 'ResearcherID', 'ScopusID'].contains(v.strValue) or v eq subdsf.singleControlledVocabularyValue).toList()
+                                                                                           : subdsf.datasetFieldType.name eq 'publicationIDType'
+                                                                                           ? subdsf.datasetFieldType.controlledVocabularyValues.stream().filter(v -> ['doi', 'handle', 'url', 'isbn', 'issn', 'eissn'].contains(v.strValue) or v eq subdsf.singleControlledVocabularyValue).toList()
                                                                                            : subdsf.datasetFieldType.controlledVocabularyValues}"
                                                                                    var="cvv"
                                                                                    itemLabel="#{subdsf.datasetFieldType.name eq 'authorIdentifierScheme' and cvv.strValue eq 'ResearcherID' ? cvv.strValue : cvv.getLocaleStrValue(mdLangCode)}"
