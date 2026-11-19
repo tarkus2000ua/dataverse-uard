@@ -807,3 +807,53 @@ Authenticated browser editing was not exercised.
 To roll back, restore `before-metadataFragment.xhtml` to the active application
 with owner/group `dataverse:dataverse` and mode `0644`, restart the same Payara
 service and repeat the version/page checks. No database restore is needed.
+
+## Confirmed uard2 video guides deployment (2026-11-19)
+
+Deployed on November 19, 2026, at 13:34 Europe/Kyiv from feature commit
+`e5be463b4c7e84ba8899bceef3a3a89d112ae217`.
+
+Public page: https://uard2.dntb.gov.ua/video-guides.xhtml.
+The native User Guide dropdown links to the written guide and video guides.
+All three supplied recordings and preview images are served by this installation.
+
+Release and rollback directory:
+`/home/designer/uard-releases/video-guides-20261119T112940Z/`.
+
+The active application is
+`/usr/local/payara7/glassfish/domains/domain1/applications/dataverse/`.
+Sixteen files were installed: four new Facelets files, six media assets, the
+existing header, web.xml, packaged English fallback, two external language
+bundles and the configured `/dv/design/custom-stylesheet.css`.
+
+The header was patched around the server's existing conditional written-guide
+links, retaining their rendered checks, settings expression and new-tab behavior.
+Only six player/menu keys were appended to the packaged English fallback and
+`/dv/langBundles/Bundle{,_uk}.properties`. Only the scoped video CSS was appended
+to the active stylesheet. The working `uk` locale and all other server
+customizations were retained; local Java classes and complete local bundles
+were not uploaded.
+
+The release retains `before-app.war`, `before-langBundles.tar`,
+`before-stylesheet.css`, committed source inputs, the installation helper,
+`plan.json`, `before.json`, `prepared.json`, `installed.json` and public HTTPS
+checks. The maintained application artifact is
+`dataverse-video-guides-after.war`, SHA-256:
+`26d0d9ad1a6a4b90cc1917c68ccf5253ed3edb73f6ab8a8609c2233729e7ae55`.
+Use that artifact together with the merged external bundles and stylesheet for
+this server revision; an older WAR would omit the page and submenu.
+
+The existing `payara_domain1.service` was restarted. Its version API reports
+Dataverse 6.12. The audit verified all 2,026 application files and 65 language
+files, plus the stylesheet, against the exact installation plan. Unrelated
+file contents, ownership and modes were preserved. Public HTTPS returned 200
+for the page and posters and 206 with video/mp4 for byte ranges on all three
+videos. The page renders three players and both Ukrainian submenu labels;
+the removed recording-language/audio sentence is absent.
+No additional browser checks were run.
+
+For rollback, stop the same Payara service, restore the three changed existing
+application files from `before-app.war`, remove only the ten application files
+added by this release, restore the two external bundles and stylesheet from
+their backups, then start the service. Use `prepared.json` for exact paths and
+original ownership/modes. No database restore or settings change is required.

@@ -291,3 +291,15 @@ approved bilingual stored institution names. No next feature is selected.
 For the next user request, inspect actual Git/runtime state, preserve unrelated
 work, and implement only the requested scope. Do not infer remote deployment
 success or permission to change data from a source-code push.
+
+## Video guides and User Guide submenu (2026-11-19)
+
+The bilingual `/video-guides.xhtml` page contains three supplied silent screencasts
+with native HTML video controls. The header User Guide entry is now a Bootstrap
+dropdown for the written guide and video guides, using native bundle labels.
+Player backgrounds are transparent and corners are square.
+
+The feature was deployed to uard2 on November 19 at 13:34 Europe/Kyiv, preserving
+the server's `uk` locale, existing guide bindings, translations and stylesheet.
+The exact release, WAR checksum, backups, checks and rollback are recorded in
+[video guides](docs/video-guides.md) and [remote deployment](docs/remote-deployment.md#confirmed-uard2-video-guides-deployment-2026-11-19).

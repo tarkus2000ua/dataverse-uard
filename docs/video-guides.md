@@ -92,3 +92,15 @@ mobile/tablet stack the descriptions and players. These browser checks preceded
 the User Guide dropdown integration. The header update uses the existing native
 Bootstrap dropdown behavior; no additional browser checks were run.
 Unrelated staged work is preserved.
+
+## Confirmed uard2 deployment
+
+Deployed on 2026-11-19 at 13:34 Europe/Kyiv from commit
+`e5be463b4c7e84ba8899bceef3a3a89d112ae217`. The public page is
+https://uard2.dntb.gov.ua/video-guides.xhtml.
+
+The server-specific header, translations and stylesheet were merged incrementally.
+The Payara service restarted successfully; public page/media checks and the
+complete application/language-file preservation audit passed. The release holds
+rollback backups and an updated WAR. See [the deployment record](remote-deployment.md#confirmed-uard2-video-guides-deployment-2026-11-19)
+for exact paths, artifact checksum, verification and rollback.
