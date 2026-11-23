@@ -1,0 +1,67 @@
+{
+  "language": "en",
+  "source_guide": "customization/guide/account.html#create-using-orcid",
+  "video": "src/main/webapp/resources/videos/uard/orcid-registration.mp4",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "speed": 0.8,
+  "synthetic_voice": true,
+  "instructions": "Read only the supplied English narration in a calm adult female instructional voice. Use clear, natural, neutral English pronunciation, a comfortable low-to-middle register and a narrow pitch range. Maintain the same pitch baseline, loudness and steady, unhurried speaking rate throughout the recording, including at paragraph boundaries. Aim for about 110 to 120 words per minute. Use gentle articulation and restrained, smooth sentence endings. Do not rush at the end of sentences. Avoid sing-song intonation, promotional delivery, dramatic emphasis, whispering and abrupt pitch rises. Separate paragraphs with a distinct quiet pause of about one second while retaining the same voice and cadence. Pronounce ORCID as one word, OR-kid. Read the text exactly as written, with no introductions, commentary, headings or background sounds.",
+  "cues": [
+    {
+      "start": 0.25,
+      "end": 8,
+      "text": "To register, click the sign-in link in the top-right corner, then choose ORCID."
+    },
+    {
+      "start": 8,
+      "end": 20,
+      "text": "On the ORCID website, enter your ORCID identifier or email address, followed by your password."
+    },
+    {
+      "start": 20,
+      "end": 32,
+      "text": "Click the sign-in button. If you do not have an ORCID account yet, register with ORCID first."
+    },
+    {
+      "start": 32,
+      "end": 44,
+      "text": "After signing in, you will return to the repository. Your ORCID details will appear in the registration form."
+    },
+    {
+      "start": 44,
+      "end": 53,
+      "text": "Check your username, first name, and last name. Edit these details if necessary."
+    },
+    {
+      "start": 53,
+      "end": 62,
+      "text": "Check your email address. Keep the address from ORCID or enter another one."
+    },
+    {
+      "start": 62,
+      "end": 74,
+      "text": "In the affiliation field, enter your institution. Then enter your position in the field below."
+    },
+    {
+      "start": 74,
+      "end": 103,
+      "text": "Next, read the repository’s general terms of use. Scroll through the terms and read them in full before continuing."
+    },
+    {
+      "start": 115,
+      "end": 125,
+      "text": "After reading the terms, select the checkbox to confirm that you agree."
+    },
+    {
+      "start": 125,
+      "end": 131,
+      "text": "Click Create Account."
+    },
+    {
+      "start": 131,
+      "end": 139.1,
+      "text": "Your account is ready. Use ORCID to sign in whenever you return."
+    }
+  ]
+}

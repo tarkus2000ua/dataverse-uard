@@ -1,0 +1,49 @@
+{
+  "language": "en",
+  "source_guide": "customization/guide/account.html#account-information",
+  "video": "src/main/webapp/resources/videos/uard/email-confirmation.mp4",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "speed": 0.8,
+  "synthetic_voice": true,
+  "instructions": "Read only the supplied English narration in a calm adult female instructional voice. Use clear, natural, neutral English pronunciation, a comfortable low-to-middle register and a narrow pitch range. Maintain the same pitch baseline, loudness and steady, unhurried speaking rate throughout the recording, including at paragraph boundaries. Aim for about 110 to 120 words per minute. Use gentle articulation and restrained, smooth sentence endings. Do not rush at the end of sentences. Avoid sing-song intonation, promotional delivery, dramatic emphasis, whispering and abrupt pitch rises. Separate paragraphs with a distinct quiet pause of about one second while retaining the same voice and cadence. Pronounce ORCID as one word, OR-kid. Read the text exactly as written, with no introductions, commentary, headings or background sounds.",
+  "cues": [
+    {
+      "start": 0.2,
+      "end": 9.5,
+      "text": "After you request verification, the repository sends an email to your registered address."
+    },
+    {
+      "start": 9.5,
+      "end": 23,
+      "text": "Open your inbox and find the latest verification email from the repository."
+    },
+    {
+      "start": 23,
+      "end": 30,
+      "text": "Follow the confirmation link in that email."
+    },
+    {
+      "start": 30,
+      "end": 36,
+      "text": "The green message confirms that your email address has been verified."
+    },
+    {
+      "start": 36,
+      "end": 44.5,
+      "text": "Open Account Information and check the Verified status next to your email address."
+    },
+    {
+      "start": 48.5,
+      "end": 52.9,
+      "text": "Verification is complete."
+    }
+  ],
+  "video_frame_count": 1590,
+  "video_frame_rate": 30,
+  "source_messages": [
+    "confirmEmail.submitRequest.success",
+    "confirmEmail.details.success",
+    "confirmEmail.details.failure"
+  ]
+}

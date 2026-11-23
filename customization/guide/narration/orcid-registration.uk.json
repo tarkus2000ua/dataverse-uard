@@ -1,0 +1,67 @@
+{
+  "language": "uk",
+  "source_guide": "customization/guide/account.html#create-using-orcid",
+  "video": "src/main/webapp/resources/videos/uard/orcid-registration.mp4",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "speed": 0.96,
+  "synthetic_voice": true,
+  "instructions": "Speak only the supplied Ukrainian narration, in natural native Ukrainian. Use a calm adult female instructional voice, a comfortable low-to-middle register, a narrow pitch range, gentle articulation and a stable, unhurried pace. Keep the same pitch baseline, loudness and speaking rate throughout the entire recording, including across paragraph boundaries. Aim for approximately 110 to 120 Ukrainian words per minute. Do not speed up toward the ends of sentences. Avoid sing-song intonation, dramatic emphasis, excited or promotional delivery, whispering, and abrupt pitch rises. Use restrained, smooth sentence endings. Separate each paragraph with a distinct quiet pause of about one second, while retaining exactly the same voice and cadence. Pronounce Оркід as a single Ukrainian word. Read the text exactly as written without introductions, commentary, headings or background sounds.",
+  "cues": [
+    {
+      "start": 0.25,
+      "end": 8,
+      "text": "Для реєстрації натисніть «Увійти» та оберіть вхід через Оркід."
+    },
+    {
+      "start": 8,
+      "end": 20,
+      "text": "На сторінці Оркід введіть свій ідентифікатор або електронну адресу, а потім пароль."
+    },
+    {
+      "start": 20,
+      "end": 32,
+      "text": "Натисніть кнопку входу. Якщо ви ще не маєте профілю Оркід, спочатку зареєструйтеся в цьому сервісі."
+    },
+    {
+      "start": 32,
+      "end": 44,
+      "text": "Після успішного входу ви повернетесь до репозитарію. Дані з профілю Оркід будуть запропоновані для створення облікового запису."
+    },
+    {
+      "start": 44,
+      "end": 53,
+      "text": "Перевірте ім’я користувача, своє ім’я та прізвище. За потреби відредагуйте їх."
+    },
+    {
+      "start": 53,
+      "end": 62,
+      "text": "Перевірте електронну адресу. Ви можете залишити адресу з Оркіда або вказати іншу."
+    },
+    {
+      "start": 62,
+      "end": 74,
+      "text": "У полі «Приналежність» вкажіть установу, яку ви представляєте. Нижче зазначте свою посаду."
+    },
+    {
+      "start": 74,
+      "end": 103,
+      "text": "Тепер ознайомтеся із загальними умовами користування репозитарієм. Прокрутіть текст у полі «Прийняття умов» і прочитайте його повністю."
+    },
+    {
+      "start": 115,
+      "end": 125,
+      "text": "Після ознайомлення позначте, що ви погоджуєтеся із загальними умовами користування репозитарієм."
+    },
+    {
+      "start": 125,
+      "end": 131,
+      "text": "Натисніть «Створити акаунт»."
+    },
+    {
+      "start": 131,
+      "end": 139.1,
+      "text": "Обліковий запис створено. Надалі входьте до репозитарію за допомогою Оркід."
+    }
+  ]
+}

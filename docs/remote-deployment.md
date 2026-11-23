@@ -857,3 +857,76 @@ application files from `before-app.war`, remove only the ten application files
 added by this release, restore the two external bundles and stylesheet from
 their backups, then start the service. Use `prepared.json` for exact paths and
 original ownership/modes. No database restore or settings change is required.
+
+## Cropped video replacement on uard2 (2026-11-19)
+
+The approved 1056×594 (16:9) crops and matching posters replaced the six existing
+media files on November 19 at 13:52 Europe/Kyiv. Original media URLs were retained;
+the original shared player template was restored and its cached view reloaded by
+13:59. The final state changes only the six media files.
+
+Release: `/home/designer/uard-releases/cropped-video-guides-20261119T115217Z/`.
+The release contains the approved asset hashes in `plan.json`, original media in
+`before-media.tar`, the original player backup, deployment/audit records and the
+maintained `dataverse-cropped-video-guides-after.war`. Its SHA-256 is:
+`08c1b5163e9651dd82ca330bad58d84fbf018551cf1319bf6aaf0187bb6ed6b0`.
+
+The final audit checked all 2,026 application files, 65 language files and the
+stylesheet. Only the six media files differ from the pre-update snapshot;
+ownership, modes and all other contents are preserved. The app reports 6.12 and
+renders three players using the original URLs. No media URL version parameters
+remain. The crops were deployed from the approved working-tree assets before
+their later Git publication with the narrated-video revision.
+
+Cloudflare still served the earlier media from its edge cache during the final
+public check (`HIT`, `max-age=14400`). A purge of the three MP4 and three JPEG
+URLs under `/resources/videos/uard/`, or normal cache expiry, is needed for those
+cached responses to show the cropped files. Origin checks match the approved
+asset hashes. No Cloudflare cache purge was performed.
+
+For rollback, atomically restore the six files from `before-media.tar`, retaining
+their recorded owner/group/mode. No database, language, menu or stylesheet restore
+is required. Keep the updated WAR with the installation's existing external files.
+
+## Narrated video guides on uard2 (2026-11-22)
+
+The corrected Ukrainian and English narration versions of all three videos were
+deployed at 19:51 UTC (21:51 Europe/Kyiv) on November 22. The public page remains
+https://uard2.dntb.gov.ua/video-guides.xhtml.
+
+Release and rollback directory:
+`/home/designer/uard-releases/narrated-video-guides-20261122T194815Z/`.
+The release records the approved, uncommitted working-tree revision based on
+`6d5cf2440f1b2fa0edd652d73e4b7f1e2d11ca17`; this deployment did not publish Git changes.
+
+Ten files were installed in the existing Payara application/external bundles:
+the three original `.mp4` URLs now contain Ukrainian narration, three new
+`-en.mp4` files contain English narration, the shared player selects the file
+using `dataverseSession.localeCode`, and one player-language key was updated in
+the packaged English fallback and `/dv/langBundles/Bundle{,_uk}.properties`.
+Only that key was merged into each remote bundle. The native `uk` locale,
+posters, header, stylesheet, unrelated files and file ownership/modes were retained.
+Video dimensions remain 1056×594 (16:9). No versioned URLs were added.
+
+The release contains `before-changes.tar`, `before.json`, the approved source
+archive and checksums, installation helpers, `prepared.json`, `installed.json`
+and public HTTPS check results. The maintained artifact is
+`dataverse-narrated-video-guides-after.war`, SHA-256:
+`54d3a5114389eb749490533959d48066de7aeb3ca6c4010b04e804dc7d7cfc67`.
+Use it with the merged external bundles retained in `updates/lang/`.
+
+The existing `payara_domain1.service` restarted successfully. The audit checked
+all 2,029 application files, 65 language files and the configured stylesheet;
+only the planned files changed. An anonymous native English → Ukrainian locale
+round trip selected all three matching audio versions. The origin returned
+HTTP 206/video/mp4 with the approved bytes for all six videos, and the version
+API returned 6.12. Public HTTPS returned 200 for the page and 206 for all six
+video URLs, matching the approved lengths and initial bytes. Cloudflare fetched
+the new content (`EXPIRED` for the original URLs, `MISS` for English); no purge
+or query-string cache workaround was required. No browser checks were repeated.
+
+For rollback, stop the same Payara service, restore the seven existing files
+from `before-changes.tar` into their recorded application/language locations,
+remove only the three English MP4s added by this release, then start the service.
+Use `before.json` and `prepared.json` for exact paths, ownership and modes.
+No database, settings, header or stylesheet restore is required.

@@ -6,15 +6,15 @@
             <span class="uard-video-guides__number" aria-hidden="true">#{videoNumber}</span>
             <h2 id="#{videoSlug}-title">#{videoTitle}</h2>
             <p>#{videoDescription}</p>
-            <p class="uard-video-guides__meta"><time datetime="#{videoDurationIso}">#{videoDuration}</time> · #{bundle['org.videoGuides.ukrainian']}</p>
-            <a class="uard-video-guides__open" href="#{request.contextPath}/resources/videos/uard/#{videoSlug}.mp4">#{bundle['org.videoGuides.openVideo']}</a>
+            <p class="uard-video-guides__meta"><time datetime="#{videoDurationIso}">#{videoDuration}</time> · #{bundle['org.videoGuides.audioLanguage']}</p>
+            <a class="uard-video-guides__open" href="#{request.contextPath}/resources/videos/uard/#{videoSlug}#{dataverseSession.localeCode eq 'en' ? '-en' : ''}.mp4">#{bundle['org.videoGuides.openVideo']}</a>
         </div>
         <video class="uard-video-guides__player" controls="controls" preload="none" playsinline="playsinline"
-               width="1280" height="720" lang="uk" aria-labelledby="#{videoSlug}-title"
+               width="1056" height="594" lang="#{dataverseSession.localeCode eq 'en' ? 'en' : 'uk'}" aria-labelledby="#{videoSlug}-title"
                poster="#{request.contextPath}/resources/videos/uard/#{videoSlug}.jpg">
-            <source src="#{request.contextPath}/resources/videos/uard/#{videoSlug}.mp4" type="video/mp4" />
+            <source src="#{request.contextPath}/resources/videos/uard/#{videoSlug}#{dataverseSession.localeCode eq 'en' ? '-en' : ''}.mp4" type="video/mp4" />
             <p>#{bundle['org.videoGuides.unsupported']}
-                <a href="#{request.contextPath}/resources/videos/uard/#{videoSlug}.mp4">#{bundle['org.videoGuides.openVideo']}</a>
+                <a href="#{request.contextPath}/resources/videos/uard/#{videoSlug}#{dataverseSession.localeCode eq 'en' ? '-en' : ''}.mp4">#{bundle['org.videoGuides.openVideo']}</a>
             </p>
         </video>
     </section>

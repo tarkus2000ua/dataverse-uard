@@ -1,0 +1,39 @@
+{
+  "language": "uk",
+  "source_guide": "customization/guide/account.html#edit-account",
+  "video": "src/main/webapp/resources/videos/uard/account-details.mp4",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "speed": 0.96,
+  "synthetic_voice": true,
+  "instructions": "Speak only the supplied Ukrainian narration, in natural native Ukrainian. Use a calm adult female instructional voice, a comfortable low-to-middle register, a narrow pitch range, gentle articulation and a stable, unhurried pace. Keep the same pitch baseline, loudness and speaking rate throughout the entire recording, including across paragraph boundaries. Aim for approximately 110 to 120 Ukrainian words per minute. Do not speed up toward the ends of sentences. Avoid sing-song intonation, dramatic emphasis, excited or promotional delivery, whispering, and abrupt pitch rises. Use restrained, smooth sentence endings. Separate each paragraph with a distinct quiet pause of about one second, while retaining exactly the same voice and cadence. Pronounce Оркід as a single Ukrainian word. Read the text exactly as written without introductions, commentary, headings or background sounds.",
+  "cues": [
+    {
+      "start": 0.2,
+      "end": 8,
+      "text": "Відкрийте меню свого профілю та перейдіть до облікового запису."
+    },
+    {
+      "start": 8,
+      "end": 15.5,
+      "text": "Перейдіть на вкладку «Інформація про акаунт» і натисніть «Редагувати акаунт»."
+    },
+    {
+      "start": 15.5,
+      "end": 26.5,
+      "text": "Змініть потрібні дані, наприклад посаду. Потім натисніть «Зберегти зміни»."
+    },
+    {
+      "start": 27,
+      "end": 32.5,
+      "text": "Повідомлення на зеленому тлі підтверджує збереження змін."
+    },
+    {
+      "start": 32.5,
+      "end": 44.1,
+      "text": "Якщо адреса ще не підтверджена, натисніть «Підтвердити електронну пошту». Репозитарій надішле лист із посиланням."
+    }
+  ],
+  "video_frame_count": 1326,
+  "video_frame_rate": 30
+}

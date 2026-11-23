@@ -1,0 +1,49 @@
+{
+  "language": "uk",
+  "source_guide": "customization/guide/account.html#account-information",
+  "video": "src/main/webapp/resources/videos/uard/email-confirmation.mp4",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "speed": 0.96,
+  "synthetic_voice": true,
+  "instructions": "Speak only the supplied Ukrainian narration, in natural native Ukrainian. Use a calm adult female instructional voice, a comfortable low-to-middle register, a narrow pitch range, gentle articulation and a stable, unhurried pace. Keep the same pitch baseline, loudness and speaking rate throughout the entire recording, including across paragraph boundaries. Aim for approximately 110 to 120 Ukrainian words per minute. Do not speed up toward the ends of sentences. Avoid sing-song intonation, dramatic emphasis, excited or promotional delivery, whispering, and abrupt pitch rises. Use restrained, smooth sentence endings. Separate each paragraph with a distinct quiet pause of about one second, while retaining exactly the same voice and cadence. Pronounce Оркід as a single Ukrainian word. Read the text exactly as written without introductions, commentary, headings or background sounds.",
+  "cues": [
+    {
+      "start": 0.2,
+      "end": 9.5,
+      "text": "Після запиту підтвердження лист надходить на вашу електронну адресу."
+    },
+    {
+      "start": 9.5,
+      "end": 23,
+      "text": "Відкрийте поштову скриньку та знайдіть останній лист із підтвердженням від репозитарію."
+    },
+    {
+      "start": 23,
+      "end": 30,
+      "text": "Перейдіть за посиланням у повідомленні."
+    },
+    {
+      "start": 30,
+      "end": 36,
+      "text": "Зелене повідомлення означає, що електронну адресу підтверджено."
+    },
+    {
+      "start": 36,
+      "end": 44.5,
+      "text": "На сторінці облікового запису перевірте статус «Підтверджено» поруч із адресою."
+    },
+    {
+      "start": 48.5,
+      "end": 52.9,
+      "text": "Підтвердження завершено."
+    }
+  ],
+  "video_frame_count": 1590,
+  "video_frame_rate": 30,
+  "source_messages": [
+    "confirmEmail.submitRequest.success",
+    "confirmEmail.details.success",
+    "confirmEmail.details.failure"
+  ]
+}

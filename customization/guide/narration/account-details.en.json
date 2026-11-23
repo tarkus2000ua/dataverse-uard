@@ -1,0 +1,39 @@
+{
+  "language": "en",
+  "source_guide": "customization/guide/account.html#edit-account",
+  "video": "src/main/webapp/resources/videos/uard/account-details.mp4",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "speed": 0.8,
+  "synthetic_voice": true,
+  "instructions": "Read only the supplied English narration in a calm adult female instructional voice. Use clear, natural, neutral English pronunciation, a comfortable low-to-middle register and a narrow pitch range. Maintain the same pitch baseline, loudness and steady, unhurried speaking rate throughout the recording, including at paragraph boundaries. Aim for about 110 to 120 words per minute. Use gentle articulation and restrained, smooth sentence endings. Do not rush at the end of sentences. Avoid sing-song intonation, promotional delivery, dramatic emphasis, whispering and abrupt pitch rises. Separate paragraphs with a distinct quiet pause of about one second while retaining the same voice and cadence. Pronounce ORCID as one word, OR-kid. Read the text exactly as written, with no introductions, commentary, headings or background sounds.",
+  "cues": [
+    {
+      "start": 0.2,
+      "end": 8,
+      "text": "Open your profile menu and go to your account page."
+    },
+    {
+      "start": 8,
+      "end": 15.5,
+      "text": "Select Account Information, then open Edit Account."
+    },
+    {
+      "start": 15.5,
+      "end": 26.5,
+      "text": "Update the details you need, such as your position. Then click Save Changes."
+    },
+    {
+      "start": 27,
+      "end": 32.5,
+      "text": "A green message confirms your changes have been saved."
+    },
+    {
+      "start": 32.5,
+      "end": 44.1,
+      "text": "If your email is unverified, click its verification button. The repository will email you a confirmation link."
+    }
+  ],
+  "video_frame_count": 1326,
+  "video_frame_rate": 30
+}

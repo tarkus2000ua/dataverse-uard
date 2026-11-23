@@ -25,10 +25,16 @@ Authentication, permissions, support, locale actions, footer and routing remain
 unchanged.
 
 Upgrade/deployment: keep the header dropdown, wrapper, fragments, player, media
-assets, bundle keys and scoped CSS together, including the MP4 MIME mapping. MP4s use the original
-H.264 video stream without re-encoding. The supplied sources have empty audio
-tracks; the MP4s remain silent. See [video guides](video-guides.md) for the file
-map and preparation.
+assets, bundle keys and scoped CSS together, including the MP4 MIME mapping. The current
+MP4s crop the original 1280×720 recordings to 1056×594 (16:9), removing browser
+chrome and side margins, then encode H.264 with CRF 18. Posters match the crop.
+The original MKVs remain unchanged. The supplied sources have empty audio tracks.
+The published MP4s now include Ukrainian or English narration. The shared player
+selects the original filename for Ukrainian (including legacy `ua`) and the
+`-en.mp4` variant for English using `dataverseSession.localeCode`. The player
+language and `org.videoGuides.audioLanguage` label follow that selection.
+No version query parameters are added. See [video guides](video-guides.md) for
+the file map, cropping builder, narration preparation and deployment history.
 Local development uses FRD; remote deployment records identify the installed
 artifact and preserved server-specific files.
 
