@@ -3,7 +3,8 @@
 #datasetForm #replicationDataButton { display: none; }
 
 #content:has(> .dv-home) { width: 100%; max-width: none; padding: 0; }
-.dv-home {
+.dv-home,
+.uard-registration {
     --uard-ink: #07376b;
     --uard-action: #0067ad;
     --uard-muted: #355775;
@@ -48,8 +49,9 @@
     line-height: 1.22;
     overflow-wrap: break-word;
 }
-.dv-home .dv-home__actions { margin: 16px 0 24px; }
-.dv-home .dv-home__repository {
+.dv-home .dv-home__actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 24px; }
+.dv-home .dv-home__repository,
+.uard-registration .uard-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -67,8 +69,14 @@
     text-decoration: none;
 }
 .dv-home .dv-home__repository:hover,
-.dv-home .dv-home__repository:focus { background: #00568f; border-color: #00568f; color: #fff; text-decoration: none; }
-.dv-home .dv-home__repository:active { background: #07376b; border-color: #07376b; }
+.dv-home .dv-home__repository:focus,
+.uard-registration .uard-button:hover,
+.uard-registration .uard-button:focus { background: #00568f; border-color: #00568f; color: #fff; text-decoration: none; }
+.dv-home .dv-home__repository:active,
+.uard-registration .uard-button:active { background: #07376b; border-color: #07376b; }
+.dv-home .dv-home__repository--secondary { background: #fff; color: var(--uard-action); border-color: #7693ae; }
+.dv-home .dv-home__repository--secondary:hover,
+.dv-home .dv-home__repository--secondary:focus { background: #dceefa; color: var(--uard-ink); border-color: var(--uard-action); }
 .dv-home .dv-home__search-row { display: flex; align-items: center; gap: 24px; }
 .dv-home .dv-home__search { flex: 1 1 640px; min-width: 0; margin: 0; }
 .dv-home .dv-home__search-box {
@@ -609,3 +617,84 @@ footer:has(> #uard-footer) #dvfooter a:focus-visible { outline: 2px solid #8bd3f
 #contactDialog .uard-contact-verification-retry[hidden] { display: none !important; }
 #contactDialog .uard-contact-verification-status:empty { display: none; }
 #contactDialog .uard-contact-verification-retry { min-height: 44px; padding: 8px 0; white-space: normal; }
+
+/* University invitation and intake share the homepage palette, typography and controls. */
+.dv-home .uard-institutions { margin-top: 24px; border-top: 1px solid #dcebf5; border-bottom: 1px solid #dcebf5; background: var(--uard-surface); scroll-margin-top: 88px; }
+.dv-home .uard-institutions__inner { max-width: 1280px; padding: 40px 32px; margin: 0 auto; }
+.dv-home .uard-institutions__layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.dv-home .uard-institutions__eyebrow,
+.uard-registration .uard-registration__eyebrow { margin: 0 0 12px; color: var(--uard-action); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.dv-home .uard-institutions h2 { margin: 0 0 20px; max-width: 540px; color: var(--uard-ink); font-size: 32px; font-weight: 700; line-height: 1.2; }
+.dv-home .uard-institutions p { color: var(--uard-muted); line-height: 1.6; }
+.dv-home .uard-institutions__layout > div > p:not(.uard-institutions__eyebrow) { margin: 0 0 16px; }
+.dv-home .uard-institutions__action { margin-top: 8px; }
+.dv-home .uard-institutions__caption { margin: 10px 0 0 !important; font-size: 14px; }
+.dv-home .uard-institutions__benefits { display: grid; gap: 20px; padding: 0; margin: 0; list-style: none; }
+.dv-home .uard-institutions__benefits li { display: flex; gap: 14px; align-items: flex-start; }
+.dv-home .uard-institutions__benefits .glyphicon { flex: 0 0 24px; top: 3px; color: var(--uard-action); font-size: 22px; }
+.dv-home .uard-institutions__benefits h3 { margin: 0 0 4px; color: var(--uard-ink); font-size: 18px; font-weight: 700; line-height: 1.4; }
+.dv-home .uard-institutions__benefits p { margin: 0; font-size: 16px; }
+.dv-home .uard-institutions__pilot { display: flex; gap: 12px; align-items: flex-start; margin: 28px 0 0; padding-top: 20px; border-top: 1px solid #c5d9e8; font-size: 14px; }
+.dv-home .uard-institutions__pilot > span:first-child { flex: 0 0 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: #d7a817; }
+#content:has(> .uard-registration) { width: 100%; max-width: none; padding: 0; }
+body:not(.widget-view):has(#content > .uard-registration) #dataverse-header-block .messagePanel:not(:has(*)) { margin-top: 0; }
+.uard-registration { padding: 32px; margin-bottom: 0; background: #f5f9fc; }
+.uard-registration .uard-registration__inner { max-width: 1000px; margin: 0 auto; }
+.uard-registration .uard-registration__back { display: inline-flex; align-items: center; min-height: 44px; color: var(--uard-action); text-decoration: underline; text-underline-offset: 3px; }
+.uard-registration .uard-registration__header { padding: 20px 0 28px; }
+.uard-registration h1 { margin: 0 0 16px; color: var(--uard-ink); font-size: clamp(28px, 2.5vw, 36px); font-weight: 700; line-height: 1.2; }
+.uard-registration .uard-registration__header > p:last-child { margin: 0; color: var(--uard-muted); line-height: 1.6; }
+.uard-registration .uard-registration__form { padding: 32px; background: #fff; border: 1px solid #c5d9e8; border-radius: 6px; }
+.uard-registration .uard-registration__required { margin: 0 0 28px; color: var(--uard-muted); font-size: 14px; font-style: italic; }
+.uard-registration fieldset { min-width: 0; padding: 0 0 32px; margin: 0 0 32px; border: 0; border-bottom: 1px solid #dcebf5; }
+.uard-registration legend { float: none; width: 100%; padding: 0; margin: 0 0 24px; border: 0; color: var(--uard-ink); font-size: 24px; font-weight: 700; line-height: 1.3; }
+.uard-registration .uard-registration__fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+.uard-registration .uard-registration__fields--names { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 24px; }
+.uard-registration .uard-registration__field { display: flex; min-width: 0; flex-direction: column; gap: 8px; }
+.uard-registration .uard-registration__field--full { grid-column: 1 / -1; }
+.uard-registration .uard-registration__field > label { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.5; }
+.uard-registration .uard-registration__field > input,
+.uard-registration .uard-registration__field > select,
+.uard-registration .uard-registration__field > textarea { width: 100%; min-width: 0; min-height: 44px; padding: 10px 12px; border: 1px solid var(--uard-border); border-radius: 6px; background: #fff; color: var(--uard-ink); font-family: inherit; font-size: 16px; line-height: 1.5; box-shadow: none; }
+.uard-registration .uard-registration__field > textarea { min-height: 136px; resize: vertical; }
+.uard-registration .uard-registration__field small { color: var(--uard-muted); font-size: 14px; line-height: 1.5; }
+.uard-registration .uard-registration__field input::placeholder { color: #52687c; opacity: 1; }
+.uard-registration .uard-registration__upload { padding: 24px; border: 1px dashed var(--uard-border); border-radius: 6px; background: var(--uard-surface); }
+.uard-registration .uard-registration__upload > input { font-size: 14px; }
+.uard-registration input[type=file]::file-selector-button { padding: 6px 10px; margin-right: 12px; border: 1px solid var(--uard-border); border-radius: 4px; background: #f5f9fc; color: var(--uard-ink); font: inherit; }
+.uard-registration .uard-registration__consent { display: flex; gap: 12px; align-items: flex-start; }
+.uard-registration .uard-registration__consent input { flex: 0 0 18px; width: 18px; height: 18px; margin: 4px 0 0; accent-color: var(--uard-action); }
+.uard-registration .uard-registration__consent label { margin: 0; font-size: 16px; font-weight: 400; line-height: 1.6; }
+.uard-registration .uard-registration__actions { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; margin-top: 28px; }
+.uard-registration :is(a, button, input, select, textarea):focus-visible { outline: 3px solid var(--uard-action); outline-offset: 3px; }
+.uard-registration [hidden] { display: none !important; }
+@media (max-width: 900px) {
+    .dv-home .uard-institutions__layout { gap: 32px; }
+    .dv-home .uard-institutions h2 { font-size: 28px; }
+}
+@media (max-width: 767px) {
+    .dv-home .uard-institutions__inner { padding: 32px 24px; }
+    .dv-home .uard-institutions__layout { grid-template-columns: minmax(0, 1fr); }
+    .uard-registration { padding: 24px; }
+    .uard-registration .uard-registration__form { padding: 24px; }
+    .uard-registration .uard-registration__fields,
+    .uard-registration .uard-registration__fields--names { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 480px) {
+    .dv-home .uard-institutions__inner { padding: 28px 16px; }
+    .uard-registration { padding: 16px; }
+    .uard-registration .uard-registration__form { padding: 20px 16px; }
+    .uard-registration legend { font-size: 22px; }
+    .uard-registration .uard-registration__upload { padding: 16px 12px; }
+}
+
+.uard-registration__feedback { border-left: 4px solid #a52121; background: #fff1f1; color: #7a1616; padding: 16px; margin: 0 0 24px; }
+.uard-registration__success { border: 1px solid var(--uard-border); border-left: 4px solid var(--uard-action); background: var(--uard-surface); padding: 24px; margin-bottom: 32px; overflow-wrap: anywhere; }
+.uard-registration__captcha { max-width: 320px; margin: 24px 0; }
+.uard-registration [aria-invalid="true"] { border-color: #a52121; }
+.uard-registration .uard-button:disabled { cursor: wait; opacity: .65; }
+.uard-registration__application { border-bottom: 1px solid var(--uard-border); padding: 16px 0; }
+.uard-registration__application h2 { font-size: 20px; }
+.uard-registration__details { margin: 24px 0; }
+.uard-registration__details dt { font-weight: bold; margin-top: 20px; }
+.uard-registration__details dd { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }

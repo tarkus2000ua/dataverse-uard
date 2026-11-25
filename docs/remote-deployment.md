@@ -930,3 +930,150 @@ from `before-changes.tar` into their recorded application/language locations,
 remove only the three English MP4s added by this release, then start the service.
 Use `before.json` and `prepared.json` for exact paths, ownership and modes.
 No database, settings, header or stylesheet restore is required.
+
+## University registration demo on uard2 (2026-11-24)
+
+At the user's request, the university invitation and demonstration registration
+form were deployed on November 24 at 23:55 Europe/Kyiv (21:55 UTC). Public routes:
+https://uard2.dntb.gov.ua/#dv-institutions and
+https://uard2.dntb.gov.ua/institution-registration.xhtml.
+
+Release/rollback directory:
+`/home/designer/uard-releases/university-registration-demo-20261124T215021Z/`.
+The approved, uncommitted source is on `codex/university-registration`, based on
+`f9ab231edb`. This deployment did not commit, merge or push the local work.
+
+Seven files were installed:
+
+- New `institution-registration.xhtml` in the existing application at
+  `/usr/local/payara7/glassfish/domains/domain1/applications/dataverse/`.
+- Three new `WEB-INF/classes/propertyFiles/UardInstitutionRegistration*.properties`
+  bundles: English fallback, legacy `ua` and the target's existing `uk` locale.
+- The configured `/dv/design/custom-homepage.html`, `custom-footer.html` and
+  `custom-stylesheet.css`, merged with their current server contents.
+
+The invitation follows the three existing carousels. Its explanation remains
+visible; the hero action scrolls to it, and its primary action opens the new form.
+The form contains 17 required fields plus consent and identifies itself as a demo.
+Submission is blocked, fields have no submission names, and no application, logo
+or personal data is sent or stored. Database intake and notifications are deferred.
+
+The server's existing editorial strings, image/script versions, native templates,
+language files, `uk` configuration and unrelated stylesheet content were retained.
+There were no Java/class, servlet, database/schema, mail or authentication changes.
+The maintained WAR was assembled from the active server application, not the
+unrelated local working-tree Java changes.
+
+The release retains `source.tar.gz`, its checksum plan, installation/runtime
+helpers, `before.json`, `before-changes.tar`, `prepared.json`, `installed.json`,
+and external HTTPS/browser checks in `public.json`. The updated artifact is
+`dataverse-university-registration-demo-after.war`, SHA-256:
+`9cca24aabad53bfcd7e89ba9c7515e1ea9587eabc6218efcda7ddf383154f547`.
+Use it together with the release's merged `updates/design/` files in a future
+redeployment. The approved source archive SHA-256 is:
+`baae7d5d448e5ba4b5caf59ed14b590507b45e906a06b34b9af3b65809c3c837`.
+
+`payara_domain1.service` restarted successfully and reports Dataverse 6.12. The
+audit verified all 2,033 application files (four added), all 65 language files
+and all five design files; only the seven planned files changed, preserving
+ownership/modes and the four checked branding/language settings. Public HTTPS
+returned 200 for homepage, registration, version API and video guides. Native
+Ukrainian → English → Ukrainian switching, invitation navigation and 320px
+layout without page/control overflow passed in the public browser. No application
+was submitted or email sent. TLS verification was not bypassed: external checks
+used Windows system trust/browser because the server's own public-HTTPS request
+encountered its local self-signed certificate chain.
+
+Rollback: stop the same service, restore the three existing design files from
+`before-changes.tar` with the metadata in `before.json`, remove only the four
+application files added by this release, then start the service and repeat the
+version/homepage/form checks. There is no database, external-language or settings
+restore for this feature.
+
+## Functional institution registration on uard2 (2026-11-25)
+
+The user requested deployment of the working registration form. It replaced the
+demonstration on November 25 at 12:56 Europe/Kyiv (10:56 UTC). Public form:
+https://uard2.dntb.gov.ua/institution-registration.xhtml.
+Superuser review: https://uard2.dntb.gov.ua/institution-applications.xhtml.
+
+Release and rollback directory:
+`/home/designer/uard-releases/university-registration-live-20261125T105155Z/`.
+The approved source remains uncommitted on `codex/university-registration`, based
+on `f9ab231edb`; no Git publication or tag was performed by this deployment.
+
+Twenty-two files were installed in the existing application and design directory:
+
+- Fourteen new `WEB-INF/classes/edu/harvard/iq/dataverse/uard/Institution*.class`
+  files, including nested classes.
+- `WEB-INF/classes/db/migration/V6.12.0.1__uard_institution_applications.sql`.
+- Updated registration view and three dedicated registration bundles, the new
+  protected review view and `resources/js/uard/institution-registration.js`.
+- The configured `/dv/design/custom-stylesheet.css`, retaining all existing styles
+  except obsolete demo-only rules and appending functional feedback/review styles.
+
+The WAR was assembled from the active server application at
+`/usr/local/payara7/glassfish/domains/domain1/applications/dataverse/`, adding only
+these feature files. Unrelated local Java/metadata changes were not deployed.
+The homepage/footer, native header, language bundles, native `uk` locale, database
+settings and existing SMTP configuration were retained. The support address is
+`uard@dntb.gov.ua` and notification links use `https://uard2.dntb.gov.ua`.
+
+The release contains `plan.json`, the exact `payload.tar.gz`, approved
+`source-inputs.tar.gz`, installation/runtime helpers, `before.json`,
+`before-app-and-branding.tar`, private `before-domain.xml`,
+`before-db-prepared.dump`, a second quiescent `before-db-install.dump`,
+`before-install-db.json`, `prepared.json`, `installed.json` and `public.json`.
+Database/domain backups are mode 0600 inside the private release directory and
+were not downloaded into the repository.
+
+Maintained artifact: `dataverse-university-registration-live-after.war`, SHA-256:
+`9c6ded6f8a49bade60784144ddea7726789374400ab4fea6a83508a44a94b357`.
+Use it with the release's merged `updates/design/custom-stylesheet.css` and the
+installation's existing external branding/language files.
+
+`payara_domain1.service` restarted successfully and reports Dataverse 6.12. Flyway
+applied `6.12.0.1`, adding only `uard_institution_application` and its pending-mail
+index. Existing core entity counts and the complete settings digest are unchanged.
+The audit verified all 2,050 application files, 65 language files and five design
+files: only the 22 planned files changed, preserving ownership/modes.
+
+Origin checks passed for English/Ukrainian rendering, 19 required controls, packaged
+JavaScript, CSRF rejection, arithmetic verification, missing fields, spoofed logos,
+oversized payloads and HTTP 403 for guest list/detail/logo access. No successful
+application was submitted, so the new remote table remained empty and no external
+test email was sent. Successful submission/idempotency, local SMTP capture and
+authenticated list/detail/logo review had already passed locally. Remote SMTP
+delivery and authenticated remote review were not exercised. The specifically
+requested demo university remains in the local database only.
+
+External HTTPS returned 200 for the form, homepage, version API and video guides,
+using Windows system trust and browser without disabling TLS verification. Public
+browser checks passed native UK → EN → UK switching, empty-form focus, desktop
+layout and 320px single-column layout with no overflowing controls. The existing
+three homepage carousels remain together before the invitation. Native Payara
+Jersey startup warnings remained present; no feature class/method/queue errors
+were reported. One early-closing guest HTTP probe caused a connection-reset warning
+while rendering the native 403 page; the expected 403 response was verified.
+
+Rollback: stop the same service. Restore the four replaced application files and
+stylesheet from `before-app-and-branding.tar`, using `before.json` for exact metadata.
+Remove only this release's added classes, review view and JavaScript. **Retain the
+applied SQL migration file, intake table and Flyway history**, including any later
+submitted applications. Restoring the old WAR without retaining that migration
+causes Flyway validation to fail. Rebuild the rollback WAR with the retained SQL
+file, start Payara and repeat version/demo/access checks. Do not restore the whole
+database or drop the intake table as part of an application rollback.
+
+After deployment, the user explicitly requested a demo submission on uard2.
+At 13:04 Europe/Kyiv on 2026-11-25, the live form accepted the fictional
+Демонстраційний університет UaRD, reference
+`87172605-5d37-403f-ae22-fa9ed5d7fd1a`. Its 16 submitted text/select fields, exact
+9,383-byte PNG and consent version were verified in `dvndb`; exactly one application
+with the demo's English name exists. The support notification was accepted by SMTP
+on the first attempt and `notification_sent_at` was set at 13:04:35 +02:00.
+The release's `demo-university.json` records the result. The record is intentionally
+retained, with fictional contact details and a reserved `.invalid` email address.
+This provides a successful remote submission/SMTP check; inbox receipt and
+authenticated remote review were not exercised. Review URL:
+https://uard2.dntb.gov.ua/institution-applications.xhtml?id=87172605-5d37-403f-ae22-fa9ed5d7fd1a.

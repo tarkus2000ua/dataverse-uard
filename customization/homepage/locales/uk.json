@@ -1,5 +1,8 @@
 {
   "goToRepository": "Перейти в репозитарій",
+  "joinUniversity": "Долучити університет",
+  "registerInstitution": "Створити колекцію університету",
+  "institutionApplication": "Заповніть форму реєстрації закладу",
   "searchLabel": "Пошук у репозитарії",
   "searchPlaceholder": "Пошук у репозитарії…",
   "searchButton": "Знайти",

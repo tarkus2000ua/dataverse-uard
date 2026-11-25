@@ -1,3 +1,18 @@
 {
-  "title": "National Research Data Repository of Ukraine"
+  "title": "National Research Data Repository of Ukraine",
+  "institutionsAudience": "For higher education institutions in Ukraine",
+  "institutionsTitle": "Bring your university to UARD",
+  "institutionsIntro": "Create a collection of open research data with your institution’s name and logo.",
+  "institutionsCollection": "University staff add datasets to the collection: data files, descriptions and metadata for discovery, citation and reuse.",
+  "institutionsBrandTitle": "Your own collection",
+  "institutionsBrand": "Your institution’s name and logo.",
+  "institutionsDoiTitle": "Free DataCite DOIs",
+  "institutionsDoi": "Persistent identifiers for each dataset.",
+  "institutionsStorageTitle": "Long-term preservation",
+  "institutionsStorage": "Preservation of your university’s research data.",
+  "institutionsVisibilityTitle": "Visibility and citations",
+  "institutionsVisibility": "Make data easier to find, cite and reuse.",
+  "institutionsFairTitle": "Open science and FAIR",
+  "institutionsFair": "Support for good research data management.",
+  "institutionsPilot": "UARD is undergoing pilot testing. Rollout is planned for 2027–2028. Institutions can join now."
 }

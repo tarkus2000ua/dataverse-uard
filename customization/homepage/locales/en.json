@@ -1,5 +1,8 @@
 {
   "goToRepository": "Go to repository",
+  "joinUniversity": "Join as a university",
+  "registerInstitution": "Create a university collection",
+  "institutionApplication": "Complete the institution registration form",
   "searchLabel": "Search the repository",
   "searchPlaceholder": "Search the repository…",
   "searchButton": "Search",

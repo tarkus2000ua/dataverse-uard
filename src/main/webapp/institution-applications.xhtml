@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle" value="#{dataverseSession.localeCode eq 'en' ? 'Institution applications' : 'Заявки закладів'}" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{institutionApplicationsPage.id}" />
+            <f:viewParam name="offset" value="#{institutionApplicationsPage.offset}" />
+            <f:viewAction action="#{institutionApplicationsPage.init}" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="meta_header"><meta name="robots" content="noindex,nofollow" /></ui:define>
+    <ui:define name="body">
+        <f:loadBundle basename="propertyFiles.UardInstitutionRegistration" var="registration" />
+        <section class="uard-registration">
+            <div class="uard-registration__inner">
+                <a href="#{request.contextPath}/institution-registration.xhtml">← #{registration.title}</a>
+                <header class="uard-registration__header"><h1>#{registration.applications}</h1></header>
+                <ui:fragment rendered="#{empty institutionApplicationsPage.application}">
+                    <p>#{registration.adminIntro}</p>
+                    <ui:fragment rendered="#{empty institutionApplicationsPage.applications}"><p>#{registration.noApplications}</p></ui:fragment>
+                    <div class="uard-registration__application-list">
+                        <ui:repeat value="#{institutionApplicationsPage.applications}" var="institutionApplication">
+                            <article class="uard-registration__application">
+                                <h2><h:link outcome="institution-applications" value="#{institutionApplication.fields['nameUk']}"><f:param name="id" value="#{institutionApplication.id}" /></h:link></h2>
+                                <p><h:outputText value="#{institutionApplication.created}" /> (UTC)</p>
+                                <p>#{institutionApplication.notified ? registration.notificationSent : registration.notificationPending}</p>
+                            </article>
+                        </ui:repeat>
+                    </div>
+                    <nav class="uard-registration__actions" aria-label="#{registration.applications}">
+                        <h:link rendered="#{institutionApplicationsPage.offset gt 0}" outcome="institution-applications" value="#{registration.previous}"><f:param name="offset" value="#{institutionApplicationsPage.offset - 50}" /></h:link>
+                        <h:link rendered="#{institutionApplicationsPage.next}" outcome="institution-applications" value="#{registration.next}"><f:param name="offset" value="#{institutionApplicationsPage.offset + 50}" /></h:link>
+                    </nav>
+                </ui:fragment>
+                <ui:fragment rendered="#{not empty institutionApplicationsPage.application}">
+                    <a href="#{request.contextPath}/institution-applications.xhtml">← #{registration.allApplications}</a>
+                    <h2><h:outputText value="#{institutionApplicationsPage.application.fields['nameUk']}" /></h2>
+                    <p>ID: <h:outputText value="#{institutionApplicationsPage.application.id}" /></p>
+                    <p><h:outputText value="#{institutionApplicationsPage.application.created}" /> (UTC)</p>
+                    <p>#{institutionApplicationsPage.application.notified ? registration.notificationSent : registration.notificationPending}</p>
+                    <dl class="uard-registration__details">
+                        <ui:repeat value="#{institutionApplicationsPage.fields}" var="field">
+                            <dt><h:outputText value="#{registration[field]}" /></dt>
+                            <dd><h:outputText value="#{institutionApplicationsPage.application.fields[field]}" /></dd>
+                        </ui:repeat>
+                    </dl>
+                    <p>#{registration.consentRecorded}</p>
+                    <a class="uard-button" href="#{request.contextPath}/institution-application-logo?id=#{institutionApplicationsPage.application.id}">#{registration.downloadLogo}</a>
+                </ui:fragment>
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

@@ -7,6 +7,7 @@
                 <h1 class="dv-home__title" id="dv-home-title" data-home-content="title">{{content.title}}</h1>
                 <div class="dv-home__actions">
                     <a class="dv-home__repository" href="/dataverse.xhtml"><span data-home-ui="goToRepository">{{ui.goToRepository}}</span><span aria-hidden="true">→</span></a>
+                    <a class="dv-home__repository dv-home__repository--secondary" href="#dv-institutions" data-home-ui="joinUniversity">{{ui.joinUniversity}}</a>
                 </div>
                 <div class="dv-home__search-row">
                     <form class="dv-home__search" action="/dataverse.xhtml" method="get" role="search" aria-labelledby="dv-home-search-label" accept-charset="UTF-8">
@@ -73,6 +74,28 @@
                 <span class="dv-home__visually-hidden" id="dv-clusters-position"></span>
                 <button type="button" data-scroll-direction="next" aria-controls="dv-clusters-list"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m10 5 7 7-7 7"/></svg><span class="dv-home__visually-hidden" data-home-ui="clustersNext">{{ui.clustersNext}}</span></button>
             </div>
+        </div>
+    </section>
+    <section class="uard-institutions" id="dv-institutions" aria-labelledby="dv-institutions-title">
+        <div class="uard-institutions__inner">
+            <div class="uard-institutions__layout">
+                <div>
+                    <p class="uard-institutions__eyebrow" data-home-content="institutionsAudience">{{content.institutionsAudience}}</p>
+                    <h2 id="dv-institutions-title" data-home-content="institutionsTitle">{{content.institutionsTitle}}</h2>
+                    <p data-home-content="institutionsIntro">{{content.institutionsIntro}}</p>
+                    <p data-home-content="institutionsCollection">{{content.institutionsCollection}}</p>
+                    <a class="dv-home__repository uard-institutions__action" href="/institution-registration.xhtml"><span data-home-ui="registerInstitution">{{ui.registerInstitution}}</span><span aria-hidden="true">→</span></a>
+                    <p class="uard-institutions__caption" data-home-ui="institutionApplication">{{ui.institutionApplication}}</p>
+                </div>
+                <ul class="uard-institutions__benefits">
+                    <li><span class="glyphicon glyphicon-education" aria-hidden="true"></span><div><h3 data-home-content="institutionsBrandTitle">{{content.institutionsBrandTitle}}</h3><p data-home-content="institutionsBrand">{{content.institutionsBrand}}</p></div></li>
+                    <li><span class="glyphicon glyphicon-link" aria-hidden="true"></span><div><h3 data-home-content="institutionsDoiTitle">{{content.institutionsDoiTitle}}</h3><p data-home-content="institutionsDoi">{{content.institutionsDoi}}</p></div></li>
+                    <li><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span><div><h3 data-home-content="institutionsStorageTitle">{{content.institutionsStorageTitle}}</h3><p data-home-content="institutionsStorage">{{content.institutionsStorage}}</p></div></li>
+                    <li><span class="glyphicon glyphicon-globe" aria-hidden="true"></span><div><h3 data-home-content="institutionsVisibilityTitle">{{content.institutionsVisibilityTitle}}</h3><p data-home-content="institutionsVisibility">{{content.institutionsVisibility}}</p></div></li>
+                    <li><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><div><h3 data-home-content="institutionsFairTitle">{{content.institutionsFairTitle}}</h3><p data-home-content="institutionsFair">{{content.institutionsFair}}</p></div></li>
+                </ul>
+            </div>
+            <p class="uard-institutions__pilot"><span aria-hidden="true"></span><span data-home-content="institutionsPilot">{{content.institutionsPilot}}</span></p>
         </div>
     </section>
     <script type="application/json" id="dv-home-translations">{{translations}}</script>

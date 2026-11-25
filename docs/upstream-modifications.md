@@ -571,3 +571,28 @@ The standalone API agreement and legacy DataTags test pages are gated in
 the same mode. The API routes and token persistence are unchanged.
 Public About fragments use the switch and the static guide has two build
 modes. See [activation and restoration](api-launch-visibility.md).
+
+## University invitation and institution applications
+
+The new `/institution-registration.xhtml` uses `dataverse_template.xhtml`, retaining
+the native header/footer/authentication and locale bindings. New form bundles
+support `ua`, `uk` and English. From 2026-11-25 the local form submits applications
+to a dedicated multipart servlet, with validation, session-bound CSRF/idempotency
+and arithmetic verification. New `uard/Institution*` classes store fields, private
+logos and notification state in one new table via an additive Flyway migration.
+Native data source and mail service are reused. An EJB timer retries notifications;
+new review/download routes require a native authenticated superuser. Existing Java,
+JSF upload limits, authentication and mail configuration are unchanged.
+The review repeat uses `institutionApplication` as its row variable: `application`
+is a reserved JSF implicit object and fails when a populated list is rendered.
+
+Homepage/footer additions use supported branding and generated fragments. The
+invitation follows all three existing carousels; their API/navigation logic is
+unchanged. Form/invitation share external branding styles. Keep the new view,
+bundles, branding sources, generated fragments, new JavaScript/backend and migration
+together on upgrade. Check the custom migration version against future upstream
+migrations and retain application data on rollback. The functional version was
+deployed to uard2 on 2026-11-25, preserving its existing application customizations,
+native locale and SMTP configuration. Rollback must retain the applied SQL migration
+as well as the intake table/history; removing an applied migration breaks validation.
+See [scope, operations and local checks](institution-registration.md).

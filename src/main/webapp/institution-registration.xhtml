@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" template="/dataverse_template.xhtml">
+    <ui:param name="pageTitle" value="#{dataverseSession.localeCode eq 'en' ? 'Higher education institution registration — UaRD' : 'Реєстрація закладу вищої освіти — UaRD'}" />
+    <ui:param name="showDataverseHeader" value="#{false}" />
+    <ui:define name="meta_header">
+        <meta name="robots" content="noindex" />
+    </ui:define>
+    <ui:define name="body">
+        <f:loadBundle basename="propertyFiles.UardInstitutionRegistration" var="registration" />
+        <section class="uard-registration" aria-labelledby="institution-registration-title">
+            <div class="uard-registration__inner">
+                <a class="uard-registration__back" href="#{request.contextPath}/">← #{registration.home}</a>
+                <header class="uard-registration__header">
+                    <p class="uard-registration__eyebrow">#{registration.eyebrow}</p>
+                    <h1 id="institution-registration-title">#{registration.title}</h1>
+                    <p>#{registration.intro}</p>
+                </header>
+                <form id="institutionRegistration" class="uard-registration__form" action="#{request.contextPath}/institution-registration-submit" method="post" enctype="multipart/form-data" aria-label="#{registration.title}" data-sending="#{registration.sending}" data-submit="#{registration.submit}" data-error="#{registration.errorNetwork}">
+                    <input type="hidden" name="token" value="#{institutionRegistrationPage.token}" />
+                    <p id="institution-registration-feedback" class="uard-registration__feedback" hidden="hidden" role="alert" tabindex="-1"></p>
+                    <p class="uard-registration__required">#{registration.allRequired}</p>
+                    <fieldset>
+                        <legend>#{registration.institutionSection}</legend>
+                        <div class="uard-registration__fields">
+                            <div class="uard-registration__field">
+                                <label for="institution-nameUk">1. #{registration.nameUk}</label>
+                                <input id="institution-nameUk" name="nameUk" required="required" maxlength="255" lang="uk" autocomplete="organization" type="text" />
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-nameEn">2. #{registration.nameEn}</label>
+                                <input id="institution-nameEn" name="nameEn" required="required" maxlength="255" lang="en" type="text" />
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-institutionType">3. #{registration.institutionType}</label>
+                                <select id="institution-institutionType" name="institutionType" required="required">
+                                    <option value="" disabled="disabled" selected="selected">#{registration.selectType}</option>
+                                    <option value="university">#{registration.university}</option>
+                                    <option value="academy">#{registration.academy}</option>
+                                    <option value="institute">#{registration.institute}</option>
+                                    <option value="college">#{registration.college}</option>
+                                </select>
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-ownership">4. #{registration.ownership}</label>
+                                <select id="institution-ownership" name="ownership" required="required">
+                                    <option value="" disabled="disabled" selected="selected">#{registration.selectOwnership}</option>
+                                    <option value="state">#{registration.state}</option>
+                                    <option value="municipal">#{registration.municipal}</option>
+                                    <option value="private">#{registration['private']}</option>
+                                </select>
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-affiliation">5. #{registration.affiliation}</label>
+                                <input id="institution-affiliation" name="affiliation" required="required" maxlength="255" aria-describedby="institution-affiliation-help" type="text" />
+                                <small id="institution-affiliation-help">#{registration.affiliationHelp}</small>
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-division">6. #{registration.division}</label>
+                                <input id="institution-division" name="division" required="required" maxlength="255" aria-describedby="institution-division-help" type="text" />
+                                <small id="institution-division-help">#{registration.divisionHelp}</small>
+                            </div>
+                            <div class="uard-registration__field uard-registration__field--full">
+                                <label for="institution-website">7. #{registration.website}</label>
+                                <input id="institution-website" name="website" required="required" maxlength="2048" type="url" placeholder="https://" autocomplete="url" />
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-descriptionUk">8. #{registration.descriptionUk}</label>
+                                <textarea id="institution-descriptionUk" name="descriptionUk" required="required" rows="5" maxlength="4000" lang="uk"></textarea>
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-descriptionEn">9. #{registration.descriptionEn}</label>
+                                <textarea id="institution-descriptionEn" name="descriptionEn" required="required" rows="5" maxlength="4000" lang="en"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>#{registration.personSection}</legend>
+                        <div class="uard-registration__fields uard-registration__fields--names">
+                            <div class="uard-registration__field">
+                                <label for="institution-surname">10. #{registration.surname}</label>
+                                <input id="institution-surname" name="surname" required="required" maxlength="255" autocomplete="family-name" type="text" />
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-givenName">11. #{registration.givenName}</label>
+                                <input id="institution-givenName" name="givenName" required="required" maxlength="255" autocomplete="given-name" type="text" />
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-patronymic">12. #{registration.patronymic}</label>
+                                <input id="institution-patronymic" name="patronymic" required="required" maxlength="255" autocomplete="additional-name" type="text" />
+                            </div>
+                        </div>
+                        <div class="uard-registration__fields">
+                            <div class="uard-registration__field uard-registration__field--full">
+                                <label for="institution-position">13. #{registration.position}</label>
+                                <input id="institution-position" name="position" required="required" maxlength="255" autocomplete="organization-title" type="text" />
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-phone">14. #{registration.phone}</label>
+                                <input id="institution-phone" name="phone" required="required" maxlength="255" type="tel" autocomplete="tel" />
+                            </div>
+                            <div class="uard-registration__field">
+                                <label for="institution-email">15. #{registration.email}</label>
+                                <input id="institution-email" name="email" required="required" maxlength="255" type="email" autocomplete="email" />
+                            </div>
+                            <div class="uard-registration__field uard-registration__field--full">
+                                <label for="institution-personDescription">16. #{registration.personDescription}</label>
+                                <textarea id="institution-personDescription" name="personDescription" required="required" rows="4" maxlength="4000" aria-describedby="institution-person-help"></textarea>
+                                <small id="institution-person-help">#{registration.personDescriptionHelp}</small>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>#{registration.logoSection}</legend>
+                        <div class="uard-registration__upload uard-registration__field">
+                            <label for="institution-logo">17. #{registration.logo}</label>
+                            <input id="institution-logo" name="logo" required="required" accept=".jpg,.jpeg,.gif,.png,image/jpeg,image/gif,image/png" aria-describedby="institution-logo-help" type="file" data-size-error="#{registration.logoTooLarge}" onchange="this.setCustomValidity(this.files.length &amp;&amp; this.files[0].size &gt; 2097152 ? this.getAttribute('data-size-error') : '')" />
+                            <small id="institution-logo-help">#{registration.logoHelp}</small>
+                        </div>
+                    </fieldset>
+                    <div class="uard-registration__consent">
+                        <input id="institution-consent" name="consent" required="required" type="checkbox" />
+                        <label for="institution-consent">#{registration.consent}</label>
+                    </div>
+                    <div class="uard-registration__field uard-registration__captcha">
+                        <label for="institution-captcha">#{registration.captcha} #{institutionRegistrationPage.question}</label>
+                        <input id="institution-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" maxlength="2" required="required" aria-describedby="institution-captcha-help" />
+                        <small id="institution-captcha-help">#{registration.captchaHelp}</small>
+                    </div>
+                    <noscript><p class="uard-registration__feedback">#{registration.javascriptRequired}</p></noscript>
+                    <div class="uard-registration__actions">
+                        <button class="uard-button" type="submit">#{registration.submit}</button>
+                        <a class="uard-registration__back" href="#{request.contextPath}/">#{registration.back}</a>
+                    </div>
+                </form>
+                <div id="institution-registration-success" class="uard-registration__success" hidden="hidden" role="status" tabindex="-1">
+                    <h2>#{registration.successTitle}</h2>
+                    <p>#{registration.successBody}</p>
+                    <p>#{registration.reference}: <strong id="institution-registration-reference"></strong></p>
+                    <a href="#{request.contextPath}/">#{registration.back}</a>
+                </div>
+                <ui:fragment rendered="#{dataverseSession.user.superuser}">
+                    <p><a href="#{request.contextPath}/institution-applications.xhtml">#{registration.applications}</a></p>
+                </ui:fragment>
+                <h:outputScript library="js" name="uard/institution-registration.js" target="body" />
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

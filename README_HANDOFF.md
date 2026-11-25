@@ -1,6 +1,6 @@
 # UaRD - continuation handoff
 
-Updated 2026-11-05. Target: Dataverse 6.12. This file describes the current
+Updated 2026-11-25. Target: Dataverse 6.12. This file describes the current
 implementation and supersedes earlier dated checkpoints. It does not select a
 new task or authorize a remote application deployment.
 
@@ -303,3 +303,116 @@ The feature was deployed to uard2 on November 19 at 13:34 Europe/Kyiv, preservin
 the server's `uk` locale, existing guide bindings, translations and stylesheet.
 The exact release, WAR checksum, backups, checks and rollback are recorded in
 [video guides](docs/video-guides.md) and [remote deployment](docs/remote-deployment.md#confirmed-uard2-video-guides-deployment-2026-11-19).
+
+## University invitation and demo form (2026-11-24)
+
+Local feature work is on `codex/university-registration`, created from the local
+`custom/6.12` tip `f9ab231edb`. Origin refresh was attempted but GitHub SSH was
+unreachable. Existing metadata-mapping changes, untracked inputs and the staged
+dummy header were preserved; implementation has not been committed or pushed.
+
+The homepage keeps all three carousels together and places the university
+invitation after them. The short collection explanation is always visible. A
+secondary hero anchor and the footer's “For institutions” link lead to the new
+flow. `/institution-registration.xhtml` uses the native Dataverse shell and
+shared homepage form/button styling, including native UA/EN localization.
+
+The user clarified that only a demonstration is currently needed. The form has
+all 17 required fields, the required authority/consent checkbox and local logo-size
+validation; submission is blocked and the page identifies itself as a demo.
+There are no custom backend classes, data writes, database/SMTP changes or emails.
+Database persistence plus notifications are only a possible follow-up.
+
+FRD and both branding builders/checks succeeded locally. Live checks covered
+UA/EN/UA, direct and invitation navigation, all three carousel next controls,
+18 native required controls, empty-form validation and 320px layout without
+horizontal page/control overflow. No live application was submitted. See
+[implementation](docs/institution-registration.md).
+
+The user subsequently requested deployment to uard2. The demo was deployed there
+on November 24 at 23:55 Europe/Kyiv, retaining the target's `uk` locale and existing
+server customizations. Seven files changed and public HTTPS/browser checks passed.
+The form remains demonstration-only. Release/rollback:
+`/home/designer/uard-releases/university-registration-demo-20261124T215021Z/`.
+See [the deployment record](docs/remote-deployment.md#university-registration-demo-on-uard2-2026-11-24).
+Local work remains on `codex/university-registration` without a commit or push.
+
+## Functional institution registration (2026-11-25)
+
+The user approved moving from the demonstration to a working form. Continue on
+`codex/university-registration`; no commit/push or new remote deployment was asked.
+The local Dataverse 6.12 server is running at http://localhost:8080/. Docker Desktop
+was started after the reboot. Confirmed stale bind mounts were reconnected to the
+existing WSL PostgreSQL, Solr and exploded application; 11 collections remain.
+No seed, volume deletion or database reset was used. DB backups are private local
+artifacts under `work/institution-registration/`, not release inputs.
+
+The form now saves all required fields, logo and consent atomically in the DB and
+returns a UUID reference. Server validation checks actual image content and size;
+session-bound tokens protect CSRF and duplicate retries. Native support mail is
+queued durably and retried after failures. `/institution-applications.xhtml` and
+its logo download route require a current native superuser. Collections/accounts
+are created manually after review. Native header/auth/locale and the agreed form
+styles remain. See [implementation and validation](docs/institution-registration.md).
+
+31 Java unit, three PostgreSQL integration and five client tests passed, plus a
+synthetic local HTTP save/retry/email/guest-access check and UA/EN/mobile browser
+checks. Mail was captured in local MailDev at http://localhost:1080/, not sent
+externally. Native authenticated list/detail/logo review has now passed using
+the operator's existing superuser login, including an exact downloaded-logo hash
+match. Anonymous list/logo access remains HTTP 403.
+Unrelated metadata work and the staged unused header remain untouched; there are
+no task commits or pushes. The later functional uard2 deployment is recorded below.
+
+The user requested and retained one fictional demo university:
+`c8dc27d4-238b-436f-af07-8305c1d82d7e` (Демонстраційний університет UaRD).
+Its notification was captured in local MailDev. A subsequent authenticated visit
+reported HTTP 500: `var="application"` collided with JSF's implicit web application
+object. The review repeat now uses `institutionApplication`; XML/FRD passed.
+After operator sign-in, the populated list, correct demo details and private logo
+download were verified in the browser with no new EL errors. Keep the demo record
+and all current access checks intact. No further redeploy was needed after login.
+
+## Functional registration deployed to uard2 (2026-11-25)
+
+At the user's explicit request, functional intake replaced the remote demonstration
+at 12:56 Europe/Kyiv. Release:
+`/home/designer/uard-releases/university-registration-live-20261125T105155Z/`.
+The form and protected review use their normal `/institution-registration.xhtml`
+and `/institution-applications.xhtml` routes. Twenty-two files were installed,
+including 14 new classes and the additive Flyway migration `6.12.0.1`. The migration
+succeeded; original application data, settings and unrelated files remain intact.
+The release has full app/branding, domain and PostgreSQL backups plus the maintained
+`dataverse-university-registration-live-after.war` and exact file/hash audit.
+
+Public HTTPS, native UK/EN/UK, validation/CSRF/file-size checks, private-route access
+checks and desktop/320px browser checks passed. The configured support mailbox is
+`uard@dntb.gov.ua`. No successful remote test application or email was generated;
+the retained demo university remains local. Authenticated review and delivery were
+verified locally; remote authenticated review/SMTP delivery were not exercised.
+Rollback must retain the migration file, table and Flyway history. See
+[release details](docs/remote-deployment.md#functional-institution-registration-on-uard2-2026-11-25).
+This deployment did not commit, merge or push the working branch.
+
+The user subsequently requested a demo submission on uard2. One fictional
+Демонстраційний університет UaRD was submitted through the live form at 13:04
+Europe/Kyiv, reference `87172605-5d37-403f-ae22-fa9ed5d7fd1a`. All submitted fields,
+the 9,383-byte PNG and consent were verified in the remote DB; exactly one such
+demo exists. The support notification was accepted by SMTP on the first attempt.
+The result is retained in the release's `demo-university.json` and the matching
+local audit. Keep this demo record; it is separate from the earlier local demo.
+Authenticated remote review/inbox receipt were not checked.
+
+## University registration branch review (2026-11-25)
+
+The user requested a task-only commit and publication of
+`codex/university-registration`, explicitly deferring the merge. Keep this feature
+branch for review; do not merge into `custom/6.12` or retire the branch until the
+user requests integration. Branch:
+https://github.com/tarkus2000ua/dataverse-uard/tree/codex/university-registration.
+
+The commit includes registration code, homepage/footer additions, tests and
+feature/deployment documentation. Unrelated terms/metadata work, original assets,
+local database/release artifacts and the staged unused header are excluded and
+remain in the workspace. uard2's deployed source and the successful remote demo
+submission are recorded above. Git publication does not perform another deployment.
