@@ -1,0 +1,521 @@
+{
+  "format": 1,
+  "description": "Complete Ukrainian Geospatial display labels for Dataverse 6.12. Stored metadata values are unchanged.",
+  "entries": [
+    {
+      "key": "datasetfieldtype.geographicResourceType.description",
+      "before": "The type of geospatial data resource that is described in this Dataset record",
+      "after": "Тип геопросторового ресурсу даних, описаного в цьому записі набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceDate.title",
+      "before": "Resource Reference Date",
+      "after": "Дата ресурсу"
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceDate.description",
+      "before": "A date which is used to help identify the resource (ISO 19115-3)",
+      "after": "Дата, що допомагає ідентифікувати ресурс (ISO 19115-3)."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceDateValue.title",
+      "before": "Date",
+      "after": "Дата"
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceDateValue.description",
+      "before": "A date which is used to help identify the resource",
+      "after": "Дата, що допомагає ідентифікувати ресурс."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceDateType.title",
+      "before": "Type",
+      "after": "Тип"
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceDateType.description",
+      "before": "The type of date represented in the Date field",
+      "after": "Тип дати, зазначеної в полі «Дата»."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceDateType.watermark",
+      "before": "revision, expiry, lastUpdate, lastRevision, nextUpdate, unavailable, inForce, adopted, deprecated, superseded, publication",
+      "after": "перегляд, закінчення строку дії, останнє оновлення, останній перегляд, наступне оновлення, недоступність, набрання чинності, ухвалення, визнання застарілим, заміна, публікація"
+    },
+    {
+      "key": "datasetfieldtype.geographicDataLineageStatement.title",
+      "before": "Data Lineage Statement",
+      "after": "Опис походження даних"
+    },
+    {
+      "key": "datasetfieldtype.geographicDataLineageStatement.description",
+      "before": "A statement about the Dataset's lineage",
+      "after": "Відомості про походження набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicProcessStep.title",
+      "before": "Data Lineage Process Step Description",
+      "after": "Опис етапу обробки даних"
+    },
+    {
+      "key": "datasetfieldtype.geographicProcessStep.description",
+      "before": "A description of the processes performed on the data as part of the Dataset's processing history",
+      "after": "Опис процесів обробки даних, що становлять історію обробки набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceSystemInfo.title",
+      "before": "Reference System Information",
+      "after": "Відомості про систему відліку"
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceSystemInfo.description",
+      "before": "The spatial and temporal reference systems used in the Dataset",
+      "after": "Просторові та часові системи відліку, використані в наборі даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceSystemCode.title",
+      "before": "Reference System Code",
+      "after": "Код системи відліку"
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceSystemCode.description",
+      "before": "An alphanumeric identifier for the reference system for the Dataset",
+      "after": "Літерно-цифровий ідентифікатор системи відліку набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceSystemCodeSpace.title",
+      "before": "Reference System Code Space",
+      "after": "Простір імен коду системи відліку"
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceSystemCodeSpace.description",
+      "before": "The namespace of the system in which the reference system code is valid",
+      "after": "Простір імен системи, у межах якої код системи відліку є чинним."
+    },
+    {
+      "key": "datasetfieldtype.geographicReferenceSystemCodeSpace.watermark",
+      "before": "EPSG, WGS, etc.",
+      "after": "EPSG, WGS тощо"
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolution.title",
+      "before": "Spatial Resolution",
+      "after": "Просторова роздільна здатність"
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolution.description",
+      "before": "The spatial resolution provides a general understanding of the density of spatial data in the resource, or describes the range of resolutions in which a digital resource may be used. NOTE: This element should be repeated when describing upper and lower range",
+      "after": "Просторова роздільна здатність характеризує щільність просторових даних у ресурсі або діапазон роздільних здатностей, за яких можна використовувати цифровий ресурс. Щоб указати верхню та нижню межі діапазону, повторіть це поле."
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionValue.title",
+      "before": "Value",
+      "after": "Значення"
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionValue.description",
+      "before": "The resource's spatial resolution, expressed as a value or as a brief textual description",
+      "after": "Просторова роздільна здатність ресурсу, виражена числовим значенням або стислим текстовим описом."
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionType.title",
+      "before": "Type",
+      "after": "Тип"
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionType.description",
+      "before": "Format in which the spatial resolution value is expressed",
+      "after": "Формат подання значення просторової роздільної здатності."
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionType.watermark",
+      "before": "distance, vertical, angularDistance, levelOfDetail",
+      "after": "відстань, вертикальна роздільна здатність, кутова відстань, рівень деталізації"
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialRepresentationType.title",
+      "before": "Spatial Representation Type",
+      "after": "Тип просторового подання"
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialRepresentationType.description",
+      "before": "Spatial Representation Type\tThe type of spatial representation of the data in the Dataset",
+      "after": "Тип просторового подання даних у наборі даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionUnitOfMeasure.title",
+      "before": "Spatial Resolution Unit of Measure",
+      "after": "Одиниця вимірювання просторової роздільної здатності"
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionUnitOfMeasure.description",
+      "before": "If the spatial resolution value is expressed as a distance, the unit of measure that corresponds to that value",
+      "after": "Якщо значення просторової роздільної здатності виражено як відстань, укажіть одиницю вимірювання цього значення."
+    },
+    {
+      "key": "datasetfieldtype.geographicSpatialResolutionUnitOfMeasure.watermark",
+      "before": "'cm', 'm', 'km', etc.",
+      "after": "cm, m, km тощо"
+    },
+    {
+      "key": "datasetfieldtype.geographicDistribution.title",
+      "before": "Distribution Link",
+      "after": "Посилання для доступу"
+    },
+    {
+      "key": "datasetfieldtype.geographicDistribution.description",
+      "before": "Distribution links are URLs that can be used to access the Dataset",
+      "after": "URL-посилання, за якими можна отримати доступ до набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicDistributionLinkLabel.title",
+      "before": "Label",
+      "after": "Підпис"
+    },
+    {
+      "key": "datasetfieldtype.geographicDistributionLinkLabel.description",
+      "before": "A descriptive label for the distribution link",
+      "after": "Описовий підпис посилання для доступу."
+    },
+    {
+      "key": "datasetfieldtype.geographicDistributionLink.description",
+      "before": "The distribution link is a URL that can be used to access the dataset",
+      "after": "URL-посилання, за яким можна отримати доступ до набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicProtocol.title",
+      "before": "Protocol",
+      "after": "Протокол"
+    },
+    {
+      "key": "datasetfieldtype.geographicProtocol.description",
+      "before": "The service or transfer protocol associated with the distribution link URL",
+      "after": "Протокол сервісу або передавання даних, пов’язаний з URL-посиланням для доступу."
+    },
+    {
+      "key": "datasetfieldtype.geographicProtocol.watermark",
+      "before": "HTTPS, FTP, HTTP, REST, etc.",
+      "after": "HTTPS, FTP, HTTP, REST тощо"
+    },
+    {
+      "key": "datasetfieldtype.geometricObjectCount.title",
+      "before": "Vector Object Count",
+      "after": "Кількість векторних об’єктів"
+    },
+    {
+      "key": "datasetfieldtype.geometricObjectCount.description",
+      "before": "Vector data only: Total number of geometric objects in the Dataset",
+      "after": "Лише для векторних даних: загальна кількість геометричних об’єктів у наборі даних."
+    },
+    {
+      "key": "datasetfieldtype.geometricObjectType.title",
+      "before": "Vector Object Type",
+      "after": "Тип векторних об’єктів"
+    },
+    {
+      "key": "datasetfieldtype.geometricObjectType.description",
+      "before": "Vector data only: The type of geometric objects (or shapes) that make up the structure of the vector Dataset",
+      "after": "Лише для векторних даних: тип геометричних об’єктів або форм, що утворюють структуру векторного набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geometricObjectType.watermark",
+      "before": "curve, composite, complex, point, solid, or surface",
+      "after": "крива, складений об’єкт, комплексний об’єкт, точка, тіло або поверхня"
+    },
+    {
+      "key": "datasetfieldtype.geographicNumberOfDimensions.title",
+      "before": "Raster Dimensions",
+      "after": "Кількість вимірів растра"
+    },
+    {
+      "key": "datasetfieldtype.geographicNumberOfDimensions.description",
+      "before": "Raster/grid data only: The number of independent spatio-temporal axes, or dimensions, represented in the Dataset",
+      "after": "Лише для растрових даних або даних сітки: кількість незалежних просторово-часових осей, або вимірів, представлених у наборі даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicCellGeometry.title",
+      "before": "Raster Cell Geometry",
+      "after": "Геометрія комірки растра"
+    },
+    {
+      "key": "datasetfieldtype.geographicCellGeometry.description",
+      "before": "Raster/grid data only: Identification of raster data in this Dataset",
+      "after": "Лише для растрових даних або даних сітки: геометричне подання комірок растра в цьому наборі даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicAxisDimensionProperties.title",
+      "before": "Raster Dimension (Axis) Properties",
+      "after": "Властивості виміру (осі) растра"
+    },
+    {
+      "key": "datasetfieldtype.geographicAxisDimensionProperties.description",
+      "before": "Raster/grid data only: Information about spatial-temporal axis properties (dimensions).  NOTE: A raster Dataset will usually have 2+ dimensions. Repeat this field to describe all dimensions represented in the Dataset",
+      "after": "Лише для растрових даних або даних сітки: відомості про властивості просторово-часових осей (вимірів). Растровий набір даних зазвичай має щонайменше два виміри. Повторіть це поле, щоб описати всі виміри набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicDimensionNameType.title",
+      "before": "Raster Dimension (Axis) Name",
+      "after": "Назва виміру (осі) растра"
+    },
+    {
+      "key": "datasetfieldtype.geographicDimensionNameType.description",
+      "before": "Raster/grid data only: Name/type for one of the spatial-temporal axis represented in the Dataset",
+      "after": "Лише для растрових даних або даних сітки: назва або тип однієї з просторово-часових осей набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicDimensionNameType.watermark",
+      "before": "row, column, vertical, track, crossTrack, line, sample, or time",
+      "after": "рядок, стовпець, вертикаль, уздовж траєкторії, поперек траєкторії, лінія, відлік або час"
+    },
+    {
+      "key": "datasetfieldtype.geographicDimensionSize.title",
+      "before": "Raster Dimension (Axis) Size",
+      "after": "Розмір виміру (осі) растра"
+    },
+    {
+      "key": "datasetfieldtype.geographicDimensionSize.description",
+      "before": "Number of elements along the axis",
+      "after": "Кількість елементів уздовж осі."
+    },
+    {
+      "key": "datasetfieldtype.geographicResolution.title",
+      "before": "Raster Dimension (Axis) Resolution",
+      "after": "Роздільна здатність виміру (осі) растра"
+    },
+    {
+      "key": "datasetfieldtype.geographicResolution.description",
+      "before": "A decimal value representing a dimension's degree of detail, i.e. the size of the area that corresponds to a single data element along a Dataset's axis.",
+      "after": "Десяткове значення, що визначає ступінь деталізації виміру, тобто розмір ділянки, яка відповідає одному елементу даних уздовж осі набору даних."
+    },
+    {
+      "key": "datasetfieldtype.geographicResolution.watermark",
+      "before": "enter a decimal value",
+      "after": "введіть десяткове число"
+    },
+    {
+      "key": "datasetfieldtype.geographicResolutionUnitOfMeasure.title",
+      "before": "Raster Dimension (Axis) Resolution Unit of Measure",
+      "after": "Одиниця вимірювання роздільної здатності виміру (осі) растра"
+    },
+    {
+      "key": "datasetfieldtype.geographicResolutionUnitOfMeasure.description",
+      "before": "Resolution unit of measure for the dimension resolution value.",
+      "after": "Одиниця вимірювання значення роздільної здатності виміру."
+    },
+    {
+      "key": "datasetfieldtype.geographicResolutionUnitOfMeasure.watermark",
+      "before": "'cm', 'm', 'km', etc.",
+      "after": "cm, m, km тощо"
+    },
+    {
+      "key": "controlledvocabulary.geometricObjectType.curve",
+      "before": "curve",
+      "after": "Крива"
+    },
+    {
+      "key": "controlledvocabulary.geometricObjectType.composite",
+      "before": "composite",
+      "after": "Складений об’єкт"
+    },
+    {
+      "key": "controlledvocabulary.geometricObjectType.complex",
+      "before": "complex",
+      "after": "Комплексний об’єкт"
+    },
+    {
+      "key": "controlledvocabulary.geometricObjectType.point",
+      "before": "point",
+      "after": "Точка"
+    },
+    {
+      "key": "controlledvocabulary.geometricObjectType.solid",
+      "before": "solid",
+      "after": "Тіло"
+    },
+    {
+      "key": "controlledvocabulary.geometricObjectType.surface",
+      "before": "surface",
+      "after": "Поверхня"
+    },
+    {
+      "key": "controlledvocabulary.geographicCellGeometry.point",
+      "before": "point",
+      "after": "Точка"
+    },
+    {
+      "key": "controlledvocabulary.geographicCellGeometry.area",
+      "before": "area",
+      "after": "Площа"
+    },
+    {
+      "key": "controlledvocabulary.geographicCellGeometry.voxel",
+      "before": "voxel",
+      "after": "Воксель"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.row",
+      "before": "row",
+      "after": "Рядок"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.column",
+      "before": "column",
+      "after": "Стовпець"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.vertical",
+      "before": "vertical",
+      "after": "Вертикаль"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.track",
+      "before": "track",
+      "after": "Уздовж траєкторії"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.crosstrack",
+      "before": "crossTrack",
+      "after": "Поперек траєкторії"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.line",
+      "before": "line",
+      "after": "Лінія"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.sample",
+      "before": "sample",
+      "after": "Відлік"
+    },
+    {
+      "key": "controlledvocabulary.geographicDimensionNameType.time",
+      "before": "time",
+      "after": "Час"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialRepresentationType.stereomodel",
+      "before": "stereoModel",
+      "after": "Стереомодель"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialRepresentationType.video",
+      "before": "video",
+      "after": "Відео"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialRepresentationType.tin",
+      "before": "tin",
+      "after": "Нерегулярна трикутна мережа (TIN)"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialRepresentationType.texttable",
+      "before": "textTable",
+      "after": "Текстова таблиця"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialRepresentationType.grid",
+      "before": "grid",
+      "after": "Сітка"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialRepresentationType.vector",
+      "before": "vector",
+      "after": "Вектор"
+    },
+    {
+      "key": "controlledvocabulary.geographicResourceType.dataset",
+      "before": "dataset",
+      "after": "Набір даних"
+    },
+    {
+      "key": "controlledvocabulary.geographicResourceType.service",
+      "before": "service",
+      "after": "Сервіс"
+    },
+    {
+      "key": "controlledvocabulary.geographicResourceType.series",
+      "before": "series",
+      "after": "Серія"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.revision",
+      "before": "revision",
+      "after": "Перегляд"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.expiry",
+      "before": "expiry",
+      "after": "Закінчення строку дії"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.lastupdate",
+      "before": "lastUpdate",
+      "after": "Останнє оновлення"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.lastrevision",
+      "before": "lastRevision",
+      "after": "Останній перегляд"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.nextupdate",
+      "before": "nextUpdate",
+      "after": "Наступне оновлення"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.unavailable",
+      "before": "unavailable",
+      "after": "Недоступність"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.inforce",
+      "before": "inForce",
+      "after": "Набрання чинності"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.adopted",
+      "before": "adopted",
+      "after": "Ухвалення"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.deprecated",
+      "before": "deprecated",
+      "after": "Визнання застарілим"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.superseded",
+      "before": "superseded",
+      "after": "Заміна"
+    },
+    {
+      "key": "controlledvocabulary.geographicReferenceDateType.publication",
+      "before": "publication",
+      "after": "Публікація"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialResolutionType.equivalentscale",
+      "before": "equivalentScale",
+      "after": "Еквівалентний масштаб"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialResolutionType.distance",
+      "before": "distance",
+      "after": "Відстань"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialResolutionType.vertical",
+      "before": "vertical",
+      "after": "Вертикальна роздільна здатність"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialResolutionType.angulardistance",
+      "before": "angularDistance",
+      "after": "Кутова відстань"
+    },
+    {
+      "key": "controlledvocabulary.geographicSpatialResolutionType.levelofdetail",
+      "before": "levelOfDetail",
+      "after": "Рівень деталізації"
+    }
+  ]
+}
