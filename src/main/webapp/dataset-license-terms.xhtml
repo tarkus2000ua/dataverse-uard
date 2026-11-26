@@ -7,6 +7,7 @@
                 xmlns:o="http://omnifaces.org/ui"
                 xmlns:jsf="http://xmlns.jcp.org/jsf">
     <!-- TERMS -->
+    <f:loadBundle basename="propertyFiles.UardLicensing" var="uardLicensing"/>
     <ui:param name="toaNotEmpty" value="#{!empty termsOfUseAndAccess.termsOfAccess
                                         or !empty termsOfUseAndAccess.dataAccessPlace 
                                         or !empty termsOfUseAndAccess.originalArchive or !empty termsOfUseAndAccess.availabilityStatus 
@@ -75,6 +76,16 @@
                                        <a href="#{termsOfUseAndAccess.license.uri}" title="#{DatasetUtil:getLocalizedLicenseDetails(termsOfUseAndAccess.license,'DESCRIPTION')}" target="_blank">#{DatasetUtil:getLocalizedLicenseDetails(termsOfUseAndAccess.license,'NAME')}</a>
                                    </p>
                                </ui:fragment>
+                           </div>
+                       </div>
+
+                       <div class="form-group">
+                           <div class="col-sm-3 control-label">
+                               #{uardLicensing['metadata.label']}
+                           </div>
+                           <div class="col-sm-9">
+                               <p><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0</a></p>
+                               <p class="help-block">#{uardLicensing['metadata.description']}</p>
                            </div>
                        </div>
 

@@ -1,8 +1,25 @@
 # UaRD - continuation handoff
 
-Updated 2026-11-05. Target: Dataverse 6.12. This file describes the current
+Updated 2026-11-26. Target: Dataverse 6.12. This file describes the current
 implementation and supersedes earlier dated checkpoints. It does not select a
 new task or authorize a remote application deployment.
+
+## Licensing task checkpoint (2026-11-26)
+
+The licensing implementation belongs to the maintained `custom/6.12` baseline.
+It was prepared independently in the existing `tmp/geospatial-uk-translations`
+WSL worktree. Local Dataverse now defaults new datasets to CC BY 4.0 through
+its native license API; the selected data license remains editable.
+The terms fragment separately states a fixed CC0 1.0
+metadata policy in en/ua/uk, with no metadata-license input or API field.
+See [licensing](docs/licensing.md) for installation, tests, template precedence
+and the temporary local preview overlay. Preserve all unrelated primary-checkout
+work; its source files were not changed. The task excludes the private/generated
+`work/` release material. After publication, retire the temporary
+`codex/dataset-metadata-licenses` branch and keep this worktree on `custom/6.12`.
+At the user's subsequent request, the four UI files and CC BY 4.0 default were
+installed on uard2 on 2026-11-26 at 14:38 Europe/Kyiv. Public HTTPS and native
+UK -> EN -> UK checks passed; see the deployment/rollback record in licensing.md.
 
 ## Repository and required reading
 

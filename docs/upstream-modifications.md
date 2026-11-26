@@ -149,6 +149,19 @@ managed by an external vocabulary configuration.
 both fragments together. On upgrade, verify keyword rows added through AJAX,
 legacy vocabulary names and the URL written by each choice.
 
+## Dataset and metadata licensing
+
+`dataset-license-terms.xhtml` adds a read-only CC0 1.0 metadata policy row in
+both view and edit modes, including dataset templates. Its separate
+`propertyFiles.UardLicensing` bundle follows the native JSF locale (en/ua/uk).
+The existing data-license selector, permissions, AJAX and action bindings remain
+unchanged. The CC BY 4.0 default is installation configuration through the native
+license API, not a Java default or a rewrite of existing datasets or templates.
+See [licensing](licensing.md) for configuration and deployment.
+
+On upgrade, preserve the fixed metadata row and keep exported dataset license
+values tied to the selected data license.
+
 ## src/main/webapp/WEB-INF/faces-config.xml
 
 Status: implemented for the UaRD hero revision on branch `codex/homepage-hero`.
